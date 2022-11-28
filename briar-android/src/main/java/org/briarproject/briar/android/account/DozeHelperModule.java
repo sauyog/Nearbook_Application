@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import org.briarproject.android.dontkillmelib.DozeHelper;
 import org.briarproject.android.dontkillmelib.DozeHelperImpl;

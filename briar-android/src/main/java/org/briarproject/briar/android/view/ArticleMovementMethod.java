@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.briarproject.briar.android.view;
+package org.briarproject.masterproject.android.view;
 
 import android.text.Layout;
 import android.text.Spannable;

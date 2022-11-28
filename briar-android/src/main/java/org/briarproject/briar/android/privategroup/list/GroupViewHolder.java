@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.list;
+package org.briarproject.masterproject.android.privategroup.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.widget.TextView;
 
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.privategroup.conversation.GroupActivity;
-import org.briarproject.briar.android.util.UiUtils;
-import org.briarproject.briar.android.view.TextAvatarView;
+import org.briarproject.masterproject.android.privategroup.conversation.GroupActivity;
+import org.briarproject.masterproject.android.util.UiUtils;
+import org.briarproject.masterproject.android.view.TextAvatarView;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -19,9 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static org.briarproject.briar.android.activity.BriarActivity.GROUP_ID;
-import static org.briarproject.briar.android.activity.BriarActivity.GROUP_NAME;
-import static org.briarproject.briar.android.util.UiUtils.getContactDisplayName;
+import static org.briarproject.masterproject.android.activity.BriarActivity.GROUP_ID;
+import static org.briarproject.masterproject.android.activity.BriarActivity.GROUP_NAME;
+import static org.briarproject.masterproject.android.util.UiUtils.getContactDisplayName;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

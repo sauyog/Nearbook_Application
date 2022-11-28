@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import org.briarproject.bramble.api.plugin.BluetoothConstants;
 import org.briarproject.bramble.api.plugin.LanTcpConstants;
@@ -20,9 +20,9 @@ import static org.briarproject.bramble.api.plugin.TorConstants.PREF_TOR_MOBILE;
 import static org.briarproject.bramble.api.plugin.TorConstants.PREF_TOR_NETWORK;
 import static org.briarproject.bramble.api.plugin.TorConstants.PREF_TOR_NETWORK_NEVER;
 import static org.briarproject.bramble.api.plugin.TorConstants.PREF_TOR_ONLY_WHEN_CHARGING;
-import static org.briarproject.briar.android.settings.SettingsViewModel.BT_NAMESPACE;
-import static org.briarproject.briar.android.settings.SettingsViewModel.TOR_NAMESPACE;
-import static org.briarproject.briar.android.settings.SettingsViewModel.WIFI_NAMESPACE;
+import static org.briarproject.masterproject.android.settings.SettingsViewModel.BT_NAMESPACE;
+import static org.briarproject.masterproject.android.settings.SettingsViewModel.TOR_NAMESPACE;
+import static org.briarproject.masterproject.android.settings.SettingsViewModel.WIFI_NAMESPACE;
 
 @NotNullByDefault
 class ConnectionsManager {

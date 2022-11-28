@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.reporting;
+package org.briarproject.masterproject.android.reporting;
 
 import android.os.Bundle;
 

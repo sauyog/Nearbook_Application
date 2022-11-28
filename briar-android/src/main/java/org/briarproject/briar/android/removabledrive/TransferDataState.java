@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.removabledrive;
+package org.briarproject.masterproject.android.removabledrive;
 
 import org.briarproject.bramble.api.plugin.file.RemovableDriveTask;
 import org.briarproject.nullsafety.NotNullByDefault;

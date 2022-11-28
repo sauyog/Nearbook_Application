@@ -1,12 +1,12 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import android.content.Intent;
 import android.view.Gravity;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.BriarUiTestComponent;
-import org.briarproject.briar.android.ScreenshotTest;
-import org.briarproject.briar.android.navdrawer.NavDrawerActivity;
+import org.briarproject.masterproject.android.BriarUiTestComponent;
+import org.briarproject.masterproject.android.ScreenshotTest;
+import org.briarproject.masterproject.android.navdrawer.NavDrawerActivity;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,8 +24,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withChild;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.briarproject.briar.android.ViewActions.waitUntilMatches;
-import static org.briarproject.briar.android.util.UiUtils.hasScreenLock;
+import static org.briarproject.masterproject.android.ViewActions.waitUntilMatches;
+import static org.briarproject.masterproject.android.util.UiUtils.hasScreenLock;
 import static org.junit.Assume.assumeTrue;
 
 @RunWith(AndroidJUnit4.class)

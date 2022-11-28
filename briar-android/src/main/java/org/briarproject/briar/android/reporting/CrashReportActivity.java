@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.reporting;
+package org.briarproject.masterproject.android.reporting;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,11 +8,11 @@ import android.os.Process;
 import android.widget.Toast;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BaseActivity;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.fragment.BaseFragment.BaseFragmentListener;
-import org.briarproject.briar.android.logout.HideUiActivity;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BaseActivity;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.fragment.BaseFragment.BaseFragmentListener;
+import org.briarproject.masterproject.android.logout.HideUiActivity;
 import org.briarproject.briar.api.android.MemoryStats;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;

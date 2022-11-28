@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import android.app.Application;
 
@@ -6,8 +6,8 @@ import org.briarproject.android.dontkillmelib.DozeHelper;
 import org.briarproject.bramble.api.account.AccountManager;
 import org.briarproject.bramble.api.crypto.PasswordStrengthEstimator;
 import org.briarproject.bramble.api.lifecycle.IoExecutor;
-import org.briarproject.briar.android.viewmodel.LiveEvent;
-import org.briarproject.briar.android.viewmodel.MutableLiveEvent;
+import org.briarproject.masterproject.android.viewmodel.LiveEvent;
+import org.briarproject.masterproject.android.viewmodel.MutableLiveEvent;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -22,11 +22,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import static java.util.logging.Logger.getLogger;
-import static org.briarproject.briar.android.account.SetupViewModel.State.AUTHOR_NAME;
-import static org.briarproject.briar.android.account.SetupViewModel.State.CREATED;
-import static org.briarproject.briar.android.account.SetupViewModel.State.DOZE;
-import static org.briarproject.briar.android.account.SetupViewModel.State.FAILED;
-import static org.briarproject.briar.android.account.SetupViewModel.State.SET_PASSWORD;
+import static org.briarproject.masterproject.android.account.SetupViewModel.State.AUTHOR_NAME;
+import static org.briarproject.masterproject.android.account.SetupViewModel.State.CREATED;
+import static org.briarproject.masterproject.android.account.SetupViewModel.State.DOZE;
+import static org.briarproject.masterproject.android.account.SetupViewModel.State.FAILED;
+import static org.briarproject.masterproject.android.account.SetupViewModel.State.SET_PASSWORD;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

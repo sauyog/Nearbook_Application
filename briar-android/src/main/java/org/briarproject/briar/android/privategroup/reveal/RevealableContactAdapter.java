@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.reveal;
+package org.briarproject.masterproject.android.privategroup.reveal;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.contact.OnContactClickListener;
-import org.briarproject.briar.android.contactselection.BaseContactSelectorAdapter;
+import org.briarproject.masterproject.android.contact.OnContactClickListener;
+import org.briarproject.masterproject.android.contactselection.BaseContactSelectorAdapter;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.blog;
+package org.briarproject.masterproject.android.blog;
 
 import org.briarproject.briar.api.blog.Blog;
 

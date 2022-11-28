@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.navdrawer;
+package org.briarproject.masterproject.android.navdrawer;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -26,18 +26,18 @@ import org.briarproject.bramble.api.plugin.Plugin.State;
 import org.briarproject.bramble.api.plugin.TorConstants;
 import org.briarproject.bramble.api.plugin.TransportId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.BriarApplication;
-import org.briarproject.briar.android.StartupFailureActivity;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BriarActivity;
-import org.briarproject.briar.android.blog.FeedFragment;
-import org.briarproject.briar.android.contact.ContactListFragment;
-import org.briarproject.briar.android.forum.ForumListFragment;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.fragment.BaseFragment.BaseFragmentListener;
-import org.briarproject.briar.android.logout.SignOutFragment;
-import org.briarproject.briar.android.privategroup.list.GroupListFragment;
-import org.briarproject.briar.android.settings.SettingsActivity;
+import org.briarproject.masterproject.android.BriarApplication;
+import org.briarproject.masterproject.android.StartupFailureActivity;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.blog.FeedFragment;
+import org.briarproject.masterproject.android.contact.ContactListFragment;
+import org.briarproject.masterproject.android.forum.ForumListFragment;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.fragment.BaseFragment.BaseFragmentListener;
+import org.briarproject.masterproject.android.logout.SignOutFragment;
+import org.briarproject.masterproject.android.privategroup.list.GroupListFragment;
+import org.briarproject.masterproject.android.settings.SettingsActivity;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -73,17 +73,17 @@ import static org.briarproject.bramble.api.lifecycle.LifecycleManager.LifecycleS
 import static org.briarproject.bramble.api.plugin.Plugin.State.ACTIVE;
 import static org.briarproject.bramble.api.plugin.Plugin.State.ENABLING;
 import static org.briarproject.bramble.api.plugin.Plugin.State.STARTING_STOPPING;
-import static org.briarproject.briar.android.BriarService.EXTRA_STARTUP_FAILED;
-import static org.briarproject.briar.android.BriarService.EXTRA_START_RESULT;
-import static org.briarproject.briar.android.TestingConstants.EXPIRY_DATE;
-import static org.briarproject.briar.android.TestingConstants.IS_DEBUG_BUILD;
-import static org.briarproject.briar.android.activity.RequestCodes.REQUEST_PASSWORD;
-import static org.briarproject.briar.android.navdrawer.IntentRouter.handleExternalIntent;
-import static org.briarproject.briar.android.util.UiUtils.formatDateFull;
-import static org.briarproject.briar.android.util.UiUtils.getDaysUntilExpiry;
-import static org.briarproject.briar.android.util.UiUtils.observeOnce;
-import static org.briarproject.briar.android.util.UiUtils.resolveColorAttribute;
-import static org.briarproject.briar.android.util.UiUtils.shouldWarnOldAndroidExpiry;
+import static org.briarproject.masterproject.android.BriarService.EXTRA_STARTUP_FAILED;
+import static org.briarproject.masterproject.android.BriarService.EXTRA_START_RESULT;
+import static org.briarproject.masterproject.android.TestingConstants.EXPIRY_DATE;
+import static org.briarproject.masterproject.android.TestingConstants.IS_DEBUG_BUILD;
+import static org.briarproject.masterproject.android.activity.RequestCodes.REQUEST_PASSWORD;
+import static org.briarproject.masterproject.android.navdrawer.IntentRouter.handleExternalIntent;
+import static org.briarproject.masterproject.android.util.UiUtils.formatDateFull;
+import static org.briarproject.masterproject.android.util.UiUtils.getDaysUntilExpiry;
+import static org.briarproject.masterproject.android.util.UiUtils.observeOnce;
+import static org.briarproject.masterproject.android.util.UiUtils.resolveColorAttribute;
+import static org.briarproject.masterproject.android.util.UiUtils.shouldWarnOldAndroidExpiry;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

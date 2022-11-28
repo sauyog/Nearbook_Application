@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 
 import static org.briarproject.bramble.api.identity.AuthorConstants.MAX_AUTHOR_NAME_LENGTH;
 import static org.briarproject.bramble.util.StringUtils.toUtf8;
-import static org.briarproject.briar.android.util.UiUtils.setError;
+import static org.briarproject.masterproject.android.util.UiUtils.setError;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

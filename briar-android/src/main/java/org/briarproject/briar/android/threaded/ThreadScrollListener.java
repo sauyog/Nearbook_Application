@@ -1,7 +1,7 @@
-package org.briarproject.briar.android.threaded;
+package org.briarproject.masterproject.android.threaded;
 
-import org.briarproject.briar.android.view.BriarRecyclerViewScrollListener;
-import org.briarproject.briar.android.view.UnreadMessageButton;
+import org.briarproject.masterproject.android.view.BriarRecyclerViewScrollListener;
+import org.briarproject.masterproject.android.view.UnreadMessageButton;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.util.logging.Logger;

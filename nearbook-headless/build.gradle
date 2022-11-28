@@ -18,7 +18,7 @@ targetCompatibility = 1.8
 
 dependencies {
 	implementation project(path: ':briar-core', configuration: 'default')
-	implementation project(path: ':bramble-java', configuration: 'default')
+	implementation project(path: ':nearbook-java', configuration: 'default')
 
 	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10'
 	implementation 'io.javalin:javalin:3.5.0'
@@ -29,8 +29,8 @@ dependencies {
 	def daggerVersion = '2.24'
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	testImplementation project(path: ':bramble-api', configuration: 'testOutput')
-	testImplementation project(path: ':bramble-core', configuration: 'testOutput')
+	testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
+	testImplementation project(path: ':nearbook-core', configuration: 'testOutput')
 	testImplementation project(path: ':briar-core', configuration: 'testOutput')
 
 	def junitVersion = '5.5.2'
@@ -51,7 +51,7 @@ void jarFactory(Jar jarTask, jarArchitecture) {
 	}
 	jarTask.manifest {
 		attributes(
-				'Main-Class': 'org.briarproject.briar.headless.MainKt'
+				'Main-Class': 'org.briarproject.nearbook.headless.MainKt'
 		)
 	}
 	jarTask.setArchiveClassifier(jarArchitecture)

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.sharing;
+package org.briarproject.masterproject.android.sharing;
 
 import org.briarproject.bramble.api.contact.Contact;
 import org.briarproject.bramble.api.db.DatabaseExecutor;
@@ -7,7 +7,7 @@ import org.briarproject.bramble.api.event.Event;
 import org.briarproject.bramble.api.event.EventBus;
 import org.briarproject.bramble.api.lifecycle.LifecycleManager;
 import org.briarproject.bramble.api.sync.ClientId;
-import org.briarproject.briar.android.controller.handler.ExceptionHandler;
+import org.briarproject.masterproject.android.controller.handler.ExceptionHandler;
 import org.briarproject.briar.api.blog.Blog;
 import org.briarproject.briar.api.blog.BlogSharingManager;
 import org.briarproject.briar.api.blog.event.BlogInvitationRequestReceivedEvent;

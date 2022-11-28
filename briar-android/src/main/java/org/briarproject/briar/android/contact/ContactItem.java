@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact;
+package org.briarproject.masterproject.android.contact;
 
 import org.briarproject.bramble.api.contact.Contact;
 import org.briarproject.briar.api.identity.AuthorInfo;

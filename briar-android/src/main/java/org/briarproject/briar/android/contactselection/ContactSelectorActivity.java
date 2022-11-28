@@ -1,12 +1,12 @@
-package org.briarproject.briar.android.contactselection;
+package org.briarproject.masterproject.android.contactselection;
 
 import android.os.Bundle;
 
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.BriarActivity;
-import org.briarproject.briar.android.fragment.BaseFragment.BaseFragmentListener;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.fragment.BaseFragment.BaseFragmentListener;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 

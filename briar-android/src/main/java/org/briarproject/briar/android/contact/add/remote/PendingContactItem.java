@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact.add.remote;
+package org.briarproject.masterproject.android.contact.add.remote;
 
 import org.briarproject.bramble.api.contact.PendingContact;
 import org.briarproject.bramble.api.contact.PendingContactState;

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.removabledrive;
+package org.briarproject.masterproject.android.removabledrive;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.fragment.FinalFragment;
+import org.briarproject.masterproject.android.fragment.FinalFragment;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 

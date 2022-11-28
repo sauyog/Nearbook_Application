@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contactselection;
+package org.briarproject.masterproject.android.contactselection;
 
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.nullsafety.NotNullByDefault;

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android;
+package org.briarproject.masterproject.android;
 
 import android.annotation.TargetApi;
 import android.app.Application;
@@ -29,15 +29,15 @@ import org.briarproject.bramble.api.system.AndroidExecutor;
 import org.briarproject.bramble.api.system.Clock;
 import org.briarproject.bramble.util.StringUtils;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.conversation.ConversationActivity;
-import org.briarproject.briar.android.forum.ForumActivity;
-import org.briarproject.briar.android.hotspot.HotspotActivity;
-import org.briarproject.briar.android.login.SignInReminderReceiver;
-import org.briarproject.briar.android.mailbox.MailboxActivity;
-import org.briarproject.briar.android.navdrawer.NavDrawerActivity;
-import org.briarproject.briar.android.privategroup.conversation.GroupActivity;
-import org.briarproject.briar.android.splash.SplashScreenActivity;
-import org.briarproject.briar.android.util.BriarNotificationBuilder;
+import org.briarproject.masterproject.android.conversation.ConversationActivity;
+import org.briarproject.masterproject.android.forum.ForumActivity;
+import org.briarproject.masterproject.android.hotspot.HotspotActivity;
+import org.briarproject.masterproject.android.login.SignInReminderReceiver;
+import org.briarproject.masterproject.android.mailbox.MailboxActivity;
+import org.briarproject.masterproject.android.navdrawer.NavDrawerActivity;
+import org.briarproject.masterproject.android.privategroup.conversation.GroupActivity;
+import org.briarproject.masterproject.android.splash.SplashScreenActivity;
+import org.briarproject.masterproject.android.util.BriarNotificationBuilder;
 import org.briarproject.briar.api.android.AndroidNotificationManager;
 import org.briarproject.briar.api.blog.event.BlogPostAddedEvent;
 import org.briarproject.briar.api.conversation.ConversationResponse;
@@ -85,14 +85,14 @@ import static androidx.core.app.NotificationCompat.PRIORITY_MIN;
 import static androidx.core.app.NotificationCompat.VISIBILITY_SECRET;
 import static androidx.core.content.ContextCompat.getColor;
 import static org.briarproject.bramble.util.AndroidUtils.getImmutableFlags;
-import static org.briarproject.briar.android.activity.BriarActivity.GROUP_ID;
-import static org.briarproject.briar.android.conversation.ConversationActivity.CONTACT_ID;
-import static org.briarproject.briar.android.navdrawer.NavDrawerActivity.BLOG_URI;
-import static org.briarproject.briar.android.navdrawer.NavDrawerActivity.CONTACT_ADDED_URI;
-import static org.briarproject.briar.android.navdrawer.NavDrawerActivity.CONTACT_URI;
-import static org.briarproject.briar.android.navdrawer.NavDrawerActivity.FORUM_URI;
-import static org.briarproject.briar.android.navdrawer.NavDrawerActivity.GROUP_URI;
-import static org.briarproject.briar.android.settings.SettingsFragment.SETTINGS_NAMESPACE;
+import static org.briarproject.masterproject.android.activity.BriarActivity.GROUP_ID;
+import static org.briarproject.masterproject.android.conversation.ConversationActivity.CONTACT_ID;
+import static org.briarproject.masterproject.android.navdrawer.NavDrawerActivity.BLOG_URI;
+import static org.briarproject.masterproject.android.navdrawer.NavDrawerActivity.CONTACT_ADDED_URI;
+import static org.briarproject.masterproject.android.navdrawer.NavDrawerActivity.CONTACT_URI;
+import static org.briarproject.masterproject.android.navdrawer.NavDrawerActivity.FORUM_URI;
+import static org.briarproject.masterproject.android.navdrawer.NavDrawerActivity.GROUP_URI;
+import static org.briarproject.masterproject.android.settings.SettingsFragment.SETTINGS_NAMESPACE;
 
 @ThreadSafe
 @MethodsNotNullByDefault

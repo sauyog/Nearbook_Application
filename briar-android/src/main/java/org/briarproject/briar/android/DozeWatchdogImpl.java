@@ -1,4 +1,4 @@
-package org.briarproject.briar.android;
+package org.briarproject.masterproject.android;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

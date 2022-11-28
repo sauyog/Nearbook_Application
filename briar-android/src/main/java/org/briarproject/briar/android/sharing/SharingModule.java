@@ -1,7 +1,7 @@
-package org.briarproject.briar.android.sharing;
+package org.briarproject.masterproject.android.sharing;
 
-import org.briarproject.briar.android.activity.ActivityScope;
-import org.briarproject.briar.android.activity.BaseActivity;
+import org.briarproject.masterproject.android.activity.ActivityScope;
+import org.briarproject.masterproject.android.activity.BaseActivity;
 
 import dagger.Module;
 import dagger.Provides;

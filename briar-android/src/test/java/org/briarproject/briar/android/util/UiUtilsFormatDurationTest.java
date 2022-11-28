@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.util;
+package org.briarproject.masterproject.android.util;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -13,7 +13,7 @@ import static java.util.concurrent.TimeUnit.DAYS;
 import static java.util.concurrent.TimeUnit.HOURS;
 import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.briarproject.briar.android.util.UiUtils.formatDuration;
+import static org.briarproject.masterproject.android.util.UiUtils.formatDuration;
 
 public class UiUtilsFormatDurationTest extends BrambleMockTestCase {
 

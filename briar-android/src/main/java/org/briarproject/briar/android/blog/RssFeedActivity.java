@@ -1,12 +1,12 @@
-package org.briarproject.briar.android.blog;
+package org.briarproject.masterproject.android.blog;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BriarActivity;
-import org.briarproject.briar.android.fragment.BaseFragment.BaseFragmentListener;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.fragment.BaseFragment.BaseFragmentListener;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -16,9 +16,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
-import static org.briarproject.briar.android.blog.RssFeedViewModel.ImportResult.EXISTS;
-import static org.briarproject.briar.android.blog.RssFeedViewModel.ImportResult.FAILED;
-import static org.briarproject.briar.android.blog.RssFeedViewModel.ImportResult.IMPORTED;
+import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.EXISTS;
+import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.FAILED;
+import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.IMPORTED;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.conversation;
+package org.briarproject.masterproject.android.conversation;
 
 import android.content.Context;
 import android.view.View;
@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static org.briarproject.bramble.util.StringUtils.trim;
-import static org.briarproject.briar.android.util.UiUtils.formatDate;
-import static org.briarproject.briar.android.util.UiUtils.formatDuration;
+import static org.briarproject.masterproject.android.util.UiUtils.formatDate;
+import static org.briarproject.masterproject.android.util.UiUtils.formatDuration;
 import static org.briarproject.briar.api.autodelete.AutoDeleteConstants.NO_AUTO_DELETE_TIMER;
 
 @UiThread

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.attachment;
+package org.briarproject.masterproject.android.attachment;
 
 import org.briarproject.nullsafety.NotNullByDefault;
 

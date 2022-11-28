@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -20,9 +20,9 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import static android.os.Build.VERSION.SDK_INT;
 import static java.util.Objects.requireNonNull;
-import static org.briarproject.briar.android.AppModule.getAndroidComponent;
-import static org.briarproject.briar.android.settings.SettingsActivity.enableAndPersist;
-import static org.briarproject.briar.android.util.UiUtils.hasScreenLock;
+import static org.briarproject.masterproject.android.AppModule.getAndroidComponent;
+import static org.briarproject.masterproject.android.settings.SettingsActivity.enableAndPersist;
+import static org.briarproject.masterproject.android.util.UiUtils.hasScreenLock;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

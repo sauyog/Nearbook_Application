@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.fragment;
+package org.briarproject.masterproject.android.fragment;
 
 import org.briarproject.bramble.api.event.EventBus;
 import org.briarproject.bramble.api.event.EventListener;

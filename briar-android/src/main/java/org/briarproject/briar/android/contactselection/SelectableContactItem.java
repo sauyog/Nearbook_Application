@@ -1,7 +1,7 @@
-package org.briarproject.briar.android.contactselection;
+package org.briarproject.masterproject.android.contactselection;
 
 import org.briarproject.bramble.api.contact.Contact;
-import org.briarproject.briar.android.contact.ContactItem;
+import org.briarproject.masterproject.android.contact.ContactItem;
 import org.briarproject.briar.api.identity.AuthorInfo;
 import org.briarproject.nullsafety.NotNullByDefault;
 

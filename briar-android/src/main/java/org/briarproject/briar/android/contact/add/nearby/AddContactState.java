@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact.add.nearby;
+package org.briarproject.masterproject.android.contact.add.nearby;
 
 import android.graphics.Bitmap;
 

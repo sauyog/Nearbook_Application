@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;

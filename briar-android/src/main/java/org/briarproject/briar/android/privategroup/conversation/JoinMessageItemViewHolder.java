@@ -1,11 +1,11 @@
-package org.briarproject.briar.android.privategroup.conversation;
+package org.briarproject.masterproject.android.privategroup.conversation;
 
 import android.content.Context;
 import android.view.View;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.threaded.BaseThreadItemViewHolder;
-import org.briarproject.briar.android.threaded.ThreadItemAdapter.ThreadItemListener;
+import org.briarproject.masterproject.android.threaded.BaseThreadItemViewHolder;
+import org.briarproject.masterproject.android.threaded.ThreadItemAdapter.ThreadItemListener;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import androidx.annotation.UiThread;

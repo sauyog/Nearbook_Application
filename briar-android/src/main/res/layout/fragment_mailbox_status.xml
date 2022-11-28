@@ -59,7 +59,7 @@
 			tools:text="@string/mailbox_status_mailbox_too_old_message"
 			tools:visibility="visible" />
 
-		<org.briarproject.briar.android.view.BriarButton
+		<org.briarproject.masterproject.android.view.BriarButton
 			android:id="@+id/checkButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"

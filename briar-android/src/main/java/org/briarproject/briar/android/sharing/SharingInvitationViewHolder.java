@@ -1,11 +1,11 @@
-package org.briarproject.briar.android.sharing;
+package org.briarproject.masterproject.android.sharing;
 
 import android.view.View;
 
 import org.briarproject.bramble.api.contact.Contact;
 import org.briarproject.bramble.util.StringUtils;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.sharing.InvitationAdapter.InvitationClickListener;
+import org.briarproject.masterproject.android.sharing.InvitationAdapter.InvitationClickListener;
 import org.briarproject.briar.api.sharing.SharingInvitationItem;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.Collection;
 
 import javax.annotation.Nullable;
 
-import static org.briarproject.briar.android.util.UiUtils.getContactDisplayName;
+import static org.briarproject.masterproject.android.util.UiUtils.getContactDisplayName;
 
 class SharingInvitationViewHolder
 		extends InvitationViewHolder<SharingInvitationItem> {

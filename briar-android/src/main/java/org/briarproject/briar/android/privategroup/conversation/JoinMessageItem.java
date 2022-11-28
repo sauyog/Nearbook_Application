@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.conversation;
+package org.briarproject.masterproject.android.privategroup.conversation;
 
 import org.briarproject.briar.R;
 import org.briarproject.briar.api.privategroup.JoinMessageHeader;

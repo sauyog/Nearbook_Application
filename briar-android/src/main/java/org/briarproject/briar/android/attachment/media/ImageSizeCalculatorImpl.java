@@ -1,8 +1,8 @@
-package org.briarproject.briar.android.attachment.media;
+package org.briarproject.masterproject.android.attachment.media;
 
 import com.bumptech.glide.util.MarkEnforcingInputStream;
 
-import org.briarproject.briar.android.attachment.media.ImageHelper.DecodeResult;
+import org.briarproject.masterproject.android.attachment.media.ImageHelper.DecodeResult;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.io.IOException;

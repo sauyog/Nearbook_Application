@@ -1,8 +1,8 @@
-package org.briarproject.briar.android.conversation;
+package org.briarproject.masterproject.android.conversation;
 
 import android.view.View;
 
-import org.briarproject.briar.android.attachment.AttachmentItem;
+import org.briarproject.masterproject.android.attachment.AttachmentItem;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import androidx.annotation.UiThread;

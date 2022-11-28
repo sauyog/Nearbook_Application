@@ -6,10 +6,10 @@ apply plugin: 'idea'
 apply from: '../dagger.gradle'
 
 dependencies {
-	testImplementation project(path: ':bramble-api', configuration: 'default')
-	testImplementation project(path: ':bramble-api', configuration: 'testOutput')
-	testImplementation project(path: ':bramble-core', configuration: 'default')
-	testImplementation project(path: ':bramble-core', configuration: 'testOutput')
+	testImplementation project(path: ':nearbook-api', configuration: 'default')
+	testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
+	testImplementation project(path: ':nearbook-core', configuration: 'default')
+	testImplementation project(path: ':nearbook-core', configuration: 'testOutput')
 	testImplementation project(path: ':mailbox-core', configuration: 'default')
 	testImplementation project(path: ':mailbox-lib', configuration: 'default')
 

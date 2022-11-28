@@ -1,12 +1,12 @@
-package org.briarproject.briar.android.login;
+package org.briarproject.masterproject.android.login;
 
 import org.briarproject.bramble.api.account.AccountManager;
 import org.briarproject.bramble.api.crypto.DecryptionException;
 import org.briarproject.bramble.api.crypto.DecryptionResult;
 import org.briarproject.bramble.api.crypto.PasswordStrengthEstimator;
 import org.briarproject.bramble.api.lifecycle.IoExecutor;
-import org.briarproject.briar.android.viewmodel.LiveEvent;
-import org.briarproject.briar.android.viewmodel.MutableLiveEvent;
+import org.briarproject.masterproject.android.viewmodel.LiveEvent;
+import org.briarproject.masterproject.android.viewmodel.MutableLiveEvent;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.util.concurrent.Executor;

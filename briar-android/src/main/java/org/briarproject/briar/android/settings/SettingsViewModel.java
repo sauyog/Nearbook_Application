@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import android.app.Application;
 import android.content.ContentResolver;
@@ -26,9 +26,9 @@ import org.briarproject.bramble.api.system.AndroidExecutor;
 import org.briarproject.bramble.api.system.LocationUtils;
 import org.briarproject.bramble.plugin.tor.CircumventionProvider;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.attachment.UnsupportedMimeTypeException;
-import org.briarproject.briar.android.attachment.media.ImageCompressor;
-import org.briarproject.briar.android.viewmodel.DbViewModel;
+import org.briarproject.masterproject.android.attachment.UnsupportedMimeTypeException;
+import org.briarproject.masterproject.android.attachment.media.ImageCompressor;
+import org.briarproject.masterproject.android.viewmodel.DbViewModel;
 import org.briarproject.briar.api.avatar.AvatarManager;
 import org.briarproject.briar.api.identity.AuthorInfo;
 import org.briarproject.briar.api.identity.AuthorManager;
@@ -54,9 +54,9 @@ import static org.briarproject.bramble.util.AndroidUtils.getSupportedImageConten
 import static org.briarproject.bramble.util.LogUtils.logDuration;
 import static org.briarproject.bramble.util.LogUtils.logException;
 import static org.briarproject.bramble.util.LogUtils.now;
-import static org.briarproject.briar.android.settings.SecurityFragment.PREF_SCREEN_LOCK;
-import static org.briarproject.briar.android.settings.SecurityFragment.PREF_SCREEN_LOCK_TIMEOUT;
-import static org.briarproject.briar.android.settings.SettingsFragment.SETTINGS_NAMESPACE;
+import static org.briarproject.masterproject.android.settings.SecurityFragment.PREF_SCREEN_LOCK;
+import static org.briarproject.masterproject.android.settings.SecurityFragment.PREF_SCREEN_LOCK_TIMEOUT;
+import static org.briarproject.masterproject.android.settings.SettingsFragment.SETTINGS_NAMESPACE;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

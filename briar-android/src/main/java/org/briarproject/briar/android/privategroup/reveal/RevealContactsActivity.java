@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.reveal;
+package org.briarproject.masterproject.android.privategroup.reveal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +13,10 @@ import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.bramble.api.db.DbException;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.contactselection.ContactSelectorActivity;
-import org.briarproject.briar.android.controller.handler.UiExceptionHandler;
-import org.briarproject.briar.android.controller.handler.UiResultExceptionHandler;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.contactselection.ContactSelectorActivity;
+import org.briarproject.masterproject.android.controller.handler.UiExceptionHandler;
+import org.briarproject.masterproject.android.controller.handler.UiResultExceptionHandler;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 

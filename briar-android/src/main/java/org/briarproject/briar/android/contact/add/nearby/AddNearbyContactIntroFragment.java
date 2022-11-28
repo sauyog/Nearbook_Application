@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact.add.nearby;
+package org.briarproject.masterproject.android.contact.add.nearby;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 

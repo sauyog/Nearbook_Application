@@ -1,6 +1,6 @@
-package org.briarproject.briar.android.view;
+package org.briarproject.masterproject.android.view;
 
-import org.briarproject.briar.android.util.ItemReturningAdapter;
+import org.briarproject.masterproject.android.util.ItemReturningAdapter;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import androidx.annotation.CallSuper;

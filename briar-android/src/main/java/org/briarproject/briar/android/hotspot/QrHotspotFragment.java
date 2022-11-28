@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.hotspot;
+package org.briarproject.masterproject.android.hotspot;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.hotspot.HotspotState.HotspotStarted;
+import org.briarproject.masterproject.android.hotspot.HotspotState.HotspotStarted;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -21,8 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import static org.briarproject.briar.android.AppModule.getAndroidComponent;
-import static org.briarproject.briar.android.hotspot.AbstractTabsFragment.ARG_FOR_WIFI_CONNECT;
+import static org.briarproject.masterproject.android.AppModule.getAndroidComponent;
+import static org.briarproject.masterproject.android.hotspot.AbstractTabsFragment.ARG_FOR_WIFI_CONNECT;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

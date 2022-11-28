@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.conversation;
+package org.briarproject.masterproject.android.privategroup.conversation;
 
 import android.app.Application;
 
@@ -18,8 +18,8 @@ import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.bramble.api.sync.MessageId;
 import org.briarproject.bramble.api.system.AndroidExecutor;
 import org.briarproject.bramble.api.system.Clock;
-import org.briarproject.briar.android.sharing.SharingController;
-import org.briarproject.briar.android.threaded.ThreadListViewModel;
+import org.briarproject.masterproject.android.sharing.SharingController;
+import org.briarproject.masterproject.android.threaded.ThreadListViewModel;
 import org.briarproject.briar.api.android.AndroidNotificationManager;
 import org.briarproject.briar.api.client.MessageTracker;
 import org.briarproject.briar.api.client.MessageTracker.GroupCount;

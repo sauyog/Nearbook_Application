@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.reporting;
+package org.briarproject.masterproject.android.reporting;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +7,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.reporting.ReportData.ReportItem;
+import org.briarproject.masterproject.android.reporting.ReportData.ReportItem;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.util.List;

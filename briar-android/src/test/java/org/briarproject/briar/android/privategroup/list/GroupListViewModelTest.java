@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.list;
+package org.briarproject.masterproject.android.privategroup.list;
 
 import android.app.Application;
 
@@ -15,8 +15,8 @@ import org.briarproject.bramble.api.system.AndroidExecutor;
 import org.briarproject.bramble.test.BrambleMockTestCase;
 import org.briarproject.bramble.test.DbExpectations;
 import org.briarproject.bramble.test.ImmediateExecutor;
-import org.briarproject.briar.android.AndroidExecutorTestImpl;
-import org.briarproject.briar.android.viewmodel.LiveResult;
+import org.briarproject.masterproject.android.AndroidExecutorTestImpl;
+import org.briarproject.masterproject.android.viewmodel.LiveResult;
 import org.briarproject.briar.api.android.AndroidNotificationManager;
 import org.briarproject.briar.api.identity.AuthorInfo;
 import org.briarproject.briar.api.identity.AuthorManager;
@@ -42,7 +42,7 @@ import static org.briarproject.bramble.test.TestUtils.getAuthor;
 import static org.briarproject.bramble.test.TestUtils.getContact;
 import static org.briarproject.bramble.test.TestUtils.getGroup;
 import static org.briarproject.bramble.test.TestUtils.getRandomBytes;
-import static org.briarproject.briar.android.viewmodel.LiveDataTestUtil.getOrAwaitValue;
+import static org.briarproject.masterproject.android.viewmodel.LiveDataTestUtil.getOrAwaitValue;
 import static org.briarproject.briar.api.client.MessageTracker.GroupCount;
 import static org.briarproject.briar.api.privategroup.invitation.GroupInvitationManager.CLIENT_ID;
 import static org.briarproject.briar.api.privategroup.invitation.GroupInvitationManager.MAJOR_VERSION;

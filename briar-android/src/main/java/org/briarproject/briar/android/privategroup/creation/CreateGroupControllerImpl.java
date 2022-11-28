@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.creation;
+package org.briarproject.masterproject.android.privategroup.creation;
 
 import org.briarproject.bramble.api.contact.Contact;
 import org.briarproject.bramble.api.contact.ContactId;
@@ -14,8 +14,8 @@ import org.briarproject.bramble.api.identity.LocalAuthor;
 import org.briarproject.bramble.api.lifecycle.LifecycleManager;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.bramble.api.system.Clock;
-import org.briarproject.briar.android.contactselection.ContactSelectorControllerImpl;
-import org.briarproject.briar.android.controller.handler.ResultExceptionHandler;
+import org.briarproject.masterproject.android.contactselection.ContactSelectorControllerImpl;
+import org.briarproject.masterproject.android.controller.handler.ResultExceptionHandler;
 import org.briarproject.briar.api.autodelete.AutoDeleteManager;
 import org.briarproject.briar.api.conversation.ConversationManager;
 import org.briarproject.briar.api.identity.AuthorManager;

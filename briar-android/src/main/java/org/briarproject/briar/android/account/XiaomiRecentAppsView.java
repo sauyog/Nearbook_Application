@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -13,7 +13,7 @@ import androidx.annotation.UiThread;
 
 import static org.briarproject.android.dontkillmelib.XiaomiUtils.isMiuiVersionAtLeast;
 import static org.briarproject.android.dontkillmelib.XiaomiUtils.xiaomiRecentAppsNeedsToBeShown;
-import static org.briarproject.briar.android.util.UiUtils.showOnboardingDialog;
+import static org.briarproject.masterproject.android.util.UiUtils.showOnboardingDialog;
 
 @UiThread
 @NotNullByDefault

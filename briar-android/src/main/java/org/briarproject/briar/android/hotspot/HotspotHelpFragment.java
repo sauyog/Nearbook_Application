@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.hotspot;
+package org.briarproject.masterproject.android.hotspot;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

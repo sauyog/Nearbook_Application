@@ -1,10 +1,10 @@
-package org.briarproject.briar.android.attachment;
+package org.briarproject.masterproject.android.attachment;
 
 import org.briarproject.bramble.api.UniqueId;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.bramble.api.sync.MessageId;
-import org.briarproject.briar.android.attachment.media.ImageHelper;
-import org.briarproject.briar.android.attachment.media.ImageSizeCalculator;
+import org.briarproject.masterproject.android.attachment.media.ImageHelper;
+import org.briarproject.masterproject.android.attachment.media.ImageSizeCalculator;
 import org.briarproject.briar.api.attachment.Attachment;
 import org.briarproject.briar.api.attachment.AttachmentHeader;
 import org.junit.Test;
@@ -18,8 +18,8 @@ import javax.inject.Inject;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static androidx.test.InstrumentationRegistry.getContext;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.AVAILABLE;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.ERROR;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.AVAILABLE;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.ERROR;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

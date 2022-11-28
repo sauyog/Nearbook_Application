@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.threaded;
+package org.briarproject.masterproject.android.threaded;
 
 import android.animation.Animator;
 import android.animation.ArgbEvaluator;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import org.briarproject.bramble.util.StringUtils;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.threaded.ThreadItemAdapter.ThreadItemListener;
-import org.briarproject.briar.android.view.AuthorView;
+import org.briarproject.masterproject.android.threaded.ThreadItemAdapter.ThreadItemListener;
+import org.briarproject.masterproject.android.view.AuthorView;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import androidx.annotation.CallSuper;

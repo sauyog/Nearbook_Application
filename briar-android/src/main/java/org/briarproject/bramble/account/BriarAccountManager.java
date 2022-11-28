@@ -7,8 +7,8 @@ import org.briarproject.bramble.api.crypto.CryptoComponent;
 import org.briarproject.bramble.api.db.DatabaseConfig;
 import org.briarproject.bramble.api.identity.IdentityManager;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.Localizer;
-import org.briarproject.briar.android.util.UiUtils;
+import org.briarproject.masterproject.android.Localizer;
+import org.briarproject.masterproject.android.util.UiUtils;
 
 import javax.inject.Inject;
 

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.forum;
+package org.briarproject.masterproject.android.forum;
 
 import org.briarproject.briar.api.client.MessageTracker.GroupCount;
 import org.briarproject.briar.api.forum.Forum;

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.introduction;
+package org.briarproject.masterproject.android.introduction;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,12 +9,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.contact.ContactItem;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.view.TextInputView;
-import org.briarproject.briar.android.view.TextSendController;
-import org.briarproject.briar.android.view.TextSendController.SendListener;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.contact.ContactItem;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.view.TextInputView;
+import org.briarproject.masterproject.android.view.TextSendController;
+import org.briarproject.masterproject.android.view.TextSendController.SendListener;
 import org.briarproject.briar.api.attachment.AttachmentHeader;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
@@ -33,11 +33,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static android.app.Activity.RESULT_OK;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static org.briarproject.briar.android.util.UiUtils.getContactDisplayName;
-import static org.briarproject.briar.android.util.UiUtils.hideSoftKeyboard;
-import static org.briarproject.briar.android.view.AuthorView.setAvatar;
-import static org.briarproject.briar.android.view.TextSendController.SendState;
-import static org.briarproject.briar.android.view.TextSendController.SendState.SENT;
+import static org.briarproject.masterproject.android.util.UiUtils.getContactDisplayName;
+import static org.briarproject.masterproject.android.util.UiUtils.hideSoftKeyboard;
+import static org.briarproject.masterproject.android.view.AuthorView.setAvatar;
+import static org.briarproject.masterproject.android.view.TextSendController.SendState;
+import static org.briarproject.masterproject.android.view.TextSendController.SendState.SENT;
 import static org.briarproject.briar.api.introduction.IntroductionConstants.MAX_INTRODUCTION_TEXT_LENGTH;
 
 @MethodsNotNullByDefault

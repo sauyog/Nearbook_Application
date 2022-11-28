@@ -1,9 +1,9 @@
-package org.briarproject.briar.android.mailbox;
+package org.briarproject.masterproject.android.mailbox;
 
 import android.content.Context;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.util.Permission;
+import org.briarproject.masterproject.android.util.Permission;
 
 import java.util.Map;
 
@@ -14,8 +14,8 @@ import static android.Manifest.permission.CAMERA;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale;
 import static androidx.core.content.ContextCompat.checkSelfPermission;
-import static org.briarproject.briar.android.util.PermissionUtils.showDenialDialog;
-import static org.briarproject.briar.android.util.PermissionUtils.showRationale;
+import static org.briarproject.masterproject.android.util.PermissionUtils.showDenialDialog;
+import static org.briarproject.masterproject.android.util.PermissionUtils.showRationale;
 
 class CameraPermissionManager {
 

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import android.content.Context;
 import android.util.AttributeSet;

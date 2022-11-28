@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.conversation;
+package org.briarproject.masterproject.android.conversation;
 
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.briar.api.client.SessionId;

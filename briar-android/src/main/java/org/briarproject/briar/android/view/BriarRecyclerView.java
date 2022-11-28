@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.view;
+package org.briarproject.masterproject.android.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -21,7 +21,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
-import static org.briarproject.briar.android.util.UiUtils.MIN_DATE_RESOLUTION;
+import static org.briarproject.masterproject.android.util.UiUtils.MIN_DATE_RESOLUTION;
 
 public class BriarRecyclerView extends FrameLayout {
 

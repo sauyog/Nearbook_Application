@@ -1,4 +1,4 @@
-package org.briarproject.briar.android;
+package org.briarproject.masterproject.android;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -23,7 +23,7 @@ import org.briarproject.bramble.api.system.AndroidExecutor;
 import org.briarproject.bramble.api.system.AndroidWakeLockManager;
 import org.briarproject.bramble.api.system.Clock;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.logout.HideUiActivity;
+import org.briarproject.masterproject.android.logout.HideUiActivity;
 import org.briarproject.briar.api.android.AndroidNotificationManager;
 import org.briarproject.briar.api.android.LockManager;
 
@@ -51,7 +51,7 @@ import static java.util.logging.Level.WARNING;
 import static org.briarproject.bramble.api.lifecycle.LifecycleManager.StartResult.ALREADY_RUNNING;
 import static org.briarproject.bramble.api.lifecycle.LifecycleManager.StartResult.SUCCESS;
 import static org.briarproject.bramble.util.AndroidUtils.isUiThread;
-import static org.briarproject.briar.android.BriarApplication.ENTRY_ACTIVITY;
+import static org.briarproject.masterproject.android.BriarApplication.ENTRY_ACTIVITY;
 import static org.briarproject.briar.api.android.AndroidNotificationManager.FAILURE_CHANNEL_ID;
 import static org.briarproject.briar.api.android.AndroidNotificationManager.ONGOING_CHANNEL_ID;
 import static org.briarproject.briar.api.android.AndroidNotificationManager.ONGOING_CHANNEL_OLD_ID;

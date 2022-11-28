@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.forum;
+package org.briarproject.masterproject.android.forum;
 
 import android.app.Application;
 import android.widget.Toast;
@@ -19,8 +19,8 @@ import org.briarproject.bramble.api.sync.MessageId;
 import org.briarproject.bramble.api.system.AndroidExecutor;
 import org.briarproject.bramble.api.system.Clock;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.sharing.SharingController;
-import org.briarproject.briar.android.threaded.ThreadListViewModel;
+import org.briarproject.masterproject.android.sharing.SharingController;
+import org.briarproject.masterproject.android.threaded.ThreadListViewModel;
 import org.briarproject.briar.api.android.AndroidNotificationManager;
 import org.briarproject.briar.api.client.MessageTracker;
 import org.briarproject.briar.api.client.MessageTracker.GroupCount;

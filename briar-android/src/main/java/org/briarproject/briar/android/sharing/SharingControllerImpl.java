@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.sharing;
+package org.briarproject.masterproject.android.sharing;
 
 import org.briarproject.bramble.api.connection.ConnectionRegistry;
 import org.briarproject.bramble.api.contact.ContactId;

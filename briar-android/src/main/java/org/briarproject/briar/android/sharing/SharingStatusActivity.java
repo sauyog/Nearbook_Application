@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.sharing;
+package org.briarproject.masterproject.android.sharing;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +15,9 @@ import org.briarproject.bramble.api.event.EventListener;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.bramble.api.sync.event.GroupRemovedEvent;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.BriarActivity;
-import org.briarproject.briar.android.contact.ContactItem;
-import org.briarproject.briar.android.view.BriarRecyclerView;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.contact.ContactItem;
+import org.briarproject.masterproject.android.view.BriarRecyclerView;
 import org.briarproject.briar.api.identity.AuthorInfo;
 import org.briarproject.briar.api.identity.AuthorManager;
 import org.briarproject.briar.api.sharing.event.ContactLeftShareableEvent;

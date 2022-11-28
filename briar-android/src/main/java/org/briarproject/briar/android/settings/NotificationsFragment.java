@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -40,9 +40,9 @@ import static android.provider.Settings.System.DEFAULT_NOTIFICATION_URI;
 import static android.widget.Toast.LENGTH_SHORT;
 import static java.util.Objects.requireNonNull;
 import static org.briarproject.bramble.util.StringUtils.isNullOrEmpty;
-import static org.briarproject.briar.android.AppModule.getAndroidComponent;
-import static org.briarproject.briar.android.activity.RequestCodes.REQUEST_RINGTONE;
-import static org.briarproject.briar.android.settings.SettingsActivity.enableAndPersist;
+import static org.briarproject.masterproject.android.AppModule.getAndroidComponent;
+import static org.briarproject.masterproject.android.activity.RequestCodes.REQUEST_RINGTONE;
+import static org.briarproject.masterproject.android.settings.SettingsActivity.enableAndPersist;
 import static org.briarproject.briar.api.android.AndroidNotificationManager.BLOG_CHANNEL_ID;
 import static org.briarproject.briar.api.android.AndroidNotificationManager.CONTACT_CHANNEL_ID;
 import static org.briarproject.briar.api.android.AndroidNotificationManager.FORUM_CHANNEL_ID;

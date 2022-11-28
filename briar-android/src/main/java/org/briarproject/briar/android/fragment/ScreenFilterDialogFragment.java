@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.fragment;
+package org.briarproject.masterproject.android.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,7 +14,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.BaseActivity;
+import org.briarproject.masterproject.android.activity.BaseActivity;
 import org.briarproject.briar.api.android.ScreenFilterMonitor;
 import org.briarproject.briar.api.android.ScreenFilterMonitor.AppDetails;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;

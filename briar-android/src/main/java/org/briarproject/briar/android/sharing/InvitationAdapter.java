@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.sharing;
+package org.briarproject.masterproject.android.sharing;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.util.BriarAdapter;
+import org.briarproject.masterproject.android.util.BriarAdapter;
 import org.briarproject.briar.api.sharing.InvitationItem;
 
 import androidx.annotation.NonNull;

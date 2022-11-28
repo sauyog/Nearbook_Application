@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.splash;
+package org.briarproject.masterproject.android.splash;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,8 +9,8 @@ import android.transition.Fade;
 import org.briarproject.bramble.api.account.AccountManager;
 import org.briarproject.bramble.api.system.AndroidExecutor;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BaseActivity;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BaseActivity;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -25,9 +25,9 @@ import static android.os.Build.VERSION.SDK_INT;
 import static androidx.preference.PreferenceManager.setDefaultValues;
 import static java.lang.System.currentTimeMillis;
 import static java.util.logging.Logger.getLogger;
-import static org.briarproject.briar.android.BriarApplication.ENTRY_ACTIVITY;
-import static org.briarproject.briar.android.TestingConstants.EXPIRY_DATE;
-import static org.briarproject.briar.android.TestingConstants.IS_DEBUG_BUILD;
+import static org.briarproject.masterproject.android.BriarApplication.ENTRY_ACTIVITY;
+import static org.briarproject.masterproject.android.TestingConstants.EXPIRY_DATE;
+import static org.briarproject.masterproject.android.TestingConstants.IS_DEBUG_BUILD;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

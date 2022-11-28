@@ -1,9 +1,9 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import android.view.View;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.login.StrengthMeter;
+import org.briarproject.masterproject.android.login.StrengthMeter;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.Rule;
@@ -33,11 +33,11 @@ import static org.briarproject.bramble.api.crypto.PasswordStrengthEstimator.STRO
 import static org.briarproject.bramble.api.crypto.PasswordStrengthEstimator.WEAK;
 import static org.briarproject.bramble.api.identity.AuthorConstants.MAX_AUTHOR_NAME_LENGTH;
 import static org.briarproject.bramble.util.StringUtils.getRandomString;
-import static org.briarproject.briar.android.login.StrengthMeter.GREEN;
-import static org.briarproject.briar.android.login.StrengthMeter.LIME;
-import static org.briarproject.briar.android.login.StrengthMeter.ORANGE;
-import static org.briarproject.briar.android.login.StrengthMeter.RED;
-import static org.briarproject.briar.android.login.StrengthMeter.YELLOW;
+import static org.briarproject.masterproject.android.login.StrengthMeter.GREEN;
+import static org.briarproject.masterproject.android.login.StrengthMeter.LIME;
+import static org.briarproject.masterproject.android.login.StrengthMeter.ORANGE;
+import static org.briarproject.masterproject.android.login.StrengthMeter.RED;
+import static org.briarproject.masterproject.android.login.StrengthMeter.YELLOW;
 import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)

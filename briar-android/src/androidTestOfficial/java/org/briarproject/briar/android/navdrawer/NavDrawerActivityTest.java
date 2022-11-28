@@ -1,11 +1,11 @@
-package org.briarproject.briar.android.navdrawer;
+package org.briarproject.masterproject.android.navdrawer;
 
 import android.view.Gravity;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.BriarUiTestComponent;
-import org.briarproject.briar.android.UiTest;
-import org.briarproject.briar.android.settings.SettingsActivity;
+import org.briarproject.masterproject.android.BriarUiTestComponent;
+import org.briarproject.masterproject.android.UiTest;
+import org.briarproject.masterproject.android.settings.SettingsActivity;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

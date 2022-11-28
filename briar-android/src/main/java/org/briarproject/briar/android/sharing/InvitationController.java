@@ -1,9 +1,9 @@
-package org.briarproject.briar.android.sharing;
+package org.briarproject.masterproject.android.sharing;
 
 import org.briarproject.bramble.api.db.DbException;
-import org.briarproject.briar.android.controller.ActivityLifecycleController;
-import org.briarproject.briar.android.controller.handler.ExceptionHandler;
-import org.briarproject.briar.android.controller.handler.ResultExceptionHandler;
+import org.briarproject.masterproject.android.controller.ActivityLifecycleController;
+import org.briarproject.masterproject.android.controller.handler.ExceptionHandler;
+import org.briarproject.masterproject.android.controller.handler.ResultExceptionHandler;
 import org.briarproject.briar.api.sharing.InvitationItem;
 import org.briarproject.nullsafety.NotNullByDefault;
 

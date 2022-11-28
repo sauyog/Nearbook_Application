@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.hotspot;
+package org.briarproject.masterproject.android.hotspot;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -30,8 +30,8 @@ import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static androidx.transition.TransitionManager.beginDelayedTransition;
 import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG;
-import static org.briarproject.briar.android.AppModule.getAndroidComponent;
-import static org.briarproject.briar.android.util.UiUtils.hideViewOnSmallScreen;
+import static org.briarproject.masterproject.android.AppModule.getAndroidComponent;
+import static org.briarproject.masterproject.android.util.UiUtils.hideViewOnSmallScreen;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

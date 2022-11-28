@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.login;
+package org.briarproject.masterproject.android.login;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,15 +6,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import org.briarproject.bramble.api.account.AccountManager;
-import org.briarproject.briar.android.AndroidComponent;
-import org.briarproject.briar.android.BriarApplication;
+import org.briarproject.masterproject.android.AndroidComponent;
+import org.briarproject.masterproject.android.BriarApplication;
 import org.briarproject.briar.api.android.AndroidNotificationManager;
 
 import javax.inject.Inject;
 
 import static android.content.Intent.ACTION_BOOT_COMPLETED;
 import static android.content.Intent.ACTION_MY_PACKAGE_REPLACED;
-import static org.briarproject.briar.android.settings.NotificationsFragment.PREF_NOTIFY_SIGN_IN;
+import static org.briarproject.masterproject.android.settings.NotificationsFragment.PREF_NOTIFY_SIGN_IN;
 import static org.briarproject.briar.api.android.AndroidNotificationManager.ACTION_DISMISS_REMINDER;
 
 public class SignInReminderReceiver extends BroadcastReceiver {

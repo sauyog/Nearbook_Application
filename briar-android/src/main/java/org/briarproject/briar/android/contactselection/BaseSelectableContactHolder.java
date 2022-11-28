@@ -1,19 +1,19 @@
-package org.briarproject.briar.android.contactselection;
+package org.briarproject.masterproject.android.contactselection;
 
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.contact.ContactItemViewHolder;
-import org.briarproject.briar.android.contact.OnContactClickListener;
+import org.briarproject.masterproject.android.contact.ContactItemViewHolder;
+import org.briarproject.masterproject.android.contact.OnContactClickListener;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import javax.annotation.Nullable;
 
 import androidx.annotation.UiThread;
 
-import static org.briarproject.briar.android.util.UiUtils.GREY_OUT;
+import static org.briarproject.masterproject.android.util.UiUtils.GREY_OUT;
 
 @UiThread
 @NotNullByDefault

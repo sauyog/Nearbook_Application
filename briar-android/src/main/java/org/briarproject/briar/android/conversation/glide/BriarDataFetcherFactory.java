@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.conversation.glide;
+package org.briarproject.masterproject.android.conversation.glide;
 
 import org.briarproject.bramble.api.db.DatabaseExecutor;
 import org.briarproject.briar.api.attachment.AttachmentHeader;

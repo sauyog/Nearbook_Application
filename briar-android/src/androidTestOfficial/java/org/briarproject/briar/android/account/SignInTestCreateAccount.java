@@ -1,12 +1,12 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import android.view.Gravity;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.BriarUiTestComponent;
-import org.briarproject.briar.android.UiTest;
-import org.briarproject.briar.android.navdrawer.NavDrawerActivity;
-import org.briarproject.briar.android.splash.SplashScreenActivity;
+import org.briarproject.masterproject.android.BriarUiTestComponent;
+import org.briarproject.masterproject.android.UiTest;
+import org.briarproject.masterproject.android.navdrawer.NavDrawerActivity;
+import org.briarproject.masterproject.android.splash.SplashScreenActivity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -23,8 +23,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.briarproject.briar.android.ViewActions.waitFor;
-import static org.briarproject.briar.android.ViewActions.waitUntilMatches;
+import static org.briarproject.masterproject.android.ViewActions.waitFor;
+import static org.briarproject.masterproject.android.ViewActions.waitUntilMatches;
 import static org.hamcrest.Matchers.endsWith;
 
 @RunWith(AndroidJUnit4.class)

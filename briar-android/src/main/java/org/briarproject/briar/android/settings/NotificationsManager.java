@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import android.content.Context;
 import android.media.Ringtone;
@@ -27,7 +27,7 @@ import static java.util.logging.Logger.getLogger;
 import static org.briarproject.bramble.util.LogUtils.logDuration;
 import static org.briarproject.bramble.util.LogUtils.logException;
 import static org.briarproject.bramble.util.LogUtils.now;
-import static org.briarproject.briar.android.settings.SettingsFragment.SETTINGS_NAMESPACE;
+import static org.briarproject.masterproject.android.settings.SettingsFragment.SETTINGS_NAMESPACE;
 import static org.briarproject.briar.api.android.AndroidNotificationManager.PREF_NOTIFY_BLOG;
 import static org.briarproject.briar.api.android.AndroidNotificationManager.PREF_NOTIFY_FORUM;
 import static org.briarproject.briar.api.android.AndroidNotificationManager.PREF_NOTIFY_GROUP;

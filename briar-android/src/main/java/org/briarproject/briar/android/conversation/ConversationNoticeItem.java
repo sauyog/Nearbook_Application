@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.conversation;
+package org.briarproject.masterproject.android.conversation;
 
 import org.briarproject.briar.api.conversation.ConversationRequest;
 import org.briarproject.briar.api.conversation.ConversationResponse;

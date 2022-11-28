@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.sharing;
+package org.briarproject.masterproject.android.sharing;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.contact.BaseContactListAdapter;
-import org.briarproject.briar.android.contact.ContactItem;
-import org.briarproject.briar.android.contact.ContactItemViewHolder;
+import org.briarproject.masterproject.android.contact.BaseContactListAdapter;
+import org.briarproject.masterproject.android.contact.ContactItem;
+import org.briarproject.masterproject.android.contact.ContactItemViewHolder;
 
 class SharingStatusAdapter extends
 		BaseContactListAdapter<ContactItem, ContactItemViewHolder<ContactItem>> {

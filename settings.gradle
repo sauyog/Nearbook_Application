@@ -1,11 +1,11 @@
-include ':bramble-api'
-include ':bramble-core'
-include ':bramble-android'
-include ':bramble-java'
+include ':nearbook-api'
+include ':nearbook-core'
+include ':nearbook-android'
+include ':nearbook-java'
 include ':briar-api'
 include ':briar-core'
 include ':briar-android'
-include ':briar-headless'
+include ':nearbook-headless'
 // Enable the mailbox integration tests by passing
 // `MAILBOX_INTEGRATION_TESTS=true ./gradlew mailbox-integration-tests:test`
 // on the command line (for CI etc) or set `briar.mailbox_integration_tests=true`

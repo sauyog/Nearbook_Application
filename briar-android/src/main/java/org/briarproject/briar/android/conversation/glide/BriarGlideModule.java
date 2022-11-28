@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.conversation.glide;
+package org.briarproject.masterproject.android.conversation.glide;
 
 import android.content.Context;
 
@@ -8,7 +8,7 @@ import com.bumptech.glide.Registry;
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 
-import org.briarproject.briar.android.BriarApplication;
+import org.briarproject.masterproject.android.BriarApplication;
 import org.briarproject.briar.api.attachment.AttachmentHeader;
 import org.briarproject.nullsafety.NotNullByDefault;
 
@@ -16,7 +16,7 @@ import java.io.InputStream;
 
 import static android.util.Log.DEBUG;
 import static android.util.Log.WARN;
-import static org.briarproject.briar.android.TestingConstants.IS_DEBUG_BUILD;
+import static org.briarproject.masterproject.android.TestingConstants.IS_DEBUG_BUILD;
 
 @GlideModule
 @NotNullByDefault

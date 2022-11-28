@@ -1,4 +1,4 @@
-package org.briarproject.briar.android;
+package org.briarproject.masterproject.android;
 
 import android.app.Application;
 import android.content.Context;
@@ -34,28 +34,28 @@ import org.briarproject.bramble.plugin.tor.AndroidTorPluginFactory;
 import org.briarproject.bramble.util.AndroidUtils;
 import org.briarproject.bramble.util.StringUtils;
 import org.briarproject.briar.BuildConfig;
-import org.briarproject.briar.android.account.DozeHelperModule;
-import org.briarproject.briar.android.account.LockManagerImpl;
-import org.briarproject.briar.android.account.SetupModule;
-import org.briarproject.briar.android.blog.BlogModule;
-import org.briarproject.briar.android.contact.ContactListModule;
-import org.briarproject.briar.android.contact.add.nearby.AddNearbyContactModule;
-import org.briarproject.briar.android.contact.connect.ConnectViaBluetoothModule;
-import org.briarproject.briar.android.forum.ForumModule;
-import org.briarproject.briar.android.hotspot.HotspotModule;
-import org.briarproject.briar.android.introduction.IntroductionModule;
-import org.briarproject.briar.android.logging.LoggingModule;
-import org.briarproject.briar.android.login.LoginModule;
-import org.briarproject.briar.android.mailbox.MailboxModule;
-import org.briarproject.briar.android.navdrawer.NavDrawerModule;
-import org.briarproject.briar.android.privategroup.conversation.GroupConversationModule;
-import org.briarproject.briar.android.privategroup.list.GroupListModule;
-import org.briarproject.briar.android.removabledrive.TransferDataModule;
-import org.briarproject.briar.android.reporting.DevReportModule;
-import org.briarproject.briar.android.settings.SettingsModule;
-import org.briarproject.briar.android.sharing.SharingModule;
-import org.briarproject.briar.android.test.TestAvatarCreatorImpl;
-import org.briarproject.briar.android.viewmodel.ViewModelModule;
+import org.briarproject.masterproject.android.account.DozeHelperModule;
+import org.briarproject.masterproject.android.account.LockManagerImpl;
+import org.briarproject.masterproject.android.account.SetupModule;
+import org.briarproject.masterproject.android.blog.BlogModule;
+import org.briarproject.masterproject.android.contact.ContactListModule;
+import org.briarproject.masterproject.android.contact.add.nearby.AddNearbyContactModule;
+import org.briarproject.masterproject.android.contact.connect.ConnectViaBluetoothModule;
+import org.briarproject.masterproject.android.forum.ForumModule;
+import org.briarproject.masterproject.android.hotspot.HotspotModule;
+import org.briarproject.masterproject.android.introduction.IntroductionModule;
+import org.briarproject.masterproject.android.logging.LoggingModule;
+import org.briarproject.masterproject.android.login.LoginModule;
+import org.briarproject.masterproject.android.mailbox.MailboxModule;
+import org.briarproject.masterproject.android.navdrawer.NavDrawerModule;
+import org.briarproject.masterproject.android.privategroup.conversation.GroupConversationModule;
+import org.briarproject.masterproject.android.privategroup.list.GroupListModule;
+import org.briarproject.masterproject.android.removabledrive.TransferDataModule;
+import org.briarproject.masterproject.android.reporting.DevReportModule;
+import org.briarproject.masterproject.android.settings.SettingsModule;
+import org.briarproject.masterproject.android.sharing.SharingModule;
+import org.briarproject.masterproject.android.test.TestAvatarCreatorImpl;
+import org.briarproject.masterproject.android.viewmodel.ViewModelModule;
 import org.briarproject.briar.api.android.AndroidNotificationManager;
 import org.briarproject.briar.api.android.DozeWatchdog;
 import org.briarproject.briar.api.android.LockManager;
@@ -86,7 +86,7 @@ import static org.briarproject.bramble.api.plugin.TorConstants.DEFAULT_CONTROL_P
 import static org.briarproject.bramble.api.plugin.TorConstants.DEFAULT_SOCKS_PORT;
 import static org.briarproject.bramble.api.reporting.ReportingConstants.DEV_ONION_ADDRESS;
 import static org.briarproject.bramble.api.reporting.ReportingConstants.DEV_PUBLIC_KEY_HEX;
-import static org.briarproject.briar.android.TestingConstants.IS_DEBUG_BUILD;
+import static org.briarproject.masterproject.android.TestingConstants.IS_DEBUG_BUILD;
 
 @Module(includes = {
 		SetupModule.class,

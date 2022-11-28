@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.mailbox.MailboxActivity;
-import org.briarproject.briar.android.util.ActivityLaunchers.GetImageAdvanced;
-import org.briarproject.briar.android.util.ActivityLaunchers.OpenImageDocumentAdvanced;
+import org.briarproject.masterproject.android.mailbox.MailboxActivity;
+import org.briarproject.masterproject.android.util.ActivityLaunchers.GetImageAdvanced;
+import org.briarproject.masterproject.android.util.ActivityLaunchers.OpenImageDocumentAdvanced;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -26,10 +26,10 @@ import androidx.preference.PreferenceGroup;
 
 import static android.os.Build.VERSION.SDK_INT;
 import static java.util.Objects.requireNonNull;
-import static org.briarproject.briar.android.AppModule.getAndroidComponent;
-import static org.briarproject.briar.android.TestingConstants.IS_DEBUG_BUILD;
-import static org.briarproject.briar.android.util.UiUtils.launchActivityToOpenFile;
-import static org.briarproject.briar.android.util.UiUtils.triggerFeedback;
+import static org.briarproject.masterproject.android.AppModule.getAndroidComponent;
+import static org.briarproject.masterproject.android.TestingConstants.IS_DEBUG_BUILD;
+import static org.briarproject.masterproject.android.util.UiUtils.launchActivityToOpenFile;
+import static org.briarproject.masterproject.android.util.UiUtils.triggerFeedback;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

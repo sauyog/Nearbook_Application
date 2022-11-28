@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.invitation;
+package org.briarproject.masterproject.android.privategroup.invitation;
 
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.bramble.api.db.DatabaseExecutor;
@@ -7,8 +7,8 @@ import org.briarproject.bramble.api.event.Event;
 import org.briarproject.bramble.api.event.EventBus;
 import org.briarproject.bramble.api.lifecycle.LifecycleManager;
 import org.briarproject.bramble.api.sync.ClientId;
-import org.briarproject.briar.android.controller.handler.ExceptionHandler;
-import org.briarproject.briar.android.sharing.InvitationControllerImpl;
+import org.briarproject.masterproject.android.controller.handler.ExceptionHandler;
+import org.briarproject.masterproject.android.sharing.InvitationControllerImpl;
 import org.briarproject.briar.api.privategroup.PrivateGroup;
 import org.briarproject.briar.api.privategroup.event.GroupInvitationRequestReceivedEvent;
 import org.briarproject.briar.api.privategroup.event.GroupInvitationResponseReceivedEvent;

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup;
+package org.briarproject.masterproject.android.privategroup;
 
 import android.content.Context;
 

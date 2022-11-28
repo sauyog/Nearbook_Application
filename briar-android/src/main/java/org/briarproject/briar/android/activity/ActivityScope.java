@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.activity;
+package org.briarproject.masterproject.android.activity;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

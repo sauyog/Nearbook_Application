@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact.add.remote;
+package org.briarproject.masterproject.android.contact.add.remote;
 
 import android.app.Application;
 
@@ -12,10 +12,10 @@ import org.briarproject.bramble.api.db.NoSuchPendingContactException;
 import org.briarproject.bramble.api.db.TransactionManager;
 import org.briarproject.bramble.api.lifecycle.LifecycleManager;
 import org.briarproject.bramble.api.system.AndroidExecutor;
-import org.briarproject.briar.android.viewmodel.DbViewModel;
-import org.briarproject.briar.android.viewmodel.LiveEvent;
-import org.briarproject.briar.android.viewmodel.LiveResult;
-import org.briarproject.briar.android.viewmodel.MutableLiveEvent;
+import org.briarproject.masterproject.android.viewmodel.DbViewModel;
+import org.briarproject.masterproject.android.viewmodel.LiveEvent;
+import org.briarproject.masterproject.android.viewmodel.LiveResult;
+import org.briarproject.masterproject.android.viewmodel.MutableLiveEvent;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.security.GeneralSecurityException;

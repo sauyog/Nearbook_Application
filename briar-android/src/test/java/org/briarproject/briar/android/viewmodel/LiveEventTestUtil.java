@@ -3,7 +3,7 @@
    https://gist.github.com/JoseAlcerreca/1e9ee05dcdd6a6a6fa1cbfc125559bba
    */
 
-package org.briarproject.briar.android.viewmodel;
+package org.briarproject.masterproject.android.viewmodel;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

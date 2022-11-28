@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.reveal;
+package org.briarproject.masterproject.android.privategroup.reveal;
 
 import org.briarproject.bramble.api.contact.Contact;
 import org.briarproject.bramble.api.contact.ContactId;
@@ -9,9 +9,9 @@ import org.briarproject.bramble.api.lifecycle.LifecycleManager;
 import org.briarproject.bramble.api.settings.Settings;
 import org.briarproject.bramble.api.settings.SettingsManager;
 import org.briarproject.bramble.api.sync.GroupId;
-import org.briarproject.briar.android.controller.DbControllerImpl;
-import org.briarproject.briar.android.controller.handler.ExceptionHandler;
-import org.briarproject.briar.android.controller.handler.ResultExceptionHandler;
+import org.briarproject.masterproject.android.controller.DbControllerImpl;
+import org.briarproject.masterproject.android.controller.handler.ExceptionHandler;
+import org.briarproject.masterproject.android.controller.handler.ResultExceptionHandler;
 import org.briarproject.briar.api.client.ProtocolStateException;
 import org.briarproject.briar.api.identity.AuthorInfo;
 import org.briarproject.briar.api.identity.AuthorManager;
@@ -31,7 +31,7 @@ import javax.inject.Inject;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Level.WARNING;
 import static org.briarproject.bramble.util.LogUtils.logException;
-import static org.briarproject.briar.android.settings.SettingsFragment.SETTINGS_NAMESPACE;
+import static org.briarproject.masterproject.android.settings.SettingsFragment.SETTINGS_NAMESPACE;
 import static org.briarproject.briar.api.privategroup.Visibility.INVISIBLE;
 
 @Immutable

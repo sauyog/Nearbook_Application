@@ -1,6 +1,6 @@
-package org.briarproject.briar.android.controller.handler;
+package org.briarproject.masterproject.android.controller.handler;
 
-import org.briarproject.briar.android.DestroyableContext;
+import org.briarproject.masterproject.android.DestroyableContext;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import javax.annotation.concurrent.Immutable;

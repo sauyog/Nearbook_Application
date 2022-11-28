@@ -1,11 +1,11 @@
-package org.briarproject.briar.android.panic;
+package org.briarproject.masterproject.android.panic;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
 
 import androidx.appcompat.app.ActionBar;
 

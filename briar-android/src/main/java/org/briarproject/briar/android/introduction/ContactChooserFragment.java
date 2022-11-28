@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.introduction;
+package org.briarproject.masterproject.android.introduction;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,12 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.contact.ContactListAdapter;
-import org.briarproject.briar.android.contact.ContactListItem;
-import org.briarproject.briar.android.contact.OnContactClickListener;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.view.BriarRecyclerView;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.contact.ContactListAdapter;
+import org.briarproject.masterproject.android.contact.ContactListItem;
+import org.briarproject.masterproject.android.contact.OnContactClickListener;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.view.BriarRecyclerView;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.hotspot;
+package org.briarproject.masterproject.android.hotspot;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +9,7 @@ import org.briarproject.nullsafety.ParametersNotNullByDefault;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import static org.briarproject.briar.android.util.UiUtils.showFragment;
+import static org.briarproject.masterproject.android.util.UiUtils.showFragment;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

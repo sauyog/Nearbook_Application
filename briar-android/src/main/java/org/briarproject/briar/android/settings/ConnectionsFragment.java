@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -26,13 +26,13 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.os.Build.VERSION.SDK_INT;
-import static org.briarproject.briar.android.AppModule.getAndroidComponent;
-import static org.briarproject.briar.android.settings.SettingsActivity.enableAndPersist;
-import static org.briarproject.briar.android.util.PermissionUtils.areBluetoothPermissionsGranted;
-import static org.briarproject.briar.android.util.PermissionUtils.requestBluetoothPermissions;
-import static org.briarproject.briar.android.util.PermissionUtils.showDenialDialog;
-import static org.briarproject.briar.android.util.PermissionUtils.showRationale;
-import static org.briarproject.briar.android.util.PermissionUtils.wasGrantedBluetoothPermissions;
+import static org.briarproject.masterproject.android.AppModule.getAndroidComponent;
+import static org.briarproject.masterproject.android.settings.SettingsActivity.enableAndPersist;
+import static org.briarproject.masterproject.android.util.PermissionUtils.areBluetoothPermissionsGranted;
+import static org.briarproject.masterproject.android.util.PermissionUtils.requestBluetoothPermissions;
+import static org.briarproject.masterproject.android.util.PermissionUtils.showDenialDialog;
+import static org.briarproject.masterproject.android.util.PermissionUtils.showRationale;
+import static org.briarproject.masterproject.android.util.PermissionUtils.wasGrantedBluetoothPermissions;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

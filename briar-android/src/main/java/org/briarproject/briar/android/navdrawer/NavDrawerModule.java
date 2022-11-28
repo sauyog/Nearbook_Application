@@ -1,6 +1,6 @@
-package org.briarproject.briar.android.navdrawer;
+package org.briarproject.masterproject.android.navdrawer;
 
-import org.briarproject.briar.android.viewmodel.ViewModelKey;
+import org.briarproject.masterproject.android.viewmodel.ViewModelKey;
 
 import androidx.lifecycle.ViewModel;
 import dagger.Binds;

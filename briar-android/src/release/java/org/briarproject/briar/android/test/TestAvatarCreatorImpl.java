@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.test;
+package org.briarproject.masterproject.android.test;
 
 import org.briarproject.briar.api.test.TestAvatarCreator;
 

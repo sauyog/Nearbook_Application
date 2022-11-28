@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.blog;
+package org.briarproject.masterproject.android.blog;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,11 @@ import org.briarproject.bramble.api.identity.IdentityManager;
 import org.briarproject.bramble.api.identity.LocalAuthor;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BriarActivity;
-import org.briarproject.briar.android.view.TextInputView;
-import org.briarproject.briar.android.view.TextSendController;
-import org.briarproject.briar.android.view.TextSendController.SendListener;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.view.TextInputView;
+import org.briarproject.masterproject.android.view.TextSendController;
+import org.briarproject.masterproject.android.view.TextSendController.SendListener;
 import org.briarproject.briar.api.android.AndroidNotificationManager;
 import org.briarproject.briar.api.attachment.AttachmentHeader;
 import org.briarproject.briar.api.blog.BlogManager;
@@ -39,8 +39,8 @@ import static android.view.View.VISIBLE;
 import static java.util.logging.Level.WARNING;
 import static org.briarproject.bramble.util.LogUtils.logException;
 import static org.briarproject.bramble.util.StringUtils.isNullOrEmpty;
-import static org.briarproject.briar.android.view.TextSendController.SendState;
-import static org.briarproject.briar.android.view.TextSendController.SendState.SENT;
+import static org.briarproject.masterproject.android.view.TextSendController.SendState;
+import static org.briarproject.masterproject.android.view.TextSendController.SendState.SENT;
 import static org.briarproject.briar.api.blog.BlogConstants.MAX_BLOG_POST_TEXT_LENGTH;
 
 @MethodsNotNullByDefault

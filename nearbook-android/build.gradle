@@ -40,7 +40,7 @@ configurations {
 }
 
 dependencies {
-	implementation project(path: ':bramble-core', configuration: 'default')
+	implementation project(path: ':nearbook-core', configuration: 'default')
 	implementation 'androidx.annotation:annotation:1.5.0'
 	tor "org.briarproject:tor-android:$tor_version"
 	tor "org.briarproject:obfs4proxy-android:$obfs4proxy_version"
@@ -50,7 +50,7 @@ dependencies {
 
 	compileOnly 'javax.annotation:jsr250-api:1.0'
 
-	testImplementation project(path: ':bramble-api', configuration: 'testOutput')
+	testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
 	testImplementation "junit:junit:$junit_version"
 	testImplementation "org.jmock:jmock:$jmock_version"
 	testImplementation "org.jmock:jmock-junit4:$jmock_version"

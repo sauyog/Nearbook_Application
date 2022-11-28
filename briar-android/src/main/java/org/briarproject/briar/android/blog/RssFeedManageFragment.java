@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.blog;
+package org.briarproject.masterproject.android.blog;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.view.BriarRecyclerView;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.view.BriarRecyclerView;
 import org.briarproject.briar.api.feed.Feed;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
@@ -24,8 +24,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static org.briarproject.briar.android.activity.BriarActivity.GROUP_ID;
-import static org.briarproject.briar.android.blog.RssFeedAdapter.RssFeedListener;
+import static org.briarproject.masterproject.android.activity.BriarActivity.GROUP_ID;
+import static org.briarproject.masterproject.android.blog.RssFeedAdapter.RssFeedListener;
 import static org.briarproject.nullsafety.NullSafety.requireNonNull;
 
 @MethodsNotNullByDefault

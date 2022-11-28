@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.mailbox;
+package org.briarproject.masterproject.android.mailbox;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.navdrawer.TransportsActivity;
+import org.briarproject.masterproject.android.navdrawer.TransportsActivity;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -22,7 +22,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import static android.view.View.FOCUS_DOWN;
-import static org.briarproject.briar.android.AppModule.getAndroidComponent;
+import static org.briarproject.masterproject.android.AppModule.getAndroidComponent;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

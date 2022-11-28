@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.threaded;
+package org.briarproject.masterproject.android.threaded;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,16 +9,16 @@ import com.google.android.material.snackbar.Snackbar;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.bramble.api.sync.MessageId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.BriarActivity;
-import org.briarproject.briar.android.sharing.SharingController.SharingInfo;
-import org.briarproject.briar.android.threaded.ThreadItemAdapter.ThreadItemListener;
-import org.briarproject.briar.android.util.BriarSnackbarBuilder;
-import org.briarproject.briar.android.view.BriarRecyclerView;
-import org.briarproject.briar.android.view.TextInputView;
-import org.briarproject.briar.android.view.TextSendController;
-import org.briarproject.briar.android.view.TextSendController.SendListener;
-import org.briarproject.briar.android.view.TextSendController.SendState;
-import org.briarproject.briar.android.view.UnreadMessageButton;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.sharing.SharingController.SharingInfo;
+import org.briarproject.masterproject.android.threaded.ThreadItemAdapter.ThreadItemListener;
+import org.briarproject.masterproject.android.util.BriarSnackbarBuilder;
+import org.briarproject.masterproject.android.view.BriarRecyclerView;
+import org.briarproject.masterproject.android.view.TextInputView;
+import org.briarproject.masterproject.android.view.TextSendController;
+import org.briarproject.masterproject.android.view.TextSendController.SendListener;
+import org.briarproject.masterproject.android.view.TextSendController.SendState;
+import org.briarproject.masterproject.android.view.UnreadMessageButton;
 import org.briarproject.briar.api.attachment.AttachmentHeader;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
@@ -36,7 +36,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
 import static org.briarproject.bramble.util.StringUtils.isNullOrEmpty;
-import static org.briarproject.briar.android.view.TextSendController.SendState.SENT;
+import static org.briarproject.masterproject.android.view.TextSendController.SendState.SENT;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

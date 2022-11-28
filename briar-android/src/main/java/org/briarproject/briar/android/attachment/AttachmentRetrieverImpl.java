@@ -1,13 +1,13 @@
-package org.briarproject.briar.android.attachment;
+package org.briarproject.masterproject.android.attachment;
 
 import org.briarproject.bramble.api.db.DatabaseExecutor;
 import org.briarproject.bramble.api.db.DbException;
 import org.briarproject.bramble.api.db.NoSuchMessageException;
 import org.briarproject.bramble.api.sync.MessageId;
-import org.briarproject.briar.android.attachment.AttachmentItem.State;
-import org.briarproject.briar.android.attachment.media.ImageHelper;
-import org.briarproject.briar.android.attachment.media.ImageSizeCalculator;
-import org.briarproject.briar.android.attachment.media.Size;
+import org.briarproject.masterproject.android.attachment.AttachmentItem.State;
+import org.briarproject.masterproject.android.attachment.media.ImageHelper;
+import org.briarproject.masterproject.android.attachment.media.ImageSizeCalculator;
+import org.briarproject.masterproject.android.attachment.media.Size;
 import org.briarproject.briar.api.attachment.Attachment;
 import org.briarproject.briar.api.attachment.AttachmentHeader;
 import org.briarproject.briar.api.attachment.AttachmentReader;
@@ -36,10 +36,10 @@ import static java.util.logging.Logger.getLogger;
 import static org.briarproject.bramble.util.AndroidUtils.getSupportedImageContentTypes;
 import static org.briarproject.bramble.util.IoUtils.tryToClose;
 import static org.briarproject.bramble.util.LogUtils.logException;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.AVAILABLE;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.ERROR;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.LOADING;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.MISSING;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.AVAILABLE;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.ERROR;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.LOADING;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.MISSING;
 
 @NotNullByDefault
 class AttachmentRetrieverImpl implements AttachmentRetriever {

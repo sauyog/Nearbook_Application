@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact;
+package org.briarproject.masterproject.android.contact;
 
 import android.view.View;
 import android.widget.TextView;
@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 
 import androidx.annotation.UiThread;
 
-import static org.briarproject.briar.android.util.UiUtils.formatDate;
+import static org.briarproject.masterproject.android.util.UiUtils.formatDate;
 
 @UiThread
 @NotNullByDefault

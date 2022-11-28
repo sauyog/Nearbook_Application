@@ -30,7 +30,7 @@
 		app:iconSpaceReserved="false">
 
 		<intent
-			android:targetClass="org.briarproject.briar.android.login.ChangePasswordActivity"
+			android:targetClass="org.briarproject.masterproject.android.login.ChangePasswordActivity"
 			android:targetPackage="@string/app_package" />
 	</Preference>
 
@@ -44,7 +44,7 @@
 			app:iconSpaceReserved="false">
 
 			<intent
-				android:targetClass="org.briarproject.briar.android.panic.PanicPreferencesActivity"
+				android:targetClass="org.briarproject.masterproject.android.panic.PanicPreferencesActivity"
 				android:targetPackage="@string/app_package" />
 
 		</Preference>

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.util;
+package org.briarproject.masterproject.android.util;
 
 import android.view.View;
 import android.view.View.OnClickListener;

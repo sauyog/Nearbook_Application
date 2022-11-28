@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.mailbox;
+package org.briarproject.masterproject.android.mailbox;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -13,7 +13,7 @@ import android.widget.ScrollView;
 import com.google.android.material.animation.ArgbEvaluatorCompat;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.view.BriarButton;
+import org.briarproject.masterproject.android.view.BriarButton;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -36,7 +36,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static androidx.core.content.ContextCompat.getColor;
 import static androidx.transition.TransitionManager.beginDelayedTransition;
-import static org.briarproject.briar.android.AppModule.getAndroidComponent;
+import static org.briarproject.masterproject.android.AppModule.getAndroidComponent;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

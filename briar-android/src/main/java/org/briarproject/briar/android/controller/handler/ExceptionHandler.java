@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.controller.handler;
+package org.briarproject.masterproject.android.controller.handler;
 
 public interface ExceptionHandler<E extends Exception> {
 

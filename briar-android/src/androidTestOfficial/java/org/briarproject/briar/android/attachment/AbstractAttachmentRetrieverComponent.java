@@ -1,6 +1,6 @@
-package org.briarproject.briar.android.attachment;
+package org.briarproject.masterproject.android.attachment;
 
-import org.briarproject.briar.android.attachment.media.MediaModule;
+import org.briarproject.masterproject.android.attachment.media.MediaModule;
 
 import javax.inject.Singleton;
 

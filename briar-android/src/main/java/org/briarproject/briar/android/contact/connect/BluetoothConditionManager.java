@@ -1,10 +1,10 @@
-package org.briarproject.briar.android.contact.connect;
+package org.briarproject.masterproject.android.contact.connect;
 
 import android.app.Activity;
 import android.widget.Toast;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.util.Permission;
+import org.briarproject.masterproject.android.util.Permission;
 
 import java.util.Map;
 
@@ -18,17 +18,17 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.os.Build.VERSION.SDK_INT;
 import static android.widget.Toast.LENGTH_LONG;
 import static androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale;
-import static org.briarproject.briar.android.util.Permission.GRANTED;
-import static org.briarproject.briar.android.util.Permission.PERMANENTLY_DENIED;
-import static org.briarproject.briar.android.util.Permission.SHOW_RATIONALE;
-import static org.briarproject.briar.android.util.Permission.UNKNOWN;
-import static org.briarproject.briar.android.util.PermissionUtils.gotPermission;
-import static org.briarproject.briar.android.util.PermissionUtils.isLocationEnabledForBt;
-import static org.briarproject.briar.android.util.PermissionUtils.requestBluetoothPermissions;
-import static org.briarproject.briar.android.util.PermissionUtils.showDenialDialog;
-import static org.briarproject.briar.android.util.PermissionUtils.showLocationDialog;
-import static org.briarproject.briar.android.util.PermissionUtils.showRationale;
-import static org.briarproject.briar.android.util.PermissionUtils.wasGrantedBluetoothPermissions;
+import static org.briarproject.masterproject.android.util.Permission.GRANTED;
+import static org.briarproject.masterproject.android.util.Permission.PERMANENTLY_DENIED;
+import static org.briarproject.masterproject.android.util.Permission.SHOW_RATIONALE;
+import static org.briarproject.masterproject.android.util.Permission.UNKNOWN;
+import static org.briarproject.masterproject.android.util.PermissionUtils.gotPermission;
+import static org.briarproject.masterproject.android.util.PermissionUtils.isLocationEnabledForBt;
+import static org.briarproject.masterproject.android.util.PermissionUtils.requestBluetoothPermissions;
+import static org.briarproject.masterproject.android.util.PermissionUtils.showDenialDialog;
+import static org.briarproject.masterproject.android.util.PermissionUtils.showLocationDialog;
+import static org.briarproject.masterproject.android.util.PermissionUtils.showRationale;
+import static org.briarproject.masterproject.android.util.PermissionUtils.wasGrantedBluetoothPermissions;
 
 class BluetoothConditionManager {
 

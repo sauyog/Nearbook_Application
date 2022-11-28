@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.panic;
+package org.briarproject.masterproject.android.panic;
 
 import info.guardianproject.trustedintents.ApkSignaturePin;
 

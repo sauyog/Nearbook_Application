@@ -1,10 +1,10 @@
-package org.briarproject.briar.android;
+package org.briarproject.masterproject.android;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 
 import org.briarproject.bramble.BrambleApplication;
-import org.briarproject.briar.android.navdrawer.NavDrawerActivity;
+import org.briarproject.masterproject.android.navdrawer.NavDrawerActivity;
 
 /**
  * This exists so that the Application object will not necessarily be cast

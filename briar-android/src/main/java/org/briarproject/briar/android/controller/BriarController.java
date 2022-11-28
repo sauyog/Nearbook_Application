@@ -1,7 +1,7 @@
-package org.briarproject.briar.android.controller;
+package org.briarproject.masterproject.android.controller;
 
 import org.briarproject.bramble.api.system.Wakeful;
-import org.briarproject.briar.android.controller.handler.ResultHandler;
+import org.briarproject.masterproject.android.controller.handler.ResultHandler;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 @NotNullByDefault

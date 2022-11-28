@@ -15,4 +15,4 @@
 -keep class junit.** { *; }
 -dontwarn junit.**
 
--dontwarn org.briarproject.briar.android.**
+-dontwarn org.briarproject.masterproject.android.**

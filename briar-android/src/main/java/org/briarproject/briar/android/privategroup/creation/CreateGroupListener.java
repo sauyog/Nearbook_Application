@@ -1,6 +1,6 @@
-package org.briarproject.briar.android.privategroup.creation;
+package org.briarproject.masterproject.android.privategroup.creation;
 
-import org.briarproject.briar.android.fragment.BaseFragment.BaseFragmentListener;
+import org.briarproject.masterproject.android.fragment.BaseFragment.BaseFragmentListener;
 
 interface CreateGroupListener extends BaseFragmentListener {
 

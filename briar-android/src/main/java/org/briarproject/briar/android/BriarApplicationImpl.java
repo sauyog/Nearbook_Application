@@ -1,4 +1,4 @@
-package org.briarproject.briar.android;
+package org.briarproject.masterproject.android;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
@@ -19,8 +19,8 @@ import org.briarproject.bramble.BrambleAppComponent;
 import org.briarproject.bramble.BrambleCoreEagerSingletons;
 import org.briarproject.briar.BriarCoreEagerSingletons;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.logging.CachingLogHandler;
-import org.briarproject.briar.android.util.UiUtils;
+import org.briarproject.masterproject.android.logging.CachingLogHandler;
+import org.briarproject.masterproject.android.util.UiUtils;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.logging.Handler;
@@ -32,7 +32,7 @@ import static android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREG
 import static java.util.logging.Level.FINE;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Logger.getLogger;
-import static org.briarproject.briar.android.TestingConstants.IS_DEBUG_BUILD;
+import static org.briarproject.masterproject.android.TestingConstants.IS_DEBUG_BUILD;
 
 public class BriarApplicationImpl extends Application
 		implements BriarApplication {

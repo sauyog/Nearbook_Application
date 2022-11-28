@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.widget;
+package org.briarproject.masterproject.android.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;

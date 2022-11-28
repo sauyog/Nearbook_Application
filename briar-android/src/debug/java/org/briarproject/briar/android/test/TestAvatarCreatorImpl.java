@@ -6,7 +6,7 @@
  * licenced under Apache2 license.
  */
 
-package org.briarproject.briar.android.test;
+package org.briarproject.masterproject.android.test;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -14,7 +14,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-import org.briarproject.briar.android.attachment.media.ImageCompressor;
+import org.briarproject.masterproject.android.attachment.media.ImageCompressor;
 import org.briarproject.briar.api.test.TestAvatarCreator;
 
 import java.io.IOException;

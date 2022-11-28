@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact.add.nearby;
+package org.briarproject.masterproject.android.contact.add.nearby;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.util.UiUtils;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.util.UiUtils;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -22,8 +22,8 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static org.briarproject.briar.android.util.UiUtils.hideViewOnSmallScreen;
-import static org.briarproject.briar.android.util.UiUtils.onSingleLinkClick;
+import static org.briarproject.masterproject.android.util.UiUtils.hideViewOnSmallScreen;
+import static org.briarproject.masterproject.android.util.UiUtils.onSingleLinkClick;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

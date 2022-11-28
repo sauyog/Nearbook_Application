@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.mailbox;
+package org.briarproject.masterproject.android.mailbox;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

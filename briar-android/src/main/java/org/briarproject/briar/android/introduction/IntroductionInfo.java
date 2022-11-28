@@ -1,6 +1,6 @@
-package org.briarproject.briar.android.introduction;
+package org.briarproject.masterproject.android.introduction;
 
-import org.briarproject.briar.android.contact.ContactItem;
+import org.briarproject.masterproject.android.contact.ContactItem;
 
 class IntroductionInfo {
 	private final ContactItem c1;

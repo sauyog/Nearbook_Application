@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.test;
+package org.briarproject.masterproject.android.test;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
 import org.briarproject.briar.api.test.TestDataCreator;
 
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import androidx.appcompat.app.ActionBar;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static org.briarproject.briar.android.BriarApplication.ENTRY_ACTIVITY;
+import static org.briarproject.masterproject.android.BriarApplication.ENTRY_ACTIVITY;
 
 public class TestDataActivity extends BriarActivity {
 

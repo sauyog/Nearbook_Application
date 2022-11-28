@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.fragment;
+package org.briarproject.masterproject.android.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

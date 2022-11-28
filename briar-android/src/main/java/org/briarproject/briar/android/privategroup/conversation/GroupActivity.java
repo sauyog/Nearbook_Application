@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.conversation;
+package org.briarproject.masterproject.android.privategroup.conversation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,12 +7,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.privategroup.creation.GroupInviteActivity;
-import org.briarproject.briar.android.privategroup.memberlist.GroupMemberListActivity;
-import org.briarproject.briar.android.privategroup.reveal.RevealContactsActivity;
-import org.briarproject.briar.android.threaded.ThreadListActivity;
-import org.briarproject.briar.android.threaded.ThreadListViewModel;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.privategroup.creation.GroupInviteActivity;
+import org.briarproject.masterproject.android.privategroup.memberlist.GroupMemberListActivity;
+import org.briarproject.masterproject.android.privategroup.reveal.RevealContactsActivity;
+import org.briarproject.masterproject.android.threaded.ThreadListActivity;
+import org.briarproject.masterproject.android.threaded.ThreadListViewModel;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -25,8 +25,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static org.briarproject.briar.android.activity.RequestCodes.REQUEST_GROUP_INVITE;
-import static org.briarproject.briar.android.util.UiUtils.observeOnce;
+import static org.briarproject.masterproject.android.activity.RequestCodes.REQUEST_GROUP_INVITE;
+import static org.briarproject.masterproject.android.util.UiUtils.observeOnce;
 import static org.briarproject.briar.api.privategroup.PrivateGroupConstants.MAX_GROUP_POST_TEXT_LENGTH;
 import static org.briarproject.nullsafety.NullSafety.requireNonNull;
 

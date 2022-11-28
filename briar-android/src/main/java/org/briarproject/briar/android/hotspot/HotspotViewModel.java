@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.hotspot;
+package org.briarproject.masterproject.android.hotspot;
 
 import android.app.Application;
 import android.net.Uri;
@@ -9,16 +9,16 @@ import org.briarproject.bramble.api.lifecycle.IoExecutor;
 import org.briarproject.bramble.api.lifecycle.LifecycleManager;
 import org.briarproject.bramble.api.system.AndroidExecutor;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.hotspot.HotspotManager.HotspotListener;
-import org.briarproject.briar.android.hotspot.HotspotState.HotspotError;
-import org.briarproject.briar.android.hotspot.HotspotState.HotspotStarted;
-import org.briarproject.briar.android.hotspot.HotspotState.NetworkConfig;
-import org.briarproject.briar.android.hotspot.HotspotState.StartingHotspot;
-import org.briarproject.briar.android.hotspot.HotspotState.WebsiteConfig;
-import org.briarproject.briar.android.hotspot.WebServerManager.WebServerListener;
-import org.briarproject.briar.android.viewmodel.DbViewModel;
-import org.briarproject.briar.android.viewmodel.LiveEvent;
-import org.briarproject.briar.android.viewmodel.MutableLiveEvent;
+import org.briarproject.masterproject.android.hotspot.HotspotManager.HotspotListener;
+import org.briarproject.masterproject.android.hotspot.HotspotState.HotspotError;
+import org.briarproject.masterproject.android.hotspot.HotspotState.HotspotStarted;
+import org.briarproject.masterproject.android.hotspot.HotspotState.NetworkConfig;
+import org.briarproject.masterproject.android.hotspot.HotspotState.StartingHotspot;
+import org.briarproject.masterproject.android.hotspot.HotspotState.WebsiteConfig;
+import org.briarproject.masterproject.android.hotspot.WebServerManager.WebServerListener;
+import org.briarproject.masterproject.android.viewmodel.DbViewModel;
+import org.briarproject.masterproject.android.viewmodel.LiveEvent;
+import org.briarproject.masterproject.android.viewmodel.MutableLiveEvent;
 import org.briarproject.briar.api.android.AndroidNotificationManager;
 import org.briarproject.nullsafety.NotNullByDefault;
 

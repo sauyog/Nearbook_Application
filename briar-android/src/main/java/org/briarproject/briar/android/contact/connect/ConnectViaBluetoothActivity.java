@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact.connect;
+package org.briarproject.masterproject.android.contact.connect;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.widget.Toast;
 
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -21,8 +21,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static java.util.Objects.requireNonNull;
-import static org.briarproject.briar.android.conversation.ConversationActivity.CONTACT_ID;
-import static org.briarproject.briar.android.util.UiUtils.showFragment;
+import static org.briarproject.masterproject.android.conversation.ConversationActivity.CONTACT_ID;
+import static org.briarproject.masterproject.android.util.UiUtils.showFragment;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

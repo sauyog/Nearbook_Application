@@ -1,10 +1,10 @@
-package org.briarproject.briar.android.contactselection;
+package org.briarproject.masterproject.android.contactselection;
 
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.bramble.api.db.DbException;
 import org.briarproject.bramble.api.sync.GroupId;
-import org.briarproject.briar.android.controller.DbController;
-import org.briarproject.briar.android.controller.handler.ResultExceptionHandler;
+import org.briarproject.masterproject.android.controller.DbController;
+import org.briarproject.masterproject.android.controller.handler.ResultExceptionHandler;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.util.Collection;

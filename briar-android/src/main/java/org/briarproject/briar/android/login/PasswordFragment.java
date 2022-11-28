@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.login;
+package org.briarproject.masterproject.android.login;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,8 +14,8 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.briarproject.bramble.api.crypto.DecryptionResult;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -31,11 +31,11 @@ import static android.view.View.VISIBLE;
 import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 import static org.briarproject.bramble.api.crypto.DecryptionResult.KEY_STRENGTHENER_ERROR;
 import static org.briarproject.bramble.api.crypto.DecryptionResult.SUCCESS;
-import static org.briarproject.briar.android.login.LoginUtils.createKeyStrengthenerErrorDialog;
-import static org.briarproject.briar.android.util.UiUtils.enterPressed;
-import static org.briarproject.briar.android.util.UiUtils.hideSoftKeyboard;
-import static org.briarproject.briar.android.util.UiUtils.setError;
-import static org.briarproject.briar.android.util.UiUtils.showSoftKeyboard;
+import static org.briarproject.masterproject.android.login.LoginUtils.createKeyStrengthenerErrorDialog;
+import static org.briarproject.masterproject.android.util.UiUtils.enterPressed;
+import static org.briarproject.masterproject.android.util.UiUtils.hideSoftKeyboard;
+import static org.briarproject.masterproject.android.util.UiUtils.setError;
+import static org.briarproject.masterproject.android.util.UiUtils.showSoftKeyboard;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

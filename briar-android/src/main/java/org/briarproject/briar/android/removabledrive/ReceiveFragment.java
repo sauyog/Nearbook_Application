@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.removabledrive;
+package org.briarproject.masterproject.android.removabledrive;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,8 +11,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.util.ActivityLaunchers.GetContentAdvanced;
-import org.briarproject.briar.android.util.ActivityLaunchers.OpenDocumentAdvanced;
+import org.briarproject.masterproject.android.util.ActivityLaunchers.GetContentAdvanced;
+import org.briarproject.masterproject.android.util.ActivityLaunchers.OpenDocumentAdvanced;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -27,9 +27,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import static android.view.View.VISIBLE;
 import static android.widget.Toast.LENGTH_LONG;
-import static org.briarproject.briar.android.AppModule.getAndroidComponent;
-import static org.briarproject.briar.android.util.UiUtils.hideViewOnSmallScreen;
-import static org.briarproject.briar.android.util.UiUtils.launchActivityToOpenFile;
+import static org.briarproject.masterproject.android.AppModule.getAndroidComponent;
+import static org.briarproject.masterproject.android.util.UiUtils.hideViewOnSmallScreen;
+import static org.briarproject.masterproject.android.util.UiUtils.launchActivityToOpenFile;
 
 @RequiresApi(19)
 @MethodsNotNullByDefault

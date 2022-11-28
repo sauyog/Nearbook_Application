@@ -1,11 +1,11 @@
-package org.briarproject.briar.android.view;
+package org.briarproject.masterproject.android.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.attachment.AttachmentItemResult;
+import org.briarproject.masterproject.android.attachment.AttachmentItemResult;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.login;
+package org.briarproject.masterproject.android.login;
 
 import android.content.Context;
 
@@ -7,7 +7,7 @@ import org.briarproject.nullsafety.NotNullByDefault;
 
 import androidx.appcompat.app.AlertDialog;
 
-import static org.briarproject.briar.android.util.UiUtils.getDialogIcon;
+import static org.briarproject.masterproject.android.util.UiUtils.getDialogIcon;
 
 @NotNullByDefault
 class LoginUtils {

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.account.PowerView.OnCheckedChangedListener;
+import org.briarproject.masterproject.android.account.PowerView.OnCheckedChangedListener;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -19,8 +19,8 @@ import androidx.annotation.Nullable;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static org.briarproject.android.dontkillmelib.DozeUtils.getDozeWhitelistingIntent;
-import static org.briarproject.briar.android.activity.RequestCodes.REQUEST_DOZE_WHITELISTING;
-import static org.briarproject.briar.android.util.UiUtils.showOnboardingDialog;
+import static org.briarproject.masterproject.android.activity.RequestCodes.REQUEST_DOZE_WHITELISTING;
+import static org.briarproject.masterproject.android.util.UiUtils.showOnboardingDialog;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

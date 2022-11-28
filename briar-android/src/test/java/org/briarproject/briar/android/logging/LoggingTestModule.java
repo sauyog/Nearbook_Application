@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.logging;
+package org.briarproject.masterproject.android.logging;
 
 import org.briarproject.bramble.api.crypto.PublicKey;
 import org.briarproject.bramble.api.reporting.DevConfig;

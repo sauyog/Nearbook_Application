@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import org.briarproject.bramble.api.identity.LocalAuthor;
 import org.briarproject.briar.api.identity.AuthorInfo;

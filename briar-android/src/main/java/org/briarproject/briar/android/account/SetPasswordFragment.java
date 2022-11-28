@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import android.os.Bundle;
 import android.os.IBinder;
@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.login.StrengthMeter;
+import org.briarproject.masterproject.android.login.StrengthMeter;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -24,7 +24,7 @@ import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 import static org.briarproject.bramble.api.crypto.PasswordStrengthEstimator.QUITE_WEAK;
-import static org.briarproject.briar.android.util.UiUtils.setError;
+import static org.briarproject.masterproject.android.util.UiUtils.setError;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

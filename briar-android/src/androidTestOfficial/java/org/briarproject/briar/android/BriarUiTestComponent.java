@@ -1,4 +1,4 @@
-package org.briarproject.briar.android;
+package org.briarproject.masterproject.android;
 
 import org.briarproject.bramble.BrambleAndroidModule;
 import org.briarproject.bramble.BrambleCoreModule;
@@ -7,11 +7,11 @@ import org.briarproject.bramble.mailbox.ModularMailboxModule;
 import org.briarproject.bramble.plugin.file.RemovableDriveModule;
 import org.briarproject.bramble.system.ClockModule;
 import org.briarproject.briar.BriarCoreModule;
-import org.briarproject.briar.android.account.SignInTestCreateAccount;
-import org.briarproject.briar.android.account.SignInTestSignIn;
-import org.briarproject.briar.android.attachment.AttachmentModule;
-import org.briarproject.briar.android.attachment.media.MediaModule;
-import org.briarproject.briar.android.navdrawer.NavDrawerActivityTest;
+import org.briarproject.masterproject.android.account.SignInTestCreateAccount;
+import org.briarproject.masterproject.android.account.SignInTestSignIn;
+import org.briarproject.masterproject.android.attachment.AttachmentModule;
+import org.briarproject.masterproject.android.attachment.media.MediaModule;
+import org.briarproject.masterproject.android.navdrawer.NavDrawerActivityTest;
 
 import javax.inject.Singleton;
 

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.fragment;
+package org.briarproject.masterproject.android.fragment;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -26,7 +26,7 @@ import androidx.fragment.app.Fragment;
 
 import static android.view.View.GONE;
 import static androidx.core.widget.ImageViewCompat.setImageTintList;
-import static org.briarproject.briar.android.util.UiUtils.hideViewOnSmallScreen;
+import static org.briarproject.masterproject.android.util.UiUtils.hideViewOnSmallScreen;
 
 /**
  * A fragment to be used at the end of a user flow

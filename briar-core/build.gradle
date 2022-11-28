@@ -18,9 +18,9 @@ dependencies {
 
 	annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
-	testImplementation project(path: ':bramble-core', configuration: 'default')
-	testImplementation project(path: ':bramble-core', configuration: 'testOutput')
-	testImplementation project(path: ':bramble-api', configuration: 'testOutput')
+	testImplementation project(path: ':nearbook-core', configuration: 'default')
+	testImplementation project(path: ':nearbook-core', configuration: 'testOutput')
+	testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
 	testImplementation 'net.jodah:concurrentunit:0.4.2'
 	testImplementation "junit:junit:$junit_version"
 	testImplementation "org.jmock:jmock:$jmock_version"
@@ -32,7 +32,7 @@ dependencies {
 	signature 'org.codehaus.mojo.signature:java16:1.1@signature'
 }
 
-// needed to make test output available to briar-headless
+// needed to make test output available to nearbook-headless
 configurations {
 	testOutput.extendsFrom(testCompile)
 }

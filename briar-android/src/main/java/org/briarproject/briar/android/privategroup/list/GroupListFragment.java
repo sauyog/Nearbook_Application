@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.list;
+package org.briarproject.masterproject.android.privategroup.list;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.privategroup.creation.CreateGroupActivity;
-import org.briarproject.briar.android.privategroup.invitation.GroupInvitationActivity;
-import org.briarproject.briar.android.privategroup.list.GroupViewHolder.OnGroupRemoveClickListener;
-import org.briarproject.briar.android.util.BriarSnackbarBuilder;
-import org.briarproject.briar.android.view.BriarRecyclerView;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.privategroup.creation.CreateGroupActivity;
+import org.briarproject.masterproject.android.privategroup.invitation.GroupInvitationActivity;
+import org.briarproject.masterproject.android.privategroup.list.GroupViewHolder.OnGroupRemoveClickListener;
+import org.briarproject.masterproject.android.util.BriarSnackbarBuilder;
+import org.briarproject.masterproject.android.view.BriarRecyclerView;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 

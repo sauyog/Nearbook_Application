@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.login;
+package org.briarproject.masterproject.android.login;
 
 import android.content.Context;
 import android.graphics.Color;

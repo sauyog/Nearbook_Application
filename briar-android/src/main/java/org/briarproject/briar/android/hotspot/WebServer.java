@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.hotspot;
+package org.briarproject.masterproject.android.hotspot;
 
 import android.content.Context;
 
@@ -28,7 +28,7 @@ import static java.util.logging.Level.WARNING;
 import static java.util.logging.Logger.getLogger;
 import static org.briarproject.bramble.util.LogUtils.logException;
 import static org.briarproject.briar.BuildConfig.VERSION_NAME;
-import static org.briarproject.briar.android.hotspot.HotspotViewModel.getApkFileName;
+import static org.briarproject.masterproject.android.hotspot.HotspotViewModel.getApkFileName;
 
 @NotNullByDefault
 class WebServer extends NanoHTTPD {

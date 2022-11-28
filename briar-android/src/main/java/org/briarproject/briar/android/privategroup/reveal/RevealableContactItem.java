@@ -1,7 +1,7 @@
-package org.briarproject.briar.android.privategroup.reveal;
+package org.briarproject.masterproject.android.privategroup.reveal;
 
 import org.briarproject.bramble.api.contact.Contact;
-import org.briarproject.briar.android.contactselection.SelectableContactItem;
+import org.briarproject.masterproject.android.contactselection.SelectableContactItem;
 import org.briarproject.briar.api.identity.AuthorInfo;
 import org.briarproject.briar.api.privategroup.Visibility;
 import org.briarproject.nullsafety.NotNullByDefault;

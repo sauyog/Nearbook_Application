@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact.add.nearby;
+package org.briarproject.masterproject.android.contact.add.nearby;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,15 +7,15 @@ import android.widget.Toast;
 
 import org.briarproject.bramble.api.identity.Author;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BriarActivity;
-import org.briarproject.briar.android.contact.add.nearby.AddContactState.ContactExchangeFinished;
-import org.briarproject.briar.android.contact.add.nearby.AddContactState.ContactExchangeResult;
-import org.briarproject.briar.android.contact.add.nearby.AddContactState.Failed;
-import org.briarproject.briar.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.fragment.BaseFragment.BaseFragmentListener;
-import org.briarproject.briar.android.util.ActivityLaunchers.RequestBluetoothDiscoverable;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.contact.add.nearby.AddContactState.ContactExchangeFinished;
+import org.briarproject.masterproject.android.contact.add.nearby.AddContactState.ContactExchangeResult;
+import org.briarproject.masterproject.android.contact.add.nearby.AddContactState.Failed;
+import org.briarproject.masterproject.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.fragment.BaseFragment.BaseFragmentListener;
+import org.briarproject.masterproject.android.util.ActivityLaunchers.RequestBluetoothDiscoverable;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -34,8 +34,8 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.widget.Toast.LENGTH_LONG;
 import static java.util.Objects.requireNonNull;
 import static java.util.logging.Logger.getLogger;
-import static org.briarproject.briar.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision.ACCEPTED;
-import static org.briarproject.briar.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision.REFUSED;
+import static org.briarproject.masterproject.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision.ACCEPTED;
+import static org.briarproject.masterproject.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision.REFUSED;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

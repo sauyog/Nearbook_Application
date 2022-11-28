@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.attachment.media;
+package org.briarproject.masterproject.android.attachment.media;
 
 import android.graphics.Bitmap;
 import android.net.Uri;

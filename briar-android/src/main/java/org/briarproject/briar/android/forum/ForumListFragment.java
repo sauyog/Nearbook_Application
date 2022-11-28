@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.forum;
+package org.briarproject.masterproject.android.forum;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,11 @@ import android.view.ViewGroup;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.sharing.ForumInvitationActivity;
-import org.briarproject.briar.android.util.BriarSnackbarBuilder;
-import org.briarproject.briar.android.view.BriarRecyclerView;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.sharing.ForumInvitationActivity;
+import org.briarproject.masterproject.android.util.BriarSnackbarBuilder;
+import org.briarproject.masterproject.android.view.BriarRecyclerView;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 

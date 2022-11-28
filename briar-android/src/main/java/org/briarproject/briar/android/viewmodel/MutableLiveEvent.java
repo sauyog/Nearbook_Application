@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.viewmodel;
+package org.briarproject.masterproject.android.viewmodel;
 
 import org.briarproject.nullsafety.NotNullByDefault;
 

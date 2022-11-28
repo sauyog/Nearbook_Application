@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.view;
+package org.briarproject.masterproject.android.view;
 
 import android.animation.LayoutTransition;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.view.EmojiTextInputView.OnKeyboardShownListener;
+import org.briarproject.masterproject.android.view.EmojiTextInputView.OnKeyboardShownListener;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 

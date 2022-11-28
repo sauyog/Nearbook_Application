@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.viewmodel;
+package org.briarproject.masterproject.android.viewmodel;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

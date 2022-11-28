@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.view;
+package org.briarproject.masterproject.android.view;
 
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;

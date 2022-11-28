@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contactselection;
+package org.briarproject.masterproject.android.contactselection;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.contact.OnContactClickListener;
+import org.briarproject.masterproject.android.contact.OnContactClickListener;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 @NotNullByDefault

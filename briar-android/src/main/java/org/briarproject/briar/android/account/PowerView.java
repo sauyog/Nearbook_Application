@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import android.content.Context;
 import android.os.Parcel;
@@ -20,7 +20,7 @@ import androidx.annotation.UiThread;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
-import static org.briarproject.briar.android.util.UiUtils.showOnboardingDialog;
+import static org.briarproject.masterproject.android.util.UiUtils.showOnboardingDialog;
 
 @UiThread
 @NotNullByDefault

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.memberlist;
+package org.briarproject.masterproject.android.privategroup.memberlist;
 
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.bramble.api.identity.Author;

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact;
+package org.briarproject.masterproject.android.contact;
 
 import android.view.View;
 

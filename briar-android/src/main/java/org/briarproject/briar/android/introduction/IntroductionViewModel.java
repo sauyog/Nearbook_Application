@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.introduction;
+package org.briarproject.masterproject.android.introduction;
 
 import android.app.Application;
 import android.widget.Toast;
@@ -14,10 +14,10 @@ import org.briarproject.bramble.api.event.EventBus;
 import org.briarproject.bramble.api.lifecycle.LifecycleManager;
 import org.briarproject.bramble.api.system.AndroidExecutor;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.contact.ContactItem;
-import org.briarproject.briar.android.contact.ContactsViewModel;
-import org.briarproject.briar.android.viewmodel.LiveEvent;
-import org.briarproject.briar.android.viewmodel.MutableLiveEvent;
+import org.briarproject.masterproject.android.contact.ContactItem;
+import org.briarproject.masterproject.android.contact.ContactsViewModel;
+import org.briarproject.masterproject.android.viewmodel.LiveEvent;
+import org.briarproject.masterproject.android.viewmodel.MutableLiveEvent;
 import org.briarproject.briar.api.conversation.ConversationManager;
 import org.briarproject.briar.api.identity.AuthorInfo;
 import org.briarproject.briar.api.identity.AuthorManager;

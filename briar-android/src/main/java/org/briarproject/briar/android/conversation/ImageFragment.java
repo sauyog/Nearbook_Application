@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.conversation;
+package org.briarproject.masterproject.android.conversation;
 
 import android.content.Context;
 import android.graphics.drawable.Animatable;
@@ -16,10 +16,10 @@ import com.github.chrisbanes.photoview.PhotoView;
 
 import org.briarproject.bramble.api.sync.MessageId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BaseActivity;
-import org.briarproject.briar.android.attachment.AttachmentItem;
-import org.briarproject.briar.android.conversation.glide.GlideApp;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BaseActivity;
+import org.briarproject.masterproject.android.attachment.AttachmentItem;
+import org.briarproject.masterproject.android.conversation.glide.GlideApp;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -34,10 +34,10 @@ import androidx.lifecycle.ViewModelProvider;
 import static android.os.Build.VERSION.SDK_INT;
 import static android.widget.ImageView.ScaleType.FIT_START;
 import static com.bumptech.glide.load.engine.DiskCacheStrategy.NONE;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.AVAILABLE;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.ERROR;
-import static org.briarproject.briar.android.conversation.ImageActivity.ATTACHMENT_POSITION;
-import static org.briarproject.briar.android.conversation.ImageActivity.ITEM_ID;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.AVAILABLE;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.ERROR;
+import static org.briarproject.masterproject.android.conversation.ImageActivity.ATTACHMENT_POSITION;
+import static org.briarproject.masterproject.android.conversation.ImageActivity.ITEM_ID;
 import static org.briarproject.nullsafety.NullSafety.requireNonNull;
 
 @MethodsNotNullByDefault

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.reporting;
+package org.briarproject.masterproject.android.reporting;
 
 import org.briarproject.nullsafety.NotNullByDefault;
 import org.json.JSONException;

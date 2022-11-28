@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact;
+package org.briarproject.masterproject.android.contact;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,14 +12,14 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.contact.add.nearby.AddNearbyContactActivity;
-import org.briarproject.briar.android.contact.add.remote.AddContactActivity;
-import org.briarproject.briar.android.contact.add.remote.PendingContactListActivity;
-import org.briarproject.briar.android.conversation.ConversationActivity;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.util.BriarSnackbarBuilder;
-import org.briarproject.briar.android.view.BriarRecyclerView;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.contact.add.nearby.AddNearbyContactActivity;
+import org.briarproject.masterproject.android.contact.add.remote.AddContactActivity;
+import org.briarproject.masterproject.android.contact.add.remote.PendingContactListActivity;
+import org.briarproject.masterproject.android.conversation.ConversationActivity;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.util.BriarSnackbarBuilder;
+import org.briarproject.masterproject.android.view.BriarRecyclerView;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -33,7 +33,7 @@ import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial.OnMenuItemClickListener;
 
 import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_INDEFINITE;
-import static org.briarproject.briar.android.conversation.ConversationActivity.CONTACT_ID;
+import static org.briarproject.masterproject.android.conversation.ConversationActivity.CONTACT_ID;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

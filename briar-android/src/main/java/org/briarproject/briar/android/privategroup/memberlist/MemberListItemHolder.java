@@ -1,11 +1,11 @@
-package org.briarproject.briar.android.privategroup.memberlist;
+package org.briarproject.masterproject.android.privategroup.memberlist;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.view.AuthorView;
+import org.briarproject.masterproject.android.view.AuthorView;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import androidx.annotation.UiThread;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static org.briarproject.briar.android.util.UiUtils.getContactDisplayName;
+import static org.briarproject.masterproject.android.util.UiUtils.getContactDisplayName;
 import static org.briarproject.briar.api.identity.AuthorInfo.Status.OURSELVES;
 
 @UiThread

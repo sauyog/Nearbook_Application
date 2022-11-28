@@ -9,7 +9,7 @@ apply from: 'witness.gradle'
 apply from: '../dagger.gradle'
 
 dependencies {
-	implementation project(path: ':bramble-api', configuration: 'default')
+	implementation project(path: ':nearbook-api', configuration: 'default')
 	implementation 'org.bouncycastle:bcprov-jdk15to18:1.71'
 	//noinspection GradleDependency
 	implementation 'com.h2database:h2:1.4.192' // The last version that supports Java 1.6
@@ -25,7 +25,7 @@ dependencies {
 
 	annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
-	testImplementation project(path: ':bramble-api', configuration: 'testOutput')
+	testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
 	testImplementation 'org.hsqldb:hsqldb:2.3.5' // The last version that supports Java 1.6
 	testImplementation 'net.jodah:concurrentunit:0.4.2'
 	testImplementation "junit:junit:$junit_version"
@@ -47,7 +47,7 @@ animalsniffer {
 	ignore 'java.util.Objects'
 }
 
-// needed to make test output available to bramble-java
+// needed to make test output available to nearbook-java
 configurations {
 	testOutput.extendsFrom(testCompile)
 }

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.conversation;
+package org.briarproject.masterproject.android.conversation;
 
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface.OnClickListener;
@@ -18,12 +18,12 @@ import com.google.android.material.appbar.AppBarLayout;
 
 import org.briarproject.bramble.api.sync.MessageId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BriarActivity;
-import org.briarproject.briar.android.attachment.AttachmentItem;
-import org.briarproject.briar.android.util.ActivityLaunchers.CreateDocumentAdvanced;
-import org.briarproject.briar.android.util.BriarSnackbarBuilder;
-import org.briarproject.briar.android.view.PullDownLayout;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.attachment.AttachmentItem;
+import org.briarproject.masterproject.android.util.ActivityLaunchers.CreateDocumentAdvanced;
+import org.briarproject.masterproject.android.util.BriarSnackbarBuilder;
+import org.briarproject.masterproject.android.view.PullDownLayout;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -50,8 +50,8 @@ import static android.view.View.VISIBLE;
 import static android.view.WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
 import static com.google.android.material.snackbar.Snackbar.LENGTH_LONG;
 import static java.util.Objects.requireNonNull;
-import static org.briarproject.briar.android.util.UiUtils.formatDateAbsolute;
-import static org.briarproject.briar.android.util.UiUtils.getDialogIcon;
+import static org.briarproject.masterproject.android.util.UiUtils.formatDateAbsolute;
+import static org.briarproject.masterproject.android.util.UiUtils.getDialogIcon;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

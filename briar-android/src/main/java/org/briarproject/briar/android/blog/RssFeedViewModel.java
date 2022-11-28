@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.blog;
+package org.briarproject.masterproject.android.blog;
 
 import android.app.Application;
 import android.util.Patterns;
@@ -11,10 +11,10 @@ import org.briarproject.bramble.api.lifecycle.IoExecutor;
 import org.briarproject.bramble.api.lifecycle.LifecycleManager;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.bramble.api.system.AndroidExecutor;
-import org.briarproject.briar.android.viewmodel.DbViewModel;
-import org.briarproject.briar.android.viewmodel.LiveEvent;
-import org.briarproject.briar.android.viewmodel.LiveResult;
-import org.briarproject.briar.android.viewmodel.MutableLiveEvent;
+import org.briarproject.masterproject.android.viewmodel.DbViewModel;
+import org.briarproject.masterproject.android.viewmodel.LiveEvent;
+import org.briarproject.masterproject.android.viewmodel.LiveResult;
+import org.briarproject.masterproject.android.viewmodel.MutableLiveEvent;
 import org.briarproject.briar.api.feed.Feed;
 import org.briarproject.briar.api.feed.FeedManager;
 import org.briarproject.nullsafety.NotNullByDefault;
@@ -38,9 +38,9 @@ import static java.util.logging.Logger.getLogger;
 import static org.briarproject.bramble.util.LogUtils.logDuration;
 import static org.briarproject.bramble.util.LogUtils.logException;
 import static org.briarproject.bramble.util.LogUtils.now;
-import static org.briarproject.briar.android.blog.RssFeedViewModel.ImportResult.EXISTS;
-import static org.briarproject.briar.android.blog.RssFeedViewModel.ImportResult.FAILED;
-import static org.briarproject.briar.android.blog.RssFeedViewModel.ImportResult.IMPORTED;
+import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.EXISTS;
+import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.FAILED;
+import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.IMPORTED;
 
 @NotNullByDefault
 class RssFeedViewModel extends DbViewModel {

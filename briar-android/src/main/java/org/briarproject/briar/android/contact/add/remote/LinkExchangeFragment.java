@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact.add.remote;
+package org.briarproject.masterproject.android.contact.add.remote;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -14,9 +14,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.view.InfoView;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.view.InfoView;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -31,8 +31,8 @@ import androidx.lifecycle.ViewModelProvider;
 import static android.content.Context.CLIPBOARD_SERVICE;
 import static android.widget.Toast.LENGTH_SHORT;
 import static org.briarproject.bramble.api.contact.HandshakeLinkConstants.LINK_REGEX;
-import static org.briarproject.briar.android.util.UiUtils.hideViewOnSmallScreen;
-import static org.briarproject.briar.android.util.UiUtils.observeOnce;
+import static org.briarproject.masterproject.android.util.UiUtils.hideViewOnSmallScreen;
+import static org.briarproject.masterproject.android.util.UiUtils.observeOnce;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact.add.remote;
+package org.briarproject.masterproject.android.contact.add.remote;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import org.briarproject.bramble.api.contact.PendingContact;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.util.BriarAdapter;
+import org.briarproject.masterproject.android.util.BriarAdapter;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 @NotNullByDefault

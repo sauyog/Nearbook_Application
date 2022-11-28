@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.mailbox;
+package org.briarproject.masterproject.android.mailbox;
 
 import org.briarproject.bramble.api.mailbox.MailboxPairingState;
 

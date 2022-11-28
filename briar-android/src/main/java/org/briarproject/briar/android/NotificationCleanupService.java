@@ -1,4 +1,4 @@
-package org.briarproject.briar.android;
+package org.briarproject.masterproject.android;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -10,11 +10,11 @@ import javax.inject.Inject;
 
 import androidx.annotation.Nullable;
 
-import static org.briarproject.briar.android.navdrawer.NavDrawerActivity.BLOG_URI;
-import static org.briarproject.briar.android.navdrawer.NavDrawerActivity.CONTACT_ADDED_URI;
-import static org.briarproject.briar.android.navdrawer.NavDrawerActivity.CONTACT_URI;
-import static org.briarproject.briar.android.navdrawer.NavDrawerActivity.FORUM_URI;
-import static org.briarproject.briar.android.navdrawer.NavDrawerActivity.GROUP_URI;
+import static org.briarproject.masterproject.android.navdrawer.NavDrawerActivity.BLOG_URI;
+import static org.briarproject.masterproject.android.navdrawer.NavDrawerActivity.CONTACT_ADDED_URI;
+import static org.briarproject.masterproject.android.navdrawer.NavDrawerActivity.CONTACT_URI;
+import static org.briarproject.masterproject.android.navdrawer.NavDrawerActivity.FORUM_URI;
+import static org.briarproject.masterproject.android.navdrawer.NavDrawerActivity.GROUP_URI;
 
 public class NotificationCleanupService extends IntentService {
 

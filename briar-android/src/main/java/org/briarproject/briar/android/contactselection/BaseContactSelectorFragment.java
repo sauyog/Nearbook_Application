@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contactselection;
+package org.briarproject.masterproject.android.contactselection;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,11 +10,11 @@ import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.bramble.api.db.DbException;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.contact.ContactItemViewHolder;
-import org.briarproject.briar.android.contact.OnContactClickListener;
-import org.briarproject.briar.android.controller.handler.UiResultExceptionHandler;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.view.BriarRecyclerView;
+import org.briarproject.masterproject.android.contact.ContactItemViewHolder;
+import org.briarproject.masterproject.android.contact.OnContactClickListener;
+import org.briarproject.masterproject.android.controller.handler.UiResultExceptionHandler;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.view.BriarRecyclerView;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -26,10 +26,10 @@ import javax.annotation.Nullable;
 import androidx.annotation.CallSuper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import static org.briarproject.briar.android.activity.BriarActivity.GROUP_ID;
-import static org.briarproject.briar.android.contactselection.ContactSelectorActivity.CONTACTS;
-import static org.briarproject.briar.android.contactselection.ContactSelectorActivity.getContactsFromIds;
-import static org.briarproject.briar.android.contactselection.ContactSelectorActivity.getContactsFromIntegers;
+import static org.briarproject.masterproject.android.activity.BriarActivity.GROUP_ID;
+import static org.briarproject.masterproject.android.contactselection.ContactSelectorActivity.CONTACTS;
+import static org.briarproject.masterproject.android.contactselection.ContactSelectorActivity.getContactsFromIds;
+import static org.briarproject.masterproject.android.contactselection.ContactSelectorActivity.getContactsFromIntegers;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.attachment;
+package org.briarproject.masterproject.android.attachment;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -15,8 +15,8 @@ import androidx.annotation.Nullable;
 import static java.lang.System.arraycopy;
 import static java.util.Objects.requireNonNull;
 import static org.briarproject.bramble.util.StringUtils.toHexString;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.LOADING;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.MISSING;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.LOADING;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.MISSING;
 
 @Immutable
 @NotNullByDefault

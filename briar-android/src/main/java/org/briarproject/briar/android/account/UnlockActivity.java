@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import android.app.KeyguardManager;
 import android.content.Intent;
@@ -11,8 +11,8 @@ import android.os.CancellationSignal;
 import android.widget.Toast;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BaseActivity;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BaseActivity;
 import org.briarproject.briar.api.android.LockManager;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
@@ -28,9 +28,9 @@ import static android.hardware.biometrics.BiometricPrompt.BIOMETRIC_ERROR_CANCEL
 import static android.hardware.biometrics.BiometricPrompt.BIOMETRIC_ERROR_USER_CANCELED;
 import static android.os.Build.VERSION.SDK_INT;
 import static android.view.View.INVISIBLE;
-import static org.briarproject.briar.android.activity.RequestCodes.REQUEST_KEYGUARD_UNLOCK;
-import static org.briarproject.briar.android.util.UiUtils.hasKeyguardLock;
-import static org.briarproject.briar.android.util.UiUtils.hasUsableFingerprint;
+import static org.briarproject.masterproject.android.activity.RequestCodes.REQUEST_KEYGUARD_UNLOCK;
+import static org.briarproject.masterproject.android.util.UiUtils.hasKeyguardLock;
+import static org.briarproject.masterproject.android.util.UiUtils.hasUsableFingerprint;
 
 @RequiresApi(21)
 @MethodsNotNullByDefault

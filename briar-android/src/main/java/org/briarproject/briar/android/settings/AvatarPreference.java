@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -13,7 +13,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static org.briarproject.briar.android.view.AuthorView.setAvatar;
+import static org.briarproject.masterproject.android.view.AuthorView.setAvatar;
 
 @NotNullByDefault
 public class AvatarPreference extends Preference {

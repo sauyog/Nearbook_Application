@@ -1,11 +1,11 @@
-package org.briarproject.briar.android.hotspot;
+package org.briarproject.masterproject.android.hotspot;
 
 import android.content.Intent;
 import android.provider.Settings;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.util.Permission;
-import org.briarproject.briar.android.util.PermissionUtils;
+import org.briarproject.masterproject.android.util.Permission;
+import org.briarproject.masterproject.android.util.PermissionUtils;
 
 import java.util.logging.Logger;
 
@@ -23,8 +23,8 @@ import static androidx.core.app.ActivityCompat.shouldShowRequestPermissionRation
 import static java.lang.Boolean.TRUE;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Logger.getLogger;
-import static org.briarproject.briar.android.util.PermissionUtils.isLocationEnabledForWiFi;
-import static org.briarproject.briar.android.util.PermissionUtils.showLocationDialog;
+import static org.briarproject.masterproject.android.util.PermissionUtils.isLocationEnabledForWiFi;
+import static org.briarproject.masterproject.android.util.PermissionUtils.showLocationDialog;
 
 /**
  * This class ensures that the conditions to open a hotspot are fulfilled on

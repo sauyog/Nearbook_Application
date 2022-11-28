@@ -1,12 +1,12 @@
-package org.briarproject.briar.android.hotspot;
+package org.briarproject.masterproject.android.hotspot;
 
 import android.app.Application;
 import android.graphics.Bitmap;
 import android.util.DisplayMetrics;
 
 import org.briarproject.bramble.api.lifecycle.IoExecutor;
-import org.briarproject.briar.android.hotspot.HotspotState.WebsiteConfig;
-import org.briarproject.briar.android.qrcode.QrCodeUtils;
+import org.briarproject.masterproject.android.hotspot.HotspotState.WebsiteConfig;
+import org.briarproject.masterproject.android.qrcode.QrCodeUtils;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -26,8 +26,8 @@ import static java.util.logging.Level.WARNING;
 import static java.util.logging.Logger.getLogger;
 import static org.briarproject.bramble.util.LogUtils.logException;
 import static org.briarproject.bramble.util.NetworkUtils.getNetworkInterfaces;
-import static org.briarproject.briar.android.hotspot.WebServer.PORT;
-import static org.briarproject.briar.android.qrcode.QrCodeUtils.HOTSPOT_QRCODE_FACTOR;
+import static org.briarproject.masterproject.android.hotspot.WebServer.PORT;
+import static org.briarproject.masterproject.android.qrcode.QrCodeUtils.HOTSPOT_QRCODE_FACTOR;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

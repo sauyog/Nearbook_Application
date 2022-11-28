@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.activity;
+package org.briarproject.masterproject.android.activity;
 
 import android.content.Intent;
 import android.transition.Transition;
@@ -8,13 +8,13 @@ import android.widget.CheckBox;
 import org.briarproject.bramble.api.system.AndroidWakeLockManager;
 import org.briarproject.bramble.api.system.Wakeful;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.BriarApplication;
-import org.briarproject.briar.android.account.UnlockActivity;
-import org.briarproject.briar.android.controller.BriarController;
-import org.briarproject.briar.android.controller.DbController;
-import org.briarproject.briar.android.controller.handler.UiResultHandler;
-import org.briarproject.briar.android.login.StartupActivity;
-import org.briarproject.briar.android.logout.ExitActivity;
+import org.briarproject.masterproject.android.BriarApplication;
+import org.briarproject.masterproject.android.account.UnlockActivity;
+import org.briarproject.masterproject.android.controller.BriarController;
+import org.briarproject.masterproject.android.controller.DbController;
+import org.briarproject.masterproject.android.controller.handler.UiResultHandler;
+import org.briarproject.masterproject.android.login.StartupActivity;
+import org.briarproject.masterproject.android.logout.ExitActivity;
 import org.briarproject.briar.api.android.LockManager;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
@@ -38,11 +38,11 @@ import static android.os.Build.VERSION.SDK_INT;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Logger.getLogger;
 import static org.briarproject.android.dontkillmelib.DozeUtils.getDozeWhitelistingIntent;
-import static org.briarproject.briar.android.activity.RequestCodes.REQUEST_DOZE_WHITELISTING;
-import static org.briarproject.briar.android.activity.RequestCodes.REQUEST_PASSWORD;
-import static org.briarproject.briar.android.activity.RequestCodes.REQUEST_UNLOCK;
-import static org.briarproject.briar.android.util.UiUtils.excludeSystemUi;
-import static org.briarproject.briar.android.util.UiUtils.isSamsung7;
+import static org.briarproject.masterproject.android.activity.RequestCodes.REQUEST_DOZE_WHITELISTING;
+import static org.briarproject.masterproject.android.activity.RequestCodes.REQUEST_PASSWORD;
+import static org.briarproject.masterproject.android.activity.RequestCodes.REQUEST_UNLOCK;
+import static org.briarproject.masterproject.android.util.UiUtils.excludeSystemUi;
+import static org.briarproject.masterproject.android.util.UiUtils.isSamsung7;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact.add.remote;
+package org.briarproject.masterproject.android.contact.add.remote;
 
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
@@ -8,10 +8,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.briarproject.bramble.api.contact.PendingContactId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BriarActivity;
-import org.briarproject.briar.android.util.BriarSnackbarBuilder;
-import org.briarproject.briar.android.view.BriarRecyclerView;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.util.BriarSnackbarBuilder;
+import org.briarproject.masterproject.android.view.BriarRecyclerView;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -27,7 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import static com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE;
 import static org.briarproject.bramble.api.contact.PendingContactState.FAILED;
-import static org.briarproject.briar.android.contact.add.remote.PendingContactItem.POLL_DURATION_MS;
+import static org.briarproject.masterproject.android.contact.add.remote.PendingContactItem.POLL_DURATION_MS;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

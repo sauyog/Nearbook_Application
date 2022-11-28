@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.view;
+package org.briarproject.masterproject.android.view;
 
 import android.content.Context;
 import android.os.Parcelable;
@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.view.EmojiTextInputView.TextInputListener;
+import org.briarproject.masterproject.android.view.EmojiTextInputView.TextInputListener;
 import org.briarproject.briar.api.attachment.AttachmentHeader;
 import org.briarproject.nullsafety.NotNullByDefault;
 
@@ -24,9 +24,9 @@ import androidx.lifecycle.LiveData;
 import static android.widget.Toast.LENGTH_LONG;
 import static com.google.android.material.snackbar.Snackbar.LENGTH_SHORT;
 import static java.util.Collections.emptyList;
-import static org.briarproject.briar.android.view.TextSendController.SendState.ERROR;
-import static org.briarproject.briar.android.view.TextSendController.SendState.SENT;
-import static org.briarproject.briar.android.view.TextSendController.SendState.UNEXPECTED_TIMER;
+import static org.briarproject.masterproject.android.view.TextSendController.SendState.ERROR;
+import static org.briarproject.masterproject.android.view.TextSendController.SendState.SENT;
+import static org.briarproject.masterproject.android.view.TextSendController.SendState.UNEXPECTED_TIMER;
 import static org.briarproject.briar.api.autodelete.AutoDeleteConstants.NO_AUTO_DELETE_TIMER;
 
 @UiThread

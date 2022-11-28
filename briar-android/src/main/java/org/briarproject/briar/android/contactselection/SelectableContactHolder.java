@@ -1,8 +1,8 @@
-package org.briarproject.briar.android.contactselection;
+package org.briarproject.masterproject.android.contactselection;
 
 import android.view.View;
 
-import org.briarproject.briar.android.contact.OnContactClickListener;
+import org.briarproject.masterproject.android.contact.OnContactClickListener;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import javax.annotation.Nullable;

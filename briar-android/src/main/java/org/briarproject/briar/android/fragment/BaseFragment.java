@@ -1,12 +1,12 @@
-package org.briarproject.briar.android.fragment;
+package org.briarproject.masterproject.android.fragment;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import org.briarproject.briar.android.DestroyableContext;
-import org.briarproject.briar.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.DestroyableContext;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.controller;
+package org.briarproject.masterproject.android.controller;
 
 import org.briarproject.nullsafety.NotNullByDefault;
 

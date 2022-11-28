@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.hotspot;
+package org.briarproject.masterproject.android.hotspot;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -24,9 +24,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import static android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE;
 import static android.view.View.GONE;
-import static org.briarproject.briar.android.AppModule.getAndroidComponent;
-import static org.briarproject.briar.android.hotspot.AbstractTabsFragment.ARG_FOR_WIFI_CONNECT;
-import static org.briarproject.briar.android.hotspot.HotspotState.HotspotStarted;
+import static org.briarproject.masterproject.android.AppModule.getAndroidComponent;
+import static org.briarproject.masterproject.android.hotspot.AbstractTabsFragment.ARG_FOR_WIFI_CONNECT;
+import static org.briarproject.masterproject.android.hotspot.HotspotState.HotspotStarted;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

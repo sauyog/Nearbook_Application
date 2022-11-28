@@ -1,12 +1,12 @@
-package org.briarproject.briar.android.sharing;
+package org.briarproject.masterproject.android.sharing;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.sharing.InvitationAdapter.InvitationClickListener;
-import org.briarproject.briar.android.view.TextAvatarView;
+import org.briarproject.masterproject.android.sharing.InvitationAdapter.InvitationClickListener;
+import org.briarproject.masterproject.android.view.TextAvatarView;
 import org.briarproject.briar.api.sharing.InvitationItem;
 
 import javax.annotation.Nullable;

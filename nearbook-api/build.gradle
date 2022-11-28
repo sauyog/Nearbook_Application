@@ -20,7 +20,7 @@ dependencies {
 	signature 'org.codehaus.mojo.signature:java16:1.1@signature'
 }
 
-// needed to make test output available to bramble-core and briar-core
+// needed to make test output available to nearbook-core and briar-core
 configurations {
 	testOutput.extendsFrom(testCompile)
 }

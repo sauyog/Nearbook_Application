@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.conversation;
+package org.briarproject.masterproject.android.conversation;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration;
 import androidx.recyclerview.widget.RecyclerView.State;
 
-import static org.briarproject.briar.android.conversation.ImageAdapter.isBottomRow;
-import static org.briarproject.briar.android.conversation.ImageAdapter.isLeft;
-import static org.briarproject.briar.android.conversation.ImageAdapter.isTopRow;
-import static org.briarproject.briar.android.conversation.ImageAdapter.singleInRow;
-import static org.briarproject.briar.android.util.UiUtils.isRtl;
+import static org.briarproject.masterproject.android.conversation.ImageAdapter.isBottomRow;
+import static org.briarproject.masterproject.android.conversation.ImageAdapter.isLeft;
+import static org.briarproject.masterproject.android.conversation.ImageAdapter.isTopRow;
+import static org.briarproject.masterproject.android.conversation.ImageAdapter.singleInRow;
+import static org.briarproject.masterproject.android.util.UiUtils.isRtl;
 
 @NotNullByDefault
 class ImageItemDecoration extends ItemDecoration {

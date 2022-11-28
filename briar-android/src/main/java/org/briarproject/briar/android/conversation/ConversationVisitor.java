@@ -1,10 +1,10 @@
-package org.briarproject.briar.android.conversation;
+package org.briarproject.masterproject.android.conversation;
 
 import android.content.Context;
 
 import org.briarproject.bramble.api.sync.MessageId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.attachment.AttachmentItem;
+import org.briarproject.masterproject.android.attachment.AttachmentItem;
 import org.briarproject.briar.api.blog.BlogInvitationRequest;
 import org.briarproject.briar.api.blog.BlogInvitationResponse;
 import org.briarproject.briar.api.conversation.ConversationMessageVisitor;
@@ -25,11 +25,11 @@ import androidx.annotation.UiThread;
 import androidx.lifecycle.LiveData;
 
 import static java.util.Collections.emptyList;
-import static org.briarproject.briar.android.conversation.ConversationRequestItem.RequestType.BLOG;
-import static org.briarproject.briar.android.conversation.ConversationRequestItem.RequestType.FORUM;
-import static org.briarproject.briar.android.conversation.ConversationRequestItem.RequestType.GROUP;
-import static org.briarproject.briar.android.conversation.ConversationRequestItem.RequestType.INTRODUCTION;
-import static org.briarproject.briar.android.util.UiUtils.getContactDisplayName;
+import static org.briarproject.masterproject.android.conversation.ConversationRequestItem.RequestType.BLOG;
+import static org.briarproject.masterproject.android.conversation.ConversationRequestItem.RequestType.FORUM;
+import static org.briarproject.masterproject.android.conversation.ConversationRequestItem.RequestType.GROUP;
+import static org.briarproject.masterproject.android.conversation.ConversationRequestItem.RequestType.INTRODUCTION;
+import static org.briarproject.masterproject.android.util.UiUtils.getContactDisplayName;
 
 @UiThread
 @NotNullByDefault

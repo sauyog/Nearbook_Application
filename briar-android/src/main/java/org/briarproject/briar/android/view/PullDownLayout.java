@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package org.briarproject.briar.android.view;
+package org.briarproject.masterproject.android.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.conversation.glide;
+package org.briarproject.masterproject.android.conversation.glide;
 
 import android.graphics.Bitmap;
 

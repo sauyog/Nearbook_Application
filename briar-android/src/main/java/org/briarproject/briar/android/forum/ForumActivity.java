@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.forum;
+package org.briarproject.masterproject.android.forum;
 
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -8,12 +8,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.sharing.ForumSharingStatusActivity;
-import org.briarproject.briar.android.sharing.ShareForumActivity;
-import org.briarproject.briar.android.threaded.ThreadItemAdapter;
-import org.briarproject.briar.android.threaded.ThreadListActivity;
-import org.briarproject.briar.android.threaded.ThreadListViewModel;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.sharing.ForumSharingStatusActivity;
+import org.briarproject.masterproject.android.sharing.ShareForumActivity;
+import org.briarproject.masterproject.android.threaded.ThreadItemAdapter;
+import org.briarproject.masterproject.android.threaded.ThreadListActivity;
+import org.briarproject.masterproject.android.threaded.ThreadListViewModel;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -25,8 +25,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static org.briarproject.briar.android.activity.RequestCodes.REQUEST_SHARE_FORUM;
-import static org.briarproject.briar.android.util.UiUtils.observeOnce;
+import static org.briarproject.masterproject.android.activity.RequestCodes.REQUEST_SHARE_FORUM;
+import static org.briarproject.masterproject.android.util.UiUtils.observeOnce;
 import static org.briarproject.briar.api.forum.ForumConstants.MAX_FORUM_POST_TEXT_LENGTH;
 
 @MethodsNotNullByDefault

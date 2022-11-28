@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.reporting;
+package org.briarproject.masterproject.android.reporting;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -17,8 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -39,7 +39,7 @@ import static java.util.Objects.requireNonNull;
 import static java.util.logging.Level.WARNING;
 import static java.util.logging.Logger.getLogger;
 import static org.briarproject.bramble.util.LogUtils.logException;
-import static org.briarproject.briar.android.util.UiUtils.onSingleLinkClick;
+import static org.briarproject.masterproject.android.util.UiUtils.onSingleLinkClick;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

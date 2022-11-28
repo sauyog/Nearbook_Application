@@ -1,12 +1,12 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.Localizer;
-import org.briarproject.briar.android.util.UiUtils;
+import org.briarproject.masterproject.android.Localizer;
+import org.briarproject.masterproject.android.util.UiUtils;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.util.ArrayList;
@@ -29,9 +29,9 @@ import static androidx.core.view.ViewCompat.LAYOUT_DIRECTION_LTR;
 import static java.util.Objects.requireNonNull;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Logger.getLogger;
-import static org.briarproject.briar.android.BriarApplication.ENTRY_ACTIVITY;
-import static org.briarproject.briar.android.navdrawer.NavDrawerActivity.SIGN_OUT_URI;
-import static org.briarproject.briar.android.settings.SettingsActivity.EXTRA_THEME_CHANGE;
+import static org.briarproject.masterproject.android.BriarApplication.ENTRY_ACTIVITY;
+import static org.briarproject.masterproject.android.navdrawer.NavDrawerActivity.SIGN_OUT_URI;
+import static org.briarproject.masterproject.android.settings.SettingsActivity.EXTRA_THEME_CHANGE;
 
 @NotNullByDefault
 public class DisplayFragment extends PreferenceFragmentCompat {

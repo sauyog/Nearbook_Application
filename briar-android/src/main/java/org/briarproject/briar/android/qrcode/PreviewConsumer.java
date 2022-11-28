@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.qrcode;
+package org.briarproject.masterproject.android.qrcode;
 
 import android.hardware.Camera;
 

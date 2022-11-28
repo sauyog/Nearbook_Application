@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.privategroup.memberlist;
+package org.briarproject.masterproject.android.privategroup.memberlist;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import org.briarproject.bramble.api.event.EventListener;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.bramble.api.sync.event.GroupRemovedEvent;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BriarActivity;
-import org.briarproject.briar.android.controller.handler.UiResultExceptionHandler;
-import org.briarproject.briar.android.view.BriarRecyclerView;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.controller.handler.UiResultExceptionHandler;
+import org.briarproject.masterproject.android.view.BriarRecyclerView;
 import org.briarproject.briar.api.privategroup.JoinMessageHeader;
 import org.briarproject.briar.api.privategroup.event.GroupMessageAddedEvent;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;

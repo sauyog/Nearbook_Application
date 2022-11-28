@@ -1,4 +1,4 @@
-package org.briarproject.briar.android;
+package org.briarproject.masterproject.android;
 
 import org.briarproject.nullsafety.NotNullByDefault;
 import org.junit.rules.TestRule;

@@ -4,7 +4,7 @@
   https://github.com/ACRA/acra/blob/3b9034/acra-core/src/main/java/org/acra/collector/
  */
 
-package org.briarproject.briar.android.reporting;
+package org.briarproject.masterproject.android.reporting;
 
 import android.annotation.SuppressLint;
 import android.app.usage.UsageStatsManager;
@@ -24,9 +24,9 @@ import android.os.Environment;
 import org.briarproject.bramble.api.Pair;
 import org.briarproject.briar.BuildConfig;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.reporting.ReportData.MultiReportInfo;
-import org.briarproject.briar.android.reporting.ReportData.ReportItem;
-import org.briarproject.briar.android.reporting.ReportData.SingleReportInfo;
+import org.briarproject.masterproject.android.reporting.ReportData.MultiReportInfo;
+import org.briarproject.masterproject.android.reporting.ReportData.ReportItem;
+import org.briarproject.masterproject.android.reporting.ReportData.SingleReportInfo;
 import org.briarproject.briar.api.android.MemoryStats;
 import org.briarproject.briar.api.android.NetworkUsageMetrics;
 import org.briarproject.briar.api.android.NetworkUsageMetrics.Metrics;
@@ -64,7 +64,7 @@ import static org.briarproject.bramble.util.AndroidUtils.hasBtConnectPermission;
 import static org.briarproject.bramble.util.PrivacyUtils.scrubInetAddress;
 import static org.briarproject.bramble.util.PrivacyUtils.scrubMacAddress;
 import static org.briarproject.bramble.util.StringUtils.isNullOrEmpty;
-import static org.briarproject.briar.android.util.PermissionUtils.areBluetoothPermissionsGranted;
+import static org.briarproject.masterproject.android.util.PermissionUtils.areBluetoothPermissionsGranted;
 
 @Immutable
 @NotNullByDefault

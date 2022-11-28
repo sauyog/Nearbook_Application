@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.blog;
+package org.briarproject.masterproject.android.blog;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static org.briarproject.briar.android.util.UiUtils.formatDate;
+import static org.briarproject.masterproject.android.util.UiUtils.formatDate;
 
 @NotNullByDefault
 class RssFeedAdapter extends ListAdapter<Feed, RssFeedAdapter.FeedViewHolder> {

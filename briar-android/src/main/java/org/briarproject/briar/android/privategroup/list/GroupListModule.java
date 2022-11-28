@@ -1,6 +1,6 @@
-package org.briarproject.briar.android.privategroup.list;
+package org.briarproject.masterproject.android.privategroup.list;
 
-import org.briarproject.briar.android.viewmodel.ViewModelKey;
+import org.briarproject.masterproject.android.viewmodel.ViewModelKey;
 
 import androidx.lifecycle.ViewModel;
 import dagger.Binds;

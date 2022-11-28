@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.threaded;
+package org.briarproject.masterproject.android.threaded;
 
 import android.app.Application;
 
@@ -17,10 +17,10 @@ import org.briarproject.bramble.api.sync.MessageId;
 import org.briarproject.bramble.api.sync.event.GroupRemovedEvent;
 import org.briarproject.bramble.api.system.AndroidExecutor;
 import org.briarproject.bramble.api.system.Clock;
-import org.briarproject.briar.android.sharing.SharingController;
-import org.briarproject.briar.android.sharing.SharingController.SharingInfo;
-import org.briarproject.briar.android.viewmodel.DbViewModel;
-import org.briarproject.briar.android.viewmodel.LiveResult;
+import org.briarproject.masterproject.android.sharing.SharingController;
+import org.briarproject.masterproject.android.sharing.SharingController.SharingInfo;
+import org.briarproject.masterproject.android.viewmodel.DbViewModel;
+import org.briarproject.masterproject.android.viewmodel.LiveResult;
 import org.briarproject.briar.api.android.AndroidNotificationManager;
 import org.briarproject.briar.api.client.MessageTracker;
 import org.briarproject.briar.api.client.MessageTree;

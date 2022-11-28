@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact.add.nearby;
+package org.briarproject.masterproject.android.contact.add.nearby;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -46,17 +46,17 @@ import org.briarproject.bramble.api.plugin.event.TransportStateEvent;
 import org.briarproject.bramble.api.system.AndroidExecutor;
 import org.briarproject.bramble.plugin.bluetooth.BluetoothPlugin;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.contact.add.nearby.AddContactState.ContactExchangeFinished;
-import org.briarproject.briar.android.contact.add.nearby.AddContactState.ContactExchangeResult.Error;
-import org.briarproject.briar.android.contact.add.nearby.AddContactState.ContactExchangeResult.Success;
-import org.briarproject.briar.android.contact.add.nearby.AddContactState.ContactExchangeStarted;
-import org.briarproject.briar.android.contact.add.nearby.AddContactState.KeyAgreementListening;
-import org.briarproject.briar.android.contact.add.nearby.AddContactState.KeyAgreementStarted;
-import org.briarproject.briar.android.contact.add.nearby.AddContactState.KeyAgreementWaiting;
-import org.briarproject.briar.android.qrcode.QrCodeDecoder;
-import org.briarproject.briar.android.qrcode.QrCodeUtils;
-import org.briarproject.briar.android.viewmodel.LiveEvent;
-import org.briarproject.briar.android.viewmodel.MutableLiveEvent;
+import org.briarproject.masterproject.android.contact.add.nearby.AddContactState.ContactExchangeFinished;
+import org.briarproject.masterproject.android.contact.add.nearby.AddContactState.ContactExchangeResult.Error;
+import org.briarproject.masterproject.android.contact.add.nearby.AddContactState.ContactExchangeResult.Success;
+import org.briarproject.masterproject.android.contact.add.nearby.AddContactState.ContactExchangeStarted;
+import org.briarproject.masterproject.android.contact.add.nearby.AddContactState.KeyAgreementListening;
+import org.briarproject.masterproject.android.contact.add.nearby.AddContactState.KeyAgreementStarted;
+import org.briarproject.masterproject.android.contact.add.nearby.AddContactState.KeyAgreementWaiting;
+import org.briarproject.masterproject.android.qrcode.QrCodeDecoder;
+import org.briarproject.masterproject.android.qrcode.QrCodeUtils;
+import org.briarproject.masterproject.android.viewmodel.LiveEvent;
+import org.briarproject.masterproject.android.viewmodel.MutableLiveEvent;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.io.IOException;
@@ -85,12 +85,12 @@ import static org.briarproject.bramble.api.plugin.Plugin.State.DISABLED;
 import static org.briarproject.bramble.api.plugin.Plugin.State.INACTIVE;
 import static org.briarproject.bramble.api.plugin.Plugin.State.STARTING_STOPPING;
 import static org.briarproject.bramble.util.LogUtils.logException;
-import static org.briarproject.briar.android.contact.add.nearby.AddNearbyContactPermissionManager.areEssentialPermissionsGranted;
-import static org.briarproject.briar.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision.NO_ADAPTER;
-import static org.briarproject.briar.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision.REFUSED;
-import static org.briarproject.briar.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision.UNKNOWN;
-import static org.briarproject.briar.android.util.PermissionUtils.isLocationEnabledForBt;
-import static org.briarproject.briar.android.util.UiUtils.handleException;
+import static org.briarproject.masterproject.android.contact.add.nearby.AddNearbyContactPermissionManager.areEssentialPermissionsGranted;
+import static org.briarproject.masterproject.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision.NO_ADAPTER;
+import static org.briarproject.masterproject.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision.REFUSED;
+import static org.briarproject.masterproject.android.contact.add.nearby.AddNearbyContactViewModel.BluetoothDecision.UNKNOWN;
+import static org.briarproject.masterproject.android.util.PermissionUtils.isLocationEnabledForBt;
+import static org.briarproject.masterproject.android.util.UiUtils.handleException;
 
 @NotNullByDefault
 class AddNearbyContactViewModel extends AndroidViewModel

@@ -1,8 +1,8 @@
-package org.briarproject.briar.android.view;
+package org.briarproject.masterproject.android.view;
 
 import android.net.Uri;
 
-import org.briarproject.briar.android.attachment.AttachmentItem;
+import org.briarproject.masterproject.android.attachment.AttachmentItem;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.util.ArrayList;

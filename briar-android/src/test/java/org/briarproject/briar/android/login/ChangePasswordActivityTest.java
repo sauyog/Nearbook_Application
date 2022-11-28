@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.login;
+package org.briarproject.masterproject.android.login;
 
 import android.widget.Button;
 import android.widget.EditText;
@@ -7,7 +7,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.briarproject.bramble.api.crypto.DecryptionResult;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.viewmodel.MutableLiveEvent;
+import org.briarproject.masterproject.android.viewmodel.MutableLiveEvent;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

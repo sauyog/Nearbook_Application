@@ -1,11 +1,11 @@
-package org.briarproject.briar.android.conversation.glide;
+package org.briarproject.masterproject.android.conversation.glide;
 
 
 import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.signature.ObjectKey;
 
-import org.briarproject.briar.android.BriarApplication;
+import org.briarproject.masterproject.android.BriarApplication;
 import org.briarproject.briar.api.attachment.AttachmentHeader;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;

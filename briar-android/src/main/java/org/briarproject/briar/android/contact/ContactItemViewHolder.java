@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.contact;
+package org.briarproject.masterproject.android.contact;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.view.TrustIndicatorView;
+import org.briarproject.masterproject.android.view.TrustIndicatorView;
 import org.briarproject.briar.api.identity.AuthorInfo;
 import org.briarproject.nullsafety.NotNullByDefault;
 
@@ -15,8 +15,8 @@ import javax.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static org.briarproject.briar.android.util.UiUtils.getContactDisplayName;
-import static org.briarproject.briar.android.view.AuthorView.setAvatar;
+import static org.briarproject.masterproject.android.util.UiUtils.getContactDisplayName;
+import static org.briarproject.masterproject.android.view.AuthorView.setAvatar;
 
 @UiThread
 @NotNullByDefault

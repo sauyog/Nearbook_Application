@@ -1,13 +1,13 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Bundle;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BaseActivity;
-import org.briarproject.briar.android.fragment.BaseFragment.BaseFragmentListener;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BaseActivity;
+import org.briarproject.masterproject.android.fragment.BaseFragment.BaseFragmentListener;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -20,14 +20,14 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.content.Intent.FLAG_ACTIVITY_TASK_ON_HOME;
-import static org.briarproject.briar.android.BriarApplication.ENTRY_ACTIVITY;
-import static org.briarproject.briar.android.account.SetupViewModel.State.AUTHOR_NAME;
-import static org.briarproject.briar.android.account.SetupViewModel.State.CREATED;
-import static org.briarproject.briar.android.account.SetupViewModel.State.DOZE;
-import static org.briarproject.briar.android.account.SetupViewModel.State.FAILED;
-import static org.briarproject.briar.android.account.SetupViewModel.State.SET_PASSWORD;
-import static org.briarproject.briar.android.util.UiUtils.setInputStateAlwaysVisible;
-import static org.briarproject.briar.android.util.UiUtils.setInputStateHidden;
+import static org.briarproject.masterproject.android.BriarApplication.ENTRY_ACTIVITY;
+import static org.briarproject.masterproject.android.account.SetupViewModel.State.AUTHOR_NAME;
+import static org.briarproject.masterproject.android.account.SetupViewModel.State.CREATED;
+import static org.briarproject.masterproject.android.account.SetupViewModel.State.DOZE;
+import static org.briarproject.masterproject.android.account.SetupViewModel.State.FAILED;
+import static org.briarproject.masterproject.android.account.SetupViewModel.State.SET_PASSWORD;
+import static org.briarproject.masterproject.android.util.UiUtils.setInputStateAlwaysVisible;
+import static org.briarproject.masterproject.android.util.UiUtils.setInputStateHidden;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

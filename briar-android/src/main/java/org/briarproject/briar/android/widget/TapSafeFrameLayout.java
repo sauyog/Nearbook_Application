@@ -1,11 +1,11 @@
-package org.briarproject.briar.android.widget;
+package org.briarproject.masterproject.android.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
-import org.briarproject.briar.android.util.UiUtils;
+import org.briarproject.masterproject.android.util.UiUtils;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import javax.annotation.Nullable;

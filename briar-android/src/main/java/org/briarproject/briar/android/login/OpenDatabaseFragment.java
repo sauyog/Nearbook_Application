@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.login;
+package org.briarproject.masterproject.android.login;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -19,9 +19,9 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
-import static org.briarproject.briar.android.login.StartupViewModel.State;
-import static org.briarproject.briar.android.login.StartupViewModel.State.COMPACTING;
-import static org.briarproject.briar.android.login.StartupViewModel.State.MIGRATING;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.COMPACTING;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.MIGRATING;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

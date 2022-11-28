@@ -1,6 +1,6 @@
-package org.briarproject.briar.android.privategroup.memberlist;
+package org.briarproject.masterproject.android.privategroup.memberlist;
 
-import org.briarproject.briar.android.activity.ActivityScope;
+import org.briarproject.masterproject.android.activity.ActivityScope;
 
 import dagger.Module;
 import dagger.Provides;

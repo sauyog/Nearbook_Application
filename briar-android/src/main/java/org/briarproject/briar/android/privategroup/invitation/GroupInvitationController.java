@@ -1,6 +1,6 @@
-package org.briarproject.briar.android.privategroup.invitation;
+package org.briarproject.masterproject.android.privategroup.invitation;
 
-import org.briarproject.briar.android.sharing.InvitationController;
+import org.briarproject.masterproject.android.sharing.InvitationController;
 import org.briarproject.briar.api.privategroup.invitation.GroupInvitationItem;
 import org.briarproject.nullsafety.NotNullByDefault;
 

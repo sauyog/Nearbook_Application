@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.conversation;
+package org.briarproject.masterproject.android.conversation;
 
 import android.graphics.Bitmap;
 import android.view.View;
@@ -8,10 +8,10 @@ import com.bumptech.glide.load.Transformation;
 
 import org.briarproject.bramble.api.sync.MessageId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.attachment.AttachmentItem;
-import org.briarproject.briar.android.conversation.glide.BriarImageTransformation;
-import org.briarproject.briar.android.conversation.glide.GlideApp;
-import org.briarproject.briar.android.conversation.glide.Radii;
+import org.briarproject.masterproject.android.attachment.AttachmentItem;
+import org.briarproject.masterproject.android.conversation.glide.BriarImageTransformation;
+import org.briarproject.masterproject.android.conversation.glide.GlideApp;
+import org.briarproject.masterproject.android.conversation.glide.Radii;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 import androidx.annotation.DrawableRes;
@@ -23,8 +23,8 @@ import static android.widget.ImageView.ScaleType.CENTER_CROP;
 import static android.widget.ImageView.ScaleType.FIT_CENTER;
 import static com.bumptech.glide.load.engine.DiskCacheStrategy.NONE;
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.AVAILABLE;
-import static org.briarproject.briar.android.attachment.AttachmentItem.State.ERROR;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.AVAILABLE;
+import static org.briarproject.masterproject.android.attachment.AttachmentItem.State.ERROR;
 
 @NotNullByDefault
 class ImageViewHolder extends ViewHolder {

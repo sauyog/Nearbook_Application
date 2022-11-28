@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.settings;
+package org.briarproject.masterproject.android.settings;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -12,8 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.BaseActivity;
-import org.briarproject.briar.android.conversation.glide.GlideApp;
+import org.briarproject.masterproject.android.activity.BaseActivity;
+import org.briarproject.masterproject.android.conversation.glide.GlideApp;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 

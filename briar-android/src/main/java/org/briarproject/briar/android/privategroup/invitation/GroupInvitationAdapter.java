@@ -1,9 +1,9 @@
-package org.briarproject.briar.android.privategroup.invitation;
+package org.briarproject.masterproject.android.privategroup.invitation;
 
 import android.content.Context;
 import android.view.ViewGroup;
 
-import org.briarproject.briar.android.sharing.InvitationAdapter;
+import org.briarproject.masterproject.android.sharing.InvitationAdapter;
 import org.briarproject.briar.api.privategroup.invitation.GroupInvitationItem;
 
 class GroupInvitationAdapter extends

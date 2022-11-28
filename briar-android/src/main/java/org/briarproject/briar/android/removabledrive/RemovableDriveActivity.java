@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.removabledrive;
+package org.briarproject.masterproject.android.removabledrive;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +7,11 @@ import android.view.MenuItem;
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.bramble.api.plugin.file.RemovableDriveTask;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BriarActivity;
-import org.briarproject.briar.android.fragment.FinalFragment;
-import org.briarproject.briar.android.removabledrive.RemovableDriveViewModel.Action;
-import org.briarproject.briar.android.removabledrive.TransferDataState.TaskAvailable;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.masterproject.android.fragment.FinalFragment;
+import org.briarproject.masterproject.android.removabledrive.RemovableDriveViewModel.Action;
+import org.briarproject.masterproject.android.removabledrive.TransferDataState.TaskAvailable;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -26,8 +26,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import static java.util.Objects.requireNonNull;
-import static org.briarproject.briar.android.conversation.ConversationActivity.CONTACT_ID;
-import static org.briarproject.briar.android.util.UiUtils.showFragment;
+import static org.briarproject.masterproject.android.conversation.ConversationActivity.CONTACT_ID;
+import static org.briarproject.masterproject.android.util.UiUtils.showFragment;
 
 @RequiresApi(19)
 @MethodsNotNullByDefault

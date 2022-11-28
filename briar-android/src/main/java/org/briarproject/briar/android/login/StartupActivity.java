@@ -1,15 +1,15 @@
-package org.briarproject.briar.android.login;
+package org.briarproject.masterproject.android.login;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.BriarService;
-import org.briarproject.briar.android.account.SetupActivity;
-import org.briarproject.briar.android.activity.ActivityComponent;
-import org.briarproject.briar.android.activity.BaseActivity;
-import org.briarproject.briar.android.fragment.BaseFragment.BaseFragmentListener;
-import org.briarproject.briar.android.login.StartupViewModel.State;
+import org.briarproject.masterproject.android.BriarService;
+import org.briarproject.masterproject.android.account.SetupActivity;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BaseActivity;
+import org.briarproject.masterproject.android.fragment.BaseFragment.BaseFragmentListener;
+import org.briarproject.masterproject.android.login.StartupViewModel.State;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
 import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
@@ -22,10 +22,10 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.content.Intent.FLAG_ACTIVITY_TASK_ON_HOME;
-import static org.briarproject.briar.android.login.StartupViewModel.State.SIGNED_IN;
-import static org.briarproject.briar.android.login.StartupViewModel.State.SIGNED_OUT;
-import static org.briarproject.briar.android.login.StartupViewModel.State.STARTED;
-import static org.briarproject.briar.android.login.StartupViewModel.State.STARTING;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.SIGNED_IN;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.SIGNED_OUT;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.STARTED;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.STARTING;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault

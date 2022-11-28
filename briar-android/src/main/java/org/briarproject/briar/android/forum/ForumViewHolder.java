@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.forum;
+package org.briarproject.masterproject.android.forum;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.util.UiUtils;
-import org.briarproject.briar.android.view.TextAvatarView;
+import org.briarproject.masterproject.android.util.UiUtils;
+import org.briarproject.masterproject.android.view.TextAvatarView;
 import org.briarproject.briar.api.forum.Forum;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static org.briarproject.briar.android.activity.BriarActivity.GROUP_ID;
-import static org.briarproject.briar.android.activity.BriarActivity.GROUP_NAME;
+import static org.briarproject.masterproject.android.activity.BriarActivity.GROUP_ID;
+import static org.briarproject.masterproject.android.activity.BriarActivity.GROUP_NAME;
 
 class ForumViewHolder extends RecyclerView.ViewHolder {
 

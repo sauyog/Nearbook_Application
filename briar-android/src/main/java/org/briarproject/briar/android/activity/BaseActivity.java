@@ -1,4 +1,4 @@
-package org.briarproject.briar.android.activity;
+package org.briarproject.masterproject.android.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.AndroidComponent;
-import org.briarproject.briar.android.BriarApplication;
-import org.briarproject.briar.android.DestroyableContext;
-import org.briarproject.briar.android.Localizer;
-import org.briarproject.briar.android.controller.ActivityLifecycleController;
-import org.briarproject.briar.android.fragment.BaseFragment;
-import org.briarproject.briar.android.fragment.ScreenFilterDialogFragment;
-import org.briarproject.briar.android.util.UiUtils;
-import org.briarproject.briar.android.widget.TapSafeFrameLayout;
-import org.briarproject.briar.android.widget.TapSafeFrameLayout.OnTapFilteredListener;
+import org.briarproject.masterproject.android.AndroidComponent;
+import org.briarproject.masterproject.android.BriarApplication;
+import org.briarproject.masterproject.android.DestroyableContext;
+import org.briarproject.masterproject.android.Localizer;
+import org.briarproject.masterproject.android.controller.ActivityLifecycleController;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.fragment.ScreenFilterDialogFragment;
+import org.briarproject.masterproject.android.util.UiUtils;
+import org.briarproject.masterproject.android.widget.TapSafeFrameLayout;
+import org.briarproject.masterproject.android.widget.TapSafeFrameLayout.OnTapFilteredListener;
 import org.briarproject.briar.api.android.ScreenFilterMonitor;
 import org.briarproject.briar.api.android.ScreenFilterMonitor.AppDetails;
 import org.briarproject.nullsafety.MethodsNotNullByDefault;
@@ -44,9 +44,9 @@ import static androidx.lifecycle.Lifecycle.State.STARTED;
 import static java.util.Collections.emptyList;
 import static java.util.logging.Level.INFO;
 import static java.util.logging.Logger.getLogger;
-import static org.briarproject.briar.android.TestingConstants.PREVENT_SCREENSHOTS;
-import static org.briarproject.briar.android.util.UiUtils.hideSoftKeyboard;
-import static org.briarproject.briar.android.util.UiUtils.showFragment;
+import static org.briarproject.masterproject.android.TestingConstants.PREVENT_SCREENSHOTS;
+import static org.briarproject.masterproject.android.util.UiUtils.hideSoftKeyboard;
+import static org.briarproject.masterproject.android.util.UiUtils.showFragment;
 
 /**
  * Warning: Some activities don't extend {@link BaseActivity}.

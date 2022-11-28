@@ -1,11 +1,11 @@
-package org.briarproject.briar.android.privategroup.conversation;
+package org.briarproject.masterproject.android.privategroup.conversation;
 
 import org.briarproject.bramble.api.identity.Author;
 import org.briarproject.briar.api.identity.AuthorInfo;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.bramble.api.sync.MessageId;
 import org.briarproject.briar.R;
-import org.briarproject.briar.android.threaded.ThreadItem;
+import org.briarproject.masterproject.android.threaded.ThreadItem;
 import org.briarproject.briar.api.privategroup.GroupMessageHeader;
 
 import javax.annotation.Nullable;

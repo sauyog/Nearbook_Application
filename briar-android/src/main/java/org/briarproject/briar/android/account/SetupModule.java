@@ -1,6 +1,6 @@
-package org.briarproject.briar.android.account;
+package org.briarproject.masterproject.android.account;
 
-import org.briarproject.briar.android.viewmodel.ViewModelKey;
+import org.briarproject.masterproject.android.viewmodel.ViewModelKey;
 
 import androidx.lifecycle.ViewModel;
 import dagger.Binds;

@@ -1,6 +1,6 @@
-package org.briarproject.briar.android.conversation;
+package org.briarproject.masterproject.android.conversation;
 
-import org.briarproject.briar.android.view.BriarRecyclerViewScrollListener;
+import org.briarproject.masterproject.android.view.BriarRecyclerViewScrollListener;
 import org.briarproject.nullsafety.NotNullByDefault;
 
 @NotNullByDefault
