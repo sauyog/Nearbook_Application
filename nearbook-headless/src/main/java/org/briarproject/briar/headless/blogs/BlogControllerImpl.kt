@@ -8,10 +8,10 @@ import org.briarproject.bramble.api.db.TransactionManager
 import org.briarproject.bramble.api.identity.IdentityManager
 import org.briarproject.bramble.api.system.Clock
 import org.briarproject.bramble.util.StringUtils.utf8IsTooLong
-import org.briarproject.briar.api.blog.BlogConstants.MAX_BLOG_POST_TEXT_LENGTH
-import org.briarproject.briar.api.blog.BlogManager
-import org.briarproject.briar.api.blog.BlogPostFactory
-import org.briarproject.briar.api.blog.BlogPostHeader
+import org.briarproject.masterproject.api.blog.BlogConstants.MAX_BLOG_POST_TEXT_LENGTH
+import org.briarproject.masterproject.api.blog.BlogManager
+import org.briarproject.masterproject.api.blog.BlogPostFactory
+import org.briarproject.masterproject.api.blog.BlogPostHeader
 import org.briarproject.briar.headless.getFromJson
 import javax.annotation.concurrent.Immutable
 import javax.inject.Inject

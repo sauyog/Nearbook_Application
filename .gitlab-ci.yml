@@ -60,7 +60,7 @@ android test:
     paths:
       - kernel.log
       - logcat.txt
-      - briar-android/build/reports/androidTests/connected/flavors/*
+      - masterproject-android/build/reports/androidTests/connected/flavors/*
       - screenshots
     expire_in: 3 days
     when: on_failure
@@ -69,7 +69,7 @@ android test:
       when: manual
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       changes:
-        - briar-android/**/*
+        - masterproject-android/**/*
       when: manual
       allow_failure: true
     - if: '$CI_COMMIT_TAG == null'
@@ -117,5 +117,5 @@ mailbox integration test:
       when: manual
       allow_failure: true # TODO figure out how not to allow failure while leaving this optional
   script:
-    - (cd briar-mailbox; git fetch; git reset --hard origin/main)
+    - (cd masterproject-mailbox; git fetch; git reset --hard origin/main)
     - MAILBOX_INTEGRATION_TESTS=true ./gradlew --info mailbox-integration-tests:test

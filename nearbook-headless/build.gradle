@@ -17,7 +17,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-	implementation project(path: ':briar-core', configuration: 'default')
+	implementation project(path: ':masterproject-core', configuration: 'default')
 	implementation project(path: ':nearbook-java', configuration: 'default')
 
 	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10'
@@ -31,7 +31,7 @@ dependencies {
 
 	testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
 	testImplementation project(path: ':nearbook-core', configuration: 'testOutput')
-	testImplementation project(path: ':briar-core', configuration: 'testOutput')
+	testImplementation project(path: ':masterproject-core', configuration: 'testOutput')
 
 	def junitVersion = '5.5.2'
 	testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"

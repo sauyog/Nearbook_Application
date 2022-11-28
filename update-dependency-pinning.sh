@@ -6,9 +6,9 @@ PROJECTS=(
     'nearbook-core'
     'nearbook-android'
     'nearbook-java'
-    'briar-api'
-    'briar-core'
-    'briar-android'
+    'masterproject-api'
+    'masterproject-core'
+    'masterproject-android'
     'nearbook-headless'
 )
 

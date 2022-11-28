@@ -24,7 +24,7 @@ import org.briarproject.bramble.api.identity.AuthorConstants.MAX_AUTHOR_NAME_LEN
 import org.briarproject.bramble.api.plugin.event.ContactConnectedEvent
 import org.briarproject.bramble.api.plugin.event.ContactDisconnectedEvent
 import org.briarproject.bramble.util.StringUtils.toUtf8
-import org.briarproject.briar.api.conversation.ConversationManager
+import org.briarproject.masterproject.api.conversation.ConversationManager
 import org.briarproject.briar.headless.event.WebSocketController
 import org.briarproject.briar.headless.getContactIdFromPathParam
 import org.briarproject.briar.headless.getFromJson

@@ -2,19 +2,19 @@ include ':nearbook-api'
 include ':nearbook-core'
 include ':nearbook-android'
 include ':nearbook-java'
-include ':briar-api'
-include ':briar-core'
-include ':briar-android'
+include ':masterproject-api'
+include ':masterproject-core'
+include ':masterproject-android'
 include ':nearbook-headless'
 // Enable the mailbox integration tests by passing
 // `MAILBOX_INTEGRATION_TESTS=true ./gradlew mailbox-integration-tests:test`
-// on the command line (for CI etc) or set `briar.mailbox_integration_tests=true`
+// on the command line (for CI etc) or set `masterproject.mailbox_integration_tests=true`
 // in gradle.properties to enable the modules for local development.
-if (ext.has("briar.mailbox_integration_tests") && ext.get("briar.mailbox_integration_tests") == "true"
+if (ext.has("masterproject.mailbox_integration_tests") && ext.get("masterproject.mailbox_integration_tests") == "true"
 		|| System.env.MAILBOX_INTEGRATION_TESTS) {
 	include ':mailbox-integration-tests'
 	include(":mailbox-core")
 	include(":mailbox-lib")
-	project(":mailbox-core").projectDir = file("briar-mailbox/mailbox-core")
-	project(":mailbox-lib").projectDir = file("briar-mailbox/mailbox-lib")
+	project(":mailbox-core").projectDir = file("masterproject-mailbox/mailbox-core")
+	project(":mailbox-lib").projectDir = file("masterproject-mailbox/mailbox-lib")
 }

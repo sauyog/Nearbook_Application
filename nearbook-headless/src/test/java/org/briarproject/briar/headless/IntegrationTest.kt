@@ -10,7 +10,7 @@ import okhttp3.Response
 import org.briarproject.bramble.BrambleCoreEagerSingletons
 import org.briarproject.bramble.api.crypto.CryptoComponent
 import org.briarproject.briar.BriarCoreEagerSingletons
-import org.briarproject.briar.api.test.TestDataCreator
+import org.briarproject.masterproject.api.test.TestDataCreator
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance

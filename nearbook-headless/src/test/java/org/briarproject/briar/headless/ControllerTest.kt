@@ -21,7 +21,7 @@ import org.briarproject.bramble.test.TestUtils.getGroup
 import org.briarproject.bramble.test.TestUtils.getLocalAuthor
 import org.briarproject.bramble.test.TestUtils.getMessage
 import org.briarproject.bramble.util.StringUtils.getRandomString
-import org.briarproject.briar.api.conversation.ConversationManager
+import org.briarproject.masterproject.api.conversation.ConversationManager
 import org.briarproject.briar.headless.event.WebSocketController
 import org.skyscreamer.jsonassert.JSONAssert.assertEquals
 import org.skyscreamer.jsonassert.JSONCompareMode.STRICT

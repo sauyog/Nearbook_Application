@@ -7,7 +7,7 @@ import org.briarproject.bramble.BrambleJavaModule
 import org.briarproject.bramble.api.crypto.CryptoComponent
 import org.briarproject.briar.BriarCoreEagerSingletons
 import org.briarproject.briar.BriarCoreModule
-import org.briarproject.briar.api.test.TestDataCreator
+import org.briarproject.masterproject.api.test.TestDataCreator
 import javax.inject.Singleton
 
 @Component(

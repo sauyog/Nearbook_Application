@@ -2,13 +2,13 @@ package org.briarproject.briar.headless.messaging
 
 import org.briarproject.bramble.api.contact.ContactId
 import org.briarproject.bramble.identity.output
-import org.briarproject.briar.api.blog.BlogInvitationResponse
-import org.briarproject.briar.api.conversation.ConversationMessageHeader
-import org.briarproject.briar.api.conversation.ConversationResponse
-import org.briarproject.briar.api.forum.ForumInvitationResponse
-import org.briarproject.briar.api.introduction.IntroductionResponse
-import org.briarproject.briar.api.privategroup.invitation.GroupInvitationResponse
-import org.briarproject.briar.api.sharing.InvitationResponse
+import org.briarproject.masterproject.api.blog.BlogInvitationResponse
+import org.briarproject.masterproject.api.conversation.ConversationMessageHeader
+import org.briarproject.masterproject.api.conversation.ConversationResponse
+import org.briarproject.masterproject.api.forum.ForumInvitationResponse
+import org.briarproject.masterproject.api.introduction.IntroductionResponse
+import org.briarproject.masterproject.api.privategroup.invitation.GroupInvitationResponse
+import org.briarproject.masterproject.api.sharing.InvitationResponse
 import org.briarproject.briar.headless.json.JsonDict
 
 internal fun ConversationResponse.output(contactId: ContactId): JsonDict {
