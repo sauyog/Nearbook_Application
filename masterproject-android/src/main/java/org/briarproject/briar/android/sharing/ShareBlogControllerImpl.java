@@ -1,5 +1,9 @@
 package org.briarproject.masterproject.android.sharing;
 
+import static org.briarproject.bramble.util.LogUtils.logException;
+import static java.util.logging.Level.WARNING;
+import static java.util.logging.Logger.getLogger;
+
 import org.briarproject.bramble.api.contact.Contact;
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.bramble.api.contact.ContactManager;
@@ -23,51 +27,47 @@ import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 import javax.inject.Inject;
 
-import static java.util.logging.Level.WARNING;
-import static java.util.logging.Logger.getLogger;
-import static org.briarproject.bramble.util.LogUtils.logException;
-
 @Immutable
 @NotNullByDefault
 class ShareBlogControllerImpl extends ContactSelectorControllerImpl
-		implements ShareBlogController {
+        implements ShareBlogController {
 
-	private final static Logger LOG =
-			getLogger(ShareBlogControllerImpl.class.getName());
+    private final static Logger LOG =
+            getLogger(ShareBlogControllerImpl.class.getName());
 
-	private final BlogSharingManager blogSharingManager;
+    private final BlogSharingManager blogSharingManager;
 
-	@Inject
-	ShareBlogControllerImpl(@DatabaseExecutor Executor dbExecutor,
-			LifecycleManager lifecycleManager, ContactManager contactManager,
-			AuthorManager authorManager,
-			BlogSharingManager blogSharingManager) {
-		super(dbExecutor, lifecycleManager, contactManager, authorManager);
-		this.blogSharingManager = blogSharingManager;
-	}
+    @Inject
+    ShareBlogControllerImpl(@DatabaseExecutor Executor dbExecutor,
+                            LifecycleManager lifecycleManager, ContactManager contactManager,
+                            AuthorManager authorManager,
+                            BlogSharingManager blogSharingManager) {
+        super(dbExecutor, lifecycleManager, contactManager, authorManager);
+        this.blogSharingManager = blogSharingManager;
+    }
 
-	@Override
-	protected boolean isDisabled(GroupId g, Contact c) throws DbException {
-		return !blogSharingManager.canBeShared(g, c);
-	}
+    @Override
+    protected boolean isDisabled(GroupId g, Contact c) throws DbException {
+        return !blogSharingManager.canBeShared(g, c);
+    }
 
-	@Override
-	public void share(GroupId g, Collection<ContactId> contacts, @Nullable
-			String text, ExceptionHandler<DbException> handler) {
-		runOnDbThread(() -> {
-			try {
-				for (ContactId c : contacts) {
-					try {
-						blogSharingManager.sendInvitation(g, c, text);
-					} catch (NoSuchContactException | NoSuchGroupException e) {
-						logException(LOG, WARNING, e);
-					}
-				}
-			} catch (DbException e) {
-				logException(LOG, WARNING, e);
-				handler.onException(e);
-			}
-		});
-	}
+    @Override
+    public void share(GroupId g, Collection<ContactId> contacts, @Nullable
+            String text, ExceptionHandler<DbException> handler) {
+        runOnDbThread(() -> {
+            try {
+                for (ContactId c : contacts) {
+                    try {
+                        blogSharingManager.sendInvitation(g, c, text);
+                    } catch (NoSuchContactException | NoSuchGroupException e) {
+                        logException(LOG, WARNING, e);
+                    }
+                }
+            } catch (DbException e) {
+                logException(LOG, WARNING, e);
+                handler.onException(e);
+            }
+        });
+    }
 
 }

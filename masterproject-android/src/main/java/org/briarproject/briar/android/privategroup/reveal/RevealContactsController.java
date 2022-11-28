@@ -12,14 +12,14 @@ import java.util.Collection;
 
 @NotNullByDefault
 public interface RevealContactsController
-		extends ContactSelectorController<RevealableContactItem> {
+        extends ContactSelectorController<RevealableContactItem> {
 
-	void isOnboardingNeeded(
-			ResultExceptionHandler<Boolean, DbException> handler);
+    void isOnboardingNeeded(
+            ResultExceptionHandler<Boolean, DbException> handler);
 
-	void onboardingShown(ExceptionHandler<DbException> handler);
+    void onboardingShown(ExceptionHandler<DbException> handler);
 
-	void reveal(GroupId g, Collection<ContactId> contacts,
-			ExceptionHandler<DbException> handler);
+    void reveal(GroupId g, Collection<ContactId> contacts,
+                ExceptionHandler<DbException> handler);
 
 }

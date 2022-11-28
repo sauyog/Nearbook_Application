@@ -17,21 +17,21 @@ import dagger.Provides;
 @Module
 public class DefaultTaskSchedulerModule {
 
-	public static class EagerSingletons {
-		@Inject
-		TaskScheduler scheduler;
-	}
+    @Provides
+    @Singleton
+    TaskScheduler provideTaskScheduler(LifecycleManager lifecycleManager,
+                                       ThreadFactory threadFactory) {
+        // Discard tasks that are submitted during shutdown
+        RejectedExecutionHandler policy =
+                new ScheduledThreadPoolExecutor.DiscardPolicy();
+        ScheduledExecutorService scheduledExecutorService =
+                new ScheduledThreadPoolExecutor(1, threadFactory, policy);
+        lifecycleManager.registerForShutdown(scheduledExecutorService);
+        return new TaskSchedulerImpl(scheduledExecutorService);
+    }
 
-	@Provides
-	@Singleton
-	TaskScheduler provideTaskScheduler(LifecycleManager lifecycleManager,
-			ThreadFactory threadFactory) {
-		// Discard tasks that are submitted during shutdown
-		RejectedExecutionHandler policy =
-				new ScheduledThreadPoolExecutor.DiscardPolicy();
-		ScheduledExecutorService scheduledExecutorService =
-				new ScheduledThreadPoolExecutor(1, threadFactory, policy);
-		lifecycleManager.registerForShutdown(scheduledExecutorService);
-		return new TaskSchedulerImpl(scheduledExecutorService);
-	}
+    public static class EagerSingletons {
+        @Inject
+        TaskScheduler scheduler;
+    }
 }

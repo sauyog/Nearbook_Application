@@ -10,9 +10,9 @@ import dagger.Provides;
 @Module
 public class AccountModule {
 
-	@Provides
-	@Singleton
-	AccountManager provideAccountManager(AccountManagerImpl accountManager) {
-		return accountManager;
-	}
+    @Provides
+    @Singleton
+    AccountManager provideAccountManager(AccountManagerImpl accountManager) {
+        return accountManager;
+    }
 }

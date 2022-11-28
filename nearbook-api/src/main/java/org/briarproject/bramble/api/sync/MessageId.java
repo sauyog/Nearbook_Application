@@ -13,18 +13,18 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 public class MessageId extends UniqueId {
 
-	/**
-	 * Label for hashing messages to calculate their identifiers.
-	 */
-	public static final String ID_LABEL = "org.briarproject.bramble/MESSAGE_ID";
+    /**
+     * Label for hashing messages to calculate their identifiers.
+     */
+    public static final String ID_LABEL = "org.briarproject.bramble/MESSAGE_ID";
 
-	/**
-	 * Label for hashing blocks of messages.
-	 */
-	public static final String BLOCK_LABEL =
-			"org.briarproject.bramble/MESSAGE_BLOCK";
+    /**
+     * Label for hashing blocks of messages.
+     */
+    public static final String BLOCK_LABEL =
+            "org.briarproject.bramble/MESSAGE_BLOCK";
 
-	public MessageId(byte[] id) {
-		super(id);
-	}
+    public MessageId(byte[] id) {
+        super(id);
+    }
 }

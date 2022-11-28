@@ -7,8 +7,8 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 
 public class BriarImageTransformation extends MultiTransformation<Bitmap> {
 
-	public BriarImageTransformation(Radii r) {
-		super(new CenterCrop(), new CustomCornersTransformation(r));
-	}
+    public BriarImageTransformation(Radii r) {
+        super(new CenterCrop(), new CustomCornersTransformation(r));
+    }
 
 }

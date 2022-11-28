@@ -13,22 +13,22 @@ import javax.annotation.concurrent.NotThreadSafe;
 @NotNullByDefault
 class PseudoRandom {
 
-	private final Salsa20Engine cipher = new Salsa20Engine();
+    private final Salsa20Engine cipher = new Salsa20Engine();
 
-	PseudoRandom(byte[] seed) {
-		// Hash the seed to produce a 32-byte key
-		byte[] key = new byte[32];
-		Digest digest = new Blake2bDigest(256);
-		digest.update(seed, 0, seed.length);
-		digest.doFinal(key, 0);
-		// Initialise the stream cipher with an all-zero nonce
-		byte[] nonce = new byte[8];
-		cipher.init(true, new ParametersWithIV(new KeyParameter(key), nonce));
-	}
+    PseudoRandom(byte[] seed) {
+        // Hash the seed to produce a 32-byte key
+        byte[] key = new byte[32];
+        Digest digest = new Blake2bDigest(256);
+        digest.update(seed, 0, seed.length);
+        digest.doFinal(key, 0);
+        // Initialise the stream cipher with an all-zero nonce
+        byte[] nonce = new byte[8];
+        cipher.init(true, new ParametersWithIV(new KeyParameter(key), nonce));
+    }
 
-	byte[] nextBytes(int length) {
-		byte[] in = new byte[length], out = new byte[length];
-		cipher.processBytes(in, 0, length, out, 0);
-		return out;
-	}
+    byte[] nextBytes(int length) {
+        byte[] in = new byte[length], out = new byte[length];
+        cipher.processBytes(in, 0, length, out, 0);
+        return out;
+    }
 }

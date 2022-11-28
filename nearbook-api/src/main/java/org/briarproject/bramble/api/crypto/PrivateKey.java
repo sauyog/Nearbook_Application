@@ -8,13 +8,13 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface PrivateKey {
 
-	/**
-	 * Returns the type of this key pair.
-	 */
-	String getKeyType();
+    /**
+     * Returns the type of this key pair.
+     */
+    String getKeyType();
 
-	/**
-	 * Returns the encoded representation of this key.
-	 */
-	byte[] getEncoded();
+    /**
+     * Returns the encoded representation of this key.
+     */
+    byte[] getEncoded();
 }

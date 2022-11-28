@@ -13,17 +13,17 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		BrambleCoreIntegrationTestModule.class,
-		BrambleCoreModule.class,
-		BrambleJavaModule.class,
-		ModularMailboxModule.class,
-		TestTorPortsModule.class,
-		TestPluginConfigModule.class,
+        BrambleCoreIntegrationTestModule.class,
+        BrambleCoreModule.class,
+        BrambleJavaModule.class,
+        ModularMailboxModule.class,
+        TestTorPortsModule.class,
+        TestPluginConfigModule.class,
 })
 public interface BrambleJavaIntegrationTestComponent
-		extends BrambleCoreIntegrationTestEagerSingletons {
+        extends BrambleCoreIntegrationTestEagerSingletons {
 
-	void inject(BridgeTest init);
+    void inject(BridgeTest init);
 
-	CircumventionProvider getCircumventionProvider();
+    CircumventionProvider getCircumventionProvider();
 }

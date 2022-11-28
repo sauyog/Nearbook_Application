@@ -1,5 +1,7 @@
 package org.briarproject.bramble.keyagreement;
 
+import static org.briarproject.bramble.api.keyagreement.KeyAgreementConstants.PROTOCOL_VERSION;
+
 import org.briarproject.bramble.api.data.BdfWriter;
 import org.briarproject.bramble.api.data.BdfWriterFactory;
 import org.briarproject.bramble.api.keyagreement.Payload;
@@ -13,34 +15,32 @@ import java.io.IOException;
 import javax.annotation.concurrent.Immutable;
 import javax.inject.Inject;
 
-import static org.briarproject.bramble.api.keyagreement.KeyAgreementConstants.PROTOCOL_VERSION;
-
 @Immutable
 @NotNullByDefault
 class PayloadEncoderImpl implements PayloadEncoder {
 
-	private final BdfWriterFactory bdfWriterFactory;
+    private final BdfWriterFactory bdfWriterFactory;
 
-	@Inject
-	PayloadEncoderImpl(BdfWriterFactory bdfWriterFactory) {
-		this.bdfWriterFactory = bdfWriterFactory;
-	}
+    @Inject
+    PayloadEncoderImpl(BdfWriterFactory bdfWriterFactory) {
+        this.bdfWriterFactory = bdfWriterFactory;
+    }
 
-	@Override
-	public byte[] encode(Payload p) {
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		out.write(PROTOCOL_VERSION);
-		BdfWriter w = bdfWriterFactory.createWriter(out);
-		try {
-			w.writeListStart(); // Payload start
-			w.writeRaw(p.getCommitment());
-			for (TransportDescriptor d : p.getTransportDescriptors())
-				w.writeList(d.getDescriptor());
-			w.writeListEnd(); // Payload end
-		} catch (IOException e) {
-			// Shouldn't happen with ByteArrayOutputStream
-			throw new AssertionError(e);
-		}
-		return out.toByteArray();
-	}
+    @Override
+    public byte[] encode(Payload p) {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        out.write(PROTOCOL_VERSION);
+        BdfWriter w = bdfWriterFactory.createWriter(out);
+        try {
+            w.writeListStart(); // Payload start
+            w.writeRaw(p.getCommitment());
+            for (TransportDescriptor d : p.getTransportDescriptors())
+                w.writeList(d.getDescriptor());
+            w.writeListEnd(); // Payload end
+        } catch (IOException e) {
+            // Shouldn't happen with ByteArrayOutputStream
+            throw new AssertionError(e);
+        }
+        return out.toByteArray();
+    }
 }

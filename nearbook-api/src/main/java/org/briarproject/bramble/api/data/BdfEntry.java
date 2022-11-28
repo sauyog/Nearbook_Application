@@ -10,32 +10,32 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class BdfEntry implements Entry<String, Object>, Comparable<BdfEntry> {
 
-	private final String key;
-	private final Object value;
+    private final String key;
+    private final Object value;
 
-	public BdfEntry(String key, Object value) {
-		this.key = key;
-		this.value = value;
-	}
+    public BdfEntry(String key, Object value) {
+        this.key = key;
+        this.value = value;
+    }
 
-	@Override
-	public String getKey() {
-		return key;
-	}
+    @Override
+    public String getKey() {
+        return key;
+    }
 
-	@Override
-	public Object getValue() {
-		return value;
-	}
+    @Override
+    public Object getValue() {
+        return value;
+    }
 
-	@Override
-	public Object setValue(Object value) {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public Object setValue(Object value) {
+        throw new UnsupportedOperationException();
+    }
 
-	@Override
-	public int compareTo(BdfEntry e) {
-		if (e == this) return 0;
-		return key.compareTo(e.key);
-	}
+    @Override
+    public int compareTo(BdfEntry e) {
+        if (e == this) return 0;
+        return key.compareTo(e.key);
+    }
 }

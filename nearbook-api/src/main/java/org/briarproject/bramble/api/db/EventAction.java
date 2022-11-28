@@ -7,18 +7,18 @@ import org.briarproject.bramble.api.event.Event;
  */
 public class EventAction implements CommitAction {
 
-	private final Event event;
+    private final Event event;
 
-	EventAction(Event event) {
-		this.event = event;
-	}
+    EventAction(Event event) {
+        this.event = event;
+    }
 
-	public Event getEvent() {
-		return event;
-	}
+    public Event getEvent() {
+        return event;
+    }
 
-	@Override
-	public void accept(Visitor visitor) {
-		visitor.visit(this);
-	}
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 }

@@ -16,23 +16,23 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class GroupVisibilityUpdatedEvent extends Event {
 
-	private final Visibility visibility;
-	private final Collection<ContactId> affected;
+    private final Visibility visibility;
+    private final Collection<ContactId> affected;
 
-	public GroupVisibilityUpdatedEvent(Visibility visibility,
-			Collection<ContactId> affected) {
-		this.visibility = visibility;
-		this.affected = affected;
-	}
+    public GroupVisibilityUpdatedEvent(Visibility visibility,
+                                       Collection<ContactId> affected) {
+        this.visibility = visibility;
+        this.affected = affected;
+    }
 
-	public Visibility getVisibility() {
-		return visibility;
-	}
+    public Visibility getVisibility() {
+        return visibility;
+    }
 
-	/**
-	 * Returns the contacts affected by the update.
-	 */
-	public Collection<ContactId> getAffectedContacts() {
-		return affected;
-	}
+    /**
+     * Returns the contacts affected by the update.
+     */
+    public Collection<ContactId> getAffectedContacts() {
+        return affected;
+    }
 }

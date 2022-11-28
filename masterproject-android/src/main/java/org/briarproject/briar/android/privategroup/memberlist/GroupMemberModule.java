@@ -8,10 +8,10 @@ import dagger.Provides;
 @Module
 public class GroupMemberModule {
 
-	@ActivityScope
-	@Provides
-	GroupMemberListController provideGroupMemberListController(
-			GroupMemberListControllerImpl groupMemberListController) {
-		return groupMemberListController;
-	}
+    @ActivityScope
+    @Provides
+    GroupMemberListController provideGroupMemberListController(
+            GroupMemberListControllerImpl groupMemberListController) {
+        return groupMemberListController;
+    }
 }

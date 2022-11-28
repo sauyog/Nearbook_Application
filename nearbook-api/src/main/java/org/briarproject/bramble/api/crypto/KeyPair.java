@@ -11,21 +11,21 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class KeyPair {
 
-	private final PublicKey publicKey;
-	private final PrivateKey privateKey;
+    private final PublicKey publicKey;
+    private final PrivateKey privateKey;
 
-	public KeyPair(PublicKey publicKey, PrivateKey privateKey) {
-		if (!publicKey.getKeyType().equals(privateKey.getKeyType()))
-			throw new IllegalArgumentException();
-		this.publicKey = publicKey;
-		this.privateKey = privateKey;
-	}
+    public KeyPair(PublicKey publicKey, PrivateKey privateKey) {
+        if (!publicKey.getKeyType().equals(privateKey.getKeyType()))
+            throw new IllegalArgumentException();
+        this.publicKey = publicKey;
+        this.privateKey = privateKey;
+    }
 
-	public PublicKey getPublic() {
-		return publicKey;
-	}
+    public PublicKey getPublic() {
+        return publicKey;
+    }
 
-	public PrivateKey getPrivate() {
-		return privateKey;
-	}
+    public PrivateKey getPrivate() {
+        return privateKey;
+    }
 }

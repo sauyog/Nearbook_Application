@@ -1,7 +1,12 @@
 package org.briarproject.masterproject.android.introduction;
 
+import static org.briarproject.masterproject.android.conversation.ConversationActivity.CONTACT_ID;
+
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.briar.R;
@@ -11,65 +16,58 @@ import org.briarproject.masterproject.android.fragment.BaseFragment.BaseFragment
 
 import javax.inject.Inject;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
-
-import static org.briarproject.masterproject.android.conversation.ConversationActivity.CONTACT_ID;
-
 public class IntroductionActivity extends BriarActivity
-		implements BaseFragmentListener {
+        implements BaseFragmentListener {
 
-	@Inject
-	ViewModelProvider.Factory viewModelFactory;
+    private static final String BUNDLE_CONTACT2 = "contact2";
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+    private IntroductionViewModel viewModel;
 
-	private IntroductionViewModel viewModel;
+    @Override
+    public void injectActivity(ActivityComponent component) {
+        component.inject(this);
+        viewModel = new ViewModelProvider(this, viewModelFactory)
+                .get(IntroductionViewModel.class);
+    }
 
-	@Override
-	public void injectActivity(ActivityComponent component) {
-		component.inject(this);
-		viewModel = new ViewModelProvider(this, viewModelFactory)
-				.get(IntroductionViewModel.class);
-	}
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-	private static final String BUNDLE_CONTACT2 = "contact2";
+        Intent intent = getIntent();
+        int contactId1 = intent.getIntExtra(CONTACT_ID, -1);
+        if (contactId1 == -1)
+            throw new IllegalStateException("No ContactId");
+        ContactId firstContactId = new ContactId(contactId1);
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+        viewModel.setFirstContactId(firstContactId);
 
-		Intent intent = getIntent();
-		int contactId1 = intent.getIntExtra(CONTACT_ID, -1);
-		if (contactId1 == -1)
-			throw new IllegalStateException("No ContactId");
-		ContactId firstContactId = new ContactId(contactId1);
+        setContentView(R.layout.activity_fragment_container);
 
-		viewModel.setFirstContactId(firstContactId);
+        if (savedInstanceState == null) {
+            showInitialFragment(new ContactChooserFragment());
+        } else {
+            int contactId2 = savedInstanceState.getInt(BUNDLE_CONTACT2);
+            ContactId secondContactId = new ContactId(contactId2);
+            viewModel.setSecondContactId(secondContactId);
+        }
 
-		setContentView(R.layout.activity_fragment_container);
+        viewModel.getSecondContactSelected().observeEvent(this, e -> {
+            IntroductionMessageFragment fragment =
+                    new IntroductionMessageFragment();
+            showNextFragment(fragment);
+        });
+    }
 
-		if (savedInstanceState == null) {
-			showInitialFragment(new ContactChooserFragment());
-		} else {
-			int contactId2 = savedInstanceState.getInt(BUNDLE_CONTACT2);
-			ContactId secondContactId = new ContactId(contactId2);
-			viewModel.setSecondContactId(secondContactId);
-		}
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
-		viewModel.getSecondContactSelected().observeEvent(this, e -> {
-			IntroductionMessageFragment fragment =
-					new IntroductionMessageFragment();
-			showNextFragment(fragment);
-		});
-	}
-
-	@Override
-	public void onSaveInstanceState(@NonNull Bundle outState) {
-		super.onSaveInstanceState(outState);
-
-		ContactId secondContactId = viewModel.getSecondContactId();
-		if (secondContactId != null) {
-			outState.putInt(BUNDLE_CONTACT2, secondContactId.getInt());
-		}
-	}
+        ContactId secondContactId = viewModel.getSecondContactId();
+        if (secondContactId != null) {
+            outState.putInt(BUNDLE_CONTACT2, secondContactId.getInt());
+        }
+    }
 
 }

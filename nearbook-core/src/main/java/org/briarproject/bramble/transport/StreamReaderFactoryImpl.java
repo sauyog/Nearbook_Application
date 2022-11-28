@@ -15,30 +15,30 @@ import javax.inject.Inject;
 @NotNullByDefault
 class StreamReaderFactoryImpl implements StreamReaderFactory {
 
-	private final StreamDecrypterFactory streamDecrypterFactory;
+    private final StreamDecrypterFactory streamDecrypterFactory;
 
-	@Inject
-	StreamReaderFactoryImpl(StreamDecrypterFactory streamDecrypterFactory) {
-		this.streamDecrypterFactory = streamDecrypterFactory;
-	}
+    @Inject
+    StreamReaderFactoryImpl(StreamDecrypterFactory streamDecrypterFactory) {
+        this.streamDecrypterFactory = streamDecrypterFactory;
+    }
 
-	@Override
-	public InputStream createStreamReader(InputStream in, StreamContext ctx) {
-		return new StreamReaderImpl(streamDecrypterFactory
-				.createStreamDecrypter(in, ctx));
-	}
+    @Override
+    public InputStream createStreamReader(InputStream in, StreamContext ctx) {
+        return new StreamReaderImpl(streamDecrypterFactory
+                .createStreamDecrypter(in, ctx));
+    }
 
-	@Override
-	public InputStream createContactExchangeStreamReader(InputStream in,
-			SecretKey headerKey) {
-		return new StreamReaderImpl(streamDecrypterFactory
-				.createContactExchangeStreamDecrypter(in, headerKey));
-	}
+    @Override
+    public InputStream createContactExchangeStreamReader(InputStream in,
+                                                         SecretKey headerKey) {
+        return new StreamReaderImpl(streamDecrypterFactory
+                .createContactExchangeStreamDecrypter(in, headerKey));
+    }
 
-	@Override
-	public InputStream createLogStreamReader(InputStream in,
-			SecretKey headerKey) {
-		return new StreamReaderImpl(streamDecrypterFactory
-				.createLogStreamDecrypter(in, headerKey));
-	}
+    @Override
+    public InputStream createLogStreamReader(InputStream in,
+                                             SecretKey headerKey) {
+        return new StreamReaderImpl(streamDecrypterFactory
+                .createLogStreamDecrypter(in, headerKey));
+    }
 }

@@ -1,5 +1,7 @@
 package org.briarproject.bramble.plugin.tor;
 
+import static java.util.Collections.emptyList;
+
 import org.briarproject.bramble.api.plugin.Plugin.State;
 import org.briarproject.bramble.api.plugin.PluginCallback;
 import org.briarproject.bramble.api.plugin.TransportConnectionReader;
@@ -11,47 +13,45 @@ import org.briarproject.nullsafety.NotNullByDefault;
 
 import java.util.Collection;
 
-import static java.util.Collections.emptyList;
-
 @NotNullByDefault
 public class TestPluginCallback implements PluginCallback {
 
-	@Override
-	public Settings getSettings() {
-		return new Settings();
-	}
+    @Override
+    public Settings getSettings() {
+        return new Settings();
+    }
 
-	@Override
-	public TransportProperties getLocalProperties() {
-		return new TransportProperties();
-	}
+    @Override
+    public TransportProperties getLocalProperties() {
+        return new TransportProperties();
+    }
 
-	@Override
-	public Collection<TransportProperties> getRemoteProperties() {
-		return emptyList();
-	}
+    @Override
+    public Collection<TransportProperties> getRemoteProperties() {
+        return emptyList();
+    }
 
-	@Override
-	public void mergeSettings(Settings s) {
-	}
+    @Override
+    public void mergeSettings(Settings s) {
+    }
 
-	@Override
-	public void mergeLocalProperties(TransportProperties p) {
-	}
+    @Override
+    public void mergeLocalProperties(TransportProperties p) {
+    }
 
-	@Override
-	public void pluginStateChanged(State state) {
-	}
+    @Override
+    public void pluginStateChanged(State state) {
+    }
 
-	@Override
-	public void handleConnection(DuplexTransportConnection c) {
-	}
+    @Override
+    public void handleConnection(DuplexTransportConnection c) {
+    }
 
-	@Override
-	public void handleReader(TransportConnectionReader r) {
-	}
+    @Override
+    public void handleReader(TransportConnectionReader r) {
+    }
 
-	@Override
-	public void handleWriter(TransportConnectionWriter w) {
-	}
+    @Override
+    public void handleWriter(TransportConnectionWriter w) {
+    }
 }

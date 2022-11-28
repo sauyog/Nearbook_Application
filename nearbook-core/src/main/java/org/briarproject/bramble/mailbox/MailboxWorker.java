@@ -11,13 +11,13 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 interface MailboxWorker {
 
-	/**
-	 * Asynchronously starts the worker.
-	 */
-	void start();
+    /**
+     * Asynchronously starts the worker.
+     */
+    void start();
 
-	/**
-	 * Destroys the worker and cancels any pending tasks or retries.
-	 */
-	void destroy();
+    /**
+     * Destroys the worker and cancels any pending tasks or retries.
+     */
+    void destroy();
 }

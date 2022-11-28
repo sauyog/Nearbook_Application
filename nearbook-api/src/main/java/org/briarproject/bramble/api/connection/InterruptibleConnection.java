@@ -9,11 +9,11 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface InterruptibleConnection {
 
-	/**
-	 * Interrupts the connection's outgoing sync session. If the underlying
-	 * transport connection is alive and the remote peer is cooperative, this
-	 * should result in both sync sessions ending and the connection being
-	 * cleanly closed.
-	 */
-	void interruptOutgoingSession();
+    /**
+     * Interrupts the connection's outgoing sync session. If the underlying
+     * transport connection is alive and the remote peer is cooperative, this
+     * should result in both sync sessions ending and the connection being
+     * cleanly closed.
+     */
+    void interruptOutgoingSession();
 }

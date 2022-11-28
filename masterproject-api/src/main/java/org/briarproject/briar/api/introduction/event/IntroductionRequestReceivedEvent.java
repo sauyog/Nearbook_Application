@@ -10,11 +10,11 @@ import javax.annotation.concurrent.Immutable;
 @Immutable
 @NotNullByDefault
 public class IntroductionRequestReceivedEvent
-		extends ConversationMessageReceivedEvent<IntroductionRequest> {
+        extends ConversationMessageReceivedEvent<IntroductionRequest> {
 
-	public IntroductionRequestReceivedEvent(
-			IntroductionRequest introductionRequest, ContactId contactId) {
-		super(introductionRequest, contactId);
-	}
+    public IntroductionRequestReceivedEvent(
+            IntroductionRequest introductionRequest, ContactId contactId) {
+        super(introductionRequest, contactId);
+    }
 
 }

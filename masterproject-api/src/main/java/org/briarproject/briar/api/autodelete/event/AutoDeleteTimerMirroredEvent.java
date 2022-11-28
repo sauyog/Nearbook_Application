@@ -10,19 +10,19 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class AutoDeleteTimerMirroredEvent extends Event {
 
-	private final ContactId contactId;
-	private final long newTimer;
+    private final ContactId contactId;
+    private final long newTimer;
 
-	public AutoDeleteTimerMirroredEvent(ContactId contactId, long newTimer) {
-		this.contactId = contactId;
-		this.newTimer = newTimer;
-	}
+    public AutoDeleteTimerMirroredEvent(ContactId contactId, long newTimer) {
+        this.contactId = contactId;
+        this.newTimer = newTimer;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 
-	public long getNewTimer() {
-		return newTimer;
-	}
+    public long getNewTimer() {
+        return newTimer;
+    }
 }

@@ -6,7 +6,7 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface TransportKeyManagerFactory {
 
-	TransportKeyManager createTransportKeyManager(TransportId transportId,
-			long maxLatency);
+    TransportKeyManager createTransportKeyManager(TransportId transportId,
+                                                  long maxLatency);
 
 }

@@ -8,9 +8,9 @@ import dagger.Provides;
 @Module
 public class TestSocksModule {
 
-	@Provides
-	SocketFactory provideSocketFactory() {
-		return SocketFactory.getDefault();
-	}
+    @Provides
+    SocketFactory provideSocketFactory() {
+        return SocketFactory.getDefault();
+    }
 
 }

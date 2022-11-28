@@ -10,20 +10,20 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class OwnIdentityInfo {
 
-	private final LocalAuthor localAuthor;
-	private final AuthorInfo authorInfo;
+    private final LocalAuthor localAuthor;
+    private final AuthorInfo authorInfo;
 
-	OwnIdentityInfo(LocalAuthor localAuthor, AuthorInfo authorInfo) {
-		this.localAuthor = localAuthor;
-		this.authorInfo = authorInfo;
-	}
+    OwnIdentityInfo(LocalAuthor localAuthor, AuthorInfo authorInfo) {
+        this.localAuthor = localAuthor;
+        this.authorInfo = authorInfo;
+    }
 
-	LocalAuthor getLocalAuthor() {
-		return localAuthor;
-	}
+    LocalAuthor getLocalAuthor() {
+        return localAuthor;
+    }
 
-	AuthorInfo getAuthorInfo() {
-		return authorInfo;
-	}
+    AuthorInfo getAuthorInfo() {
+        return authorInfo;
+    }
 
 }

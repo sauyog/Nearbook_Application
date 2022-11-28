@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.javalin.http.BadRequestResponse
 import io.javalin.http.Context
 import org.briarproject.bramble.util.StringUtils.utf8IsTooLong
+import org.briarproject.briar.headless.getFromJson
 import org.briarproject.masterproject.api.forum.ForumConstants.MAX_FORUM_NAME_LENGTH
 import org.briarproject.masterproject.api.forum.ForumManager
-import org.briarproject.briar.headless.getFromJson
 import javax.annotation.concurrent.Immutable
 import javax.inject.Inject
 import javax.inject.Singleton

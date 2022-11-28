@@ -12,20 +12,20 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface ValidationManager {
 
-	/**
-	 * Registers the {@link MessageValidator} for the given client. This method
-	 * should be called before
-	 * {@link LifecycleManager#startServices(SecretKey)}.
-	 */
-	void registerMessageValidator(ClientId c, int majorVersion,
-			MessageValidator v);
+    /**
+     * Registers the {@link MessageValidator} for the given client. This method
+     * should be called before
+     * {@link LifecycleManager#startServices(SecretKey)}.
+     */
+    void registerMessageValidator(ClientId c, int majorVersion,
+                                  MessageValidator v);
 
-	/**
-	 * Registers the {@link IncomingMessageHook} for the given client. The hook
-	 * will be called once for each incoming message that passes validation.
-	 * This method should be called before
-	 * {@link LifecycleManager#startServices(SecretKey)}.
-	 */
-	void registerIncomingMessageHook(ClientId c, int majorVersion,
-			IncomingMessageHook hook);
+    /**
+     * Registers the {@link IncomingMessageHook} for the given client. The hook
+     * will be called once for each incoming message that passes validation.
+     * This method should be called before
+     * {@link LifecycleManager#startServices(SecretKey)}.
+     */
+    void registerIncomingMessageHook(ClientId c, int majorVersion,
+                                     IncomingMessageHook hook);
 }

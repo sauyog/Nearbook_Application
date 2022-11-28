@@ -1,5 +1,5 @@
 dependencyVerification {
-	verify = [
+    verify = [
             'androidx.activity:activity-ktx:1.2.3:activity-ktx-1.2.3.aar:423c0226e237e08de245cf66f8ccaf103854bc19a584d971a4a075fd15d70df1',
             'androidx.activity:activity:1.2.2:activity-1.2.2.aar:e165fb20f006b77894d349572cc3acd2760baa8416ae4d33cb8de6a84dd6730c',
             'androidx.activity:activity:1.2.4:activity-1.2.4.aar:ae8e9c7de57e387d2ad90e73f3a5a5dfd502bd4f034c1dccfdb3506d1d2df81a',

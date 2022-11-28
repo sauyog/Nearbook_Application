@@ -14,39 +14,39 @@ import dagger.Provides;
 @Module
 class LoggingTestModule {
 
-	private final File logFile;
+    private final File logFile;
 
-	LoggingTestModule(File logFile) {
-		this.logFile = logFile;
-	}
+    LoggingTestModule(File logFile) {
+        this.logFile = logFile;
+    }
 
-	@Provides
-	@Singleton
-	DevConfig provideDevConfig() {
-		@NotNullByDefault
-		DevConfig devConfig = new DevConfig() {
-			@Override
-			public PublicKey getDevPublicKey() {
-				throw new UnsupportedOperationException();
+    @Provides
+    @Singleton
+    DevConfig provideDevConfig() {
+        @NotNullByDefault
+        DevConfig devConfig = new DevConfig() {
+            @Override
+            public PublicKey getDevPublicKey() {
+                throw new UnsupportedOperationException();
 
-			}
+            }
 
-			@Override
-			public String getDevOnionAddress() {
-				throw new UnsupportedOperationException();
-			}
+            @Override
+            public String getDevOnionAddress() {
+                throw new UnsupportedOperationException();
+            }
 
-			@Override
-			public File getReportDir() {
-				throw new UnsupportedOperationException();
-			}
+            @Override
+            public File getReportDir() {
+                throw new UnsupportedOperationException();
+            }
 
-			@Override
-			public File getLogcatFile() {
-				return logFile;
-			}
-		};
-		return devConfig;
-	}
+            @Override
+            public File getLogcatFile() {
+                return logFile;
+            }
+        };
+        return devConfig;
+    }
 
 }

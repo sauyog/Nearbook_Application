@@ -1,7 +1,7 @@
 package org.briarproject.briar.headless.forums
 
-import org.briarproject.masterproject.api.forum.Forum
 import org.briarproject.briar.headless.json.JsonDict
+import org.briarproject.masterproject.api.forum.Forum
 
 internal fun Forum.output() = JsonDict(
     "name" to name,

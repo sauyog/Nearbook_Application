@@ -12,16 +12,16 @@ import dagger.Provides;
 @Module
 public class ReportingModule {
 
-	public static class EagerSingletons {
-		@Inject
-		DevReporter devReporter;
-	}
+    @Provides
+    @Singleton
+    DevReporter provideDevReporter(DevReporterImpl devReporter,
+                                   EventBus eventBus) {
+        eventBus.addListener(devReporter);
+        return devReporter;
+    }
 
-	@Provides
-	@Singleton
-	DevReporter provideDevReporter(DevReporterImpl devReporter,
-			EventBus eventBus) {
-		eventBus.addListener(devReporter);
-		return devReporter;
-	}
+    public static class EagerSingletons {
+        @Inject
+        DevReporter devReporter;
+    }
 }

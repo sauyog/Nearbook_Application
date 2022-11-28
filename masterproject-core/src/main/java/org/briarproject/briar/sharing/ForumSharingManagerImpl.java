@@ -20,45 +20,45 @@ import javax.inject.Inject;
 
 @NotNullByDefault
 class ForumSharingManagerImpl extends SharingManagerImpl<Forum>
-		implements ForumSharingManager, RemoveForumHook {
+        implements ForumSharingManager, RemoveForumHook {
 
-	@Inject
-	ForumSharingManagerImpl(DatabaseComponent db, ClientHelper clientHelper,
-			ClientVersioningManager clientVersioningManager,
-			MetadataParser metadataParser, MessageParser<Forum> messageParser,
-			SessionEncoder sessionEncoder, SessionParser sessionParser,
-			MessageTracker messageTracker,
-			ContactGroupFactory contactGroupFactory,
-			ProtocolEngine<Forum> engine,
-			InvitationFactory<Forum, ForumInvitationResponse> invitationFactory) {
-		super(db, clientHelper, clientVersioningManager, metadataParser,
-				messageParser, sessionEncoder, sessionParser, messageTracker,
-				contactGroupFactory, engine, invitationFactory);
-	}
+    @Inject
+    ForumSharingManagerImpl(DatabaseComponent db, ClientHelper clientHelper,
+                            ClientVersioningManager clientVersioningManager,
+                            MetadataParser metadataParser, MessageParser<Forum> messageParser,
+                            SessionEncoder sessionEncoder, SessionParser sessionParser,
+                            MessageTracker messageTracker,
+                            ContactGroupFactory contactGroupFactory,
+                            ProtocolEngine<Forum> engine,
+                            InvitationFactory<Forum, ForumInvitationResponse> invitationFactory) {
+        super(db, clientHelper, clientVersioningManager, metadataParser,
+                messageParser, sessionEncoder, sessionParser, messageTracker,
+                contactGroupFactory, engine, invitationFactory);
+    }
 
-	@Override
-	protected ClientId getClientId() {
-		return CLIENT_ID;
-	}
+    @Override
+    protected ClientId getClientId() {
+        return CLIENT_ID;
+    }
 
-	@Override
-	protected int getMajorVersion() {
-		return MAJOR_VERSION;
-	}
+    @Override
+    protected int getMajorVersion() {
+        return MAJOR_VERSION;
+    }
 
-	@Override
-	protected ClientId getShareableClientId() {
-		return ForumManager.CLIENT_ID;
-	}
+    @Override
+    protected ClientId getShareableClientId() {
+        return ForumManager.CLIENT_ID;
+    }
 
-	@Override
-	protected int getShareableMajorVersion() {
-		return ForumManager.MAJOR_VERSION;
-	}
+    @Override
+    protected int getShareableMajorVersion() {
+        return ForumManager.MAJOR_VERSION;
+    }
 
-	@Override
-	public void removingForum(Transaction txn, Forum f) throws DbException {
-		removingShareable(txn, f);
-	}
+    @Override
+    public void removingForum(Transaction txn, Forum f) throws DbException {
+        removingShareable(txn, f);
+    }
 
 }

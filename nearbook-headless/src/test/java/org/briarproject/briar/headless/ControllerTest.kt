@@ -14,15 +14,10 @@ import org.briarproject.bramble.api.identity.LocalAuthor
 import org.briarproject.bramble.api.sync.Group
 import org.briarproject.bramble.api.sync.Message
 import org.briarproject.bramble.api.system.Clock
-import org.briarproject.bramble.test.TestUtils.getAuthor
-import org.briarproject.bramble.test.TestUtils.getClientId
-import org.briarproject.bramble.test.TestUtils.getContact
-import org.briarproject.bramble.test.TestUtils.getGroup
-import org.briarproject.bramble.test.TestUtils.getLocalAuthor
-import org.briarproject.bramble.test.TestUtils.getMessage
+import org.briarproject.bramble.test.TestUtils.*
 import org.briarproject.bramble.util.StringUtils.getRandomString
-import org.briarproject.masterproject.api.conversation.ConversationManager
 import org.briarproject.briar.headless.event.WebSocketController
+import org.briarproject.masterproject.api.conversation.ConversationManager
 import org.skyscreamer.jsonassert.JSONAssert.assertEquals
 import org.skyscreamer.jsonassert.JSONCompareMode.STRICT
 import javax.servlet.http.HttpServletRequest

@@ -10,9 +10,9 @@ import dagger.Provides;
 @Module
 public class EventModule {
 
-	@Provides
-	@Singleton
-	EventBus provideEventBus(EventBusImpl eventBus) {
-		return eventBus;
-	}
+    @Provides
+    @Singleton
+    EventBus provideEventBus(EventBusImpl eventBus) {
+        return eventBus;
+    }
 }

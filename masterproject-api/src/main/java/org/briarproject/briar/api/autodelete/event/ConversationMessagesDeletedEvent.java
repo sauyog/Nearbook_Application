@@ -17,20 +17,20 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class ConversationMessagesDeletedEvent extends Event {
 
-	private final ContactId contactId;
-	private final Collection<MessageId> messageIds;
+    private final ContactId contactId;
+    private final Collection<MessageId> messageIds;
 
-	public ConversationMessagesDeletedEvent(ContactId contactId,
-			Collection<MessageId> messageIds) {
-		this.contactId = contactId;
-		this.messageIds = messageIds;
-	}
+    public ConversationMessagesDeletedEvent(ContactId contactId,
+                                            Collection<MessageId> messageIds) {
+        this.contactId = contactId;
+        this.messageIds = messageIds;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 
-	public Collection<MessageId> getMessageIds() {
-		return messageIds;
-	}
+    public Collection<MessageId> getMessageIds() {
+        return messageIds;
+    }
 }

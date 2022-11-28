@@ -21,12 +21,12 @@ import org.briarproject.bramble.system.DefaultThreadFactoryModule
 import org.briarproject.bramble.system.DefaultWakefulIoExecutorModule
 import org.briarproject.bramble.test.TestFeatureFlagModule
 import org.briarproject.bramble.test.TestSecureRandomModule
-import org.briarproject.masterproject.api.test.TestAvatarCreator
 import org.briarproject.briar.headless.blogs.HeadlessBlogModule
 import org.briarproject.briar.headless.contact.HeadlessContactModule
 import org.briarproject.briar.headless.event.HeadlessEventModule
 import org.briarproject.briar.headless.forums.HeadlessForumModule
 import org.briarproject.briar.headless.messaging.HeadlessMessagingModule
+import org.briarproject.masterproject.api.test.TestAvatarCreator
 import java.io.File
 import java.util.Collections.emptyList
 import javax.inject.Singleton

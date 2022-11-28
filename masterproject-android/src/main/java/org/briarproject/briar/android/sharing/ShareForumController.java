@@ -12,9 +12,9 @@ import java.util.Collection;
 import javax.annotation.Nullable;
 
 public interface ShareForumController
-		extends ContactSelectorController<SelectableContactItem> {
+        extends ContactSelectorController<SelectableContactItem> {
 
-	void share(GroupId g, Collection<ContactId> contacts, @Nullable String text,
-			ExceptionHandler<DbException> handler);
+    void share(GroupId g, Collection<ContactId> contacts, @Nullable String text,
+               ExceptionHandler<DbException> handler);
 
 }

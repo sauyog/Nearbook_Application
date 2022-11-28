@@ -14,13 +14,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class Versions {
 
-	private final List<Byte> supported;
+    private final List<Byte> supported;
 
-	public Versions(List<Byte> supported) {
-		this.supported = supported;
-	}
+    public Versions(List<Byte> supported) {
+        this.supported = supported;
+    }
 
-	public List<Byte> getSupportedVersions() {
-		return supported;
-	}
+    public List<Byte> getSupportedVersions() {
+        return supported;
+    }
 }

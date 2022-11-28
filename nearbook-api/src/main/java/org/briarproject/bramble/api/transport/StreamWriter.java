@@ -9,11 +9,11 @@ import java.io.OutputStream;
  */
 public interface StreamWriter {
 
-	OutputStream getOutputStream();
+    OutputStream getOutputStream();
 
-	/**
-	 * Sends the end of stream marker, informing the recipient that no more
-	 * data will be sent. The connection is flushed but not closed.
-	 */
-	void sendEndOfStream() throws IOException;
+    /**
+     * Sends the end of stream marker, informing the recipient that no more
+     * data will be sent. The connection is flushed but not closed.
+     */
+    void sendEndOfStream() throws IOException;
 }

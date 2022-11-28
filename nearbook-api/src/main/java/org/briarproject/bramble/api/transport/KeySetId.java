@@ -12,23 +12,23 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class KeySetId {
 
-	private final int id;
+    private final int id;
 
-	public KeySetId(int id) {
-		this.id = id;
-	}
+    public KeySetId(int id) {
+        this.id = id;
+    }
 
-	public int getInt() {
-		return id;
-	}
+    public int getInt() {
+        return id;
+    }
 
-	@Override
-	public int hashCode() {
-		return id;
-	}
+    @Override
+    public int hashCode() {
+        return id;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		return o instanceof KeySetId && id == ((KeySetId) o).id;
-	}
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof KeySetId && id == ((KeySetId) o).id;
+    }
 }

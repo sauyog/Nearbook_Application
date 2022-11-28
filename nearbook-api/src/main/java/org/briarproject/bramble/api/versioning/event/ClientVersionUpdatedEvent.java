@@ -15,20 +15,20 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class ClientVersionUpdatedEvent extends Event {
 
-	private final ContactId contactId;
-	private final ClientVersion clientVersion;
+    private final ContactId contactId;
+    private final ClientVersion clientVersion;
 
-	public ClientVersionUpdatedEvent(ContactId contactId,
-			ClientVersion clientVersion) {
-		this.contactId = contactId;
-		this.clientVersion = clientVersion;
-	}
+    public ClientVersionUpdatedEvent(ContactId contactId,
+                                     ClientVersion clientVersion) {
+        this.contactId = contactId;
+        this.clientVersion = clientVersion;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 
-	public ClientVersion getClientVersion() {
-		return clientVersion;
-	}
+    public ClientVersion getClientVersion() {
+        return clientVersion;
+    }
 }

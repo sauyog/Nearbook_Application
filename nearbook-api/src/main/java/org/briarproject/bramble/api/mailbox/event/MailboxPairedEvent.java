@@ -17,20 +17,20 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class MailboxPairedEvent extends Event {
 
-	private final MailboxProperties properties;
-	private final Map<ContactId, MailboxUpdateWithMailbox> localUpdates;
+    private final MailboxProperties properties;
+    private final Map<ContactId, MailboxUpdateWithMailbox> localUpdates;
 
-	public MailboxPairedEvent(MailboxProperties properties,
-			Map<ContactId, MailboxUpdateWithMailbox> localUpdates) {
-		this.properties = properties;
-		this.localUpdates = localUpdates;
-	}
+    public MailboxPairedEvent(MailboxProperties properties,
+                              Map<ContactId, MailboxUpdateWithMailbox> localUpdates) {
+        this.properties = properties;
+        this.localUpdates = localUpdates;
+    }
 
-	public MailboxProperties getProperties() {
-		return properties;
-	}
+    public MailboxProperties getProperties() {
+        return properties;
+    }
 
-	public Map<ContactId, MailboxUpdateWithMailbox> getLocalUpdates() {
-		return localUpdates;
-	}
+    public Map<ContactId, MailboxUpdateWithMailbox> getLocalUpdates() {
+        return localUpdates;
+    }
 }

@@ -1,5 +1,7 @@
 package org.briarproject.masterproject.android.privategroup.invitation;
 
+import static org.briarproject.masterproject.android.sharing.InvitationAdapter.InvitationClickListener;
+
 import android.content.Context;
 
 import org.briarproject.briar.R;
@@ -12,40 +14,38 @@ import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
 import javax.inject.Inject;
 
-import static org.briarproject.masterproject.android.sharing.InvitationAdapter.InvitationClickListener;
-
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 public class GroupInvitationActivity
-		extends InvitationActivity<GroupInvitationItem> {
+        extends InvitationActivity<GroupInvitationItem> {
 
-	@Inject
-	protected GroupInvitationController controller;
+    @Inject
+    protected GroupInvitationController controller;
 
-	@Override
-	public void injectActivity(ActivityComponent component) {
-		component.inject(this);
-	}
+    @Override
+    public void injectActivity(ActivityComponent component) {
+        component.inject(this);
+    }
 
-	@Override
-	protected GroupInvitationController getController() {
-		return controller;
-	}
+    @Override
+    protected GroupInvitationController getController() {
+        return controller;
+    }
 
-	@Override
-	protected InvitationAdapter<GroupInvitationItem, ?> getAdapter(Context ctx,
-			InvitationClickListener<GroupInvitationItem> listener) {
-		return new GroupInvitationAdapter(ctx, listener);
-	}
+    @Override
+    protected InvitationAdapter<GroupInvitationItem, ?> getAdapter(Context ctx,
+                                                                   InvitationClickListener<GroupInvitationItem> listener) {
+        return new GroupInvitationAdapter(ctx, listener);
+    }
 
-	@Override
-	protected int getAcceptRes() {
-		return R.string.groups_invitations_joined;
-	}
+    @Override
+    protected int getAcceptRes() {
+        return R.string.groups_invitations_joined;
+    }
 
-	@Override
-	protected int getDeclineRes() {
-		return R.string.groups_invitations_declined;
-	}
+    @Override
+    protected int getDeclineRes() {
+        return R.string.groups_invitations_declined;
+    }
 
 }

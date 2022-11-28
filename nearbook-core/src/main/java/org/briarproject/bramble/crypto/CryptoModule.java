@@ -19,53 +19,53 @@ import dagger.Provides;
 @Module
 public class CryptoModule {
 
-	@Provides
-	AuthenticatedCipher provideAuthenticatedCipher() {
-		return new XSalsa20Poly1305AuthenticatedCipher();
-	}
+    @Provides
+    AuthenticatedCipher provideAuthenticatedCipher() {
+        return new XSalsa20Poly1305AuthenticatedCipher();
+    }
 
-	@Provides
-	@Singleton
-	CryptoComponent provideCryptoComponent(
-			SecureRandomProvider secureRandomProvider,
-			ScryptKdf passwordBasedKdf) {
-		return new CryptoComponentImpl(secureRandomProvider, passwordBasedKdf);
-	}
+    @Provides
+    @Singleton
+    CryptoComponent provideCryptoComponent(
+            SecureRandomProvider secureRandomProvider,
+            ScryptKdf passwordBasedKdf) {
+        return new CryptoComponentImpl(secureRandomProvider, passwordBasedKdf);
+    }
 
-	@Provides
-	PasswordStrengthEstimator providePasswordStrengthEstimator() {
-		return new PasswordStrengthEstimatorImpl();
-	}
+    @Provides
+    PasswordStrengthEstimator providePasswordStrengthEstimator() {
+        return new PasswordStrengthEstimatorImpl();
+    }
 
-	@Provides
-	TransportCrypto provideTransportCrypto(
-			TransportCryptoImpl transportCrypto) {
-		return transportCrypto;
-	}
+    @Provides
+    TransportCrypto provideTransportCrypto(
+            TransportCryptoImpl transportCrypto) {
+        return transportCrypto;
+    }
 
-	@Provides
-	StreamDecrypterFactory provideStreamDecrypterFactory(
-			Provider<AuthenticatedCipher> cipherProvider) {
-		return new StreamDecrypterFactoryImpl(cipherProvider);
-	}
+    @Provides
+    StreamDecrypterFactory provideStreamDecrypterFactory(
+            Provider<AuthenticatedCipher> cipherProvider) {
+        return new StreamDecrypterFactoryImpl(cipherProvider);
+    }
 
-	@Provides
-	StreamEncrypterFactory provideStreamEncrypterFactory(
-			CryptoComponent crypto, TransportCrypto transportCrypto,
-			Provider<AuthenticatedCipher> cipherProvider) {
-		return new StreamEncrypterFactoryImpl(crypto, transportCrypto,
-				cipherProvider);
-	}
+    @Provides
+    StreamEncrypterFactory provideStreamEncrypterFactory(
+            CryptoComponent crypto, TransportCrypto transportCrypto,
+            Provider<AuthenticatedCipher> cipherProvider) {
+        return new StreamEncrypterFactoryImpl(crypto, transportCrypto,
+                cipherProvider);
+    }
 
-	@Provides
-	KeyAgreementCrypto provideKeyAgreementCrypto(
-			KeyAgreementCryptoImpl keyAgreementCrypto) {
-		return keyAgreementCrypto;
-	}
+    @Provides
+    KeyAgreementCrypto provideKeyAgreementCrypto(
+            KeyAgreementCryptoImpl keyAgreementCrypto) {
+        return keyAgreementCrypto;
+    }
 
-	@Provides
-	SecureRandom getSecureRandom(CryptoComponent crypto) {
-		return crypto.getSecureRandom();
-	}
+    @Provides
+    SecureRandom getSecureRandom(CryptoComponent crypto) {
+        return crypto.getSecureRandom();
+    }
 
 }

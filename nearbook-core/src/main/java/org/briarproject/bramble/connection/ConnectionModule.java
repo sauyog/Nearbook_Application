@@ -11,16 +11,16 @@ import dagger.Provides;
 @Module
 public class ConnectionModule {
 
-	@Provides
-	ConnectionManager provideConnectionManager(
-			ConnectionManagerImpl connectionManager) {
-		return connectionManager;
-	}
+    @Provides
+    ConnectionManager provideConnectionManager(
+            ConnectionManagerImpl connectionManager) {
+        return connectionManager;
+    }
 
-	@Provides
-	@Singleton
-	ConnectionRegistry provideConnectionRegistry(
-			ConnectionRegistryImpl connectionRegistry) {
-		return connectionRegistry;
-	}
+    @Provides
+    @Singleton
+    ConnectionRegistry provideConnectionRegistry(
+            ConnectionRegistryImpl connectionRegistry) {
+        return connectionRegistry;
+    }
 }

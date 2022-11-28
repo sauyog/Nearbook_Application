@@ -4,9 +4,9 @@ import org.briarproject.bramble.api.sync.Group.Visibility;
 
 interface State {
 
-	int getValue();
+    int getValue();
 
-	Visibility getVisibility();
+    Visibility getVisibility();
 
-	boolean isAwaitingResponse();
+    boolean isAwaitingResponse();
 }

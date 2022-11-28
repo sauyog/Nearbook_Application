@@ -1,14 +1,10 @@
 package org.briarproject.masterproject.android.settings;
 
+import static android.content.Intent.ACTION_MANAGE_NETWORK_USAGE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-
-import org.briarproject.briar.R;
-import org.briarproject.masterproject.android.activity.ActivityComponent;
-import org.briarproject.masterproject.android.activity.BriarActivity;
-import org.briarproject.nullsafety.MethodsNotNullByDefault;
-import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -19,90 +15,94 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceFragmentCompat.OnPreferenceStartFragmentCallback;
 
-import static android.content.Intent.ACTION_MANAGE_NETWORK_USAGE;
+import org.briarproject.briar.R;
+import org.briarproject.masterproject.android.activity.ActivityComponent;
+import org.briarproject.masterproject.android.activity.BriarActivity;
+import org.briarproject.nullsafety.MethodsNotNullByDefault;
+import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 public class SettingsActivity extends BriarActivity
-		implements OnPreferenceStartFragmentCallback {
+        implements OnPreferenceStartFragmentCallback {
 
-	static final String EXTRA_THEME_CHANGE = "themeChange";
+    static final String EXTRA_THEME_CHANGE = "themeChange";
 
-	@Override
-	public void injectActivity(ActivityComponent component) {
-		component.inject(this);
-	}
+    /**
+     * If the preference is not yet enabled, this enables the preference
+     * and makes it persist changed values.
+     * Call this after setting the initial value
+     * to prevent this change from getting persisted in the DB unnecessarily.
+     */
+    static void enableAndPersist(Preference pref) {
+        if (!pref.isEnabled()) {
+            pref.setEnabled(true);
+            pref.setPersistent(true);
+        }
+    }
 
-	@Override
-	public void onCreate(@Nullable Bundle bundle) {
-		super.onCreate(bundle);
+    @Override
+    public void injectActivity(ActivityComponent component) {
+        component.inject(this);
+    }
 
-		ActionBar actionBar = getSupportActionBar();
-		if (actionBar != null) {
-			actionBar.setHomeButtonEnabled(true);
-			actionBar.setDisplayHomeAsUpEnabled(true);
-		}
+    @Override
+    public void onCreate(@Nullable Bundle bundle) {
+        super.onCreate(bundle);
 
-		Intent i = getIntent();
-		Bundle extras = i.getExtras();
-		if (bundle == null && extras != null &&
-				extras.getBoolean(EXTRA_THEME_CHANGE, false)) {
-			// show display fragment after theme change
-			FragmentManager fragmentManager = getSupportFragmentManager();
-			showNextFragment(fragmentManager, new DisplayFragment());
-		} else if (bundle == null &&
-				ACTION_MANAGE_NETWORK_USAGE.equals(i.getAction())) {
-			// show connection if coming from network settings
-			FragmentManager fragmentManager = getSupportFragmentManager();
-			showNextFragment(fragmentManager, new ConnectionsFragment());
-		}
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
-		setContentView(R.layout.activity_settings);
-	}
+        Intent i = getIntent();
+        Bundle extras = i.getExtras();
+        if (bundle == null && extras != null &&
+                extras.getBoolean(EXTRA_THEME_CHANGE, false)) {
+            // show display fragment after theme change
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            showNextFragment(fragmentManager, new DisplayFragment());
+        } else if (bundle == null &&
+                ACTION_MANAGE_NETWORK_USAGE.equals(i.getAction())) {
+            // show connection if coming from network settings
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            showNextFragment(fragmentManager, new ConnectionsFragment());
+        }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == android.R.id.home) {
-			onBackPressed();
-			return true;
-		}
-		return false;
-	}
+        setContentView(R.layout.activity_settings);
+    }
 
-	@Override
-	public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller,
-			Preference pref) {
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		FragmentFactory fragmentFactory = fragmentManager.getFragmentFactory();
-		Fragment fragment = fragmentFactory
-				.instantiate(getClassLoader(), pref.getFragment());
-		fragment.setTargetFragment(caller, 0);
-		// Replace the existing Fragment with the new Fragment
-		showNextFragment(fragmentManager, fragment);
-		return true;
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return false;
+    }
 
-	private void showNextFragment(FragmentManager fragmentManager, Fragment f) {
-		fragmentManager.beginTransaction()
-				.setCustomAnimations(R.anim.step_next_in,
-						R.anim.step_previous_out, R.anim.step_previous_in,
-						R.anim.step_next_out)
-				.replace(R.id.fragmentContainer, f)
-				.addToBackStack(null)
-				.commit();
-	}
+    @Override
+    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller,
+                                             Preference pref) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentFactory fragmentFactory = fragmentManager.getFragmentFactory();
+        Fragment fragment = fragmentFactory
+                .instantiate(getClassLoader(), pref.getFragment());
+        fragment.setTargetFragment(caller, 0);
+        // Replace the existing Fragment with the new Fragment
+        showNextFragment(fragmentManager, fragment);
+        return true;
+    }
 
-	/**
-	 * If the preference is not yet enabled, this enables the preference
-	 * and makes it persist changed values.
-	 * Call this after setting the initial value
-	 * to prevent this change from getting persisted in the DB unnecessarily.
-	 */
-	static void enableAndPersist(Preference pref) {
-		if (!pref.isEnabled()) {
-			pref.setEnabled(true);
-			pref.setPersistent(true);
-		}
-	}
+    private void showNextFragment(FragmentManager fragmentManager, Fragment f) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.step_next_in,
+                        R.anim.step_previous_out, R.anim.step_previous_in,
+                        R.anim.step_next_out)
+                .replace(R.id.fragmentContainer, f)
+                .addToBackStack(null)
+                .commit();
+    }
 
 }

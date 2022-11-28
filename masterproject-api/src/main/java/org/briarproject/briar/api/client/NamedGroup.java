@@ -9,26 +9,26 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public abstract class NamedGroup extends BaseGroup {
 
-	private final String name;
-	private final byte[] salt;
+    private final String name;
+    private final byte[] salt;
 
-	public NamedGroup(Group group, String name, byte[] salt) {
-		super(group);
-		this.name = name;
-		this.salt = salt;
-	}
+    public NamedGroup(Group group, String name, byte[] salt) {
+        super(group);
+        this.name = name;
+        this.salt = salt;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public byte[] getSalt() {
-		return salt;
-	}
+    public byte[] getSalt() {
+        return salt;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		return o instanceof NamedGroup && super.equals(o);
-	}
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof NamedGroup && super.equals(o);
+    }
 
 }

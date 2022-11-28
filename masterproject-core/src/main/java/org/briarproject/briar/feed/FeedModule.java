@@ -15,27 +15,27 @@ import dagger.Provides;
 @Module
 public class FeedModule {
 
-	public static class EagerSingletons {
-		@Inject
-		FeedManager feedManager;
-	}
+    @Provides
+    @Singleton
+    FeedManager provideFeedManager(FeedManagerImpl feedManager,
+                                   LifecycleManager lifecycleManager, EventBus eventBus,
+                                   BlogManager blogManager, FeatureFlags featureFlags) {
+        if (!featureFlags.shouldEnableBlogsInCore()) {
+            return feedManager;
+        }
+        lifecycleManager.registerOpenDatabaseHook(feedManager);
+        eventBus.addListener(feedManager);
+        blogManager.registerRemoveBlogHook(feedManager);
+        return feedManager;
+    }
 
-	@Provides
-	@Singleton
-	FeedManager provideFeedManager(FeedManagerImpl feedManager,
-			LifecycleManager lifecycleManager, EventBus eventBus,
-			BlogManager blogManager, FeatureFlags featureFlags) {
-		if (!featureFlags.shouldEnableBlogsInCore()) {
-			return feedManager;
-		}
-		lifecycleManager.registerOpenDatabaseHook(feedManager);
-		eventBus.addListener(feedManager);
-		blogManager.registerRemoveBlogHook(feedManager);
-		return feedManager;
-	}
+    @Provides
+    FeedFactory provideFeedFactory(FeedFactoryImpl feedFactory) {
+        return feedFactory;
+    }
 
-	@Provides
-	FeedFactory provideFeedFactory(FeedFactoryImpl feedFactory) {
-		return feedFactory;
-	}
+    public static class EagerSingletons {
+        @Inject
+        FeedManager feedManager;
+    }
 }

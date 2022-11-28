@@ -3,16 +3,16 @@ package org.briarproject.bramble;
 import org.briarproject.bramble.system.TimeTravelModule;
 
 public interface BrambleCoreIntegrationTestEagerSingletons
-		extends BrambleCoreEagerSingletons {
+        extends BrambleCoreEagerSingletons {
 
-	void inject(TimeTravelModule.EagerSingletons init);
+    void inject(TimeTravelModule.EagerSingletons init);
 
-	class Helper {
+    class Helper {
 
-		public static void injectEagerSingletons(
-				BrambleCoreIntegrationTestEagerSingletons c) {
-			BrambleCoreEagerSingletons.Helper.injectEagerSingletons(c);
-			c.inject(new TimeTravelModule.EagerSingletons());
-		}
-	}
+        public static void injectEagerSingletons(
+                BrambleCoreIntegrationTestEagerSingletons c) {
+            BrambleCoreEagerSingletons.Helper.injectEagerSingletons(c);
+            c.inject(new TimeTravelModule.EagerSingletons());
+        }
+    }
 }

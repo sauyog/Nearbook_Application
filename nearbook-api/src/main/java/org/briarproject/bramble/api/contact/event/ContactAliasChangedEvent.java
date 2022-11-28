@@ -14,22 +14,22 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class ContactAliasChangedEvent extends Event {
 
-	private final ContactId contactId;
-	@Nullable
-	private final String alias;
+    private final ContactId contactId;
+    @Nullable
+    private final String alias;
 
-	public ContactAliasChangedEvent(ContactId contactId,
-			@Nullable String alias) {
-		this.contactId = contactId;
-		this.alias = alias;
-	}
+    public ContactAliasChangedEvent(ContactId contactId,
+                                    @Nullable String alias) {
+        this.contactId = contactId;
+        this.alias = alias;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 
-	@Nullable
-	public String getAlias() {
-		return alias;
-	}
+    @Nullable
+    public String getAlias() {
+        return alias;
+    }
 }

@@ -13,8 +13,8 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class BlogPost extends ForumPost {
 
-	public BlogPost(Message message, @Nullable MessageId parent,
-			Author author) {
-		super(message, parent, author);
-	}
+    public BlogPost(Message message, @Nullable MessageId parent,
+                    Author author) {
+        super(message, parent, author);
+    }
 }

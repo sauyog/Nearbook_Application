@@ -13,20 +13,20 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class ModemFactoryImpl implements ModemFactory {
 
-	private final Executor ioExecutor;
-	private final ReliabilityLayerFactory reliabilityFactory;
-	private final Clock clock;
+    private final Executor ioExecutor;
+    private final ReliabilityLayerFactory reliabilityFactory;
+    private final Clock clock;
 
-	ModemFactoryImpl(Executor ioExecutor,
-			ReliabilityLayerFactory reliabilityFactory) {
-		this.ioExecutor = ioExecutor;
-		this.reliabilityFactory = reliabilityFactory;
-		clock = new SystemClock();
-	}
+    ModemFactoryImpl(Executor ioExecutor,
+                     ReliabilityLayerFactory reliabilityFactory) {
+        this.ioExecutor = ioExecutor;
+        this.reliabilityFactory = reliabilityFactory;
+        clock = new SystemClock();
+    }
 
-	@Override
-	public Modem createModem(Modem.Callback callback, String portName) {
-		return new ModemImpl(ioExecutor, reliabilityFactory, clock, callback,
-				new SerialPortImpl(portName));
-	}
+    @Override
+    public Modem createModem(Modem.Callback callback, String portName) {
+        return new ModemImpl(ioExecutor, reliabilityFactory, clock, callback,
+                new SerialPortImpl(portName));
+    }
 }

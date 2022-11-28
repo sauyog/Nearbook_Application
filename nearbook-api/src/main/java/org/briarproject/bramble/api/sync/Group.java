@@ -4,82 +4,80 @@ import static org.briarproject.bramble.api.sync.SyncConstants.MAX_GROUP_DESCRIPT
 
 public class Group {
 
-	public enum Visibility {
+    /**
+     * The current version of the group format.
+     */
+    public static final int FORMAT_VERSION = 1;
+    private final GroupId id;
+    private final ClientId clientId;
+    private final int majorVersion;
+    private final byte[] descriptor;
+    public Group(GroupId id, ClientId clientId, int majorVersion,
+                 byte[] descriptor) {
+        if (descriptor.length > MAX_GROUP_DESCRIPTOR_LENGTH)
+            throw new IllegalArgumentException();
+        this.id = id;
+        this.clientId = clientId;
+        this.majorVersion = majorVersion;
+        this.descriptor = descriptor;
+    }
 
-		INVISIBLE(0), // The group is not visible
-		VISIBLE(1), // The group is visible, messages are accepted but not sent
-		SHARED(2); // The group is visible, messages are accepted and sent
+    /**
+     * Returns the group's unique identifier.
+     */
+    public GroupId getId() {
+        return id;
+    }
 
-		private final int value;
+    /**
+     * Returns the ID of the client to which the group belongs.
+     */
+    public ClientId getClientId() {
+        return clientId;
+    }
 
-		Visibility(int value) {
-			this.value = value;
-		}
+    /**
+     * Returns the major version of the client to which the group belongs.
+     */
+    public int getMajorVersion() {
+        return majorVersion;
+    }
 
-		public int getValue() {
-			return value;
-		}
+    /**
+     * Returns the group's descriptor.
+     */
+    public byte[] getDescriptor() {
+        return descriptor;
+    }
 
-		public static Visibility min(Visibility a, Visibility b) {
-			return a.getValue() < b.getValue() ? a : b;
-		}
-	}
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 
-	/**
-	 * The current version of the group format.
-	 */
-	public static final int FORMAT_VERSION = 1;
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Group && id.equals(((Group) o).id);
+    }
 
-	private final GroupId id;
-	private final ClientId clientId;
-	private final int majorVersion;
-	private final byte[] descriptor;
+    public enum Visibility {
 
-	public Group(GroupId id, ClientId clientId, int majorVersion,
-			byte[] descriptor) {
-		if (descriptor.length > MAX_GROUP_DESCRIPTOR_LENGTH)
-			throw new IllegalArgumentException();
-		this.id = id;
-		this.clientId = clientId;
-		this.majorVersion = majorVersion;
-		this.descriptor = descriptor;
-	}
+        INVISIBLE(0), // The group is not visible
+        VISIBLE(1), // The group is visible, messages are accepted but not sent
+        SHARED(2); // The group is visible, messages are accepted and sent
 
-	/**
-	 * Returns the group's unique identifier.
-	 */
-	public GroupId getId() {
-		return id;
-	}
+        private final int value;
 
-	/**
-	 * Returns the ID of the client to which the group belongs.
-	 */
-	public ClientId getClientId() {
-		return clientId;
-	}
+        Visibility(int value) {
+            this.value = value;
+        }
 
-	/**
-	 * Returns the major version of the client to which the group belongs.
-	 */
-	public int getMajorVersion() {
-		return majorVersion;
-	}
+        public static Visibility min(Visibility a, Visibility b) {
+            return a.getValue() < b.getValue() ? a : b;
+        }
 
-	/**
-	 * Returns the group's descriptor.
-	 */
-	public byte[] getDescriptor() {
-		return descriptor;
-	}
-
-	@Override
-	public int hashCode() {
-		return id.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		return o instanceof Group && id.equals(((Group) o).id);
-	}
+        public int getValue() {
+            return value;
+        }
+    }
 }

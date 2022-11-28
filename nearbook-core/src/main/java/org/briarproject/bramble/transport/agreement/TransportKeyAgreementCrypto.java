@@ -12,12 +12,12 @@ import java.security.GeneralSecurityException;
 @NotNullByDefault
 interface TransportKeyAgreementCrypto {
 
-	KeyPair generateKeyPair();
+    KeyPair generateKeyPair();
 
-	SecretKey deriveRootKey(KeyPair localKeyPair, PublicKey remotePublicKey)
-			throws GeneralSecurityException;
+    SecretKey deriveRootKey(KeyPair localKeyPair, PublicKey remotePublicKey)
+            throws GeneralSecurityException;
 
-	PublicKey parsePublicKey(byte[] encoded) throws FormatException;
+    PublicKey parsePublicKey(byte[] encoded) throws FormatException;
 
-	PrivateKey parsePrivateKey(byte[] encoded) throws FormatException;
+    PrivateKey parsePrivateKey(byte[] encoded) throws FormatException;
 }

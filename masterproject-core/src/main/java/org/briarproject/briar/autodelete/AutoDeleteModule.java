@@ -13,20 +13,20 @@ import dagger.Provides;
 @Module
 public class AutoDeleteModule {
 
-	public static class EagerSingletons {
-		@Inject
-		AutoDeleteManager autoDeleteManager;
-	}
+    @Provides
+    @Singleton
+    AutoDeleteManager provideAutoDeleteManager(
+            LifecycleManager lifecycleManager, ContactManager contactManager,
+            AutoDeleteManagerImpl autoDeleteManager) {
+        lifecycleManager.registerOpenDatabaseHook(autoDeleteManager);
+        contactManager.registerContactHook(autoDeleteManager);
+        // Don't need to register with the client versioning manager as this
+        // client's groups aren't shared with contacts
+        return autoDeleteManager;
+    }
 
-	@Provides
-	@Singleton
-	AutoDeleteManager provideAutoDeleteManager(
-			LifecycleManager lifecycleManager, ContactManager contactManager,
-			AutoDeleteManagerImpl autoDeleteManager) {
-		lifecycleManager.registerOpenDatabaseHook(autoDeleteManager);
-		contactManager.registerContactHook(autoDeleteManager);
-		// Don't need to register with the client versioning manager as this
-		// client's groups aren't shared with contacts
-		return autoDeleteManager;
-	}
+    public static class EagerSingletons {
+        @Inject
+        AutoDeleteManager autoDeleteManager;
+    }
 }

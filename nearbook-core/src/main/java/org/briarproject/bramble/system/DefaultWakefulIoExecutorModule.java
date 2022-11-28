@@ -15,9 +15,9 @@ import dagger.Provides;
 @Module
 public class DefaultWakefulIoExecutorModule {
 
-	@Provides
-	@WakefulIoExecutor
-	Executor provideWakefulIoExecutor(@IoExecutor Executor ioExecutor) {
-		return ioExecutor;
-	}
+    @Provides
+    @WakefulIoExecutor
+    Executor provideWakefulIoExecutor(@IoExecutor Executor ioExecutor) {
+        return ioExecutor;
+    }
 }

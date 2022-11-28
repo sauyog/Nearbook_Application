@@ -8,8 +8,8 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface KeyMaterialSource {
 
-	/**
-	 * Returns the requested amount of key material.
-	 */
-	byte[] getKeyMaterial(int length);
+    /**
+     * Returns the requested amount of key material.
+     */
+    byte[] getKeyMaterial(int length);
 }

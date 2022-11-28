@@ -13,13 +13,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class GroupAddedEvent extends Event {
 
-	private final Group group;
+    private final Group group;
 
-	public GroupAddedEvent(Group group) {
-		this.group = group;
-	}
+    public GroupAddedEvent(Group group) {
+        this.group = group;
+    }
 
-	public Group getGroup() {
-		return group;
-	}
+    public Group getGroup() {
+        return group;
+    }
 }

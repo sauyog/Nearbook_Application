@@ -8,10 +8,10 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		MediaModule.class
+        MediaModule.class
 })
 interface AbstractAttachmentRetrieverComponent {
 
-	void inject(AttachmentRetrieverIntegrationTest test);
+    void inject(AttachmentRetrieverIntegrationTest test);
 
 }

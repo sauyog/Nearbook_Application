@@ -10,11 +10,11 @@ import javax.annotation.concurrent.Immutable;
 @Immutable
 @NotNullByDefault
 public class ForumInvitationResponseReceivedEvent extends
-		ConversationMessageReceivedEvent<ForumInvitationResponse> {
+        ConversationMessageReceivedEvent<ForumInvitationResponse> {
 
-	public ForumInvitationResponseReceivedEvent(
-			ForumInvitationResponse response, ContactId contactId) {
-		super(response, contactId);
-	}
+    public ForumInvitationResponseReceivedEvent(
+            ForumInvitationResponse response, ContactId contactId) {
+        super(response, contactId);
+    }
 
 }

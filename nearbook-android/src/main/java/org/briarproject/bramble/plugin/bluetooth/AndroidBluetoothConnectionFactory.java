@@ -12,25 +12,25 @@ import java.io.IOException;
 
 @NotNullByDefault
 class AndroidBluetoothConnectionFactory
-		implements BluetoothConnectionFactory<BluetoothSocket> {
+        implements BluetoothConnectionFactory<BluetoothSocket> {
 
-	private final BluetoothConnectionLimiter connectionLimiter;
-	private final AndroidWakeLockManager wakeLockManager;
-	private final TimeoutMonitor timeoutMonitor;
+    private final BluetoothConnectionLimiter connectionLimiter;
+    private final AndroidWakeLockManager wakeLockManager;
+    private final TimeoutMonitor timeoutMonitor;
 
-	AndroidBluetoothConnectionFactory(
-			BluetoothConnectionLimiter connectionLimiter,
-			AndroidWakeLockManager wakeLockManager,
-			TimeoutMonitor timeoutMonitor) {
-		this.connectionLimiter = connectionLimiter;
-		this.wakeLockManager = wakeLockManager;
-		this.timeoutMonitor = timeoutMonitor;
-	}
+    AndroidBluetoothConnectionFactory(
+            BluetoothConnectionLimiter connectionLimiter,
+            AndroidWakeLockManager wakeLockManager,
+            TimeoutMonitor timeoutMonitor) {
+        this.connectionLimiter = connectionLimiter;
+        this.wakeLockManager = wakeLockManager;
+        this.timeoutMonitor = timeoutMonitor;
+    }
 
-	@Override
-	public DuplexTransportConnection wrapSocket(DuplexPlugin plugin,
-			BluetoothSocket s) throws IOException {
-		return new AndroidBluetoothTransportConnection(plugin,
-				connectionLimiter, wakeLockManager, timeoutMonitor, s);
-	}
+    @Override
+    public DuplexTransportConnection wrapSocket(DuplexPlugin plugin,
+                                                BluetoothSocket s) throws IOException {
+        return new AndroidBluetoothTransportConnection(plugin,
+                connectionLimiter, wakeLockManager, timeoutMonitor, s);
+    }
 }

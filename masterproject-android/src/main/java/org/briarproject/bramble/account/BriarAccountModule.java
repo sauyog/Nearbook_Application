@@ -10,9 +10,9 @@ import dagger.Provides;
 @Module
 public class BriarAccountModule {
 
-	@Provides
-	@Singleton
-	AccountManager provideAccountManager(BriarAccountManager accountManager) {
-		return accountManager;
-	}
+    @Provides
+    @Singleton
+    AccountManager provideAccountManager(BriarAccountManager accountManager) {
+        return accountManager;
+    }
 }

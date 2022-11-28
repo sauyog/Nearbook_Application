@@ -10,14 +10,14 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class IntroductionAbortedEvent extends Event {
 
-	private final SessionId sessionId;
+    private final SessionId sessionId;
 
-	public IntroductionAbortedEvent(SessionId sessionId) {
-		this.sessionId = sessionId;
-	}
+    public IntroductionAbortedEvent(SessionId sessionId) {
+        this.sessionId = sessionId;
+    }
 
-	public SessionId getSessionId() {
-		return sessionId;
-	}
+    public SessionId getSessionId() {
+        return sessionId;
+    }
 
 }

@@ -1,5 +1,7 @@
 package org.briarproject.bramble.connection;
 
+import static org.briarproject.nullsafety.NullSafety.requireNonNull;
+
 import org.briarproject.bramble.api.connection.ConnectionRegistry;
 import org.briarproject.bramble.api.connection.InterruptibleConnection;
 import org.briarproject.bramble.api.contact.ContactId;
@@ -25,85 +27,83 @@ import java.util.concurrent.Executor;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.GuardedBy;
 
-import static org.briarproject.nullsafety.NullSafety.requireNonNull;
-
 @NotNullByDefault
 abstract class DuplexSyncConnection extends SyncConnection
-		implements InterruptibleConnection {
+        implements InterruptibleConnection {
 
-	final Executor ioExecutor;
-	final TransportId transportId;
-	final TransportConnectionReader reader;
-	final TransportConnectionWriter writer;
-	final TransportProperties remote;
+    final Executor ioExecutor;
+    final TransportId transportId;
+    final TransportConnectionReader reader;
+    final TransportConnectionWriter writer;
+    final TransportProperties remote;
 
-	private final Object interruptLock = new Object();
+    private final Object interruptLock = new Object();
 
-	@GuardedBy("interruptLock")
-	@Nullable
-	private SyncSession outgoingSession = null;
-	@GuardedBy("interruptLock")
-	private boolean interruptWaiting = false;
+    @GuardedBy("interruptLock")
+    @Nullable
+    private SyncSession outgoingSession = null;
+    @GuardedBy("interruptLock")
+    private boolean interruptWaiting = false;
 
-	@Override
-	public void interruptOutgoingSession() {
-		SyncSession out = null;
-		synchronized (interruptLock) {
-			if (outgoingSession == null) interruptWaiting = true;
-			else out = outgoingSession;
-		}
-		if (out != null) out.interrupt();
-	}
+    DuplexSyncConnection(KeyManager keyManager,
+                         ConnectionRegistry connectionRegistry,
+                         StreamReaderFactory streamReaderFactory,
+                         StreamWriterFactory streamWriterFactory,
+                         SyncSessionFactory syncSessionFactory,
+                         TransportPropertyManager transportPropertyManager,
+                         Executor ioExecutor, TransportId transportId,
+                         DuplexTransportConnection connection) {
+        super(keyManager, connectionRegistry, streamReaderFactory,
+                streamWriterFactory, syncSessionFactory,
+                transportPropertyManager);
+        this.ioExecutor = ioExecutor;
+        this.transportId = transportId;
+        reader = connection.getReader();
+        writer = connection.getWriter();
+        remote = connection.getRemoteProperties();
+    }
 
-	void setOutgoingSession(SyncSession outgoingSession) {
-		boolean interruptWasWaiting = false;
-		synchronized (interruptLock) {
-			this.outgoingSession = outgoingSession;
-			if (interruptWaiting) {
-				interruptWasWaiting = true;
-				interruptWaiting = false;
-			}
-		}
-		if (interruptWasWaiting) outgoingSession.interrupt();
-	}
+    @Override
+    public void interruptOutgoingSession() {
+        SyncSession out = null;
+        synchronized (interruptLock) {
+            if (outgoingSession == null) interruptWaiting = true;
+            else out = outgoingSession;
+        }
+        if (out != null) out.interrupt();
+    }
 
-	DuplexSyncConnection(KeyManager keyManager,
-			ConnectionRegistry connectionRegistry,
-			StreamReaderFactory streamReaderFactory,
-			StreamWriterFactory streamWriterFactory,
-			SyncSessionFactory syncSessionFactory,
-			TransportPropertyManager transportPropertyManager,
-			Executor ioExecutor, TransportId transportId,
-			DuplexTransportConnection connection) {
-		super(keyManager, connectionRegistry, streamReaderFactory,
-				streamWriterFactory, syncSessionFactory,
-				transportPropertyManager);
-		this.ioExecutor = ioExecutor;
-		this.transportId = transportId;
-		reader = connection.getReader();
-		writer = connection.getWriter();
-		remote = connection.getRemoteProperties();
-	}
+    void setOutgoingSession(SyncSession outgoingSession) {
+        boolean interruptWasWaiting = false;
+        synchronized (interruptLock) {
+            this.outgoingSession = outgoingSession;
+            if (interruptWaiting) {
+                interruptWasWaiting = true;
+                interruptWaiting = false;
+            }
+        }
+        if (interruptWasWaiting) outgoingSession.interrupt();
+    }
 
-	void onReadError(boolean recognised) {
-		disposeOnError(reader, recognised);
-		disposeOnError(writer);
-		interruptOutgoingSession();
-	}
+    void onReadError(boolean recognised) {
+        disposeOnError(reader, recognised);
+        disposeOnError(writer);
+        interruptOutgoingSession();
+    }
 
-	void onWriteError() {
-		disposeOnError(reader, true);
-		disposeOnError(writer);
-	}
+    void onWriteError() {
+        disposeOnError(reader, true);
+        disposeOnError(writer);
+    }
 
-	SyncSession createDuplexOutgoingSession(StreamContext ctx,
-			TransportConnectionWriter w, @Nullable Priority priority)
-			throws IOException {
-		StreamWriter streamWriter = streamWriterFactory.createStreamWriter(
-				w.getOutputStream(), ctx);
-		ContactId c = requireNonNull(ctx.getContactId());
-		return syncSessionFactory.createDuplexOutgoingSession(c,
-				ctx.getTransportId(), w.getMaxLatency(), w.getMaxIdleTime(),
-				streamWriter, priority);
-	}
+    SyncSession createDuplexOutgoingSession(StreamContext ctx,
+                                            TransportConnectionWriter w, @Nullable Priority priority)
+            throws IOException {
+        StreamWriter streamWriter = streamWriterFactory.createStreamWriter(
+                w.getOutputStream(), ctx);
+        ContactId c = requireNonNull(ctx.getContactId());
+        return syncSessionFactory.createDuplexOutgoingSession(c,
+                ctx.getTransportId(), w.getMaxLatency(), w.getMaxIdleTime(),
+                streamWriter, priority);
+    }
 }

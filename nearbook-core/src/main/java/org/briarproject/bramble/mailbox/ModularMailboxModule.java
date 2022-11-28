@@ -5,13 +5,13 @@ import dagger.Provides;
 
 @Module
 public class ModularMailboxModule {
-	@Provides
-	MailboxConfig provideMailboxConfig(MailboxConfigImpl mailboxConfig) {
-		return mailboxConfig;
-	}
+    @Provides
+    MailboxConfig provideMailboxConfig(MailboxConfigImpl mailboxConfig) {
+        return mailboxConfig;
+    }
 
-	@Provides
-	UrlConverter provideUrlConverter(UrlConverterImpl urlConverter) {
-		return urlConverter;
-	}
+    @Provides
+    UrlConverter provideUrlConverter(UrlConverterImpl urlConverter) {
+        return urlConverter;
+    }
 }

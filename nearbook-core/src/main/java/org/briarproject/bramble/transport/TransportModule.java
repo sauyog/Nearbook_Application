@@ -17,35 +17,35 @@ import dagger.Provides;
 @Module
 public class TransportModule {
 
-	public static class EagerSingletons {
-		@Inject
-		KeyManager keyManager;
-	}
+    @Provides
+    StreamReaderFactory provideStreamReaderFactory(
+            StreamDecrypterFactory streamDecrypterFactory) {
+        return new StreamReaderFactoryImpl(streamDecrypterFactory);
+    }
 
-	@Provides
-	StreamReaderFactory provideStreamReaderFactory(
-			StreamDecrypterFactory streamDecrypterFactory) {
-		return new StreamReaderFactoryImpl(streamDecrypterFactory);
-	}
+    @Provides
+    StreamWriterFactory provideStreamWriterFactory(
+            StreamEncrypterFactory streamEncrypterFactory) {
+        return new StreamWriterFactoryImpl(streamEncrypterFactory);
+    }
 
-	@Provides
-	StreamWriterFactory provideStreamWriterFactory(
-			StreamEncrypterFactory streamEncrypterFactory) {
-		return new StreamWriterFactoryImpl(streamEncrypterFactory);
-	}
+    @Provides
+    TransportKeyManagerFactory provideTransportKeyManagerFactory(
+            TransportKeyManagerFactoryImpl transportKeyManagerFactory) {
+        return transportKeyManagerFactory;
+    }
 
-	@Provides
-	TransportKeyManagerFactory provideTransportKeyManagerFactory(
-			TransportKeyManagerFactoryImpl transportKeyManagerFactory) {
-		return transportKeyManagerFactory;
-	}
+    @Provides
+    @Singleton
+    KeyManager provideKeyManager(LifecycleManager lifecycleManager,
+                                 EventBus eventBus, KeyManagerImpl keyManager) {
+        lifecycleManager.registerService(keyManager);
+        eventBus.addListener(keyManager);
+        return keyManager;
+    }
 
-	@Provides
-	@Singleton
-	KeyManager provideKeyManager(LifecycleManager lifecycleManager,
-			EventBus eventBus, KeyManagerImpl keyManager) {
-		lifecycleManager.registerService(keyManager);
-		eventBus.addListener(keyManager);
-		return keyManager;
-	}
+    public static class EagerSingletons {
+        @Inject
+        KeyManager keyManager;
+    }
 }

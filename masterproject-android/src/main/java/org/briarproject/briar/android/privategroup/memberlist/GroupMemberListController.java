@@ -9,7 +9,7 @@ import java.util.Collection;
 
 public interface GroupMemberListController extends DbController {
 
-	void loadMembers(GroupId groupId,
-			ResultExceptionHandler<Collection<MemberListItem>, DbException> handler);
+    void loadMembers(GroupId groupId,
+                     ResultExceptionHandler<Collection<MemberListItem>, DbException> handler);
 
 }

@@ -11,10 +11,10 @@ include ':nearbook-headless'
 // on the command line (for CI etc) or set `masterproject.mailbox_integration_tests=true`
 // in gradle.properties to enable the modules for local development.
 if (ext.has("masterproject.mailbox_integration_tests") && ext.get("masterproject.mailbox_integration_tests") == "true"
-		|| System.env.MAILBOX_INTEGRATION_TESTS) {
-	include ':mailbox-integration-tests'
-	include(":mailbox-core")
-	include(":mailbox-lib")
-	project(":mailbox-core").projectDir = file("masterproject-mailbox/mailbox-core")
-	project(":mailbox-lib").projectDir = file("masterproject-mailbox/mailbox-lib")
+        || System.env.MAILBOX_INTEGRATION_TESTS) {
+    include ':mailbox-integration-tests'
+    include(":mailbox-core")
+    include(":mailbox-lib")
+    project(":mailbox-core").projectDir = file("masterproject-mailbox/mailbox-core")
+    project(":mailbox-lib").projectDir = file("masterproject-mailbox/mailbox-lib")
 }

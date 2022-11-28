@@ -13,22 +13,22 @@ import javax.annotation.concurrent.Immutable;
 @Immutable
 @NotNullByDefault
 public abstract class ConversationMessageReceivedEvent<H extends ConversationMessageHeader>
-		extends Event {
+        extends Event {
 
-	private final H messageHeader;
-	private final ContactId contactId;
+    private final H messageHeader;
+    private final ContactId contactId;
 
-	public ConversationMessageReceivedEvent(H messageHeader,
-			ContactId contactId) {
-		this.messageHeader = messageHeader;
-		this.contactId = contactId;
-	}
+    public ConversationMessageReceivedEvent(H messageHeader,
+                                            ContactId contactId) {
+        this.messageHeader = messageHeader;
+        this.contactId = contactId;
+    }
 
-	public H getMessageHeader() {
-		return messageHeader;
-	}
+    public H getMessageHeader() {
+        return messageHeader;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 }

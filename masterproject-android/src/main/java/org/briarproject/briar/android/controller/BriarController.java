@@ -7,21 +7,21 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface BriarController extends ActivityLifecycleController {
 
-	void startAndBindService();
+    void startAndBindService();
 
-	boolean accountSignedIn();
+    boolean accountSignedIn();
 
-	/**
-	 * Returns true via the handler when the app has dozed
-	 * without being white-listed.
-	 */
-	void hasDozed(ResultHandler<Boolean> handler);
+    /**
+     * Returns true via the handler when the app has dozed
+     * without being white-listed.
+     */
+    void hasDozed(ResultHandler<Boolean> handler);
 
-	void doNotAskAgainForDozeWhiteListing();
+    void doNotAskAgainForDozeWhiteListing();
 
-	@Wakeful
-	void signOut(ResultHandler<Void> handler, boolean deleteAccount);
+    @Wakeful
+    void signOut(ResultHandler<Void> handler, boolean deleteAccount);
 
-	void deleteAccount();
+    void deleteAccount();
 
 }

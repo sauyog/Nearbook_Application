@@ -1,7 +1,21 @@
 package org.briarproject.masterproject.android.contact.connect;
 
+import static org.briarproject.bramble.api.plugin.BluetoothConstants.ID;
+import static org.briarproject.bramble.api.plugin.BluetoothConstants.PROP_UUID;
+import static org.briarproject.bramble.api.plugin.Plugin.State.ACTIVE;
+import static org.briarproject.bramble.util.LogUtils.logException;
+import static org.briarproject.bramble.util.StringUtils.isNullOrEmpty;
+import static org.briarproject.masterproject.android.util.PermissionUtils.areBluetoothPermissionsGranted;
+import static java.util.Objects.requireNonNull;
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static java.util.logging.Level.WARNING;
+import static java.util.logging.Logger.getLogger;
+
 import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
 
 import org.briarproject.bramble.api.connection.ConnectionManager;
 import org.briarproject.bramble.api.connection.ConnectionRegistry;
@@ -34,241 +48,225 @@ import java.util.logging.Logger;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
-
-import static java.util.Objects.requireNonNull;
-import static java.util.concurrent.TimeUnit.SECONDS;
-import static java.util.logging.Level.WARNING;
-import static java.util.logging.Logger.getLogger;
-import static org.briarproject.bramble.api.plugin.BluetoothConstants.ID;
-import static org.briarproject.bramble.api.plugin.BluetoothConstants.PROP_UUID;
-import static org.briarproject.bramble.api.plugin.Plugin.State.ACTIVE;
-import static org.briarproject.bramble.util.LogUtils.logException;
-import static org.briarproject.bramble.util.StringUtils.isNullOrEmpty;
-import static org.briarproject.masterproject.android.util.PermissionUtils.areBluetoothPermissionsGranted;
-
 @UiThread
 @NotNullByDefault
 class ConnectViaBluetoothViewModel extends DbViewModel implements
-		EventListener {
+        EventListener {
 
-	private final Logger LOG =
-			getLogger(ConnectViaBluetoothViewModel.class.getName());
+    private final Logger LOG =
+            getLogger(ConnectViaBluetoothViewModel.class.getName());
 
-	private final long BT_ACTIVE_TIMEOUT = SECONDS.toMillis(5);
+    private final long BT_ACTIVE_TIMEOUT = SECONDS.toMillis(5);
 
-	private final PluginManager pluginManager;
-	private final Executor ioExecutor;
-	private final ConnectionRegistry connectionRegistry;
-	@Nullable
-	private final BluetoothAdapter bt = BluetoothAdapter.getDefaultAdapter();
-	private final EventBus eventBus;
-	private final TransportPropertyManager transportPropertyManager;
-	private final ConnectionManager connectionManager;
+    private final PluginManager pluginManager;
+    private final Executor ioExecutor;
+    private final ConnectionRegistry connectionRegistry;
+    @Nullable
+    private final BluetoothAdapter bt = BluetoothAdapter.getDefaultAdapter();
+    private final EventBus eventBus;
+    private final TransportPropertyManager transportPropertyManager;
+    private final ConnectionManager connectionManager;
+    private final MutableLiveEvent<ConnectViaBluetoothState> state =
+            new MutableLiveEvent<>();
+    @Nullable
+    private volatile BluetoothPlugin bluetoothPlugin;
+    @Nullable
+    private ContactId contactId = null;
 
-	@Nullable
-	private volatile BluetoothPlugin bluetoothPlugin;
-	@Nullable
-	private ContactId contactId = null;
+    @Inject
+    ConnectViaBluetoothViewModel(
+            Application app,
+            @DatabaseExecutor Executor dbExecutor,
+            LifecycleManager lifecycleManager,
+            TransactionManager db,
+            AndroidExecutor androidExecutor,
+            PluginManager pluginManager,
+            @IoExecutor Executor ioExecutor,
+            ConnectionRegistry connectionRegistry,
+            EventBus eventBus,
+            TransportPropertyManager transportPropertyManager,
+            ConnectionManager connectionManager) {
+        super(app, dbExecutor, lifecycleManager, db, androidExecutor);
+        this.pluginManager = pluginManager;
+        this.ioExecutor = ioExecutor;
+        this.bluetoothPlugin = (BluetoothPlugin) pluginManager.getPlugin(ID);
+        this.connectionRegistry = connectionRegistry;
+        this.eventBus = eventBus;
+        this.transportPropertyManager = transportPropertyManager;
+        this.connectionManager = connectionManager;
+    }
 
-	private final MutableLiveEvent<ConnectViaBluetoothState> state =
-			new MutableLiveEvent<>();
+    @Override
+    protected void onCleared() {
+        stopConnecting();
+    }
 
-	@Inject
-	ConnectViaBluetoothViewModel(
-			Application app,
-			@DatabaseExecutor Executor dbExecutor,
-			LifecycleManager lifecycleManager,
-			TransactionManager db,
-			AndroidExecutor androidExecutor,
-			PluginManager pluginManager,
-			@IoExecutor Executor ioExecutor,
-			ConnectionRegistry connectionRegistry,
-			EventBus eventBus,
-			TransportPropertyManager transportPropertyManager,
-			ConnectionManager connectionManager) {
-		super(app, dbExecutor, lifecycleManager, db, androidExecutor);
-		this.pluginManager = pluginManager;
-		this.ioExecutor = ioExecutor;
-		this.bluetoothPlugin = (BluetoothPlugin) pluginManager.getPlugin(ID);
-		this.connectionRegistry = connectionRegistry;
-		this.eventBus = eventBus;
-		this.transportPropertyManager = transportPropertyManager;
-		this.connectionManager = connectionManager;
-	}
+    /**
+     * Set this as soon as it becomes available.
+     */
+    void setContactId(ContactId contactId) {
+        this.contactId = contactId;
+    }
 
-	@Override
-	protected void onCleared() {
-		stopConnecting();
-	}
+    /**
+     * Call this when the using activity or fragment starts.
+     */
+    void reset() {
+        // When this class is instantiated before we are logged in
+        // (like when returning to a killed activity), bluetoothPlugin would be
+        // null and we consider bluetooth not supported. So reset here.
+        bluetoothPlugin = (BluetoothPlugin) pluginManager.getPlugin(ID);
+    }
 
-	/**
-	 * Set this as soon as it becomes available.
-	 */
-	void setContactId(ContactId contactId) {
-		this.contactId = contactId;
-	}
+    @UiThread
+    boolean shouldStartFlow() {
+        if (isBluetoothNotSupported()) {
+            state.setEvent(new ConnectViaBluetoothState.Error(
+                    R.string.bt_plugin_status_inactive));
+            return false;
+        } else if (isConnectedViaBluetooth()) {
+            state.setEvent(new Success());
+            return false;
+        } else if (isDiscovering()) {
+            state.setEvent(new ConnectViaBluetoothState.Error(
+                    R.string.connect_via_bluetooth_already_discovering));
+            return false;
+        }
+        return true;
+    }
 
-	/**
-	 * Call this when the using activity or fragment starts.
-	 */
-	void reset() {
-		// When this class is instantiated before we are logged in
-		// (like when returning to a killed activity), bluetoothPlugin would be
-		// null and we consider bluetooth not supported. So reset here.
-		bluetoothPlugin = (BluetoothPlugin) pluginManager.getPlugin(ID);
-	}
+    private boolean isBluetoothNotSupported() {
+        return bt == null || bluetoothPlugin == null;
+    }
 
-	@UiThread
-	boolean shouldStartFlow() {
-		if (isBluetoothNotSupported()) {
-			state.setEvent(new ConnectViaBluetoothState.Error(
-					R.string.bt_plugin_status_inactive));
-			return false;
-		} else if (isConnectedViaBluetooth()) {
-			state.setEvent(new Success());
-			return false;
-		} else if (isDiscovering()) {
-			state.setEvent(new ConnectViaBluetoothState.Error(
-					R.string.connect_via_bluetooth_already_discovering));
-			return false;
-		}
-		return true;
-	}
+    private boolean isDiscovering() {
+        // we should not be calling this if isBluetoothNotSupported() is true
+        return requireNonNull(bluetoothPlugin).isDiscovering();
+    }
 
-	private boolean isBluetoothNotSupported() {
-		return bt == null || bluetoothPlugin == null;
-	}
+    private boolean isConnectedViaBluetooth() {
+        return connectionRegistry.isConnected(requireNonNull(contactId), ID);
+    }
 
-	private boolean isDiscovering() {
-		// we should not be calling this if isBluetoothNotSupported() is true
-		return requireNonNull(bluetoothPlugin).isDiscovering();
-	}
+    @UiThread
+    void onBluetoothDiscoverable() {
+        ContactId contactId = requireNonNull(this.contactId);
+        BluetoothPlugin bluetoothPlugin = requireNonNull(this.bluetoothPlugin);
 
-	private boolean isConnectedViaBluetooth() {
-		return connectionRegistry.isConnected(requireNonNull(contactId), ID);
-	}
+        state.setEvent(new Connecting());
 
-	@UiThread
-	void onBluetoothDiscoverable() {
-		ContactId contactId = requireNonNull(this.contactId);
-		BluetoothPlugin bluetoothPlugin = requireNonNull(this.bluetoothPlugin);
+        bluetoothPlugin.disablePolling();
+        pluginManager.setPluginEnabled(ID, true);
+        ioExecutor.execute(() -> {
+            try {
+                if (!waitForBluetoothActive()) {
+                    state.postEvent(new ConnectViaBluetoothState.Error(
+                            R.string.bt_plugin_status_inactive));
+                    LOG.warning("Bluetooth plugin didn't become active");
+                    return;
+                }
+                eventBus.addListener(this);
+                try {
+                    String uuid = null;
+                    try {
+                        uuid = transportPropertyManager
+                                .getRemoteProperties(contactId, ID)
+                                .get(PROP_UUID);
+                    } catch (DbException e) {
+                        logException(LOG, WARNING, e);
+                    }
+                    if (isNullOrEmpty(uuid)) {
+                        LOG.warning("PROP_UUID missing for contact");
+                        return;
+                    }
+                    DuplexTransportConnection conn = bluetoothPlugin
+                            .discoverAndConnectForSetup(uuid);
+                    if (conn == null) {
+                        waitAfterConnectionFailed();
+                    } else {
+                        LOG.info("Could connect, handling connection");
+                        connectionManager
+                                .manageOutgoingConnection(contactId, ID, conn);
+                        state.postEvent(new Success());
+                    }
+                } finally {
+                    eventBus.removeListener(this);
+                }
+            } finally {
+                bluetoothPlugin.enablePolling();
+            }
+        });
+    }
 
-		state.setEvent(new Connecting());
+    @UiThread
+    @Override
+    public void eventOccurred(@NonNull Event e) {
+        if (e instanceof ConnectionOpenedEvent) {
+            ConnectionOpenedEvent c = (ConnectionOpenedEvent) e;
+            if (c.getContactId().equals(contactId) && c.isIncoming() &&
+                    c.getTransportId() == ID) {
+                stopConnecting();
+                LOG.info("Contact connected to us");
+                state.postEvent(new Success());
+            }
+        }
+    }
 
-		bluetoothPlugin.disablePolling();
-		pluginManager.setPluginEnabled(ID, true);
-		ioExecutor.execute(() -> {
-			try {
-				if (!waitForBluetoothActive()) {
-					state.postEvent(new ConnectViaBluetoothState.Error(
-							R.string.bt_plugin_status_inactive));
-					LOG.warning("Bluetooth plugin didn't become active");
-					return;
-				}
-				eventBus.addListener(this);
-				try {
-					String uuid = null;
-					try {
-						uuid = transportPropertyManager
-								.getRemoteProperties(contactId, ID)
-								.get(PROP_UUID);
-					} catch (DbException e) {
-						logException(LOG, WARNING, e);
-					}
-					if (isNullOrEmpty(uuid)) {
-						LOG.warning("PROP_UUID missing for contact");
-						return;
-					}
-					DuplexTransportConnection conn = bluetoothPlugin
-							.discoverAndConnectForSetup(uuid);
-					if (conn == null) {
-						waitAfterConnectionFailed();
-					} else {
-						LOG.info("Could connect, handling connection");
-						connectionManager
-								.manageOutgoingConnection(contactId, ID, conn);
-						state.postEvent(new Success());
-					}
-				} finally {
-					eventBus.removeListener(this);
-				}
-			} finally {
-				bluetoothPlugin.enablePolling();
-			}
-		});
-	}
+    @IoExecutor
+    private boolean waitForBluetoothActive() {
+        BluetoothPlugin bluetoothPlugin = requireNonNull(this.bluetoothPlugin);
+        long left = BT_ACTIVE_TIMEOUT;
+        final long sleep = 250;
+        try {
+            while (left > 0) {
+                if (bluetoothPlugin.getState() == ACTIVE) {
+                    return true;
+                }
+                Thread.sleep(sleep);
+                left -= sleep;
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        return (bluetoothPlugin.getState() == ACTIVE);
+    }
 
-	@UiThread
-	@Override
-	public void eventOccurred(@NonNull Event e) {
-		if (e instanceof ConnectionOpenedEvent) {
-			ConnectionOpenedEvent c = (ConnectionOpenedEvent) e;
-			if (c.getContactId().equals(contactId) && c.isIncoming() &&
-					c.getTransportId() == ID) {
-				stopConnecting();
-				LOG.info("Contact connected to us");
-				state.postEvent(new Success());
-			}
-		}
-	}
+    /**
+     * Wait for an incoming connection before showing an error Toast.
+     */
+    @IoExecutor
+    private void waitAfterConnectionFailed() {
+        long left = BT_ACTIVE_TIMEOUT;
+        final long sleep = 250;
+        try {
+            while (left > 0) {
+                if (isConnectedViaBluetooth()) {
+                    LOG.info("Failed to connect, but contact connected");
+                    // no success state needed here, as it gets shown when
+                    // ConnectionOpenedEvent is received
+                    return;
+                }
+                Thread.sleep(sleep);
+                left -= sleep;
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        LOG.warning("Failed to connect");
+        state.postEvent(new ConnectViaBluetoothState.Error(
+                R.string.connect_via_bluetooth_error));
+    }
 
-	@IoExecutor
-	private boolean waitForBluetoothActive() {
-		BluetoothPlugin bluetoothPlugin = requireNonNull(this.bluetoothPlugin);
-		long left = BT_ACTIVE_TIMEOUT;
-		final long sleep = 250;
-		try {
-			while (left > 0) {
-				if (bluetoothPlugin.getState() == ACTIVE) {
-					return true;
-				}
-				Thread.sleep(sleep);
-				left -= sleep;
-			}
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
-		return (bluetoothPlugin.getState() == ACTIVE);
-	}
+    private void stopConnecting() {
+        BluetoothPlugin bluetoothPlugin = this.bluetoothPlugin;
+        if (bluetoothPlugin != null &&
+                areBluetoothPermissionsGranted(getApplication())) {
+            bluetoothPlugin.stopDiscoverAndConnect();
+        }
+    }
 
-	/**
-	 * Wait for an incoming connection before showing an error Toast.
-	 */
-	@IoExecutor
-	private void waitAfterConnectionFailed() {
-		long left = BT_ACTIVE_TIMEOUT;
-		final long sleep = 250;
-		try {
-			while (left > 0) {
-				if (isConnectedViaBluetooth()) {
-					LOG.info("Failed to connect, but contact connected");
-					// no success state needed here, as it gets shown when
-					// ConnectionOpenedEvent is received
-					return;
-				}
-				Thread.sleep(sleep);
-				left -= sleep;
-			}
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
-		LOG.warning("Failed to connect");
-		state.postEvent(new ConnectViaBluetoothState.Error(
-				R.string.connect_via_bluetooth_error));
-	}
-
-	private void stopConnecting() {
-		BluetoothPlugin bluetoothPlugin = this.bluetoothPlugin;
-		if (bluetoothPlugin != null &&
-				areBluetoothPermissionsGranted(getApplication())) {
-			bluetoothPlugin.stopDiscoverAndConnect();
-		}
-	}
-
-	LiveEvent<ConnectViaBluetoothState> getState() {
-		return state;
-	}
+    LiveEvent<ConnectViaBluetoothState> getState() {
+        return state;
+    }
 
 }

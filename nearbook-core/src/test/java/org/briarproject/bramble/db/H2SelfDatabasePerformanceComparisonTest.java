@@ -14,17 +14,17 @@ import java.sql.Connection;
  */
 @Ignore
 public class H2SelfDatabasePerformanceComparisonTest
-		extends DatabasePerformanceComparisonTest {
+        extends DatabasePerformanceComparisonTest {
 
-	@Override
-	Database<Connection> createDatabase(boolean conditionA,
-			DatabaseConfig databaseConfig, MessageFactory messageFactory,
-			Clock clock) {
-		return new H2Database(databaseConfig, messageFactory, clock);
-	}
+    @Override
+    Database<Connection> createDatabase(boolean conditionA,
+                                        DatabaseConfig databaseConfig, MessageFactory messageFactory,
+                                        Clock clock) {
+        return new H2Database(databaseConfig, messageFactory, clock);
+    }
 
-	@Override
-	protected String getTestName() {
-		return getClass().getSimpleName();
-	}
+    @Override
+    protected String getTestName() {
+        return getClass().getSimpleName();
+    }
 }

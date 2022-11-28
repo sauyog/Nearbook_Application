@@ -11,9 +11,9 @@ import java.util.Collection;
 
 @NotNullByDefault
 public interface ContactSelectorController<I extends SelectableContactItem>
-		extends DbController {
+        extends DbController {
 
-	void loadContacts(GroupId g, Collection<ContactId> selection,
-			ResultExceptionHandler<Collection<I>, DbException> handler);
+    void loadContacts(GroupId g, Collection<ContactId> selection,
+                      ResultExceptionHandler<Collection<I>, DbException> handler);
 
 }

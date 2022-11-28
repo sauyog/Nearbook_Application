@@ -13,13 +13,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class KeyAgreementFinishedEvent extends Event {
 
-	private final KeyAgreementResult result;
+    private final KeyAgreementResult result;
 
-	public KeyAgreementFinishedEvent(KeyAgreementResult result) {
-		this.result = result;
-	}
+    public KeyAgreementFinishedEvent(KeyAgreementResult result) {
+        this.result = result;
+    }
 
-	public KeyAgreementResult getResult() {
-		return result;
-	}
+    public KeyAgreementResult getResult() {
+        return result;
+    }
 }

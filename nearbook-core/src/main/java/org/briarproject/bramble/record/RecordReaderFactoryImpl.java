@@ -7,8 +7,8 @@ import java.io.InputStream;
 
 class RecordReaderFactoryImpl implements RecordReaderFactory {
 
-	@Override
-	public RecordReader createRecordReader(InputStream in) {
-		return new RecordReaderImpl(in);
-	}
+    @Override
+    public RecordReader createRecordReader(InputStream in) {
+        return new RecordReaderImpl(in);
+    }
 }

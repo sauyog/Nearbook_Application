@@ -8,10 +8,10 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface EventListener {
 
-	/**
-	 * Called when an event is broadcast. Implementations of this method must
-	 * not block.
-	 */
-	@EventExecutor
-	void eventOccurred(Event e);
+    /**
+     * Called when an event is broadcast. Implementations of this method must
+     * not block.
+     */
+    @EventExecutor
+    void eventOccurred(Event e);
 }

@@ -15,13 +15,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class OwnMailboxConnectionStatusEvent extends Event {
 
-	private final MailboxStatus status;
+    private final MailboxStatus status;
 
-	public OwnMailboxConnectionStatusEvent(MailboxStatus status) {
-		this.status = status;
-	}
+    public OwnMailboxConnectionStatusEvent(MailboxStatus status) {
+        this.status = status;
+    }
 
-	public MailboxStatus getStatus() {
-		return status;
-	}
+    public MailboxStatus getStatus() {
+        return status;
+    }
 }

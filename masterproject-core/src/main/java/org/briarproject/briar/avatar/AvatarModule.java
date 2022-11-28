@@ -1,5 +1,9 @@
 package org.briarproject.briar.avatar;
 
+import static org.briarproject.masterproject.api.avatar.AvatarManager.CLIENT_ID;
+import static org.briarproject.masterproject.api.avatar.AvatarManager.MAJOR_VERSION;
+import static org.briarproject.masterproject.api.avatar.AvatarManager.MINOR_VERSION;
+
 import org.briarproject.bramble.api.contact.ContactManager;
 import org.briarproject.bramble.api.data.BdfReaderFactory;
 import org.briarproject.bramble.api.data.MetadataEncoder;
@@ -16,54 +20,50 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-import static org.briarproject.masterproject.api.avatar.AvatarManager.CLIENT_ID;
-import static org.briarproject.masterproject.api.avatar.AvatarManager.MAJOR_VERSION;
-import static org.briarproject.masterproject.api.avatar.AvatarManager.MINOR_VERSION;
-
 @Module
 public class AvatarModule {
 
-	public static class EagerSingletons {
-		@Inject
-		AvatarValidator avatarValidator;
-		@Inject
-		AvatarManager avatarManager;
-	}
+    @Provides
+    @Singleton
+    AvatarValidator provideAvatarValidator(ValidationManager validationManager,
+                                           BdfReaderFactory bdfReaderFactory, MetadataEncoder metadataEncoder,
+                                           Clock clock) {
+        AvatarValidator avatarValidator =
+                new AvatarValidator(bdfReaderFactory, metadataEncoder, clock);
+        validationManager.registerMessageValidator(CLIENT_ID, MAJOR_VERSION,
+                avatarValidator);
+        return avatarValidator;
+    }
 
-	@Provides
-	@Singleton
-	AvatarValidator provideAvatarValidator(ValidationManager validationManager,
-			BdfReaderFactory bdfReaderFactory, MetadataEncoder metadataEncoder,
-			Clock clock) {
-		AvatarValidator avatarValidator =
-				new AvatarValidator(bdfReaderFactory, metadataEncoder, clock);
-		validationManager.registerMessageValidator(CLIENT_ID, MAJOR_VERSION,
-				avatarValidator);
-		return avatarValidator;
-	}
+    @Provides
+    @Singleton
+    AvatarMessageEncoder provideMessageEncoder(
+            AvatarMessageEncoderImpl messageEncoder) {
+        return messageEncoder;
+    }
 
-	@Provides
-	@Singleton
-	AvatarMessageEncoder provideMessageEncoder(
-			AvatarMessageEncoderImpl messageEncoder) {
-		return messageEncoder;
-	}
+    @Provides
+    @Singleton
+    AvatarManager provideAvatarManager(
+            LifecycleManager lifecycleManager,
+            ContactManager contactManager,
+            ValidationManager validationManager,
+            ClientVersioningManager clientVersioningManager,
+            AvatarManagerImpl avatarManager) {
+        lifecycleManager.registerOpenDatabaseHook(avatarManager);
+        contactManager.registerContactHook(avatarManager);
+        validationManager.registerIncomingMessageHook(CLIENT_ID,
+                MAJOR_VERSION, avatarManager);
+        clientVersioningManager.registerClient(CLIENT_ID,
+                MAJOR_VERSION, MINOR_VERSION, avatarManager);
+        return avatarManager;
+    }
 
-	@Provides
-	@Singleton
-	AvatarManager provideAvatarManager(
-			LifecycleManager lifecycleManager,
-			ContactManager contactManager,
-			ValidationManager validationManager,
-			ClientVersioningManager clientVersioningManager,
-			AvatarManagerImpl avatarManager) {
-		lifecycleManager.registerOpenDatabaseHook(avatarManager);
-		contactManager.registerContactHook(avatarManager);
-		validationManager.registerIncomingMessageHook(CLIENT_ID,
-				MAJOR_VERSION, avatarManager);
-		clientVersioningManager.registerClient(CLIENT_ID,
-				MAJOR_VERSION, MINOR_VERSION, avatarManager);
-		return avatarManager;
-	}
+    public static class EagerSingletons {
+        @Inject
+        AvatarValidator avatarValidator;
+        @Inject
+        AvatarManager avatarManager;
+    }
 
 }

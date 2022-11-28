@@ -13,22 +13,22 @@ import javax.microedition.io.StreamConnection;
 @Immutable
 @NotNullByDefault
 class JavaBluetoothConnectionFactory
-		implements BluetoothConnectionFactory<StreamConnection> {
+        implements BluetoothConnectionFactory<StreamConnection> {
 
-	private final BluetoothConnectionLimiter connectionLimiter;
-	private final TimeoutMonitor timeoutMonitor;
+    private final BluetoothConnectionLimiter connectionLimiter;
+    private final TimeoutMonitor timeoutMonitor;
 
-	JavaBluetoothConnectionFactory(
-			BluetoothConnectionLimiter connectionLimiter,
-			TimeoutMonitor timeoutMonitor) {
-		this.connectionLimiter = connectionLimiter;
-		this.timeoutMonitor = timeoutMonitor;
-	}
+    JavaBluetoothConnectionFactory(
+            BluetoothConnectionLimiter connectionLimiter,
+            TimeoutMonitor timeoutMonitor) {
+        this.connectionLimiter = connectionLimiter;
+        this.timeoutMonitor = timeoutMonitor;
+    }
 
-	@Override
-	public DuplexTransportConnection wrapSocket(DuplexPlugin plugin,
-			StreamConnection socket) throws IOException {
-		return new JavaBluetoothTransportConnection(plugin, connectionLimiter,
-				timeoutMonitor, socket);
-	}
+    @Override
+    public DuplexTransportConnection wrapSocket(DuplexPlugin plugin,
+                                                StreamConnection socket) throws IOException {
+        return new JavaBluetoothTransportConnection(plugin, connectionLimiter,
+                timeoutMonitor, socket);
+    }
 }

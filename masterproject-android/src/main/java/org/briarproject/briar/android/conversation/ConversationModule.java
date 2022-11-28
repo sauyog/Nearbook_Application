@@ -9,11 +9,11 @@ import dagger.Provides;
 @Module
 public class ConversationModule {
 
-	@ActivityScope
-	@Provides
-	BriarDataFetcherFactory provideBriarDataFetcherFactory(
-			BriarDataFetcherFactory dataFetcherFactory) {
-		return dataFetcherFactory;
-	}
+    @ActivityScope
+    @Provides
+    BriarDataFetcherFactory provideBriarDataFetcherFactory(
+            BriarDataFetcherFactory dataFetcherFactory) {
+        return dataFetcherFactory;
+    }
 
 }

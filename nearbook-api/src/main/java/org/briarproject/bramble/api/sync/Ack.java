@@ -13,16 +13,16 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class Ack {
 
-	private final Collection<MessageId> acked;
+    private final Collection<MessageId> acked;
 
-	public Ack(Collection<MessageId> acked) {
-		this.acked = acked;
-	}
+    public Ack(Collection<MessageId> acked) {
+        this.acked = acked;
+    }
 
-	/**
-	 * Returns the identifiers of the acknowledged messages.
-	 */
-	public Collection<MessageId> getMessageIds() {
-		return acked;
-	}
+    /**
+     * Returns the identifiers of the acknowledged messages.
+     */
+    public Collection<MessageId> getMessageIds() {
+        return acked;
+    }
 }

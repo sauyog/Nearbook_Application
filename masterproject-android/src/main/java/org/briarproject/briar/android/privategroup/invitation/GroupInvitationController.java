@@ -6,5 +6,5 @@ import org.briarproject.nullsafety.NotNullByDefault;
 
 @NotNullByDefault
 interface GroupInvitationController
-		extends InvitationController<GroupInvitationItem> {
+        extends InvitationController<GroupInvitationItem> {
 }

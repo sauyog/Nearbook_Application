@@ -11,15 +11,15 @@ import dagger.Provides;
 @Module
 public class ConversationModule {
 
-	public static class EagerSingletons {
-		@Inject
-		ConversationManager conversationManager;
-	}
+    @Provides
+    @Singleton
+    ConversationManager provideConversationManager(
+            ConversationManagerImpl conversationManager) {
+        return conversationManager;
+    }
 
-	@Provides
-	@Singleton
-	ConversationManager provideConversationManager(
-			ConversationManagerImpl conversationManager) {
-		return conversationManager;
-	}
+    public static class EagerSingletons {
+        @Inject
+        ConversationManager conversationManager;
+    }
 }

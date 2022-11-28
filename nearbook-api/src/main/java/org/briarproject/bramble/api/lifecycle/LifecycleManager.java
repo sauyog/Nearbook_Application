@@ -18,108 +18,108 @@ import java.util.concurrent.ExecutorService;
 @NotNullByDefault
 public interface LifecycleManager {
 
-	/**
-	 * The result of calling {@link #startServices(SecretKey)}.
-	 */
-	enum StartResult {
-		ALREADY_RUNNING,
-		CLOCK_ERROR,
-		DB_ERROR,
-		DATA_TOO_OLD_ERROR,
-		DATA_TOO_NEW_ERROR,
-		SERVICE_ERROR,
-		SUCCESS
-	}
+    /**
+     * Registers a hook to be called after the database is opened and before
+     * {@link Service services} are started. This method should be called
+     * before {@link #startServices(SecretKey)}.
+     */
+    void registerOpenDatabaseHook(OpenDatabaseHook hook);
 
-	/**
-	 * The state the lifecycle can be in.
-	 * Returned by {@link #getLifecycleState()}
-	 */
-	enum LifecycleState {
+    /**
+     * Registers a {@link Service} to be started and stopped. This method
+     * should be called before {@link #startServices(SecretKey)}.
+     */
+    void registerService(Service s);
 
-		CREATED,
-		STARTING,
-		MIGRATING_DATABASE,
-		COMPACTING_DATABASE,
-		STARTING_SERVICES,
-		RUNNING,
-		STOPPING,
-		STOPPED;
+    /**
+     * Registers an {@link ExecutorService} to be shut down. This method
+     * should be called before {@link #startServices(SecretKey)}.
+     */
+    void registerForShutdown(ExecutorService e);
 
-		public boolean isAfter(LifecycleState state) {
-			return ordinal() > state.ordinal();
-		}
-	}
+    /**
+     * Opens the {@link DatabaseComponent} using the given key and starts any
+     * registered {@link Service Services}.
+     *
+     * @return {@link StartResult#CLOCK_ERROR} if the system clock is earlier
+     * than {@link Clock#MIN_REASONABLE_TIME_MS} or later than
+     * {@link Clock#MAX_REASONABLE_TIME_MS}.
+     */
+    @Wakeful
+    StartResult startServices(SecretKey dbKey);
 
-	/**
-	 * Registers a hook to be called after the database is opened and before
-	 * {@link Service services} are started. This method should be called
-	 * before {@link #startServices(SecretKey)}.
-	 */
-	void registerOpenDatabaseHook(OpenDatabaseHook hook);
+    /**
+     * Stops any registered {@link Service Services}, shuts down any
+     * registered {@link ExecutorService ExecutorServices}, and closes the
+     * {@link DatabaseComponent}.
+     */
+    @Wakeful
+    void stopServices();
 
-	/**
-	 * Registers a {@link Service} to be started and stopped. This method
-	 * should be called before {@link #startServices(SecretKey)}.
-	 */
-	void registerService(Service s);
+    /**
+     * Waits for the {@link DatabaseComponent} to be opened before returning.
+     */
+    void waitForDatabase() throws InterruptedException;
 
-	/**
-	 * Registers an {@link ExecutorService} to be shut down. This method
-	 * should be called before {@link #startServices(SecretKey)}.
-	 */
-	void registerForShutdown(ExecutorService e);
+    /**
+     * Waits for the {@link DatabaseComponent} to be opened and all registered
+     * {@link Service Services} to start before returning.
+     */
+    void waitForStartup() throws InterruptedException;
 
-	/**
-	 * Opens the {@link DatabaseComponent} using the given key and starts any
-	 * registered {@link Service Services}.
-	 *
-	 * @return {@link StartResult#CLOCK_ERROR} if the system clock is earlier
-	 * than {@link Clock#MIN_REASONABLE_TIME_MS} or later than
-	 * {@link Clock#MAX_REASONABLE_TIME_MS}.
-	 */
-	@Wakeful
-	StartResult startServices(SecretKey dbKey);
+    /**
+     * Waits for all registered {@link Service Services} to stop, all
+     * registered {@link ExecutorService ExecutorServices} to shut down, and
+     * the {@link DatabaseComponent} to be closed before returning.
+     */
+    void waitForShutdown() throws InterruptedException;
 
-	/**
-	 * Stops any registered {@link Service Services}, shuts down any
-	 * registered {@link ExecutorService ExecutorServices}, and closes the
-	 * {@link DatabaseComponent}.
-	 */
-	@Wakeful
-	void stopServices();
+    /**
+     * Returns the current state of the lifecycle.
+     */
+    LifecycleState getLifecycleState();
 
-	/**
-	 * Waits for the {@link DatabaseComponent} to be opened before returning.
-	 */
-	void waitForDatabase() throws InterruptedException;
+    /**
+     * The result of calling {@link #startServices(SecretKey)}.
+     */
+    enum StartResult {
+        ALREADY_RUNNING,
+        CLOCK_ERROR,
+        DB_ERROR,
+        DATA_TOO_OLD_ERROR,
+        DATA_TOO_NEW_ERROR,
+        SERVICE_ERROR,
+        SUCCESS
+    }
 
-	/**
-	 * Waits for the {@link DatabaseComponent} to be opened and all registered
-	 * {@link Service Services} to start before returning.
-	 */
-	void waitForStartup() throws InterruptedException;
+    /**
+     * The state the lifecycle can be in.
+     * Returned by {@link #getLifecycleState()}
+     */
+    enum LifecycleState {
 
-	/**
-	 * Waits for all registered {@link Service Services} to stop, all
-	 * registered {@link ExecutorService ExecutorServices} to shut down, and
-	 * the {@link DatabaseComponent} to be closed before returning.
-	 */
-	void waitForShutdown() throws InterruptedException;
+        CREATED,
+        STARTING,
+        MIGRATING_DATABASE,
+        COMPACTING_DATABASE,
+        STARTING_SERVICES,
+        RUNNING,
+        STOPPING,
+        STOPPED;
 
-	/**
-	 * Returns the current state of the lifecycle.
-	 */
-	LifecycleState getLifecycleState();
+        public boolean isAfter(LifecycleState state) {
+            return ordinal() > state.ordinal();
+        }
+    }
 
-	interface OpenDatabaseHook {
-		/**
-		 * Called when the database is being opened, before
-		 * {@link #waitForDatabase()} returns.
-		 *
-		 * @param txn A read-write transaction
-		 */
-		@Wakeful
-		void onDatabaseOpened(Transaction txn) throws DbException;
-	}
+    interface OpenDatabaseHook {
+        /**
+         * Called when the database is being opened, before
+         * {@link #waitForDatabase()} returns.
+         *
+         * @param txn A read-write transaction
+         */
+        @Wakeful
+        void onDatabaseOpened(Transaction txn) throws DbException;
+    }
 }

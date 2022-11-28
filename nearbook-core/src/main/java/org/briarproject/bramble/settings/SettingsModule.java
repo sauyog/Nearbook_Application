@@ -9,9 +9,9 @@ import dagger.Provides;
 @Module
 public class SettingsModule {
 
-	@Provides
-	SettingsManager provideSettingsManager(DatabaseComponent db) {
-		return new SettingsManagerImpl(db);
-	}
+    @Provides
+    SettingsManager provideSettingsManager(DatabaseComponent db) {
+        return new SettingsManagerImpl(db);
+    }
 
 }

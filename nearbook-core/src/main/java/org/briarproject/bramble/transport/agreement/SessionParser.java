@@ -7,5 +7,5 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface SessionParser {
 
-	Session parseSession(BdfDictionary meta) throws FormatException;
+    Session parseSession(BdfDictionary meta) throws FormatException;
 }

@@ -16,19 +16,19 @@ import javax.inject.Inject;
 @NotNullByDefault
 class SyncRecordReaderFactoryImpl implements SyncRecordReaderFactory {
 
-	private final MessageFactory messageFactory;
-	private final RecordReaderFactory recordReaderFactory;
+    private final MessageFactory messageFactory;
+    private final RecordReaderFactory recordReaderFactory;
 
-	@Inject
-	SyncRecordReaderFactoryImpl(MessageFactory messageFactory,
-			RecordReaderFactory recordReaderFactory) {
-		this.messageFactory = messageFactory;
-		this.recordReaderFactory = recordReaderFactory;
-	}
+    @Inject
+    SyncRecordReaderFactoryImpl(MessageFactory messageFactory,
+                                RecordReaderFactory recordReaderFactory) {
+        this.messageFactory = messageFactory;
+        this.recordReaderFactory = recordReaderFactory;
+    }
 
-	@Override
-	public SyncRecordReader createRecordReader(InputStream in) {
-		RecordReader reader = recordReaderFactory.createRecordReader(in);
-		return new SyncRecordReaderImpl(messageFactory, reader);
-	}
+    @Override
+    public SyncRecordReader createRecordReader(InputStream in) {
+        RecordReader reader = recordReaderFactory.createRecordReader(in);
+        return new SyncRecordReaderImpl(messageFactory, reader);
+    }
 }

@@ -15,23 +15,23 @@ import javax.inject.Inject;
 @NotNullByDefault
 class BlogMessageParserImpl extends MessageParserImpl<Blog> {
 
-	private final BlogFactory blogFactory;
+    private final BlogFactory blogFactory;
 
-	@Inject
-	BlogMessageParserImpl(ClientHelper clientHelper, BlogFactory blogFactory) {
-		super(clientHelper);
-		this.blogFactory = blogFactory;
-	}
+    @Inject
+    BlogMessageParserImpl(ClientHelper clientHelper, BlogFactory blogFactory) {
+        super(clientHelper);
+        this.blogFactory = blogFactory;
+    }
 
-	@Override
-	public Blog createShareable(BdfList descriptor) throws FormatException {
-		// Author, RSS
-		BdfList authorList = descriptor.getList(0);
-		boolean rssFeed = descriptor.getBoolean(1);
+    @Override
+    public Blog createShareable(BdfList descriptor) throws FormatException {
+        // Author, RSS
+        BdfList authorList = descriptor.getList(0);
+        boolean rssFeed = descriptor.getBoolean(1);
 
-		Author author = clientHelper.parseAndValidateAuthor(authorList);
-		if (rssFeed) return blogFactory.createFeedBlog(author);
-		else return blogFactory.createBlog(author);
-	}
+        Author author = clientHelper.parseAndValidateAuthor(authorList);
+        if (rssFeed) return blogFactory.createFeedBlog(author);
+        else return blogFactory.createBlog(author);
+    }
 
 }

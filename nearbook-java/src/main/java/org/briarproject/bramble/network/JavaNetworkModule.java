@@ -10,9 +10,9 @@ import dagger.Provides;
 @Module
 public class JavaNetworkModule {
 
-	@Provides
-	@Singleton
-	NetworkManager provideNetworkManager(JavaNetworkManager networkManager) {
-		return networkManager;
-	}
+    @Provides
+    @Singleton
+    NetworkManager provideNetworkManager(JavaNetworkManager networkManager) {
+        return networkManager;
+    }
 }

@@ -16,19 +16,19 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class SyncVersionsUpdatedEvent extends Event {
 
-	private final ContactId contactId;
-	private final List<Byte> supported;
+    private final ContactId contactId;
+    private final List<Byte> supported;
 
-	public SyncVersionsUpdatedEvent(ContactId contactId, List<Byte> supported) {
-		this.contactId = contactId;
-		this.supported = supported;
-	}
+    public SyncVersionsUpdatedEvent(ContactId contactId, List<Byte> supported) {
+        this.contactId = contactId;
+        this.supported = supported;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 
-	public List<Byte> getSupportedVersions() {
-		return supported;
-	}
+    public List<Byte> getSupportedVersions() {
+        return supported;
+    }
 }

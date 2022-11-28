@@ -1,5 +1,7 @@
 package org.briarproject.masterproject.android.sharing;
 
+import static org.briarproject.masterproject.android.sharing.InvitationAdapter.InvitationClickListener;
+
 import android.content.Context;
 
 import org.briarproject.briar.R;
@@ -10,41 +12,39 @@ import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
 import javax.inject.Inject;
 
-import static org.briarproject.masterproject.android.sharing.InvitationAdapter.InvitationClickListener;
-
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 public class BlogInvitationActivity
-		extends InvitationActivity<SharingInvitationItem> {
+        extends InvitationActivity<SharingInvitationItem> {
 
-	@Inject
-	BlogInvitationController controller;
+    @Inject
+    BlogInvitationController controller;
 
-	@Override
-	public void injectActivity(ActivityComponent component) {
-		component.inject(this);
-	}
+    @Override
+    public void injectActivity(ActivityComponent component) {
+        component.inject(this);
+    }
 
-	@Override
-	protected InvitationController<SharingInvitationItem> getController() {
-		return controller;
-	}
+    @Override
+    protected InvitationController<SharingInvitationItem> getController() {
+        return controller;
+    }
 
-	@Override
-	protected InvitationAdapter<SharingInvitationItem, ?> getAdapter(
-			Context ctx,
-			InvitationClickListener<SharingInvitationItem> listener) {
-		return new SharingInvitationAdapter(ctx, listener);
-	}
+    @Override
+    protected InvitationAdapter<SharingInvitationItem, ?> getAdapter(
+            Context ctx,
+            InvitationClickListener<SharingInvitationItem> listener) {
+        return new SharingInvitationAdapter(ctx, listener);
+    }
 
-	@Override
-	protected int getAcceptRes() {
-		return R.string.blogs_sharing_joined_toast;
-	}
+    @Override
+    protected int getAcceptRes() {
+        return R.string.blogs_sharing_joined_toast;
+    }
 
-	@Override
-	protected int getDeclineRes() {
-		return R.string.blogs_sharing_declined_toast;
-	}
+    @Override
+    protected int getDeclineRes() {
+        return R.string.blogs_sharing_declined_toast;
+    }
 
 }

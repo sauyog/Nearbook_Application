@@ -89,168 +89,168 @@ import dagger.Component;
 
 @ActivityScope
 @Component(modules = {
-		ActivityModule.class,
-		CreateGroupModule.class,
-		GroupInvitationModule.class,
-		GroupMemberModule.class,
-		GroupRevealModule.class,
-		SharingModule.SharingLegacyModule.class
+        ActivityModule.class,
+        CreateGroupModule.class,
+        GroupInvitationModule.class,
+        GroupMemberModule.class,
+        GroupRevealModule.class,
+        SharingModule.SharingLegacyModule.class
 }, dependencies = AndroidComponent.class)
 public interface ActivityComponent {
 
-	Activity activity();
+    Activity activity();
 
-	void inject(SplashScreenActivity activity);
+    void inject(SplashScreenActivity activity);
 
-	void inject(StartupActivity activity);
+    void inject(StartupActivity activity);
 
-	void inject(SetupActivity activity);
+    void inject(SetupActivity activity);
 
-	void inject(NavDrawerActivity activity);
+    void inject(NavDrawerActivity activity);
 
-	void inject(PanicResponderActivity activity);
+    void inject(PanicResponderActivity activity);
 
-	void inject(PanicPreferencesActivity activity);
+    void inject(PanicPreferencesActivity activity);
 
-	void inject(AddNearbyContactActivity activity);
+    void inject(AddNearbyContactActivity activity);
 
-	void inject(ConversationActivity activity);
+    void inject(ConversationActivity activity);
 
-	void inject(ImageActivity activity);
+    void inject(ImageActivity activity);
 
-	void inject(ForumInvitationActivity activity);
+    void inject(ForumInvitationActivity activity);
 
-	void inject(BlogInvitationActivity activity);
+    void inject(BlogInvitationActivity activity);
 
-	void inject(CreateGroupActivity activity);
+    void inject(CreateGroupActivity activity);
 
-	void inject(GroupActivity activity);
+    void inject(GroupActivity activity);
 
-	void inject(GroupInviteActivity activity);
+    void inject(GroupInviteActivity activity);
 
-	void inject(GroupInvitationActivity activity);
+    void inject(GroupInvitationActivity activity);
 
-	void inject(GroupMemberListActivity activity);
+    void inject(GroupMemberListActivity activity);
 
-	void inject(RevealContactsActivity activity);
+    void inject(RevealContactsActivity activity);
 
-	void inject(CreateForumActivity activity);
+    void inject(CreateForumActivity activity);
 
-	void inject(ShareForumActivity activity);
+    void inject(ShareForumActivity activity);
 
-	void inject(ShareBlogActivity activity);
+    void inject(ShareBlogActivity activity);
 
-	void inject(ForumSharingStatusActivity activity);
+    void inject(ForumSharingStatusActivity activity);
 
-	void inject(BlogSharingStatusActivity activity);
+    void inject(BlogSharingStatusActivity activity);
 
-	void inject(ForumActivity activity);
+    void inject(ForumActivity activity);
 
-	void inject(BlogActivity activity);
+    void inject(BlogActivity activity);
 
-	void inject(WriteBlogPostActivity activity);
+    void inject(WriteBlogPostActivity activity);
 
-	void inject(BlogFragment fragment);
+    void inject(BlogFragment fragment);
 
-	void inject(BlogPostFragment fragment);
+    void inject(BlogPostFragment fragment);
 
-	void inject(ReblogFragment fragment);
+    void inject(ReblogFragment fragment);
 
-	void inject(ReblogActivity activity);
+    void inject(ReblogActivity activity);
 
-	void inject(SettingsActivity activity);
+    void inject(SettingsActivity activity);
 
-	void inject(TransportsActivity activity);
+    void inject(TransportsActivity activity);
 
-	void inject(TestDataActivity activity);
+    void inject(TestDataActivity activity);
 
-	void inject(ChangePasswordActivity activity);
+    void inject(ChangePasswordActivity activity);
 
-	void inject(IntroductionActivity activity);
+    void inject(IntroductionActivity activity);
 
-	void inject(RssFeedActivity activity);
+    void inject(RssFeedActivity activity);
 
-	void inject(StartupFailureActivity activity);
+    void inject(StartupFailureActivity activity);
 
-	void inject(UnlockActivity activity);
+    void inject(UnlockActivity activity);
 
-	void inject(AddContactActivity activity);
+    void inject(AddContactActivity activity);
 
-	void inject(PendingContactListActivity activity);
+    void inject(PendingContactListActivity activity);
 
-	void inject(CrashReportActivity crashReportActivity);
+    void inject(CrashReportActivity crashReportActivity);
 
-	void inject(HotspotActivity hotspotActivity);
+    void inject(HotspotActivity hotspotActivity);
 
-	void inject(RemovableDriveActivity activity);
+    void inject(RemovableDriveActivity activity);
 
-	void inject(ExpiredOldAndroidActivity activity);
+    void inject(ExpiredOldAndroidActivity activity);
 
-	// Fragments
+    // Fragments
 
-	void inject(SetupFragment fragment);
+    void inject(SetupFragment fragment);
 
-	void inject(PasswordFragment imageFragment);
+    void inject(PasswordFragment imageFragment);
 
-	void inject(OpenDatabaseFragment activity);
+    void inject(OpenDatabaseFragment activity);
 
-	void inject(ContactListFragment fragment);
+    void inject(ContactListFragment fragment);
 
-	void inject(CreateGroupFragment fragment);
+    void inject(CreateGroupFragment fragment);
 
-	void inject(GroupListFragment fragment);
+    void inject(GroupListFragment fragment);
 
-	void inject(GroupInviteFragment fragment);
+    void inject(GroupInviteFragment fragment);
 
-	void inject(RevealContactsFragment activity);
+    void inject(RevealContactsFragment activity);
 
-	void inject(ForumListFragment fragment);
+    void inject(ForumListFragment fragment);
 
-	void inject(FeedFragment fragment);
+    void inject(FeedFragment fragment);
 
-	void inject(AddNearbyContactIntroFragment fragment);
+    void inject(AddNearbyContactIntroFragment fragment);
 
-	void inject(AddNearbyContactFragment fragment);
+    void inject(AddNearbyContactFragment fragment);
 
-	void inject(LinkExchangeFragment fragment);
+    void inject(LinkExchangeFragment fragment);
 
-	void inject(NicknameFragment fragment);
+    void inject(NicknameFragment fragment);
 
-	void inject(ContactChooserFragment fragment);
+    void inject(ContactChooserFragment fragment);
 
-	void inject(ShareForumFragment fragment);
+    void inject(ShareForumFragment fragment);
 
-	void inject(ShareBlogFragment fragment);
+    void inject(ShareBlogFragment fragment);
 
-	void inject(IntroductionMessageFragment fragment);
+    void inject(IntroductionMessageFragment fragment);
 
-	void inject(SettingsFragment fragment);
+    void inject(SettingsFragment fragment);
 
-	void inject(ScreenFilterDialogFragment fragment);
+    void inject(ScreenFilterDialogFragment fragment);
 
-	void inject(AddNearbyContactErrorFragment fragment);
+    void inject(AddNearbyContactErrorFragment fragment);
 
-	void inject(AliasDialogFragment aliasDialogFragment);
+    void inject(AliasDialogFragment aliasDialogFragment);
 
-	void inject(ImageFragment imageFragment);
+    void inject(ImageFragment imageFragment);
 
-	void inject(ReportFormFragment reportFormFragment);
+    void inject(ReportFormFragment reportFormFragment);
 
-	void inject(CrashFragment crashFragment);
+    void inject(CrashFragment crashFragment);
 
-	void inject(ConfirmAvatarDialogFragment fragment);
+    void inject(ConfirmAvatarDialogFragment fragment);
 
-	void inject(ConversationSettingsDialog dialog);
+    void inject(ConversationSettingsDialog dialog);
 
-	void inject(RssFeedImportFragment fragment);
+    void inject(RssFeedImportFragment fragment);
 
-	void inject(RssFeedManageFragment fragment);
+    void inject(RssFeedManageFragment fragment);
 
-	void inject(RssFeedImportFailedDialogFragment fragment);
+    void inject(RssFeedImportFailedDialogFragment fragment);
 
-	void inject(RssFeedDeleteFeedDialogFragment fragment);
+    void inject(RssFeedDeleteFeedDialogFragment fragment);
 
-	void inject(ConnectViaBluetoothActivity connectViaBluetoothActivity);
+    void inject(ConnectViaBluetoothActivity connectViaBluetoothActivity);
 
-	void inject(MailboxActivity mailboxActivity);
+    void inject(MailboxActivity mailboxActivity);
 }

@@ -10,9 +10,9 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class BackoffFactoryImpl implements BackoffFactory {
 
-	@Override
-	public Backoff createBackoff(int minInterval, int maxInterval,
-			double base) {
-		return new BackoffImpl(minInterval, maxInterval, base);
-	}
+    @Override
+    public Backoff createBackoff(int minInterval, int maxInterval,
+                                 double base) {
+        return new BackoffImpl(minInterval, maxInterval, base);
+    }
 }

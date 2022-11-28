@@ -12,21 +12,21 @@ import java.io.InputStream;
 @NotNullByDefault
 public interface TransportConnectionReader {
 
-	/**
-	 * Returns an input stream for reading from the transport connection.
-	 */
-	InputStream getInputStream() throws IOException;
+    /**
+     * Returns an input stream for reading from the transport connection.
+     */
+    InputStream getInputStream() throws IOException;
 
-	/**
-	 * Marks this side of the transport connection closed. If the transport is
-	 * simplex, the connection is closed. If the transport is duplex, the
-	 * connection is closed if <tt>exception</tt> is true or the other side of
-	 * the connection has been marked as closed.
-	 *
-	 * @param exception true if the connection is being closed because of an
-	 * exception. This may affect how resources are disposed of.
-	 * @param recognised true if the connection is definitely a Briar transport
-	 * connection. This may affect how resources are disposed of.
-	 */
-	void dispose(boolean exception, boolean recognised) throws IOException;
+    /**
+     * Marks this side of the transport connection closed. If the transport is
+     * simplex, the connection is closed. If the transport is duplex, the
+     * connection is closed if <tt>exception</tt> is true or the other side of
+     * the connection has been marked as closed.
+     *
+     * @param exception  true if the connection is being closed because of an
+     *                   exception. This may affect how resources are disposed of.
+     * @param recognised true if the connection is definitely a Briar transport
+     *                   connection. This may affect how resources are disposed of.
+     */
+    void dispose(boolean exception, boolean recognised) throws IOException;
 }

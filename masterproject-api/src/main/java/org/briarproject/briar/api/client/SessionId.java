@@ -13,7 +13,7 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 public class SessionId extends UniqueId {
 
-	public SessionId(byte[] id) {
-		super(id);
-	}
+    public SessionId(byte[] id) {
+        super(id);
+    }
 }

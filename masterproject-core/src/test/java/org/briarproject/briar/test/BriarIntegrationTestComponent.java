@@ -15,6 +15,19 @@ import org.briarproject.bramble.test.TestDnsModule;
 import org.briarproject.bramble.test.TestPluginConfigModule;
 import org.briarproject.bramble.test.TestSocksModule;
 import org.briarproject.bramble.test.TimeTravel;
+import org.briarproject.briar.attachment.AttachmentModule;
+import org.briarproject.briar.autodelete.AutoDeleteModule;
+import org.briarproject.briar.avatar.AvatarModule;
+import org.briarproject.briar.blog.BlogModule;
+import org.briarproject.briar.client.BriarClientModule;
+import org.briarproject.briar.conversation.ConversationModule;
+import org.briarproject.briar.forum.ForumModule;
+import org.briarproject.briar.identity.IdentityModule;
+import org.briarproject.briar.introduction.IntroductionModule;
+import org.briarproject.briar.messaging.MessagingModule;
+import org.briarproject.briar.privategroup.PrivateGroupModule;
+import org.briarproject.briar.privategroup.invitation.GroupInvitationModule;
+import org.briarproject.briar.sharing.SharingModule;
 import org.briarproject.masterproject.api.attachment.AttachmentReader;
 import org.briarproject.masterproject.api.autodelete.AutoDeleteManager;
 import org.briarproject.masterproject.api.avatar.AvatarManager;
@@ -31,19 +44,6 @@ import org.briarproject.masterproject.api.messaging.PrivateMessageFactory;
 import org.briarproject.masterproject.api.privategroup.PrivateGroupManager;
 import org.briarproject.masterproject.api.privategroup.invitation.GroupInvitationFactory;
 import org.briarproject.masterproject.api.privategroup.invitation.GroupInvitationManager;
-import org.briarproject.briar.attachment.AttachmentModule;
-import org.briarproject.briar.autodelete.AutoDeleteModule;
-import org.briarproject.briar.avatar.AvatarModule;
-import org.briarproject.briar.blog.BlogModule;
-import org.briarproject.briar.client.BriarClientModule;
-import org.briarproject.briar.conversation.ConversationModule;
-import org.briarproject.briar.forum.ForumModule;
-import org.briarproject.briar.identity.IdentityModule;
-import org.briarproject.briar.introduction.IntroductionModule;
-import org.briarproject.briar.messaging.MessagingModule;
-import org.briarproject.briar.privategroup.PrivateGroupModule;
-import org.briarproject.briar.privategroup.invitation.GroupInvitationModule;
-import org.briarproject.briar.sharing.SharingModule;
 
 import javax.inject.Singleton;
 
@@ -51,116 +51,116 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		BrambleCoreIntegrationTestModule.class,
-		BrambleCoreModule.class,
-		AttachmentModule.class,
-		AutoDeleteModule.class,
-		AvatarModule.class,
-		BlogModule.class,
-		BriarClientModule.class,
-		ConversationModule.class,
-		ForumModule.class,
-		GroupInvitationModule.class,
-		IdentityModule.class,
-		IntroductionModule.class,
-		MessagingModule.class,
-		PrivateGroupModule.class,
-		SharingModule.class,
-		ModularMailboxModule.class,
-		TestDnsModule.class,
-		TestSocksModule.class,
-		TestPluginConfigModule.class,
+        BrambleCoreIntegrationTestModule.class,
+        BrambleCoreModule.class,
+        AttachmentModule.class,
+        AutoDeleteModule.class,
+        AvatarModule.class,
+        BlogModule.class,
+        BriarClientModule.class,
+        ConversationModule.class,
+        ForumModule.class,
+        GroupInvitationModule.class,
+        IdentityModule.class,
+        IntroductionModule.class,
+        MessagingModule.class,
+        PrivateGroupModule.class,
+        SharingModule.class,
+        ModularMailboxModule.class,
+        TestDnsModule.class,
+        TestSocksModule.class,
+        TestPluginConfigModule.class,
 })
 public interface BriarIntegrationTestComponent
-		extends BrambleIntegrationTestComponent {
+        extends BrambleIntegrationTestComponent {
 
-	void inject(BriarIntegrationTest<BriarIntegrationTestComponent> init);
+    void inject(BriarIntegrationTest<BriarIntegrationTestComponent> init);
 
-	void inject(AutoDeleteModule.EagerSingletons init);
+    void inject(AutoDeleteModule.EagerSingletons init);
 
-	void inject(AvatarModule.EagerSingletons init);
+    void inject(AvatarModule.EagerSingletons init);
 
-	void inject(BlogModule.EagerSingletons init);
+    void inject(BlogModule.EagerSingletons init);
 
-	void inject(ConversationModule.EagerSingletons init);
+    void inject(ConversationModule.EagerSingletons init);
 
-	void inject(ForumModule.EagerSingletons init);
+    void inject(ForumModule.EagerSingletons init);
 
-	void inject(GroupInvitationModule.EagerSingletons init);
+    void inject(GroupInvitationModule.EagerSingletons init);
 
-	void inject(IdentityModule.EagerSingletons init);
+    void inject(IdentityModule.EagerSingletons init);
 
-	void inject(IntroductionModule.EagerSingletons init);
+    void inject(IntroductionModule.EagerSingletons init);
 
-	void inject(MessagingModule.EagerSingletons init);
+    void inject(MessagingModule.EagerSingletons init);
 
-	void inject(PrivateGroupModule.EagerSingletons init);
+    void inject(PrivateGroupModule.EagerSingletons init);
 
-	void inject(SharingModule.EagerSingletons init);
+    void inject(SharingModule.EagerSingletons init);
 
-	LifecycleManager getLifecycleManager();
+    LifecycleManager getLifecycleManager();
 
-	AttachmentReader getAttachmentReader();
+    AttachmentReader getAttachmentReader();
 
-	AvatarManager getAvatarManager();
+    AvatarManager getAvatarManager();
 
-	ContactManager getContactManager();
+    ContactManager getContactManager();
 
-	ConversationManager getConversationManager();
+    ConversationManager getConversationManager();
 
-	DatabaseComponent getDatabaseComponent();
+    DatabaseComponent getDatabaseComponent();
 
-	BlogManager getBlogManager();
+    BlogManager getBlogManager();
 
-	BlogSharingManager getBlogSharingManager();
+    BlogSharingManager getBlogSharingManager();
 
-	ForumSharingManager getForumSharingManager();
+    ForumSharingManager getForumSharingManager();
 
-	ForumManager getForumManager();
+    ForumManager getForumManager();
 
-	GroupInvitationManager getGroupInvitationManager();
+    GroupInvitationManager getGroupInvitationManager();
 
-	GroupInvitationFactory getGroupInvitationFactory();
+    GroupInvitationFactory getGroupInvitationFactory();
 
-	IntroductionManager getIntroductionManager();
+    IntroductionManager getIntroductionManager();
 
-	MessageTracker getMessageTracker();
+    MessageTracker getMessageTracker();
 
-	MessagingManager getMessagingManager();
+    MessagingManager getMessagingManager();
 
-	PrivateGroupManager getPrivateGroupManager();
+    PrivateGroupManager getPrivateGroupManager();
 
-	PrivateMessageFactory getPrivateMessageFactory();
+    PrivateMessageFactory getPrivateMessageFactory();
 
-	TransportPropertyManager getTransportPropertyManager();
+    TransportPropertyManager getTransportPropertyManager();
 
-	AuthorFactory getAuthorFactory();
+    AuthorFactory getAuthorFactory();
 
-	BlogFactory getBlogFactory();
+    BlogFactory getBlogFactory();
 
-	AutoDeleteManager getAutoDeleteManager();
+    AutoDeleteManager getAutoDeleteManager();
 
-	Clock getClock();
+    Clock getClock();
 
-	TimeTravel getTimeTravel();
+    TimeTravel getTimeTravel();
 
-	class Helper {
+    class Helper {
 
-		public static void injectEagerSingletons(
-				BriarIntegrationTestComponent c) {
-			BrambleCoreIntegrationTestEagerSingletons.Helper
-					.injectEagerSingletons(c);
-			c.inject(new AutoDeleteModule.EagerSingletons());
-			c.inject(new AvatarModule.EagerSingletons());
-			c.inject(new BlogModule.EagerSingletons());
-			c.inject(new ConversationModule.EagerSingletons());
-			c.inject(new ForumModule.EagerSingletons());
-			c.inject(new GroupInvitationModule.EagerSingletons());
-			c.inject(new IdentityModule.EagerSingletons());
-			c.inject(new IntroductionModule.EagerSingletons());
-			c.inject(new MessagingModule.EagerSingletons());
-			c.inject(new PrivateGroupModule.EagerSingletons());
-			c.inject(new SharingModule.EagerSingletons());
-		}
-	}
+        public static void injectEagerSingletons(
+                BriarIntegrationTestComponent c) {
+            BrambleCoreIntegrationTestEagerSingletons.Helper
+                    .injectEagerSingletons(c);
+            c.inject(new AutoDeleteModule.EagerSingletons());
+            c.inject(new AvatarModule.EagerSingletons());
+            c.inject(new BlogModule.EagerSingletons());
+            c.inject(new ConversationModule.EagerSingletons());
+            c.inject(new ForumModule.EagerSingletons());
+            c.inject(new GroupInvitationModule.EagerSingletons());
+            c.inject(new IdentityModule.EagerSingletons());
+            c.inject(new IntroductionModule.EagerSingletons());
+            c.inject(new MessagingModule.EagerSingletons());
+            c.inject(new PrivateGroupModule.EagerSingletons());
+            c.inject(new SharingModule.EagerSingletons());
+        }
+    }
 }

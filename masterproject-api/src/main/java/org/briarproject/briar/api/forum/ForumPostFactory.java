@@ -1,5 +1,7 @@
 package org.briarproject.masterproject.api.forum;
 
+import static org.briarproject.masterproject.api.forum.ForumManager.CLIENT_ID;
+
 import org.briarproject.bramble.api.FormatException;
 import org.briarproject.bramble.api.crypto.CryptoExecutor;
 import org.briarproject.bramble.api.identity.LocalAuthor;
@@ -11,16 +13,14 @@ import java.security.GeneralSecurityException;
 
 import javax.annotation.Nullable;
 
-import static org.briarproject.masterproject.api.forum.ForumManager.CLIENT_ID;
-
 @NotNullByDefault
 public interface ForumPostFactory {
 
-	String SIGNING_LABEL_POST = CLIENT_ID.getString() + "/POST";
+    String SIGNING_LABEL_POST = CLIENT_ID.getString() + "/POST";
 
-	@CryptoExecutor
-	ForumPost createPost(GroupId groupId, long timestamp,
-			@Nullable MessageId parent, LocalAuthor author, String text)
-			throws FormatException, GeneralSecurityException;
+    @CryptoExecutor
+    ForumPost createPost(GroupId groupId, long timestamp,
+                         @Nullable MessageId parent, LocalAuthor author, String text)
+            throws FormatException, GeneralSecurityException;
 
 }

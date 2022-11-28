@@ -9,14 +9,14 @@ import javax.annotation.Nullable;
 @NotNullByDefault
 public interface BluetoothPlugin extends DuplexPlugin {
 
-	boolean isDiscovering();
+    boolean isDiscovering();
 
-	void disablePolling();
+    void disablePolling();
 
-	void enablePolling();
+    void enablePolling();
 
-	@Nullable
-	DuplexTransportConnection discoverAndConnectForSetup(String uuid);
+    @Nullable
+    DuplexTransportConnection discoverAndConnectForSetup(String uuid);
 
-	void stopDiscoverAndConnect();
+    void stopDiscoverAndConnect();
 }

@@ -13,11 +13,11 @@ import javax.annotation.Nullable;
 @NotNullByDefault
 public interface SecureRandomProvider {
 
-	/**
-	 * Returns a {@link Provider} that provides a strong {@link SecureRandom}
-	 * implementation, or null if the platform's default implementation should
-	 * be used.
-	 */
-	@Nullable
-	Provider getProvider();
+    /**
+     * Returns a {@link Provider} that provides a strong {@link SecureRandom}
+     * implementation, or null if the platform's default implementation should
+     * be used.
+     */
+    @Nullable
+    Provider getProvider();
 }

@@ -3,12 +3,7 @@ package org.briarproject.briar.headless.contact
 import io.javalin.http.BadRequestResponse
 import io.javalin.http.NotFoundResponse
 import io.javalin.plugin.json.JavalinJson.toJson
-import io.mockk.Runs
-import io.mockk.every
-import io.mockk.just
-import io.mockk.mockkStatic
-import io.mockk.runs
-import io.mockk.verify
+import io.mockk.*
 import org.briarproject.bramble.api.Pair
 import org.briarproject.bramble.api.contact.Contact
 import org.briarproject.bramble.api.contact.ContactId

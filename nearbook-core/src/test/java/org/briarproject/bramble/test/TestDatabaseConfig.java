@@ -11,26 +11,26 @@ import javax.annotation.Nullable;
 @NotNullByDefault
 public class TestDatabaseConfig implements DatabaseConfig {
 
-	private final File dbDir, keyDir;
+    private final File dbDir, keyDir;
 
-	public TestDatabaseConfig(File testDir) {
-		dbDir = new File(testDir, "db");
-		keyDir = new File(testDir, "key");
-	}
+    public TestDatabaseConfig(File testDir) {
+        dbDir = new File(testDir, "db");
+        keyDir = new File(testDir, "key");
+    }
 
-	@Override
-	public File getDatabaseDirectory() {
-		return dbDir;
-	}
+    @Override
+    public File getDatabaseDirectory() {
+        return dbDir;
+    }
 
-	@Override
-	public File getDatabaseKeyDirectory() {
-		return keyDir;
-	}
+    @Override
+    public File getDatabaseKeyDirectory() {
+        return keyDir;
+    }
 
-	@Nullable
-	@Override
-	public KeyStrengthener getKeyStrengthener() {
-		return null;
-	}
+    @Nullable
+    @Override
+    public KeyStrengthener getKeyStrengthener() {
+        return null;
+    }
 }

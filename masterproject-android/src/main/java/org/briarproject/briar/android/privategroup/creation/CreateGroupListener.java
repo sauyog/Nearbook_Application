@@ -4,5 +4,5 @@ import org.briarproject.masterproject.android.fragment.BaseFragment.BaseFragment
 
 interface CreateGroupListener extends BaseFragmentListener {
 
-	void onGroupNameChosen(String name);
+    void onGroupNameChosen(String name);
 }

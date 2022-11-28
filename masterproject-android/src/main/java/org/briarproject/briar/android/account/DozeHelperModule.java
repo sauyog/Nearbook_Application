@@ -9,8 +9,8 @@ import dagger.Provides;
 @Module
 public class DozeHelperModule {
 
-	@Provides
-	DozeHelper provideDozeHelper() {
-		return new DozeHelperImpl();
-	}
+    @Provides
+    DozeHelper provideDozeHelper() {
+        return new DozeHelperImpl();
+    }
 }

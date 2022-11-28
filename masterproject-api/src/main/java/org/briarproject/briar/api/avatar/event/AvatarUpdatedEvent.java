@@ -14,20 +14,20 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class AvatarUpdatedEvent extends Event {
 
-	private final ContactId contactId;
-	private final AttachmentHeader attachmentHeader;
+    private final ContactId contactId;
+    private final AttachmentHeader attachmentHeader;
 
-	public AvatarUpdatedEvent(ContactId contactId,
-			AttachmentHeader attachmentHeader) {
-		this.contactId = contactId;
-		this.attachmentHeader = attachmentHeader;
-	}
+    public AvatarUpdatedEvent(ContactId contactId,
+                              AttachmentHeader attachmentHeader) {
+        this.contactId = contactId;
+        this.attachmentHeader = attachmentHeader;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 
-	public AttachmentHeader getAttachmentHeader() {
-		return attachmentHeader;
-	}
+    public AttachmentHeader getAttachmentHeader() {
+        return attachmentHeader;
+    }
 }

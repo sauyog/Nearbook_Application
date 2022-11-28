@@ -15,26 +15,26 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class AgreementKeyParser implements KeyParser {
 
-	@Override
-	public PublicKey parsePublicKey(byte[] encodedKey)
-			throws GeneralSecurityException {
-		if (encodedKey.length != 32) throw new GeneralSecurityException();
-		return new AgreementPublicKey(encodedKey);
-	}
+    static byte[] clamp(byte[] b) {
+        byte[] clamped = new byte[32];
+        System.arraycopy(b, 0, clamped, 0, 32);
+        clamped[0] &= 248;
+        clamped[31] &= 127;
+        clamped[31] |= 64;
+        return clamped;
+    }
 
-	@Override
-	public PrivateKey parsePrivateKey(byte[] encodedKey)
-			throws GeneralSecurityException {
-		if (encodedKey.length != 32) throw new GeneralSecurityException();
-		return new AgreementPrivateKey(clamp(encodedKey));
-	}
+    @Override
+    public PublicKey parsePublicKey(byte[] encodedKey)
+            throws GeneralSecurityException {
+        if (encodedKey.length != 32) throw new GeneralSecurityException();
+        return new AgreementPublicKey(encodedKey);
+    }
 
-	static byte[] clamp(byte[] b) {
-		byte[] clamped = new byte[32];
-		System.arraycopy(b, 0, clamped, 0, 32);
-		clamped[0] &= 248;
-		clamped[31] &= 127;
-		clamped[31] |= 64;
-		return clamped;
-	}
+    @Override
+    public PrivateKey parsePrivateKey(byte[] encodedKey)
+            throws GeneralSecurityException {
+        if (encodedKey.length != 32) throw new GeneralSecurityException();
+        return new AgreementPrivateKey(clamp(encodedKey));
+    }
 }

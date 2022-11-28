@@ -7,8 +7,8 @@ import java.io.OutputStream;
 
 class RecordWriterFactoryImpl implements RecordWriterFactory {
 
-	@Override
-	public RecordWriter createRecordWriter(OutputStream out) {
-		return new RecordWriterImpl(out);
-	}
+    @Override
+    public RecordWriter createRecordWriter(OutputStream out) {
+        return new RecordWriterImpl(out);
+    }
 }

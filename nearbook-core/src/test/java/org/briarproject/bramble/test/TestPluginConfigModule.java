@@ -1,5 +1,9 @@
 package org.briarproject.bramble.test;
 
+import static org.briarproject.bramble.test.TestUtils.getTransportId;
+import static java.util.Collections.emptyMap;
+import static java.util.Collections.singletonList;
+
 import org.briarproject.bramble.api.plugin.PluginCallback;
 import org.briarproject.bramble.api.plugin.PluginConfig;
 import org.briarproject.bramble.api.plugin.TransportId;
@@ -18,95 +22,89 @@ import javax.annotation.Nullable;
 import dagger.Module;
 import dagger.Provides;
 
-import static java.util.Collections.emptyMap;
-import static java.util.Collections.singletonList;
-import static org.briarproject.bramble.test.TestUtils.getTransportId;
-
 @Module
 public class TestPluginConfigModule {
 
-	public static final TransportId SIMPLEX_TRANSPORT_ID = getTransportId();
-	public static final TransportId DUPLEX_TRANSPORT_ID = getTransportId();
-	private static final int MAX_LATENCY = 30_000; // 30 seconds
+    public static final TransportId SIMPLEX_TRANSPORT_ID = getTransportId();
+    public static final TransportId DUPLEX_TRANSPORT_ID = getTransportId();
+    private static final int MAX_LATENCY = 30_000; // 30 seconds
 
-	private final TransportId simplexTransportId, duplexTransportId;
+    private final TransportId simplexTransportId, duplexTransportId;
+    @NotNullByDefault
+    private final SimplexPluginFactory simplex = new SimplexPluginFactory() {
 
-	public TestPluginConfigModule() {
-		this(SIMPLEX_TRANSPORT_ID, DUPLEX_TRANSPORT_ID);
-	}
+        @Override
+        public TransportId getId() {
+            return simplexTransportId;
+        }
 
-	public TestPluginConfigModule(TransportId simplexTransportId,
-			TransportId duplexTransportId) {
-		this.simplexTransportId = simplexTransportId;
-		this.duplexTransportId = duplexTransportId;
-	}
+        @Override
+        public long getMaxLatency() {
+            return MAX_LATENCY;
+        }
 
-	@NotNullByDefault
-	private final SimplexPluginFactory simplex = new SimplexPluginFactory() {
+        @Override
+        @Nullable
+        public SimplexPlugin createPlugin(PluginCallback callback) {
+            return null;
+        }
+    };
+    @NotNullByDefault
+    private final DuplexPluginFactory duplex = new DuplexPluginFactory() {
 
-		@Override
-		public TransportId getId() {
-			return simplexTransportId;
-		}
+        @Override
+        public TransportId getId() {
+            return duplexTransportId;
+        }
 
-		@Override
-		public long getMaxLatency() {
-			return MAX_LATENCY;
-		}
+        @Override
+        public long getMaxLatency() {
+            return MAX_LATENCY;
+        }
 
-		@Override
-		@Nullable
-		public SimplexPlugin createPlugin(PluginCallback callback) {
-			return null;
-		}
-	};
+        @Nullable
+        @Override
+        public DuplexPlugin createPlugin(PluginCallback callback) {
+            return null;
+        }
+    };
 
-	@NotNullByDefault
-	private final DuplexPluginFactory duplex = new DuplexPluginFactory() {
+    public TestPluginConfigModule() {
+        this(SIMPLEX_TRANSPORT_ID, DUPLEX_TRANSPORT_ID);
+    }
 
-		@Override
-		public TransportId getId() {
-			return duplexTransportId;
-		}
+    public TestPluginConfigModule(TransportId simplexTransportId,
+                                  TransportId duplexTransportId) {
+        this.simplexTransportId = simplexTransportId;
+        this.duplexTransportId = duplexTransportId;
+    }
 
-		@Override
-		public long getMaxLatency() {
-			return MAX_LATENCY;
-		}
+    @Provides
+    public PluginConfig providePluginConfig() {
+        @NotNullByDefault
+        PluginConfig pluginConfig = new PluginConfig() {
 
-		@Nullable
-		@Override
-		public DuplexPlugin createPlugin(PluginCallback callback) {
-			return null;
-		}
-	};
+            @Override
+            public Collection<DuplexPluginFactory> getDuplexFactories() {
+                return singletonList(duplex);
+            }
 
-	@Provides
-	public PluginConfig providePluginConfig() {
-		@NotNullByDefault
-		PluginConfig pluginConfig = new PluginConfig() {
+            @Override
+            public Collection<SimplexPluginFactory> getSimplexFactories() {
+                return singletonList(simplex);
+            }
 
-			@Override
-			public Collection<DuplexPluginFactory> getDuplexFactories() {
-				return singletonList(duplex);
-			}
+            @Override
+            public boolean shouldPoll() {
+                return false;
+            }
 
-			@Override
-			public Collection<SimplexPluginFactory> getSimplexFactories() {
-				return singletonList(simplex);
-			}
+            @Override
+            public Map<TransportId, List<TransportId>> getTransportPreferences() {
+                return emptyMap();
+            }
 
-			@Override
-			public boolean shouldPoll() {
-				return false;
-			}
-
-			@Override
-			public Map<TransportId, List<TransportId>> getTransportPreferences() {
-				return emptyMap();
-			}
-
-		};
-		return pluginConfig;
-	}
+        };
+        return pluginConfig;
+    }
 }

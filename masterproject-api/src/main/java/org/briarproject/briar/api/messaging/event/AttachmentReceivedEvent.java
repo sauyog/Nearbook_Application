@@ -14,19 +14,19 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class AttachmentReceivedEvent extends Event {
 
-	private final MessageId messageId;
-	private final ContactId contactId;
+    private final MessageId messageId;
+    private final ContactId contactId;
 
-	public AttachmentReceivedEvent(MessageId messageId, ContactId contactId) {
-		this.messageId = messageId;
-		this.contactId = contactId;
-	}
+    public AttachmentReceivedEvent(MessageId messageId, ContactId contactId) {
+        this.messageId = messageId;
+        this.contactId = contactId;
+    }
 
-	public MessageId getMessageId() {
-		return messageId;
-	}
+    public MessageId getMessageId() {
+        return messageId;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 }

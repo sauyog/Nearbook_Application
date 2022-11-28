@@ -13,11 +13,11 @@ import dagger.Provides;
 public
 class AndroidWakefulIoExecutorModule {
 
-	@Provides
-	@WakefulIoExecutor
-	Executor provideWakefulIoExecutor(@IoExecutor Executor ioExecutor,
-			AndroidWakeLockManager wakeLockManager) {
-		return r -> wakeLockManager.executeWakefully(r, ioExecutor,
-				"WakefulIoExecutor");
-	}
+    @Provides
+    @WakefulIoExecutor
+    Executor provideWakefulIoExecutor(@IoExecutor Executor ioExecutor,
+                                      AndroidWakeLockManager wakeLockManager) {
+        return r -> wakeLockManager.executeWakefully(r, ioExecutor,
+                "WakefulIoExecutor");
+    }
 }

@@ -18,6 +18,11 @@ import org.briarproject.bramble.api.sync.event.MessagesAckedEvent
 import org.briarproject.bramble.api.sync.event.MessagesSentEvent
 import org.briarproject.bramble.api.system.Clock
 import org.briarproject.bramble.util.StringUtils.utf8IsTooLong
+import org.briarproject.briar.headless.event.WebSocketController
+import org.briarproject.briar.headless.event.output
+import org.briarproject.briar.headless.getContactIdFromPathParam
+import org.briarproject.briar.headless.getFromJson
+import org.briarproject.briar.headless.json.JsonDict
 import org.briarproject.masterproject.api.blog.BlogInvitationRequest
 import org.briarproject.masterproject.api.blog.BlogInvitationResponse
 import org.briarproject.masterproject.api.conversation.ConversationManager
@@ -33,11 +38,6 @@ import org.briarproject.masterproject.api.messaging.PrivateMessageFactory
 import org.briarproject.masterproject.api.messaging.PrivateMessageHeader
 import org.briarproject.masterproject.api.privategroup.invitation.GroupInvitationRequest
 import org.briarproject.masterproject.api.privategroup.invitation.GroupInvitationResponse
-import org.briarproject.briar.headless.event.WebSocketController
-import org.briarproject.briar.headless.event.output
-import org.briarproject.briar.headless.getContactIdFromPathParam
-import org.briarproject.briar.headless.getFromJson
-import org.briarproject.briar.headless.json.JsonDict
 import java.util.concurrent.Executor
 import javax.annotation.concurrent.Immutable
 import javax.inject.Inject

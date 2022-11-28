@@ -1,5 +1,11 @@
 package org.briarproject.bramble.connection;
 
+import static org.briarproject.bramble.api.transport.TransportConstants.TAG_LENGTH;
+import static org.briarproject.bramble.util.IoUtils.read;
+import static org.briarproject.bramble.util.LogUtils.logException;
+import static java.util.logging.Level.WARNING;
+import static java.util.logging.Logger.getLogger;
+
 import org.briarproject.bramble.api.connection.ConnectionRegistry;
 import org.briarproject.bramble.api.db.DbException;
 import org.briarproject.bramble.api.plugin.TransportConnectionReader;
@@ -17,62 +23,56 @@ import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
 
-import static java.util.logging.Level.WARNING;
-import static java.util.logging.Logger.getLogger;
-import static org.briarproject.bramble.api.transport.TransportConstants.TAG_LENGTH;
-import static org.briarproject.bramble.util.IoUtils.read;
-import static org.briarproject.bramble.util.LogUtils.logException;
-
 @NotNullByDefault
 abstract class Connection {
 
-	protected static final Logger LOG = getLogger(Connection.class.getName());
+    protected static final Logger LOG = getLogger(Connection.class.getName());
 
-	final KeyManager keyManager;
-	final ConnectionRegistry connectionRegistry;
-	final StreamReaderFactory streamReaderFactory;
-	final StreamWriterFactory streamWriterFactory;
+    final KeyManager keyManager;
+    final ConnectionRegistry connectionRegistry;
+    final StreamReaderFactory streamReaderFactory;
+    final StreamWriterFactory streamWriterFactory;
 
-	Connection(KeyManager keyManager, ConnectionRegistry connectionRegistry,
-			StreamReaderFactory streamReaderFactory,
-			StreamWriterFactory streamWriterFactory) {
-		this.keyManager = keyManager;
-		this.connectionRegistry = connectionRegistry;
-		this.streamReaderFactory = streamReaderFactory;
-		this.streamWriterFactory = streamWriterFactory;
-	}
+    Connection(KeyManager keyManager, ConnectionRegistry connectionRegistry,
+               StreamReaderFactory streamReaderFactory,
+               StreamWriterFactory streamWriterFactory) {
+        this.keyManager = keyManager;
+        this.connectionRegistry = connectionRegistry;
+        this.streamReaderFactory = streamReaderFactory;
+        this.streamWriterFactory = streamWriterFactory;
+    }
 
-	@Nullable
-	StreamContext recogniseTag(TransportConnectionReader reader,
-			TransportId transportId) {
-		try {
-			byte[] tag = readTag(reader.getInputStream());
-			return keyManager.getStreamContext(transportId, tag);
-		} catch (IOException | DbException e) {
-			logException(LOG, WARNING, e);
-			return null;
-		}
-	}
+    @Nullable
+    StreamContext recogniseTag(TransportConnectionReader reader,
+                               TransportId transportId) {
+        try {
+            byte[] tag = readTag(reader.getInputStream());
+            return keyManager.getStreamContext(transportId, tag);
+        } catch (IOException | DbException e) {
+            logException(LOG, WARNING, e);
+            return null;
+        }
+    }
 
-	byte[] readTag(InputStream in) throws IOException {
-		byte[] tag = new byte[TAG_LENGTH];
-		read(in, tag);
-		return tag;
-	}
+    byte[] readTag(InputStream in) throws IOException {
+        byte[] tag = new byte[TAG_LENGTH];
+        read(in, tag);
+        return tag;
+    }
 
-	void disposeOnError(TransportConnectionReader reader, boolean recognised) {
-		try {
-			reader.dispose(true, recognised);
-		} catch (IOException e) {
-			logException(LOG, WARNING, e);
-		}
-	}
+    void disposeOnError(TransportConnectionReader reader, boolean recognised) {
+        try {
+            reader.dispose(true, recognised);
+        } catch (IOException e) {
+            logException(LOG, WARNING, e);
+        }
+    }
 
-	void disposeOnError(TransportConnectionWriter writer) {
-		try {
-			writer.dispose(true);
-		} catch (IOException e) {
-			logException(LOG, WARNING, e);
-		}
-	}
+    void disposeOnError(TransportConnectionWriter writer) {
+        try {
+            writer.dispose(true);
+        } catch (IOException e) {
+            logException(LOG, WARNING, e);
+        }
+    }
 }

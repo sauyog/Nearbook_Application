@@ -8,21 +8,21 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface KeyAgreementTask {
 
-	/**
-	 * Start listening for short-range BQP connections, if we are not already.
-	 * <p/>
-	 * Will trigger a KeyAgreementListeningEvent containing the local Payload,
-	 * even if we are already listening.
-	 */
-	void listen();
+    /**
+     * Start listening for short-range BQP connections, if we are not already.
+     * <p/>
+     * Will trigger a KeyAgreementListeningEvent containing the local Payload,
+     * even if we are already listening.
+     */
+    void listen();
 
-	/**
-	 * Stop listening for short-range BQP connections.
-	 */
-	void stopListening();
+    /**
+     * Stop listening for short-range BQP connections.
+     */
+    void stopListening();
 
-	/**
-	 * Asynchronously start the connection process.
-	 */
-	void connectAndRunProtocol(Payload remotePayload);
+    /**
+     * Asynchronously start the connection process.
+     */
+    void connectAndRunProtocol(Payload remotePayload);
 }

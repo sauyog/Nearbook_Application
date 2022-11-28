@@ -8,10 +8,10 @@ import dagger.Provides;
 @Module
 public class GroupRevealModule {
 
-	@ActivityScope
-	@Provides
-	RevealContactsController provideRevealContactsController(
-			RevealContactsControllerImpl revealContactsController) {
-		return revealContactsController;
-	}
+    @ActivityScope
+    @Provides
+    RevealContactsController provideRevealContactsController(
+            RevealContactsControllerImpl revealContactsController) {
+        return revealContactsController;
+    }
 }

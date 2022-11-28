@@ -11,18 +11,18 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class LeaveMessage extends DeletableGroupInvitationMessage {
 
-	@Nullable
-	private final MessageId previousMessageId;
+    @Nullable
+    private final MessageId previousMessageId;
 
-	LeaveMessage(MessageId id, GroupId contactGroupId, GroupId privateGroupId,
-			long timestamp, @Nullable MessageId previousMessageId,
-			long autoDeleteTimer) {
-		super(id, contactGroupId, privateGroupId, timestamp, autoDeleteTimer);
-		this.previousMessageId = previousMessageId;
-	}
+    LeaveMessage(MessageId id, GroupId contactGroupId, GroupId privateGroupId,
+                 long timestamp, @Nullable MessageId previousMessageId,
+                 long autoDeleteTimer) {
+        super(id, contactGroupId, privateGroupId, timestamp, autoDeleteTimer);
+        this.previousMessageId = previousMessageId;
+    }
 
-	@Nullable
-	MessageId getPreviousMessageId() {
-		return previousMessageId;
-	}
+    @Nullable
+    MessageId getPreviousMessageId() {
+        return previousMessageId;
+    }
 }

@@ -26,40 +26,40 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		BrambleCoreModule.class,
-		DefaultBatteryManagerModule.class,
-		DefaultEventExecutorModule.class,
-		DefaultWakefulIoExecutorModule.class,
-		DefaultThreadFactoryModule.class,
-		TestDatabaseConfigModule.class,
-		TestDnsModule.class,
-		TestFeatureFlagModule.class,
-		TestMailboxDirectoryModule.class,
-		RemovableDriveIntegrationTestModule.class,
-		RemovableDriveModule.class,
-		ModularMailboxModule.class,
-		TestSecureRandomModule.class,
-		TimeTravelModule.class,
-		TestSocksModule.class,
+        BrambleCoreModule.class,
+        DefaultBatteryManagerModule.class,
+        DefaultEventExecutorModule.class,
+        DefaultWakefulIoExecutorModule.class,
+        DefaultThreadFactoryModule.class,
+        TestDatabaseConfigModule.class,
+        TestDnsModule.class,
+        TestFeatureFlagModule.class,
+        TestMailboxDirectoryModule.class,
+        RemovableDriveIntegrationTestModule.class,
+        RemovableDriveModule.class,
+        ModularMailboxModule.class,
+        TestSecureRandomModule.class,
+        TimeTravelModule.class,
+        TestSocksModule.class,
 })
 interface RemovableDriveIntegrationTestComponent
-		extends BrambleCoreEagerSingletons {
+        extends BrambleCoreEagerSingletons {
 
-	ContactManager getContactManager();
+    ContactManager getContactManager();
 
-	EventBus getEventBus();
+    EventBus getEventBus();
 
-	IdentityManager getIdentityManager();
+    IdentityManager getIdentityManager();
 
-	LifecycleManager getLifecycleManager();
+    LifecycleManager getLifecycleManager();
 
-	RemovableDriveManager getRemovableDriveManager();
+    RemovableDriveManager getRemovableDriveManager();
 
-	class Helper {
+    class Helper {
 
-		public static void injectEagerSingletons(
-				RemovableDriveIntegrationTestComponent c) {
-			BrambleCoreEagerSingletons.Helper.injectEagerSingletons(c);
-		}
-	}
+        public static void injectEagerSingletons(
+                RemovableDriveIntegrationTestComponent c) {
+            BrambleCoreEagerSingletons.Helper.injectEagerSingletons(c);
+        }
+    }
 }

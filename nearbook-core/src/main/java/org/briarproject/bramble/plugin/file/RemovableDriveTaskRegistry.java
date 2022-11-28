@@ -7,7 +7,7 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface RemovableDriveTaskRegistry {
 
-	void removeReader(RemovableDriveTask task);
+    void removeReader(RemovableDriveTask task);
 
-	void removeWriter(RemovableDriveTask task);
+    void removeWriter(RemovableDriveTask task);
 }

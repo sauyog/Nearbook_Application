@@ -9,47 +9,47 @@ import dagger.Provides;
 @Module
 public class SharingModule {
 
-	@Module
-	@Deprecated
-	public static class SharingLegacyModule {
+    @Provides
+    SharingController provideSharingController(
+            SharingControllerImpl sharingController) {
+        return sharingController;
+    }
 
-		@ActivityScope
-		@Provides
-		ShareForumController provideShareForumController(
-				ShareForumControllerImpl shareForumController) {
-			return shareForumController;
-		}
+    @Module
+    @Deprecated
+    public static class SharingLegacyModule {
 
-		@ActivityScope
-		@Provides
-		BlogInvitationController provideInvitationBlogController(
-				BaseActivity activity,
-				BlogInvitationControllerImpl blogInvitationController) {
-			activity.addLifecycleController(blogInvitationController);
-			return blogInvitationController;
-		}
+        @ActivityScope
+        @Provides
+        ShareForumController provideShareForumController(
+                ShareForumControllerImpl shareForumController) {
+            return shareForumController;
+        }
 
-		@ActivityScope
-		@Provides
-		ForumInvitationController provideInvitationForumController(
-				BaseActivity activity,
-				ForumInvitationControllerImpl forumInvitationController) {
-			activity.addLifecycleController(forumInvitationController);
-			return forumInvitationController;
-		}
+        @ActivityScope
+        @Provides
+        BlogInvitationController provideInvitationBlogController(
+                BaseActivity activity,
+                BlogInvitationControllerImpl blogInvitationController) {
+            activity.addLifecycleController(blogInvitationController);
+            return blogInvitationController;
+        }
 
-		@ActivityScope
-		@Provides
-		ShareBlogController provideShareBlogController(
-				ShareBlogControllerImpl shareBlogController) {
-			return shareBlogController;
-		}
-	}
+        @ActivityScope
+        @Provides
+        ForumInvitationController provideInvitationForumController(
+                BaseActivity activity,
+                ForumInvitationControllerImpl forumInvitationController) {
+            activity.addLifecycleController(forumInvitationController);
+            return forumInvitationController;
+        }
 
-	@Provides
-	SharingController provideSharingController(
-			SharingControllerImpl sharingController) {
-		return sharingController;
-	}
+        @ActivityScope
+        @Provides
+        ShareBlogController provideShareBlogController(
+                ShareBlogControllerImpl shareBlogController) {
+            return shareBlogController;
+        }
+    }
 
 }

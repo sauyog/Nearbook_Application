@@ -11,16 +11,16 @@ import java.io.IOException;
  */
 public interface RendezvousEndpoint extends Closeable {
 
-	/**
-	 * Returns a set of transport properties for connecting to the pending
-	 * contact.
-	 */
-	TransportProperties getRemoteTransportProperties();
+    /**
+     * Returns a set of transport properties for connecting to the pending
+     * contact.
+     */
+    TransportProperties getRemoteTransportProperties();
 
-	/**
-	 * Closes the handler and releases any resources held by it, such as
-	 * network sockets.
-	 */
-	@Override
-	void close() throws IOException;
+    /**
+     * Closes the handler and releases any resources held by it, such as
+     * network sockets.
+     */
+    @Override
+    void close() throws IOException;
 }

@@ -15,38 +15,38 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 public class CachingLogHandler extends Handler {
 
-	private static final int MAX_RECENT_RECORDS = 100;
+    private static final int MAX_RECENT_RECORDS = 100;
 
-	private final Object lock = new Object();
-	// Locking: lock
-	private final Queue<LogRecord> recent = new LinkedList<>();
+    private final Object lock = new Object();
+    // Locking: lock
+    private final Queue<LogRecord> recent = new LinkedList<>();
 
-	// package-private constructor
-	CachingLogHandler() {
-	}
+    // package-private constructor
+    CachingLogHandler() {
+    }
 
-	@Override
-	public void publish(LogRecord record) {
-		synchronized (lock) {
-			recent.add(record);
-			if (recent.size() > MAX_RECENT_RECORDS) recent.poll();
-		}
-	}
+    @Override
+    public void publish(LogRecord record) {
+        synchronized (lock) {
+            recent.add(record);
+            if (recent.size() > MAX_RECENT_RECORDS) recent.poll();
+        }
+    }
 
-	@Override
-	public void flush() {
-	}
+    @Override
+    public void flush() {
+    }
 
-	@Override
-	public void close() {
-		synchronized (lock) {
-			recent.clear();
-		}
-	}
+    @Override
+    public void close() {
+        synchronized (lock) {
+            recent.clear();
+        }
+    }
 
-	public Collection<LogRecord> getRecentLogRecords() {
-		synchronized (lock) {
-			return new ArrayList<>(recent);
-		}
-	}
+    public Collection<LogRecord> getRecentLogRecords() {
+        synchronized (lock) {
+            return new ArrayList<>(recent);
+        }
+    }
 }

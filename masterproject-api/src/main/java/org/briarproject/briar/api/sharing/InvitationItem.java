@@ -9,28 +9,28 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public abstract class InvitationItem<S extends Shareable> {
 
-	private final S shareable;
-	private final boolean subscribed;
+    private final S shareable;
+    private final boolean subscribed;
 
-	public InvitationItem(S shareable, boolean subscribed) {
-		this.shareable = shareable;
-		this.subscribed = subscribed;
-	}
+    public InvitationItem(S shareable, boolean subscribed) {
+        this.shareable = shareable;
+        this.subscribed = subscribed;
+    }
 
-	public S getShareable() {
-		return shareable;
-	}
+    public S getShareable() {
+        return shareable;
+    }
 
-	public GroupId getId() {
-		return shareable.getId();
-	}
+    public GroupId getId() {
+        return shareable.getId();
+    }
 
-	public String getName() {
-		return shareable.getName();
-	}
+    public String getName() {
+        return shareable.getName();
+    }
 
-	public boolean isSubscribed() {
-		return subscribed;
-	}
+    public boolean isSubscribed() {
+        return subscribed;
+    }
 
 }

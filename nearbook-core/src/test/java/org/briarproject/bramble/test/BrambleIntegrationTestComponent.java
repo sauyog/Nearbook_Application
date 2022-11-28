@@ -14,22 +14,22 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		BrambleCoreIntegrationTestModule.class,
-		BrambleCoreModule.class,
-		ModularMailboxModule.class,
-		TestDnsModule.class,
-		TestSocksModule.class,
-		TestPluginConfigModule.class,
+        BrambleCoreIntegrationTestModule.class,
+        BrambleCoreModule.class,
+        ModularMailboxModule.class,
+        TestDnsModule.class,
+        TestSocksModule.class,
+        TestPluginConfigModule.class,
 })
 public interface BrambleIntegrationTestComponent
-		extends BrambleCoreIntegrationTestEagerSingletons {
+        extends BrambleCoreIntegrationTestEagerSingletons {
 
-	IdentityManager getIdentityManager();
+    IdentityManager getIdentityManager();
 
-	EventBus getEventBus();
+    EventBus getEventBus();
 
-	ConnectionManager getConnectionManager();
+    ConnectionManager getConnectionManager();
 
-	ClientHelper getClientHelper();
+    ClientHelper getClientHelper();
 
 }

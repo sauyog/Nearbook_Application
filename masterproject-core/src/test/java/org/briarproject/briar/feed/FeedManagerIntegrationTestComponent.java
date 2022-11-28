@@ -9,12 +9,12 @@ import org.briarproject.bramble.test.BrambleCoreIntegrationTestModule;
 import org.briarproject.bramble.test.TestDnsModule;
 import org.briarproject.bramble.test.TestPluginConfigModule;
 import org.briarproject.bramble.test.TestSocksModule;
-import org.briarproject.masterproject.api.blog.BlogManager;
-import org.briarproject.masterproject.api.feed.FeedManager;
 import org.briarproject.briar.avatar.AvatarModule;
 import org.briarproject.briar.blog.BlogModule;
 import org.briarproject.briar.client.BriarClientModule;
 import org.briarproject.briar.identity.IdentityModule;
+import org.briarproject.masterproject.api.blog.BlogManager;
+import org.briarproject.masterproject.api.feed.FeedManager;
 
 import javax.inject.Singleton;
 
@@ -22,46 +22,46 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		BrambleCoreIntegrationTestModule.class,
-		BrambleCoreModule.class,
-		AvatarModule.class,
-		BlogModule.class,
-		BriarClientModule.class,
-		FeedModule.class,
-		IdentityModule.class,
-		ModularMailboxModule.class,
-		TestDnsModule.class,
-		TestSocksModule.class,
-		TestPluginConfigModule.class,
+        BrambleCoreIntegrationTestModule.class,
+        BrambleCoreModule.class,
+        AvatarModule.class,
+        BlogModule.class,
+        BriarClientModule.class,
+        FeedModule.class,
+        IdentityModule.class,
+        ModularMailboxModule.class,
+        TestDnsModule.class,
+        TestSocksModule.class,
+        TestPluginConfigModule.class,
 })
 interface FeedManagerIntegrationTestComponent
-		extends BrambleCoreIntegrationTestEagerSingletons {
+        extends BrambleCoreIntegrationTestEagerSingletons {
 
-	void inject(FeedManagerIntegrationTest testCase);
+    void inject(FeedManagerIntegrationTest testCase);
 
-	void inject(AvatarModule.EagerSingletons init);
+    void inject(AvatarModule.EagerSingletons init);
 
-	void inject(BlogModule.EagerSingletons init);
+    void inject(BlogModule.EagerSingletons init);
 
-	void inject(FeedModule.EagerSingletons init);
+    void inject(FeedModule.EagerSingletons init);
 
-	IdentityManager getIdentityManager();
+    IdentityManager getIdentityManager();
 
-	LifecycleManager getLifecycleManager();
+    LifecycleManager getLifecycleManager();
 
-	FeedManager getFeedManager();
+    FeedManager getFeedManager();
 
-	BlogManager getBlogManager();
+    BlogManager getBlogManager();
 
-	class Helper {
+    class Helper {
 
-		public static void injectEagerSingletons(
-				FeedManagerIntegrationTestComponent c) {
-			BrambleCoreIntegrationTestEagerSingletons.Helper
-					.injectEagerSingletons(c);
-			c.inject(new AvatarModule.EagerSingletons());
-			c.inject(new BlogModule.EagerSingletons());
-			c.inject(new FeedModule.EagerSingletons());
-		}
-	}
+        public static void injectEagerSingletons(
+                FeedManagerIntegrationTestComponent c) {
+            BrambleCoreIntegrationTestEagerSingletons.Helper
+                    .injectEagerSingletons(c);
+            c.inject(new AvatarModule.EagerSingletons());
+            c.inject(new BlogModule.EagerSingletons());
+            c.inject(new FeedModule.EagerSingletons());
+        }
+    }
 }

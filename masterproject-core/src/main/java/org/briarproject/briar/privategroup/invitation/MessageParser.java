@@ -13,27 +13,27 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface MessageParser {
 
-	BdfDictionary getMessagesVisibleInUiQuery();
+    BdfDictionary getMessagesVisibleInUiQuery();
 
-	BdfDictionary getInvitesAvailableToAnswerQuery();
+    BdfDictionary getInvitesAvailableToAnswerQuery();
 
-	BdfDictionary getInvitesAvailableToAnswerQuery(GroupId privateGroupId);
+    BdfDictionary getInvitesAvailableToAnswerQuery(GroupId privateGroupId);
 
-	MessageMetadata parseMetadata(BdfDictionary meta) throws FormatException;
+    MessageMetadata parseMetadata(BdfDictionary meta) throws FormatException;
 
-	InviteMessage getInviteMessage(Transaction txn, MessageId m)
-			throws DbException, FormatException;
+    InviteMessage getInviteMessage(Transaction txn, MessageId m)
+            throws DbException, FormatException;
 
-	InviteMessage parseInviteMessage(Message m, BdfList body)
-			throws FormatException;
+    InviteMessage parseInviteMessage(Message m, BdfList body)
+            throws FormatException;
 
-	JoinMessage parseJoinMessage(Message m, BdfList body)
-			throws FormatException;
+    JoinMessage parseJoinMessage(Message m, BdfList body)
+            throws FormatException;
 
-	LeaveMessage parseLeaveMessage(Message m, BdfList body)
-			throws FormatException;
+    LeaveMessage parseLeaveMessage(Message m, BdfList body)
+            throws FormatException;
 
-	AbortMessage parseAbortMessage(Message m, BdfList body)
-			throws FormatException;
+    AbortMessage parseAbortMessage(Message m, BdfList body)
+            throws FormatException;
 
 }

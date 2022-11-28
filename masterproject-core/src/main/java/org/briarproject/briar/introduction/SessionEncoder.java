@@ -7,12 +7,12 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface SessionEncoder {
 
-	BdfDictionary getIntroduceeSessionsByIntroducerQuery(Author introducer);
+    BdfDictionary getIntroduceeSessionsByIntroducerQuery(Author introducer);
 
-	BdfDictionary getIntroducerSessionsQuery();
+    BdfDictionary getIntroducerSessionsQuery();
 
-	BdfDictionary encodeIntroducerSession(IntroducerSession s);
+    BdfDictionary encodeIntroducerSession(IntroducerSession s);
 
-	BdfDictionary encodeIntroduceeSession(IntroduceeSession s);
+    BdfDictionary encodeIntroduceeSession(IntroduceeSession s);
 
 }

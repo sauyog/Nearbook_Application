@@ -7,27 +7,27 @@ apply plugin: 'witness'
 apply from: 'witness.gradle'
 
 dependencies {
-	api 'org.briarproject:null-safety:0.1'
+    api 'org.briarproject:null-safety:0.1'
 
-	implementation "com.google.dagger:dagger:$dagger_version"
-	implementation 'com.google.code.findbugs:jsr305:3.0.2'
-	implementation "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
 
-	testImplementation "junit:junit:$junit_version"
-	testImplementation "org.jmock:jmock:$jmock_version"
-	testImplementation "org.jmock:jmock-junit4:$jmock_version"
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.jmock:jmock:$jmock_version"
+    testImplementation "org.jmock:jmock-junit4:$jmock_version"
 
-	signature 'org.codehaus.mojo.signature:java16:1.1@signature'
+    signature 'org.codehaus.mojo.signature:java16:1.1@signature'
 }
 
 // needed to make test output available to nearbook-core and masterproject-core
 configurations {
-	testOutput.extendsFrom(testCompile)
+    testOutput.extendsFrom(testCompile)
 }
 task jarTest(type: Jar, dependsOn: testClasses) {
-	from sourceSets.test.output
-	classifier = 'test'
+    from sourceSets.test.output
+    classifier = 'test'
 }
 artifacts {
-	testOutput jarTest
+    testOutput jarTest
 }

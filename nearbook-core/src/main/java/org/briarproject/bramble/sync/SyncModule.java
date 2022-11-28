@@ -14,32 +14,32 @@ import dagger.Provides;
 @Module
 public class SyncModule {
 
-	@Provides
-	GroupFactory provideGroupFactory(GroupFactoryImpl groupFactory) {
-		return groupFactory;
-	}
+    @Provides
+    GroupFactory provideGroupFactory(GroupFactoryImpl groupFactory) {
+        return groupFactory;
+    }
 
-	@Provides
-	MessageFactory provideMessageFactory(MessageFactoryImpl messageFactory) {
-		return messageFactory;
-	}
+    @Provides
+    MessageFactory provideMessageFactory(MessageFactoryImpl messageFactory) {
+        return messageFactory;
+    }
 
-	@Provides
-	SyncRecordReaderFactory provideRecordReaderFactory(
-			SyncRecordReaderFactoryImpl recordReaderFactory) {
-		return recordReaderFactory;
-	}
+    @Provides
+    SyncRecordReaderFactory provideRecordReaderFactory(
+            SyncRecordReaderFactoryImpl recordReaderFactory) {
+        return recordReaderFactory;
+    }
 
-	@Provides
-	SyncRecordWriterFactory provideRecordWriterFactory(
-			SyncRecordWriterFactoryImpl recordWriterFactory) {
-		return recordWriterFactory;
-	}
+    @Provides
+    SyncRecordWriterFactory provideRecordWriterFactory(
+            SyncRecordWriterFactoryImpl recordWriterFactory) {
+        return recordWriterFactory;
+    }
 
-	@Provides
-	@Singleton
-	SyncSessionFactory provideSyncSessionFactory(
-			SyncSessionFactoryImpl syncSessionFactory) {
-		return syncSessionFactory;
-	}
+    @Provides
+    @Singleton
+    SyncSessionFactory provideSyncSessionFactory(
+            SyncSessionFactoryImpl syncSessionFactory) {
+        return syncSessionFactory;
+    }
 }

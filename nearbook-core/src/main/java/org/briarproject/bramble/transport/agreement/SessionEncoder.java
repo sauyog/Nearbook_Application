@@ -7,7 +7,7 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface SessionEncoder {
 
-	BdfDictionary encodeSession(Session s, TransportId transportId);
+    BdfDictionary encodeSession(Session s, TransportId transportId);
 
-	BdfDictionary getSessionQuery(TransportId transportId);
+    BdfDictionary getSessionQuery(TransportId transportId);
 }

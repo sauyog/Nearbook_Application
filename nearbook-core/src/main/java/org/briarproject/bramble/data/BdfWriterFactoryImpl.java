@@ -12,8 +12,8 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class BdfWriterFactoryImpl implements BdfWriterFactory {
 
-	@Override
-	public BdfWriter createWriter(OutputStream out) {
-		return new BdfWriterImpl(out);
-	}
+    @Override
+    public BdfWriter createWriter(OutputStream out) {
+        return new BdfWriterImpl(out);
+    }
 }

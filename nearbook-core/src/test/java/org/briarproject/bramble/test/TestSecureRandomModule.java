@@ -8,8 +8,8 @@ import dagger.Provides;
 @Module
 public class TestSecureRandomModule {
 
-	@Provides
-	SecureRandomProvider provideSecureRandomProvider() {
-		return new TestSecureRandomProvider();
-	}
+    @Provides
+    SecureRandomProvider provideSecureRandomProvider() {
+        return new TestSecureRandomProvider();
+    }
 }

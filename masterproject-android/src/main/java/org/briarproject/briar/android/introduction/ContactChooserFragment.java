@@ -5,6 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import org.briarproject.briar.R;
 import org.briarproject.masterproject.android.activity.ActivityComponent;
 import org.briarproject.masterproject.android.contact.ContactListAdapter;
@@ -17,74 +21,68 @@ import org.briarproject.nullsafety.ParametersNotNullByDefault;
 
 import javax.inject.Inject;
 
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 public class ContactChooserFragment extends BaseFragment
-		implements OnContactClickListener<ContactListItem> {
+        implements OnContactClickListener<ContactListItem> {
 
-	private static final String TAG = ContactChooserFragment.class.getName();
+    private static final String TAG = ContactChooserFragment.class.getName();
+    private final ContactListAdapter adapter = new ContactListAdapter(this);
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+    private IntroductionViewModel viewModel;
+    private BriarRecyclerView list;
 
-	@Inject
-	ViewModelProvider.Factory viewModelFactory;
+    @Override
+    public void injectFragment(ActivityComponent component) {
+        component.inject(this);
+        viewModel = new ViewModelProvider(requireActivity(), viewModelFactory)
+                .get(IntroductionViewModel.class);
+    }
 
-	private IntroductionViewModel viewModel;
-	private final ContactListAdapter adapter = new ContactListAdapter(this);
-	private BriarRecyclerView list;
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
-	@Override
-	public void injectFragment(ActivityComponent component) {
-		component.inject(this);
-		viewModel = new ViewModelProvider(requireActivity(), viewModelFactory)
-				.get(IntroductionViewModel.class);
-	}
+        // change toolbar text (relevant when navigating back to this fragment)
+        requireActivity().setTitle(R.string.introduction_activity_title);
 
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			@Nullable ViewGroup container,
-			@Nullable Bundle savedInstanceState) {
+        View contentView = inflater.inflate(R.layout.list, container, false);
 
-		// change toolbar text (relevant when navigating back to this fragment)
-		requireActivity().setTitle(R.string.introduction_activity_title);
+        list = contentView.findViewById(R.id.list);
+        list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        list.setAdapter(adapter);
+        list.setEmptyText(R.string.no_contacts);
 
-		View contentView = inflater.inflate(R.layout.list, container, false);
+        viewModel.getContactListItems().observe(getViewLifecycleOwner(),
+                result -> result.onError(this::handleException)
+                        .onSuccess(adapter::submitList)
+        );
 
-		list = contentView.findViewById(R.id.list);
-		list.setLayoutManager(new LinearLayoutManager(getActivity()));
-		list.setAdapter(adapter);
-		list.setEmptyText(R.string.no_contacts);
+        return contentView;
+    }
 
-		viewModel.getContactListItems().observe(getViewLifecycleOwner(),
-				result -> result.onError(this::handleException)
-						.onSuccess(adapter::submitList)
-		);
+    @Override
+    public void onStart() {
+        super.onStart();
+        list.startPeriodicUpdate();
+    }
 
-		return contentView;
-	}
+    @Override
+    public void onStop() {
+        super.onStop();
+        list.stopPeriodicUpdate();
+    }
 
-	@Override
-	public void onStart() {
-		super.onStart();
-		list.startPeriodicUpdate();
-	}
+    @Override
+    public String getUniqueTag() {
+        return TAG;
+    }
 
-	@Override
-	public void onStop() {
-		super.onStop();
-		list.stopPeriodicUpdate();
-	}
-
-	@Override
-	public String getUniqueTag() {
-		return TAG;
-	}
-
-	@Override
-	public void onItemClick(View view, ContactListItem item) {
-		viewModel.setSecondContactId(item.getContact().getId());
-		viewModel.triggerContactSelected();
-	}
+    @Override
+    public void onItemClick(View view, ContactListItem item) {
+        viewModel.setSecondContactId(item.getContact().getId());
+        viewModel.triggerContactSelected();
+    }
 }

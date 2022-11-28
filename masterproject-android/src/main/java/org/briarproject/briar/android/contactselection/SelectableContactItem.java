@@ -11,26 +11,26 @@ import javax.annotation.concurrent.NotThreadSafe;
 @NotNullByDefault
 public class SelectableContactItem extends ContactItem {
 
-	private boolean selected;
-	private final boolean disabled;
+    private final boolean disabled;
+    private boolean selected;
 
-	public SelectableContactItem(Contact contact, AuthorInfo authorInfo,
-			boolean selected, boolean disabled) {
-		super(contact, authorInfo);
-		this.selected = selected;
-		this.disabled = disabled;
-	}
+    public SelectableContactItem(Contact contact, AuthorInfo authorInfo,
+                                 boolean selected, boolean disabled) {
+        super(contact, authorInfo);
+        this.selected = selected;
+        this.disabled = disabled;
+    }
 
-	boolean isSelected() {
-		return selected;
-	}
+    boolean isSelected() {
+        return selected;
+    }
 
-	void toggleSelected() {
-		selected = !selected;
-	}
+    void toggleSelected() {
+        selected = !selected;
+    }
 
-	public boolean isDisabled() {
-		return disabled;
-	}
+    public boolean isDisabled() {
+        return disabled;
+    }
 
 }

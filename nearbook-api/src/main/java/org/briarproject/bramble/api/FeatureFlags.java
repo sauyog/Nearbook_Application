@@ -5,17 +5,17 @@ package org.briarproject.bramble.api;
  */
 public interface FeatureFlags {
 
-	boolean shouldEnableImageAttachments();
+    boolean shouldEnableImageAttachments();
 
-	boolean shouldEnableProfilePictures();
+    boolean shouldEnableProfilePictures();
 
-	boolean shouldEnableDisappearingMessages();
+    boolean shouldEnableDisappearingMessages();
 
-	boolean shouldEnableMailbox();
+    boolean shouldEnableMailbox();
 
-	boolean shouldEnablePrivateGroupsInCore();
+    boolean shouldEnablePrivateGroupsInCore();
 
-	boolean shouldEnableForumsInCore();
+    boolean shouldEnableForumsInCore();
 
-	boolean shouldEnableBlogsInCore();
+    boolean shouldEnableBlogsInCore();
 }

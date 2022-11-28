@@ -14,21 +14,21 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class PendingContactStateChangedEvent extends Event {
 
-	private final PendingContactId id;
-	private final PendingContactState state;
+    private final PendingContactId id;
+    private final PendingContactState state;
 
-	public PendingContactStateChangedEvent(PendingContactId id,
-			PendingContactState state) {
-		this.id = id;
-		this.state = state;
-	}
+    public PendingContactStateChangedEvent(PendingContactId id,
+                                           PendingContactState state) {
+        this.id = id;
+        this.state = state;
+    }
 
-	public PendingContactId getId() {
-		return id;
-	}
+    public PendingContactId getId() {
+        return id;
+    }
 
-	public PendingContactState getPendingContactState() {
-		return state;
-	}
+    public PendingContactState getPendingContactState() {
+        return state;
+    }
 
 }

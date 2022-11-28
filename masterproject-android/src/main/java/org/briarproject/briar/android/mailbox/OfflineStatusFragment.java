@@ -7,11 +7,11 @@ import org.briarproject.nullsafety.ParametersNotNullByDefault;
 @ParametersNotNullByDefault
 public class OfflineStatusFragment extends OfflineFragment {
 
-	public static final String TAG = OfflineStatusFragment.class.getName();
+    public static final String TAG = OfflineStatusFragment.class.getName();
 
-	@Override
-	protected void onTryAgainClicked() {
-		viewModel.checkIfOnlineWhenPaired();
-	}
+    @Override
+    protected void onTryAgainClicked() {
+        viewModel.checkIfOnlineWhenPaired();
+    }
 
 }

@@ -2,16 +2,16 @@ package org.briarproject.masterproject.android.qrcode;
 
 import android.hardware.Camera;
 
-import org.briarproject.nullsafety.NotNullByDefault;
-
 import androidx.annotation.UiThread;
+
+import org.briarproject.nullsafety.NotNullByDefault;
 
 @NotNullByDefault
 public interface PreviewConsumer {
 
-	@UiThread
-	void start(Camera camera, int cameraIndex);
+    @UiThread
+    void start(Camera camera, int cameraIndex);
 
-	@UiThread
-	void stop();
+    @UiThread
+    void stop();
 }

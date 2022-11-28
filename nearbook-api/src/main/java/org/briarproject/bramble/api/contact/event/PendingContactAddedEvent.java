@@ -13,13 +13,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class PendingContactAddedEvent extends Event {
 
-	private final PendingContact pendingContact;
+    private final PendingContact pendingContact;
 
-	public PendingContactAddedEvent(PendingContact pendingContact) {
-		this.pendingContact = pendingContact;
-	}
+    public PendingContactAddedEvent(PendingContact pendingContact) {
+        this.pendingContact = pendingContact;
+    }
 
-	public PendingContact getPendingContact() {
-		return pendingContact;
-	}
+    public PendingContact getPendingContact() {
+        return pendingContact;
+    }
 }

@@ -1,7 +1,20 @@
 package org.briarproject.masterproject.android.blog;
 
+import static org.briarproject.bramble.util.LogUtils.logDuration;
+import static org.briarproject.bramble.util.LogUtils.logException;
+import static org.briarproject.bramble.util.LogUtils.now;
+import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.EXISTS;
+import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.FAILED;
+import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.IMPORTED;
+import static java.util.logging.Level.WARNING;
+import static java.util.logging.Logger.getLogger;
+
 import android.app.Application;
 import android.util.Patterns;
+
+import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import org.briarproject.bramble.api.db.DatabaseExecutor;
 import org.briarproject.bramble.api.db.DbException;
@@ -29,150 +42,133 @@ import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
-import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
-import static java.util.logging.Level.WARNING;
-import static java.util.logging.Logger.getLogger;
-import static org.briarproject.bramble.util.LogUtils.logDuration;
-import static org.briarproject.bramble.util.LogUtils.logException;
-import static org.briarproject.bramble.util.LogUtils.now;
-import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.EXISTS;
-import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.FAILED;
-import static org.briarproject.masterproject.android.blog.RssFeedViewModel.ImportResult.IMPORTED;
-
 @NotNullByDefault
 class RssFeedViewModel extends DbViewModel {
-	enum ImportResult {IMPORTED, FAILED, EXISTS}
+    private static final Logger LOG =
+            getLogger(RssFeedViewModel.class.getName());
+    private final FeedManager feedManager;
+    private final Executor ioExecutor;
+    private final Executor dbExecutor;
+    private final MutableLiveData<LiveResult<List<Feed>>> feeds =
+            new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isImporting =
+            new MutableLiveData<>(false);
+    private final MutableLiveEvent<ImportResult> importResult =
+            new MutableLiveEvent<>();
+    @Nullable
+    private volatile String urlFailedImport = null;
+    @Inject
+    RssFeedViewModel(Application app,
+                     FeedManager feedManager,
+                     @IoExecutor Executor ioExecutor,
+                     @DatabaseExecutor Executor dbExecutor,
+                     LifecycleManager lifecycleManager,
+                     TransactionManager db,
+                     AndroidExecutor androidExecutor) {
+        super(app, dbExecutor, lifecycleManager, db, androidExecutor);
+        this.feedManager = feedManager;
+        this.ioExecutor = ioExecutor;
+        this.dbExecutor = dbExecutor;
 
-	private static final Logger LOG =
-			getLogger(RssFeedViewModel.class.getName());
+        loadFeeds();
+    }
 
-	private final FeedManager feedManager;
-	private final Executor ioExecutor;
-	private final Executor dbExecutor;
+    @Nullable
+    String validateAndNormaliseUrl(String url) {
+        if (!Patterns.WEB_URL.matcher(url).matches()) return null;
+        try {
+            return new URL(url).toString();
+        } catch (MalformedURLException e) {
+            return null;
+        }
+    }
 
-	private final MutableLiveData<LiveResult<List<Feed>>> feeds =
-			new MutableLiveData<>();
+    LiveData<LiveResult<List<Feed>>> getFeeds() {
+        return feeds;
+    }
 
-	@Nullable
-	private volatile String urlFailedImport = null;
-	private final MutableLiveData<Boolean> isImporting =
-			new MutableLiveData<>(false);
-	private final MutableLiveEvent<ImportResult> importResult =
-			new MutableLiveEvent<>();
+    private void loadFeeds() {
+        loadFromDb(this::loadFeeds, feeds::setValue);
+    }
 
-	@Inject
-	RssFeedViewModel(Application app,
-			FeedManager feedManager,
-			@IoExecutor Executor ioExecutor,
-			@DatabaseExecutor Executor dbExecutor,
-			LifecycleManager lifecycleManager,
-			TransactionManager db,
-			AndroidExecutor androidExecutor) {
-		super(app, dbExecutor, lifecycleManager, db, androidExecutor);
-		this.feedManager = feedManager;
-		this.ioExecutor = ioExecutor;
-		this.dbExecutor = dbExecutor;
+    @DatabaseExecutor
+    private List<Feed> loadFeeds(Transaction txn) throws DbException {
+        long start = now();
+        List<Feed> feeds = feedManager.getFeeds(txn);
+        Collections.sort(feeds);
+        logDuration(LOG, "Loading feeds", start);
+        return feeds;
+    }
 
-		loadFeeds();
-	}
+    void removeFeed(GroupId groupId) {
+        dbExecutor.execute(() -> {
+            List<Feed> updated = removeListItems(getList(feeds), feed -> {
+                if (feed.getBlogId().equals(groupId)) {
+                    try {
+                        feedManager.removeFeed(feed);
+                        return true;
+                    } catch (DbException e) {
+                        handleException(e);
+                    }
+                }
+                return false;
+            });
+            if (updated != null) {
+                feeds.postValue(new LiveResult<>(updated));
+            }
+        });
+    }
 
-	@Nullable
-	String validateAndNormaliseUrl(String url) {
-		if (!Patterns.WEB_URL.matcher(url).matches()) return null;
-		try {
-			return new URL(url).toString();
-		} catch (MalformedURLException e) {
-			return null;
-		}
-	}
+    LiveEvent<ImportResult> getImportResult() {
+        return importResult;
+    }
 
-	LiveData<LiveResult<List<Feed>>> getFeeds() {
-		return feeds;
-	}
+    LiveData<Boolean> getIsImporting() {
+        return isImporting;
+    }
 
-	private void loadFeeds() {
-		loadFromDb(this::loadFeeds, feeds::setValue);
-	}
+    void importFeed(String url) {
+        isImporting.setValue(true);
+        urlFailedImport = null;
+        ioExecutor.execute(() -> {
+            try {
+                if (exists(url)) {
+                    importResult.postEvent(EXISTS);
+                    return;
+                }
+                Feed feed = feedManager.addFeed(url);
+                List<Feed> updated = addListItem(getList(feeds), feed);
+                if (updated != null) {
+                    Collections.sort(updated);
+                    feeds.postValue(new LiveResult<>(updated));
+                }
+                importResult.postEvent(IMPORTED);
+            } catch (DbException | IOException e) {
+                logException(LOG, WARNING, e);
+                urlFailedImport = url;
+                importResult.postEvent(FAILED);
+            } finally {
+                isImporting.postValue(false);
+            }
+        });
+    }
 
-	@DatabaseExecutor
-	private List<Feed> loadFeeds(Transaction txn) throws DbException {
-		long start = now();
-		List<Feed> feeds = feedManager.getFeeds(txn);
-		Collections.sort(feeds);
-		logDuration(LOG, "Loading feeds", start);
-		return feeds;
-	}
+    @Nullable
+    String getUrlFailedImport() {
+        return urlFailedImport;
+    }
 
-	void removeFeed(GroupId groupId) {
-		dbExecutor.execute(() -> {
-			List<Feed> updated = removeListItems(getList(feeds), feed -> {
-				if (feed.getBlogId().equals(groupId)) {
-					try {
-						feedManager.removeFeed(feed);
-						return true;
-					} catch (DbException e) {
-						handleException(e);
-					}
-				}
-				return false;
-			});
-			if (updated != null) {
-				feeds.postValue(new LiveResult<>(updated));
-			}
-		});
-	}
+    private boolean exists(String url) {
+        List<Feed> list = getList(feeds);
+        if (list != null) {
+            for (Feed feed : list) {
+                if (url.equals(feed.getUrl())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-	LiveEvent<ImportResult> getImportResult() {
-		return importResult;
-	}
-
-	LiveData<Boolean> getIsImporting() {
-		return isImporting;
-	}
-
-	void importFeed(String url) {
-		isImporting.setValue(true);
-		urlFailedImport = null;
-		ioExecutor.execute(() -> {
-			try {
-				if (exists(url)) {
-					importResult.postEvent(EXISTS);
-					return;
-				}
-				Feed feed = feedManager.addFeed(url);
-				List<Feed> updated = addListItem(getList(feeds), feed);
-				if (updated != null) {
-					Collections.sort(updated);
-					feeds.postValue(new LiveResult<>(updated));
-				}
-				importResult.postEvent(IMPORTED);
-			} catch (DbException | IOException e) {
-				logException(LOG, WARNING, e);
-				urlFailedImport = url;
-				importResult.postEvent(FAILED);
-			} finally {
-				isImporting.postValue(false);
-			}
-		});
-	}
-
-	@Nullable
-	String getUrlFailedImport() {
-		return urlFailedImport;
-	}
-
-	private boolean exists(String url) {
-		List<Feed> list = getList(feeds);
-		if (list != null) {
-			for (Feed feed : list) {
-				if (url.equals(feed.getUrl())) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+    enum ImportResult {IMPORTED, FAILED, EXISTS}
 }

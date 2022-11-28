@@ -11,26 +11,26 @@ import java.nio.charset.Charset;
 
 class TorRendezvousCryptoImpl implements TorRendezvousCrypto {
 
-	private static final EdDSANamedCurveSpec CURVE_SPEC =
-			EdDSANamedCurveTable.getByName("Ed25519");
+    private static final EdDSANamedCurveSpec CURVE_SPEC =
+            EdDSANamedCurveTable.getByName("Ed25519");
 
-	private final CryptoComponent crypto;
+    private final CryptoComponent crypto;
 
-	TorRendezvousCryptoImpl(CryptoComponent crypto) {
-		this.crypto = crypto;
-	}
+    TorRendezvousCryptoImpl(CryptoComponent crypto) {
+        this.crypto = crypto;
+    }
 
-	@Override
-	public String getOnion(byte[] seed) {
-		EdDSAPrivateKeySpec spec = new EdDSAPrivateKeySpec(seed, CURVE_SPEC);
-		return crypto.encodeOnion(spec.getA().toByteArray());
-	}
+    @Override
+    public String getOnion(byte[] seed) {
+        EdDSAPrivateKeySpec spec = new EdDSAPrivateKeySpec(seed, CURVE_SPEC);
+        return crypto.encodeOnion(spec.getA().toByteArray());
+    }
 
-	@Override
-	public String getPrivateKeyBlob(byte[] seed) {
-		EdDSAPrivateKeySpec spec = new EdDSAPrivateKeySpec(seed, CURVE_SPEC);
-		byte[] hash = spec.getH();
-		byte[] base64 = Base64.encode(hash);
-		return "ED25519-V3:" + new String(base64, Charset.forName("US-ASCII"));
-	}
+    @Override
+    public String getPrivateKeyBlob(byte[] seed) {
+        EdDSAPrivateKeySpec spec = new EdDSAPrivateKeySpec(seed, CURVE_SPEC);
+        byte[] hash = spec.getH();
+        byte[] base64 = Base64.encode(hash);
+        return "ED25519-V3:" + new String(base64, Charset.forName("US-ASCII"));
+    }
 }

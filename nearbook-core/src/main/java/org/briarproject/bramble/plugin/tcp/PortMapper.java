@@ -4,6 +4,6 @@ import javax.annotation.Nullable;
 
 interface PortMapper {
 
-	@Nullable
-	MappingResult map(int port);
+    @Nullable
+    MappingResult map(int port);
 }

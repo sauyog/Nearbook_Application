@@ -17,29 +17,29 @@ import javax.inject.Inject;
 @NotNullByDefault
 class EventBusImpl implements EventBus {
 
-	private final Collection<EventListener> listeners =
-			new CopyOnWriteArrayList<>();
-	private final Executor eventExecutor;
+    private final Collection<EventListener> listeners =
+            new CopyOnWriteArrayList<>();
+    private final Executor eventExecutor;
 
-	@Inject
-	EventBusImpl(@EventExecutor Executor eventExecutor) {
-		this.eventExecutor = eventExecutor;
-	}
+    @Inject
+    EventBusImpl(@EventExecutor Executor eventExecutor) {
+        this.eventExecutor = eventExecutor;
+    }
 
-	@Override
-	public void addListener(EventListener l) {
-		listeners.add(l);
-	}
+    @Override
+    public void addListener(EventListener l) {
+        listeners.add(l);
+    }
 
-	@Override
-	public void removeListener(EventListener l) {
-		listeners.remove(l);
-	}
+    @Override
+    public void removeListener(EventListener l) {
+        listeners.remove(l);
+    }
 
-	@Override
-	public void broadcast(Event e) {
-		eventExecutor.execute(() -> {
-			for (EventListener l : listeners) l.eventOccurred(e);
-		});
-	}
+    @Override
+    public void broadcast(Event e) {
+        eventExecutor.execute(() -> {
+            for (EventListener l : listeners) l.eventOccurred(e);
+        });
+    }
 }

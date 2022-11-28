@@ -11,15 +11,15 @@ import dagger.Provides;
 @Module
 public class JavaSystemModule {
 
-	@Provides
-	@Singleton
-	LocationUtils provideLocationUtils(JavaLocationUtils locationUtils) {
-		return locationUtils;
-	}
+    @Provides
+    @Singleton
+    LocationUtils provideLocationUtils(JavaLocationUtils locationUtils) {
+        return locationUtils;
+    }
 
-	@Provides
-	@Singleton
-	ResourceProvider provideResourceProvider(JavaResourceProvider provider) {
-		return provider;
-	}
+    @Provides
+    @Singleton
+    ResourceProvider provideResourceProvider(JavaResourceProvider provider) {
+        return provider;
+    }
 }

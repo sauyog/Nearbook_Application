@@ -25,62 +25,61 @@ import static org.junit.Assert.assertTrue;
  */
 public class OverlayView extends View {
 
-	public static OverlayView attach(Context ctx) throws Throwable {
-		assertTrue(canDrawOverlays(ctx));
-		OverlayView view = new OverlayView(getApplicationContext());
-		runOnUiThread(() -> attachInternal(ctx, view));
-		return view;
-	}
+    private final Random random = new Random();
+    private final Paint paint;
+    private final int yOffset;
+    @Nullable
+    private float[] coordinates;
+    public OverlayView(Context ctx) {
+        super(ctx);
+        int resourceId = getResources()
+                .getIdentifier("status_bar_height", "dimen", "android");
+        yOffset = getResources().getDimensionPixelSize(resourceId);
+        paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setARGB(175, 255, 0, 0);
+        setWillNotDraw(false);
+    }
 
-	private static void attachInternal(Context ctx, OverlayView view) {
-		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-				WindowManager.LayoutParams.MATCH_PARENT,
-				WindowManager.LayoutParams.MATCH_PARENT,
-				WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-				FLAG_NOT_TOUCHABLE | FLAG_NOT_FOCUSABLE,
-				PixelFormat.TRANSLUCENT);
-		WindowManager wm = (WindowManager) ctx.getSystemService(WINDOW_SERVICE);
-		wm.addView(view, params);
-	}
+    public static OverlayView attach(Context ctx) throws Throwable {
+        assertTrue(canDrawOverlays(ctx));
+        OverlayView view = new OverlayView(getApplicationContext());
+        runOnUiThread(() -> attachInternal(ctx, view));
+        return view;
+    }
 
-	private final Random random = new Random();
-	private final Paint paint;
-	private final int yOffset;
-	@Nullable
-	private float[] coordinates;
+    private static void attachInternal(Context ctx, OverlayView view) {
+        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+                FLAG_NOT_TOUCHABLE | FLAG_NOT_FOCUSABLE,
+                PixelFormat.TRANSLUCENT);
+        WindowManager wm = (WindowManager) ctx.getSystemService(WINDOW_SERVICE);
+        wm.addView(view, params);
+    }
 
-	public OverlayView(Context ctx) {
-		super(ctx);
-		int resourceId = getResources()
-				.getIdentifier("status_bar_height", "dimen", "android");
-		yOffset = getResources().getDimensionPixelSize(resourceId);
-		paint = new Paint();
-		paint.setAntiAlias(true);
-		paint.setARGB(175, 255, 0, 0);
-		setWillNotDraw(false);
-	}
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    }
 
-	@Override
-	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-	}
+    void tap(float[] coordinates) {
+        this.coordinates = coordinates;
+        invalidate();
+        new Handler().postDelayed(this::untap, 750);
+    }
 
-	void tap(float[] coordinates) {
-		this.coordinates = coordinates;
-		invalidate();
-		new Handler().postDelayed(this::untap, 750);
-	}
+    private void untap() {
+        this.coordinates = null;
+        invalidate();
+    }
 
-	private void untap() {
-		this.coordinates = null;
-		invalidate();
-	}
-
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-		if (coordinates == null) return;
-		float x = coordinates[0] + random.nextInt(42);
-		float y = coordinates[1] - yOffset + random.nextInt(13);
-		canvas.drawCircle(x, y, 42, paint);
-	}
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (coordinates == null) return;
+        float x = coordinates[0] + random.nextInt(42);
+        float y = coordinates[1] - yOffset + random.nextInt(13);
+        canvas.drawCircle(x, y, 42, paint);
+    }
 }

@@ -14,32 +14,32 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface MessageParser<S extends Shareable> {
 
-	BdfDictionary getMessagesVisibleInUiQuery();
+    BdfDictionary getMessagesVisibleInUiQuery();
 
-	BdfDictionary getInvitesAvailableToAnswerQuery();
+    BdfDictionary getInvitesAvailableToAnswerQuery();
 
-	BdfDictionary getInvitesAvailableToAnswerQuery(GroupId shareableId);
+    BdfDictionary getInvitesAvailableToAnswerQuery(GroupId shareableId);
 
-	MessageMetadata parseMetadata(BdfDictionary meta) throws FormatException;
+    MessageMetadata parseMetadata(BdfDictionary meta) throws FormatException;
 
-	S createShareable(BdfList descriptor) throws FormatException;
+    S createShareable(BdfList descriptor) throws FormatException;
 
-	InviteMessage<S> getInviteMessage(Transaction txn, MessageId m)
-			throws DbException, FormatException;
+    InviteMessage<S> getInviteMessage(Transaction txn, MessageId m)
+            throws DbException, FormatException;
 
-	InviteMessage<S> parseInviteMessage(Message m, BdfList body)
-			throws FormatException;
+    InviteMessage<S> parseInviteMessage(Message m, BdfList body)
+            throws FormatException;
 
-	AcceptMessage parseAcceptMessage(Message m, BdfList body)
-			throws FormatException;
+    AcceptMessage parseAcceptMessage(Message m, BdfList body)
+            throws FormatException;
 
-	DeclineMessage parseDeclineMessage(Message m, BdfList body)
-			throws FormatException;
+    DeclineMessage parseDeclineMessage(Message m, BdfList body)
+            throws FormatException;
 
-	LeaveMessage parseLeaveMessage(Message m, BdfList body)
-			throws FormatException;
+    LeaveMessage parseLeaveMessage(Message m, BdfList body)
+            throws FormatException;
 
-	AbortMessage parseAbortMessage(Message m, BdfList body)
-			throws FormatException;
+    AbortMessage parseAbortMessage(Message m, BdfList body)
+            throws FormatException;
 
 }

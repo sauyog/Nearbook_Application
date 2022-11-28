@@ -3,11 +3,7 @@ package org.briarproject.briar.headless
 import com.fasterxml.jackson.core.JsonParseException
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.javalin.Javalin
-import io.javalin.apibuilder.ApiBuilder.delete
-import io.javalin.apibuilder.ApiBuilder.get
-import io.javalin.apibuilder.ApiBuilder.path
-import io.javalin.apibuilder.ApiBuilder.post
-import io.javalin.apibuilder.ApiBuilder.put
+import io.javalin.apibuilder.ApiBuilder.*
 import io.javalin.core.security.AccessManager
 import io.javalin.core.util.Header.AUTHORIZATION
 import io.javalin.http.BadRequestResponse

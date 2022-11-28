@@ -2,11 +2,7 @@ package org.briarproject.briar.headless.contact
 
 import org.briarproject.bramble.api.contact.PendingContact
 import org.briarproject.bramble.api.contact.PendingContactState
-import org.briarproject.bramble.api.contact.PendingContactState.ADDING_CONTACT
-import org.briarproject.bramble.api.contact.PendingContactState.CONNECTING
-import org.briarproject.bramble.api.contact.PendingContactState.FAILED
-import org.briarproject.bramble.api.contact.PendingContactState.OFFLINE
-import org.briarproject.bramble.api.contact.PendingContactState.WAITING_FOR_CONNECTION
+import org.briarproject.bramble.api.contact.PendingContactState.*
 import org.briarproject.bramble.api.contact.event.PendingContactAddedEvent
 import org.briarproject.bramble.api.contact.event.PendingContactRemovedEvent
 import org.briarproject.bramble.api.contact.event.PendingContactStateChangedEvent

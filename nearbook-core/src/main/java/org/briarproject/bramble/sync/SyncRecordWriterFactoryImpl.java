@@ -14,19 +14,19 @@ import javax.inject.Inject;
 @NotNullByDefault
 class SyncRecordWriterFactoryImpl implements SyncRecordWriterFactory {
 
-	private final MessageFactory messageFactory;
-	private final RecordWriterFactory recordWriterFactory;
+    private final MessageFactory messageFactory;
+    private final RecordWriterFactory recordWriterFactory;
 
-	@Inject
-	SyncRecordWriterFactoryImpl(MessageFactory messageFactory,
-			RecordWriterFactory recordWriterFactory) {
-		this.messageFactory = messageFactory;
-		this.recordWriterFactory = recordWriterFactory;
-	}
+    @Inject
+    SyncRecordWriterFactoryImpl(MessageFactory messageFactory,
+                                RecordWriterFactory recordWriterFactory) {
+        this.messageFactory = messageFactory;
+        this.recordWriterFactory = recordWriterFactory;
+    }
 
-	@Override
-	public SyncRecordWriter createRecordWriter(OutputStream out) {
-		RecordWriter writer = recordWriterFactory.createRecordWriter(out);
-		return new SyncRecordWriterImpl(messageFactory, writer);
-	}
+    @Override
+    public SyncRecordWriter createRecordWriter(OutputStream out) {
+        RecordWriter writer = recordWriterFactory.createRecordWriter(out);
+        return new SyncRecordWriterImpl(messageFactory, writer);
+    }
 }

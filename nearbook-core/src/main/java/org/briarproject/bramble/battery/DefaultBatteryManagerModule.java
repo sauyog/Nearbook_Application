@@ -12,8 +12,8 @@ import dagger.Provides;
 @Module
 public class DefaultBatteryManagerModule {
 
-	@Provides
-	BatteryManager provideBatteryManager() {
-		return () -> false;
-	}
+    @Provides
+    BatteryManager provideBatteryManager() {
+        return () -> false;
+    }
 }

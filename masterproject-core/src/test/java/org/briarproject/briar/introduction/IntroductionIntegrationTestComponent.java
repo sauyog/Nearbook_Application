@@ -26,45 +26,45 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		BrambleCoreIntegrationTestModule.class,
-		BrambleCoreModule.class,
-		AttachmentModule.class,
-		AutoDeleteModule.class,
-		AvatarModule.class,
-		BlogModule.class,
-		BriarClientModule.class,
-		ConversationModule.class,
-		ForumModule.class,
-		GroupInvitationModule.class,
-		IdentityModule.class,
-		IntroductionModule.class,
-		MessagingModule.class,
-		PrivateGroupModule.class,
-		SharingModule.class,
-		ModularMailboxModule.class,
-		TestDnsModule.class,
-		TestSocksModule.class,
-		TestPluginConfigModule.class,
+        BrambleCoreIntegrationTestModule.class,
+        BrambleCoreModule.class,
+        AttachmentModule.class,
+        AutoDeleteModule.class,
+        AvatarModule.class,
+        BlogModule.class,
+        BriarClientModule.class,
+        ConversationModule.class,
+        ForumModule.class,
+        GroupInvitationModule.class,
+        IdentityModule.class,
+        IntroductionModule.class,
+        MessagingModule.class,
+        PrivateGroupModule.class,
+        SharingModule.class,
+        ModularMailboxModule.class,
+        TestDnsModule.class,
+        TestSocksModule.class,
+        TestPluginConfigModule.class,
 })
 interface IntroductionIntegrationTestComponent
-		extends BriarIntegrationTestComponent {
+        extends BriarIntegrationTestComponent {
 
-	void inject(IntroductionIntegrationTest init);
+    void inject(IntroductionIntegrationTest init);
 
-	void inject(MessageEncoderParserIntegrationTest init);
+    void inject(MessageEncoderParserIntegrationTest init);
 
-	void inject(SessionEncoderParserIntegrationTest init);
+    void inject(SessionEncoderParserIntegrationTest init);
 
-	void inject(IntroductionCryptoIntegrationTest init);
+    void inject(IntroductionCryptoIntegrationTest init);
 
-	void inject(AutoDeleteIntegrationTest init);
+    void inject(AutoDeleteIntegrationTest init);
 
-	MessageEncoder getMessageEncoder();
+    MessageEncoder getMessageEncoder();
 
-	MessageParser getMessageParser();
+    MessageParser getMessageParser();
 
-	SessionParser getSessionParser();
+    SessionParser getSessionParser();
 
-	IntroductionCrypto getIntroductionCrypto();
+    IntroductionCrypto getIntroductionCrypto();
 
 }

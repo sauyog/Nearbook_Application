@@ -1,8 +1,9 @@
 package org.briarproject.masterproject.android.contact.connect;
 
+import androidx.lifecycle.ViewModel;
+
 import org.briarproject.masterproject.android.viewmodel.ViewModelKey;
 
-import androidx.lifecycle.ViewModel;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
@@ -10,10 +11,10 @@ import dagger.multibindings.IntoMap;
 @Module
 public abstract class ConnectViaBluetoothModule {
 
-	@Binds
-	@IntoMap
-	@ViewModelKey(ConnectViaBluetoothViewModel.class)
-	abstract ViewModel bindContactListViewModel(
-			ConnectViaBluetoothViewModel connectViaBluetoothViewModel);
+    @Binds
+    @IntoMap
+    @ViewModelKey(ConnectViaBluetoothViewModel.class)
+    abstract ViewModel bindContactListViewModel(
+            ConnectViaBluetoothViewModel connectViaBluetoothViewModel);
 
 }

@@ -1,5 +1,7 @@
 package org.briarproject.briar.headless.event
 
+import org.briarproject.briar.headless.json.JsonDict
+import org.briarproject.briar.headless.messaging.output
 import org.briarproject.masterproject.api.blog.BlogInvitationRequest
 import org.briarproject.masterproject.api.blog.BlogInvitationResponse
 import org.briarproject.masterproject.api.conversation.event.ConversationMessageReceivedEvent
@@ -10,8 +12,6 @@ import org.briarproject.masterproject.api.introduction.IntroductionResponse
 import org.briarproject.masterproject.api.messaging.PrivateMessageHeader
 import org.briarproject.masterproject.api.privategroup.invitation.GroupInvitationRequest
 import org.briarproject.masterproject.api.privategroup.invitation.GroupInvitationResponse
-import org.briarproject.briar.headless.json.JsonDict
-import org.briarproject.briar.headless.messaging.output
 import javax.annotation.concurrent.Immutable
 
 @Immutable

@@ -11,15 +11,15 @@ import dagger.Provides;
 @Module
 public class IdentityModule {
 
-	public static class EagerSingletons {
-		@Inject
-		AuthorManager authorManager;
-	}
+    @Provides
+    @Singleton
+    AuthorManager provideAuthorManager(AuthorManagerImpl authorManager) {
+        return authorManager;
+    }
 
-	@Provides
-	@Singleton
-	AuthorManager provideAuthorManager(AuthorManagerImpl authorManager) {
-		return authorManager;
-	}
+    public static class EagerSingletons {
+        @Inject
+        AuthorManager authorManager;
+    }
 
 }

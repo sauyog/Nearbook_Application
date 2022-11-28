@@ -29,70 +29,70 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 public interface TransactionManager {
 
-	/**
-	 * Starts a new transaction and returns an object representing it. This
-	 * method acquires the database lock, which is held until
-	 * {@link #endTransaction(Transaction)} is called.
-	 *
-	 * @param readOnly True if the transaction will only be used for reading,
-	 * in which case the database lock can be shared with other read-only
-	 * transactions.
-	 */
-	Transaction startTransaction(boolean readOnly) throws DbException;
+    /**
+     * Starts a new transaction and returns an object representing it. This
+     * method acquires the database lock, which is held until
+     * {@link #endTransaction(Transaction)} is called.
+     *
+     * @param readOnly True if the transaction will only be used for reading,
+     *                 in which case the database lock can be shared with other read-only
+     *                 transactions.
+     */
+    Transaction startTransaction(boolean readOnly) throws DbException;
 
-	/**
-	 * Commits a transaction to the database.
-	 * {@link #endTransaction(Transaction)} must be called to release the
-	 * database lock.
-	 */
-	void commitTransaction(Transaction txn) throws DbException;
+    /**
+     * Commits a transaction to the database.
+     * {@link #endTransaction(Transaction)} must be called to release the
+     * database lock.
+     */
+    void commitTransaction(Transaction txn) throws DbException;
 
-	/**
-	 * Ends a transaction. If the transaction has not been committed by
-	 * calling {@link #commitTransaction(Transaction)}, it is aborted and the
-	 * database lock is released.
-	 * <p>
-	 * If the transaction has been committed, any
-	 * {@link Transaction#attach events} attached to the transaction are
-	 * broadcast and any {@link Transaction#attach(Runnable) tasks} attached
-	 * to the transaction are submitted to the {@link EventExecutor}. The
-	 * database lock is then released.
-	 */
-	void endTransaction(Transaction txn);
+    /**
+     * Ends a transaction. If the transaction has not been committed by
+     * calling {@link #commitTransaction(Transaction)}, it is aborted and the
+     * database lock is released.
+     * <p>
+     * If the transaction has been committed, any
+     * {@link Transaction#attach events} attached to the transaction are
+     * broadcast and any {@link Transaction#attach(Runnable) tasks} attached
+     * to the transaction are submitted to the {@link EventExecutor}. The
+     * database lock is then released.
+     */
+    void endTransaction(Transaction txn);
 
-	/**
-	 * Runs the given task within a transaction. The database lock is held
-	 * while running the task.
-	 *
-	 * @param readOnly True if the transaction will only be used for reading,
-	 * in which case the database lock can be shared with other read-only
-	 * transactions.
-	 */
-	<E extends Exception> void transaction(boolean readOnly,
-			DbRunnable<E> task) throws DbException, E;
+    /**
+     * Runs the given task within a transaction. The database lock is held
+     * while running the task.
+     *
+     * @param readOnly True if the transaction will only be used for reading,
+     *                 in which case the database lock can be shared with other read-only
+     *                 transactions.
+     */
+    <E extends Exception> void transaction(boolean readOnly,
+                                           DbRunnable<E> task) throws DbException, E;
 
-	/**
-	 * Runs the given task within a transaction and returns the result of the
-	 * task. The database lock is held while running the task.
-	 *
-	 * @param readOnly True if the transaction will only be used for reading,
-	 * in which case the database lock can be shared with other read-only
-	 * transactions.
-	 */
-	<R, E extends Exception> R transactionWithResult(boolean readOnly,
-			DbCallable<R, E> task) throws DbException, E;
+    /**
+     * Runs the given task within a transaction and returns the result of the
+     * task. The database lock is held while running the task.
+     *
+     * @param readOnly True if the transaction will only be used for reading,
+     *                 in which case the database lock can be shared with other read-only
+     *                 transactions.
+     */
+    <R, E extends Exception> R transactionWithResult(boolean readOnly,
+                                                     DbCallable<R, E> task) throws DbException, E;
 
-	/**
-	 * Runs the given task within a transaction and returns the result of the
-	 * task, which may be null. The database lock is held while running the
-	 * task.
-	 *
-	 * @param readOnly True if the transaction will only be used for reading,
-	 * in which case the database lock can be shared with other read-only
-	 * transactions.
-	 */
-	@Nullable
-	<R, E extends Exception> R transactionWithNullableResult(boolean readOnly,
-			NullableDbCallable<R, E> task) throws DbException, E;
+    /**
+     * Runs the given task within a transaction and returns the result of the
+     * task, which may be null. The database lock is held while running the
+     * task.
+     *
+     * @param readOnly True if the transaction will only be used for reading,
+     *                 in which case the database lock can be shared with other read-only
+     *                 transactions.
+     */
+    @Nullable
+    <R, E extends Exception> R transactionWithNullableResult(boolean readOnly,
+                                                             NullableDbCallable<R, E> task) throws DbException, E;
 
 }

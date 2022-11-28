@@ -13,23 +13,23 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class ContactId {
 
-	private final int id;
+    private final int id;
 
-	public ContactId(int id) {
-		this.id = id;
-	}
+    public ContactId(int id) {
+        this.id = id;
+    }
 
-	public int getInt() {
-		return id;
-	}
+    public int getInt() {
+        return id;
+    }
 
-	@Override
-	public int hashCode() {
-		return id;
-	}
+    @Override
+    public int hashCode() {
+        return id;
+    }
 
-	@Override
-	public boolean equals(@Nullable Object o) {
-		return o instanceof ContactId && id == ((ContactId) o).id;
-	}
+    @Override
+    public boolean equals(@Nullable Object o) {
+        return o instanceof ContactId && id == ((ContactId) o).id;
+    }
 }

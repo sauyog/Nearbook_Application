@@ -1,5 +1,13 @@
 package org.briarproject.masterproject.android.blog;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+import static org.briarproject.masterproject.android.activity.BriarActivity.GROUP_ID;
+import static org.briarproject.masterproject.android.util.UiUtils.MIN_DATE_RESOLUTION;
+import static java.util.Objects.requireNonNull;
+import static java.util.logging.Logger.getLogger;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import androidx.annotation.UiThread;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.bramble.api.sync.MessageId;
@@ -23,137 +35,121 @@ import java.util.logging.Logger;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-import androidx.annotation.UiThread;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ViewModelProvider;
-
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
-import static java.util.Objects.requireNonNull;
-import static java.util.logging.Logger.getLogger;
-import static org.briarproject.masterproject.android.activity.BriarActivity.GROUP_ID;
-import static org.briarproject.masterproject.android.util.UiUtils.MIN_DATE_RESOLUTION;
-
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 public class BlogPostFragment extends BaseFragment
-		implements OnBlogPostClickListener {
+        implements OnBlogPostClickListener {
 
-	private static final String TAG = BlogPostFragment.class.getName();
-	private static final Logger LOG = getLogger(TAG);
+    static final String POST_ID = "briar.POST_ID";
+    private static final String TAG = BlogPostFragment.class.getName();
+    private static final Logger LOG = getLogger(TAG);
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    protected BlogViewModel viewModel;
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+    private ProgressBar progressBar;
+    private BlogPostViewHolder ui;
+    private BlogPostItem post;
+    private Runnable refresher;
 
-	static final String POST_ID = "briar.POST_ID";
+    static BlogPostFragment newInstance(GroupId blogId, MessageId postId) {
+        BlogPostFragment f = new BlogPostFragment();
+        Bundle bundle = new Bundle();
+        bundle.putByteArray(GROUP_ID, blogId.getBytes());
+        bundle.putByteArray(POST_ID, postId.getBytes());
+        f.setArguments(bundle);
+        return f;
+    }
 
-	protected BlogViewModel viewModel;
-	private final Handler handler = new Handler(Looper.getMainLooper());
+    @Override
+    public void injectFragment(ActivityComponent component) {
+        component.inject(this);
+        viewModel = new ViewModelProvider(requireActivity(), viewModelFactory)
+                .get(BlogViewModel.class);
+    }
 
-	private ProgressBar progressBar;
-	private BlogPostViewHolder ui;
-	private BlogPostItem post;
-	private Runnable refresher;
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        Bundle args = requireArguments();
+        GroupId groupId =
+                new GroupId(requireNonNull(args.getByteArray(GROUP_ID)));
+        MessageId postId =
+                new MessageId(requireNonNull(args.getByteArray(POST_ID)));
 
-	@Inject
-	ViewModelProvider.Factory viewModelFactory;
+        View view = inflater.inflate(R.layout.fragment_blog_post, container,
+                false);
+        progressBar = view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(VISIBLE);
+        ui = new BlogPostViewHolder(view, true, this, false);
+        LifecycleOwner owner = getViewLifecycleOwner();
+        viewModel.loadBlogPost(groupId, postId).observe(owner, result ->
+                result.onError(this::handleException)
+                        .onSuccess(this::onBlogPostLoaded)
+        );
+        return view;
+    }
 
-	static BlogPostFragment newInstance(GroupId blogId, MessageId postId) {
-		BlogPostFragment f = new BlogPostFragment();
-		Bundle bundle = new Bundle();
-		bundle.putByteArray(GROUP_ID, blogId.getBytes());
-		bundle.putByteArray(POST_ID, postId.getBytes());
-		f.setArguments(bundle);
-		return f;
-	}
+    @Override
+    public void onStart() {
+        super.onStart();
+        startPeriodicUpdate();
+    }
 
-	@Override
-	public void injectFragment(ActivityComponent component) {
-		component.inject(this);
-		viewModel = new ViewModelProvider(requireActivity(), viewModelFactory)
-				.get(BlogViewModel.class);
-	}
+    @Override
+    public void onStop() {
+        super.onStop();
+        stopPeriodicUpdate();
+    }
 
-	@Nullable
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			@Nullable ViewGroup container,
-			@Nullable Bundle savedInstanceState) {
-		Bundle args = requireArguments();
-		GroupId groupId =
-				new GroupId(requireNonNull(args.getByteArray(GROUP_ID)));
-		MessageId postId =
-				new MessageId(requireNonNull(args.getByteArray(POST_ID)));
+    @UiThread
+    private void onBlogPostLoaded(BlogPostItem post) {
+        progressBar.setVisibility(INVISIBLE);
+        this.post = post;
+        ui.bindItem(post);
+    }
 
-		View view = inflater.inflate(R.layout.fragment_blog_post, container,
-				false);
-		progressBar = view.findViewById(R.id.progressBar);
-		progressBar.setVisibility(VISIBLE);
-		ui = new BlogPostViewHolder(view, true, this, false);
-		LifecycleOwner owner = getViewLifecycleOwner();
-		viewModel.loadBlogPost(groupId, postId).observe(owner, result ->
-				result.onError(this::handleException)
-						.onSuccess(this::onBlogPostLoaded)
-		);
-		return view;
-	}
+    @Override
+    public void onBlogPostClick(BlogPostItem post) {
+        // We're already there
+    }
 
-	@Override
-	public void onStart() {
-		super.onStart();
-		startPeriodicUpdate();
-	}
+    @Override
+    public void onAuthorClick(BlogPostItem post) {
+        Intent i = new Intent(requireContext(), BlogActivity.class);
+        i.putExtra(GROUP_ID, post.getGroupId().getBytes());
+        i.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        requireContext().startActivity(i);
+    }
 
-	@Override
-	public void onStop() {
-		super.onStop();
-		stopPeriodicUpdate();
-	}
+    @Override
+    public void onLinkClick(String url) {
+        LinkDialogFragment f = LinkDialogFragment.newInstance(url);
+        f.show(getParentFragmentManager(), f.getUniqueTag());
+    }
 
-	@UiThread
-	private void onBlogPostLoaded(BlogPostItem post) {
-		progressBar.setVisibility(INVISIBLE);
-		this.post = post;
-		ui.bindItem(post);
-	}
+    private void startPeriodicUpdate() {
+        refresher = () -> {
+            LOG.info("Updating Content...");
+            ui.updateDate(post.getTimestamp());
+            handler.postDelayed(refresher, MIN_DATE_RESOLUTION);
+        };
+        LOG.info("Adding Handler Callback");
+        handler.postDelayed(refresher, MIN_DATE_RESOLUTION);
+    }
 
-	@Override
-	public void onBlogPostClick(BlogPostItem post) {
-		// We're already there
-	}
+    private void stopPeriodicUpdate() {
+        if (refresher != null) {
+            LOG.info("Removing Handler Callback");
+            handler.removeCallbacks(refresher);
+        }
+    }
 
-	@Override
-	public void onAuthorClick(BlogPostItem post) {
-		Intent i = new Intent(requireContext(), BlogActivity.class);
-		i.putExtra(GROUP_ID, post.getGroupId().getBytes());
-		i.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
-		requireContext().startActivity(i);
-	}
-
-	@Override
-	public void onLinkClick(String url) {
-		LinkDialogFragment f = LinkDialogFragment.newInstance(url);
-		f.show(getParentFragmentManager(), f.getUniqueTag());
-	}
-
-	private void startPeriodicUpdate() {
-		refresher = () -> {
-			LOG.info("Updating Content...");
-			ui.updateDate(post.getTimestamp());
-			handler.postDelayed(refresher, MIN_DATE_RESOLUTION);
-		};
-		LOG.info("Adding Handler Callback");
-		handler.postDelayed(refresher, MIN_DATE_RESOLUTION);
-	}
-
-	private void stopPeriodicUpdate() {
-		if (refresher != null) {
-			LOG.info("Removing Handler Callback");
-			handler.removeCallbacks(refresher);
-		}
-	}
-
-	@Override
-	public String getUniqueTag() {
-		return TAG;
-	}
+    @Override
+    public String getUniqueTag() {
+        return TAG;
+    }
 
 }

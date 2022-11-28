@@ -7,5 +7,5 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface MetadataParser {
 
-	BdfDictionary parse(Metadata m) throws FormatException;
+    BdfDictionary parse(Metadata m) throws FormatException;
 }

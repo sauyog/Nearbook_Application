@@ -14,21 +14,21 @@ import javax.inject.Inject;
 @NotNullByDefault
 class ForumMessageParserImpl extends MessageParserImpl<Forum> {
 
-	private final ForumFactory forumFactory;
+    private final ForumFactory forumFactory;
 
-	@Inject
-	ForumMessageParserImpl(ClientHelper clientHelper,
-			ForumFactory forumFactory) {
-		super(clientHelper);
-		this.forumFactory = forumFactory;
-	}
+    @Inject
+    ForumMessageParserImpl(ClientHelper clientHelper,
+                           ForumFactory forumFactory) {
+        super(clientHelper);
+        this.forumFactory = forumFactory;
+    }
 
-	@Override
-	public Forum createShareable(BdfList descriptor) throws FormatException {
-		// Name, salt
-		String name = descriptor.getString(0);
-		byte[] salt = descriptor.getRaw(1);
-		return forumFactory.createForum(name, salt);
-	}
+    @Override
+    public Forum createShareable(BdfList descriptor) throws FormatException {
+        // Name, salt
+        String name = descriptor.getString(0);
+        byte[] salt = descriptor.getRaw(1);
+        return forumFactory.createForum(name, salt);
+    }
 
 }

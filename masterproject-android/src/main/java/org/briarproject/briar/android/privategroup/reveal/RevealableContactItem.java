@@ -12,16 +12,16 @@ import javax.annotation.concurrent.NotThreadSafe;
 @NotNullByDefault
 class RevealableContactItem extends SelectableContactItem {
 
-	private final Visibility visibility;
+    private final Visibility visibility;
 
-	RevealableContactItem(Contact contact, AuthorInfo authorInfo,
-			boolean selected, boolean disabled, Visibility visibility) {
-		super(contact, authorInfo, selected, disabled);
-		this.visibility = visibility;
-	}
+    RevealableContactItem(Contact contact, AuthorInfo authorInfo,
+                          boolean selected, boolean disabled, Visibility visibility) {
+        super(contact, authorInfo, selected, disabled);
+        this.visibility = visibility;
+    }
 
-	Visibility getVisibility() {
-		return visibility;
-	}
+    Visibility getVisibility() {
+        return visibility;
+    }
 
 }

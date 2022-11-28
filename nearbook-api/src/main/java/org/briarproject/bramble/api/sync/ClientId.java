@@ -13,41 +13,41 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class ClientId implements Comparable<ClientId> {
 
-	/**
-	 * The maximum length of a client identifier in UTF-8 bytes.
-	 */
-	public static int MAX_CLIENT_ID_LENGTH = 100;
+    /**
+     * The maximum length of a client identifier in UTF-8 bytes.
+     */
+    public static int MAX_CLIENT_ID_LENGTH = 100;
 
-	private final String id;
+    private final String id;
 
-	public ClientId(String id) {
-		int length = StringUtils.toUtf8(id).length;
-		if (length == 0 || length > MAX_CLIENT_ID_LENGTH)
-			throw new IllegalArgumentException();
-		this.id = id;
-	}
+    public ClientId(String id) {
+        int length = StringUtils.toUtf8(id).length;
+        if (length == 0 || length > MAX_CLIENT_ID_LENGTH)
+            throw new IllegalArgumentException();
+        this.id = id;
+    }
 
-	public String getString() {
-		return id;
-	}
+    public String getString() {
+        return id;
+    }
 
-	@Override
-	public int compareTo(ClientId clientId) {
-		return id.compareTo(clientId.getString());
-	}
+    @Override
+    public int compareTo(ClientId clientId) {
+        return id.compareTo(clientId.getString());
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		return o instanceof ClientId && id.equals(((ClientId) o).id);
-	}
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof ClientId && id.equals(((ClientId) o).id);
+    }
 
-	@Override
-	public int hashCode() {
-		return id.hashCode();
-	}
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 
-	@Override
-	public String toString() {
-		return id;
-	}
+    @Override
+    public String toString() {
+        return id;
+    }
 }

@@ -7,10 +7,10 @@ import org.briarproject.bramble.api.sync.MessageContext;
 
 public interface MessageValidator {
 
-	/**
-	 * Validates the given message and returns its metadata and
-	 * dependencies.
-	 */
-	MessageContext validateMessage(Message m, Group g)
-			throws InvalidMessageException;
+    /**
+     * Validates the given message and returns its metadata and
+     * dependencies.
+     */
+    MessageContext validateMessage(Message m, Group g)
+            throws InvalidMessageException;
 }

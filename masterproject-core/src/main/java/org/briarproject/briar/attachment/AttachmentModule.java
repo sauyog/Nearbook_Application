@@ -10,11 +10,11 @@ import dagger.Provides;
 @Module
 public class AttachmentModule {
 
-	@Provides
-	@Singleton
-	AttachmentReader provideAttachmentReader(
-			AttachmentReaderImpl attachmentReader) {
-		return attachmentReader;
-	}
+    @Provides
+    @Singleton
+    AttachmentReader provideAttachmentReader(
+            AttachmentReaderImpl attachmentReader) {
+        return attachmentReader;
+    }
 
 }

@@ -19,21 +19,21 @@ import org.briarproject.briar.test.TestModule;
 import dagger.Module;
 
 @Module(includes = {
-		AttachmentModule.class,
-		AutoDeleteModule.class,
-		AvatarModule.class,
-		BlogModule.class,
-		BriarClientModule.class,
-		ConversationModule.class,
-		FeedModule.class,
-		ForumModule.class,
-		GroupInvitationModule.class,
-		IdentityModule.class,
-		IntroductionModule.class,
-		MessagingModule.class,
-		PrivateGroupModule.class,
-		SharingModule.class,
-		TestModule.class
+        AttachmentModule.class,
+        AutoDeleteModule.class,
+        AvatarModule.class,
+        BlogModule.class,
+        BriarClientModule.class,
+        ConversationModule.class,
+        FeedModule.class,
+        ForumModule.class,
+        GroupInvitationModule.class,
+        IdentityModule.class,
+        IntroductionModule.class,
+        MessagingModule.class,
+        PrivateGroupModule.class,
+        SharingModule.class,
+        TestModule.class
 })
 public class BriarCoreModule {
 }

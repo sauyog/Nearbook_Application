@@ -11,21 +11,21 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 interface MailboxWorkerFactory {
 
-	MailboxWorker createUploadWorker(ConnectivityChecker connectivityChecker,
-			MailboxProperties properties, MailboxFolderId folderId,
-			ContactId contactId);
+    MailboxWorker createUploadWorker(ConnectivityChecker connectivityChecker,
+                                     MailboxProperties properties, MailboxFolderId folderId,
+                                     ContactId contactId);
 
-	MailboxWorker createDownloadWorkerForContactMailbox(
-			ConnectivityChecker connectivityChecker,
-			TorReachabilityMonitor reachabilityMonitor,
-			MailboxProperties properties);
+    MailboxWorker createDownloadWorkerForContactMailbox(
+            ConnectivityChecker connectivityChecker,
+            TorReachabilityMonitor reachabilityMonitor,
+            MailboxProperties properties);
 
-	MailboxWorker createDownloadWorkerForOwnMailbox(
-			ConnectivityChecker connectivityChecker,
-			TorReachabilityMonitor reachabilityMonitor,
-			MailboxProperties properties);
+    MailboxWorker createDownloadWorkerForOwnMailbox(
+            ConnectivityChecker connectivityChecker,
+            TorReachabilityMonitor reachabilityMonitor,
+            MailboxProperties properties);
 
-	MailboxWorker createContactListWorkerForOwnMailbox(
-			ConnectivityChecker connectivityChecker,
-			MailboxProperties properties);
+    MailboxWorker createContactListWorkerForOwnMailbox(
+            ConnectivityChecker connectivityChecker,
+            MailboxProperties properties);
 }

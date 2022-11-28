@@ -15,17 +15,17 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class SignatureKeyParser implements KeyParser {
 
-	@Override
-	public PublicKey parsePublicKey(byte[] encodedKey)
-			throws GeneralSecurityException {
-		if (encodedKey.length != 32) throw new GeneralSecurityException();
-		return new SignaturePublicKey(encodedKey);
-	}
+    @Override
+    public PublicKey parsePublicKey(byte[] encodedKey)
+            throws GeneralSecurityException {
+        if (encodedKey.length != 32) throw new GeneralSecurityException();
+        return new SignaturePublicKey(encodedKey);
+    }
 
-	@Override
-	public PrivateKey parsePrivateKey(byte[] encodedKey)
-			throws GeneralSecurityException {
-		if (encodedKey.length != 32) throw new GeneralSecurityException();
-		return new SignaturePrivateKey(encodedKey);
-	}
+    @Override
+    public PrivateKey parsePrivateKey(byte[] encodedKey)
+            throws GeneralSecurityException {
+        if (encodedKey.length != 32) throw new GeneralSecurityException();
+        return new SignaturePrivateKey(encodedKey);
+    }
 }

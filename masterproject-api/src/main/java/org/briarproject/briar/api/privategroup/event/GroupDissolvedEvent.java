@@ -14,14 +14,14 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class GroupDissolvedEvent extends Event {
 
-	private final GroupId groupId;
+    private final GroupId groupId;
 
-	public GroupDissolvedEvent(GroupId groupId) {
-		this.groupId = groupId;
-	}
+    public GroupDissolvedEvent(GroupId groupId) {
+        this.groupId = groupId;
+    }
 
-	public GroupId getGroupId() {
-		return groupId;
-	}
+    public GroupId getGroupId() {
+        return groupId;
+    }
 
 }

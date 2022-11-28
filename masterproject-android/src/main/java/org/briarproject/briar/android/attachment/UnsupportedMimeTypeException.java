@@ -6,19 +6,19 @@ import java.io.IOException;
 
 public class UnsupportedMimeTypeException extends IOException {
 
-	private final String mimeType;
-	private final Uri uri;
+    private final String mimeType;
+    private final Uri uri;
 
-	public UnsupportedMimeTypeException(String mimeType, Uri uri) {
-		this.mimeType = mimeType;
-		this.uri = uri;
-	}
+    public UnsupportedMimeTypeException(String mimeType, Uri uri) {
+        this.mimeType = mimeType;
+        this.uri = uri;
+    }
 
-	public String getMimeType() {
-		return mimeType;
-	}
+    public String getMimeType() {
+        return mimeType;
+    }
 
-	public Uri getUri() {
-		return uri;
-	}
+    public Uri getUri() {
+        return uri;
+    }
 }

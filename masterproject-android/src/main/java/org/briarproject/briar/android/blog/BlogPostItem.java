@@ -1,5 +1,7 @@
 package org.briarproject.masterproject.android.blog;
 
+import androidx.annotation.NonNull;
+
 import org.briarproject.bramble.api.identity.Author;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.bramble.api.sync.MessageId;
@@ -9,71 +11,69 @@ import org.briarproject.masterproject.api.identity.AuthorInfo;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.NotThreadSafe;
 
-import androidx.annotation.NonNull;
-
 @NotThreadSafe
 public class BlogPostItem implements Comparable<BlogPostItem> {
 
-	private final BlogPostHeader header;
-	@Nullable
-	protected String text;
-	private final boolean read;
+    private final BlogPostHeader header;
+    private final boolean read;
+    @Nullable
+    protected String text;
 
-	BlogPostItem(BlogPostHeader header, @Nullable String text) {
-		this.header = header;
-		this.text = text;
-		this.read = header.isRead();
-	}
+    BlogPostItem(BlogPostHeader header, @Nullable String text) {
+        this.header = header;
+        this.text = text;
+        this.read = header.isRead();
+    }
 
-	public MessageId getId() {
-		return header.getId();
-	}
+    protected static int compare(BlogPostHeader h1, BlogPostHeader h2) {
+        // The newest post comes first
+        return Long.compare(h2.getTimeReceived(), h1.getTimeReceived());
+    }
 
-	public GroupId getGroupId() {
-		return header.getGroupId();
-	}
+    public MessageId getId() {
+        return header.getId();
+    }
 
-	public long getTimestamp() {
-		return header.getTimestamp();
-	}
+    public GroupId getGroupId() {
+        return header.getGroupId();
+    }
 
-	public Author getAuthor() {
-		return header.getAuthor();
-	}
+    public long getTimestamp() {
+        return header.getTimestamp();
+    }
 
-	AuthorInfo getAuthorInfo() {
-		return header.getAuthorInfo();
-	}
+    public Author getAuthor() {
+        return header.getAuthor();
+    }
 
-	@Nullable
-	public String getText() {
-		return text;
-	}
+    AuthorInfo getAuthorInfo() {
+        return header.getAuthorInfo();
+    }
 
-	boolean isRssFeed() {
-		return header.isRssFeed();
-	}
+    @Nullable
+    public String getText() {
+        return text;
+    }
 
-	public boolean isRead() {
-		return read;
-	}
+    boolean isRssFeed() {
+        return header.isRssFeed();
+    }
 
-	public BlogPostHeader getHeader() {
-		return header;
-	}
+    public boolean isRead() {
+        return read;
+    }
 
-	BlogPostHeader getPostHeader() {
-		return getHeader();
-	}
+    public BlogPostHeader getHeader() {
+        return header;
+    }
 
-	@Override
-	public int compareTo(@NonNull BlogPostItem other) {
-		if (this == other) return 0;
-		return compare(getHeader(), other.getHeader());
-	}
+    BlogPostHeader getPostHeader() {
+        return getHeader();
+    }
 
-	protected static int compare(BlogPostHeader h1, BlogPostHeader h2) {
-		// The newest post comes first
-		return Long.compare(h2.getTimeReceived(), h1.getTimeReceived());
-	}
+    @Override
+    public int compareTo(@NonNull BlogPostItem other) {
+        if (this == other) return 0;
+        return compare(getHeader(), other.getHeader());
+    }
 }

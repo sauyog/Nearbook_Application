@@ -20,79 +20,78 @@ import dagger.Provides;
 @Module
 public class TimeTravelModule {
 
-	public static class EagerSingletons {
-		@Inject
-		TaskScheduler scheduler;
-	}
+    private final ScheduledExecutorService scheduledExecutorService;
+    private final Clock clock;
+    private final TaskScheduler taskScheduler;
+    private final TimeTravel timeTravel;
+    public TimeTravelModule() {
+        this(false);
+    }
 
-	private final ScheduledExecutorService scheduledExecutorService;
-	private final Clock clock;
-	private final TaskScheduler taskScheduler;
-	private final TimeTravel timeTravel;
+    public TimeTravelModule(boolean travel) {
+        // Discard tasks that are submitted during shutdown
+        RejectedExecutionHandler policy =
+                new ScheduledThreadPoolExecutor.DiscardPolicy();
+        scheduledExecutorService =
+                new ScheduledThreadPoolExecutor(1, policy);
+        if (travel) {
+            // Use a SettableClock and TestTaskScheduler to allow time travel
+            AtomicLong time = new AtomicLong(System.currentTimeMillis());
+            clock = new SettableClock(time);
+            TestTaskScheduler testTaskScheduler = new TestTaskScheduler(clock);
+            taskScheduler = testTaskScheduler;
+            timeTravel = new TimeTravel() {
+                @Override
+                public void setCurrentTimeMillis(long now)
+                        throws InterruptedException {
+                    time.set(now);
+                    testTaskScheduler.runTasks();
+                }
 
-	public TimeTravelModule() {
-		this(false);
-	}
+                @Override
+                public void addCurrentTimeMillis(long add)
+                        throws InterruptedException {
+                    time.addAndGet(add);
+                    testTaskScheduler.runTasks();
+                }
+            };
+        } else {
+            // Use the default clock and task scheduler
+            clock = new SystemClock();
+            taskScheduler = new TaskSchedulerImpl(scheduledExecutorService);
+            timeTravel = new TimeTravel() {
+                @Override
+                public void setCurrentTimeMillis(long now) {
+                    throw new UnsupportedOperationException();
+                }
 
-	public TimeTravelModule(boolean travel) {
-		// Discard tasks that are submitted during shutdown
-		RejectedExecutionHandler policy =
-				new ScheduledThreadPoolExecutor.DiscardPolicy();
-		scheduledExecutorService =
-				new ScheduledThreadPoolExecutor(1, policy);
-		if (travel) {
-			// Use a SettableClock and TestTaskScheduler to allow time travel
-			AtomicLong time = new AtomicLong(System.currentTimeMillis());
-			clock = new SettableClock(time);
-			TestTaskScheduler testTaskScheduler = new TestTaskScheduler(clock);
-			taskScheduler = testTaskScheduler;
-			timeTravel = new TimeTravel() {
-				@Override
-				public void setCurrentTimeMillis(long now)
-						throws InterruptedException {
-					time.set(now);
-					testTaskScheduler.runTasks();
-				}
+                @Override
+                public void addCurrentTimeMillis(long add) {
+                    throw new UnsupportedOperationException();
+                }
+            };
+        }
+    }
 
-				@Override
-				public void addCurrentTimeMillis(long add)
-						throws InterruptedException {
-					time.addAndGet(add);
-					testTaskScheduler.runTasks();
-				}
-			};
-		} else {
-			// Use the default clock and task scheduler
-			clock = new SystemClock();
-			taskScheduler = new TaskSchedulerImpl(scheduledExecutorService);
-			timeTravel = new TimeTravel() {
-				@Override
-				public void setCurrentTimeMillis(long now) {
-					throw new UnsupportedOperationException();
-				}
+    @Provides
+    Clock provideClock() {
+        return clock;
+    }
 
-				@Override
-				public void addCurrentTimeMillis(long add) {
-					throw new UnsupportedOperationException();
-				}
-			};
-		}
-	}
+    @Provides
+    @Singleton
+    TaskScheduler provideTaskScheduler(LifecycleManager lifecycleManager) {
+        lifecycleManager.registerForShutdown(scheduledExecutorService);
+        return taskScheduler;
+    }
 
-	@Provides
-	Clock provideClock() {
-		return clock;
-	}
+    @Provides
+    TimeTravel provideTimeTravel() {
+        return timeTravel;
+    }
 
-	@Provides
-	@Singleton
-	TaskScheduler provideTaskScheduler(LifecycleManager lifecycleManager) {
-		lifecycleManager.registerForShutdown(scheduledExecutorService);
-		return taskScheduler;
-	}
-
-	@Provides
-	TimeTravel provideTimeTravel() {
-		return timeTravel;
-	}
+    public static class EagerSingletons {
+        @Inject
+        TaskScheduler scheduler;
+    }
 }

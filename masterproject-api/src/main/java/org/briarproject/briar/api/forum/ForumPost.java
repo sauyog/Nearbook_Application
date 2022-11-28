@@ -13,9 +13,9 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class ForumPost extends ThreadedMessage {
 
-	public ForumPost(Message message, @Nullable MessageId parent,
-			Author author) {
-		super(message, parent, author);
-	}
+    public ForumPost(Message message, @Nullable MessageId parent,
+                     Author author) {
+        super(message, parent, author);
+    }
 
 }

@@ -11,10 +11,10 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class LeaveMessage extends SharingMessage {
 
-	LeaveMessage(MessageId id, GroupId contactGroupId,
-			GroupId shareableId, long timestamp,
-			@Nullable MessageId previousMessageId) {
-		super(id, contactGroupId, shareableId, timestamp, previousMessageId);
-	}
+    LeaveMessage(MessageId id, GroupId contactGroupId,
+                 GroupId shareableId, long timestamp,
+                 @Nullable MessageId previousMessageId) {
+        super(id, contactGroupId, shareableId, timestamp, previousMessageId);
+    }
 
 }

@@ -1,31 +1,5 @@
 package org.briarproject.masterproject.android.hotspot;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ProgressBar;
-
-import org.briarproject.briar.R;
-import org.briarproject.masterproject.android.fragment.BaseFragment;
-import org.briarproject.masterproject.android.util.ActivityLaunchers.CreateDocumentAdvanced;
-import org.briarproject.nullsafety.MethodsNotNullByDefault;
-import org.briarproject.nullsafety.ParametersNotNullByDefault;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import static android.content.Intent.ACTION_SEND;
 import static android.content.Intent.EXTRA_STREAM;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
@@ -38,96 +12,122 @@ import static org.briarproject.masterproject.android.AppModule.getAndroidCompone
 import static org.briarproject.masterproject.android.hotspot.HotspotViewModel.getApkFileName;
 import static org.briarproject.nullsafety.NullSafety.requireNonNull;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import org.briarproject.briar.R;
+import org.briarproject.masterproject.android.fragment.BaseFragment;
+import org.briarproject.masterproject.android.util.ActivityLaunchers.CreateDocumentAdvanced;
+import org.briarproject.nullsafety.MethodsNotNullByDefault;
+import org.briarproject.nullsafety.ParametersNotNullByDefault;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 public class FallbackFragment extends BaseFragment {
 
-	public static final String TAG = FallbackFragment.class.getName();
+    public static final String TAG = FallbackFragment.class.getName();
 
-	@Inject
-	ViewModelProvider.Factory viewModelFactory;
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
-	private HotspotViewModel viewModel;
-	@Nullable
-	private final ActivityResultLauncher<String> launcher = SDK_INT >= 19 ?
-			registerForActivityResult(new CreateDocumentAdvanced(),
-					this::onDocumentCreated) :
-			null;
-	private Button fallbackButton;
-	private ProgressBar progressBar;
+    private HotspotViewModel viewModel;
+    private Button fallbackButton;
+    private ProgressBar progressBar;
+    @Nullable
+    private final ActivityResultLauncher<String> launcher = SDK_INT >= 19 ?
+            registerForActivityResult(new CreateDocumentAdvanced(),
+                    this::onDocumentCreated) :
+            null;
 
-	@Override
-	public String getUniqueTag() {
-		return TAG;
-	}
+    @Override
+    public String getUniqueTag() {
+        return TAG;
+    }
 
-	@Override
-	public void onAttach(Context context) {
-		super.onAttach(context);
-		FragmentActivity activity = requireActivity();
-		getAndroidComponent(activity).inject(this);
-		viewModel = new ViewModelProvider(activity, viewModelFactory)
-				.get(HotspotViewModel.class);
-	}
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        FragmentActivity activity = requireActivity();
+        getAndroidComponent(activity).inject(this);
+        viewModel = new ViewModelProvider(activity, viewModelFactory)
+                .get(HotspotViewModel.class);
+    }
 
-	@Nullable
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			@Nullable ViewGroup container,
-			@Nullable Bundle savedInstanceState) {
-		return inflater
-				.inflate(R.layout.fragment_hotspot_fallback, container, false);
-	}
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater
+                .inflate(R.layout.fragment_hotspot_fallback, container, false);
+    }
 
-	@Override
-	public void onViewCreated(View v, @Nullable Bundle savedInstanceState) {
-		super.onViewCreated(v, savedInstanceState);
+    @Override
+    public void onViewCreated(View v, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
 
-		fallbackButton = v.findViewById(R.id.fallbackButton);
-		progressBar = v.findViewById(R.id.progressBar);
-		fallbackButton.setOnClickListener(view -> {
-			beginDelayedTransition((ViewGroup) v);
-			fallbackButton.setVisibility(INVISIBLE);
-			progressBar.setVisibility(VISIBLE);
+        fallbackButton = v.findViewById(R.id.fallbackButton);
+        progressBar = v.findViewById(R.id.progressBar);
+        fallbackButton.setOnClickListener(view -> {
+            beginDelayedTransition((ViewGroup) v);
+            fallbackButton.setVisibility(INVISIBLE);
+            progressBar.setVisibility(VISIBLE);
 
-			if (SDK_INT >= 19) {
-				requireNonNull(launcher).launch(getApkFileName());
-			} else {
-				viewModel.exportApk();
-			}
-		});
-		viewModel.getSavedApkToUri().observeEvent(this, this::shareUri);
-	}
+            if (SDK_INT >= 19) {
+                requireNonNull(launcher).launch(getApkFileName());
+            } else {
+                viewModel.exportApk();
+            }
+        });
+        viewModel.getSavedApkToUri().observeEvent(this, this::shareUri);
+    }
 
-	private void onDocumentCreated(@Nullable Uri uri) {
-		showButton();
-		if (uri != null) viewModel.exportApk(uri);
-	}
+    private void onDocumentCreated(@Nullable Uri uri) {
+        showButton();
+        if (uri != null) viewModel.exportApk(uri);
+    }
 
-	private void showButton() {
-		beginDelayedTransition((ViewGroup) requireView());
-		fallbackButton.setVisibility(VISIBLE);
-		progressBar.setVisibility(INVISIBLE);
-	}
+    private void showButton() {
+        beginDelayedTransition((ViewGroup) requireView());
+        fallbackButton.setVisibility(VISIBLE);
+        progressBar.setVisibility(INVISIBLE);
+    }
 
-	void shareUri(Uri uri) {
-		Intent i = new Intent(ACTION_SEND);
-		i.putExtra(EXTRA_STREAM, uri);
-		i.setType("*/*"); // gives us all sharing options
-		i.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
-		Context ctx = requireContext();
-		if (SDK_INT <= 19) {
-			// Workaround for Android bug:
-			// ctx.grantUriPermission also needed for Android 4
-			List<ResolveInfo> resInfoList = ctx.getPackageManager()
-					.queryIntentActivities(i, MATCH_DEFAULT_ONLY);
-			for (ResolveInfo resolveInfo : resInfoList) {
-				String packageName = resolveInfo.activityInfo.packageName;
-				ctx.grantUriPermission(packageName, uri,
-						FLAG_GRANT_READ_URI_PERMISSION);
-			}
-		}
-		startActivity(Intent.createChooser(i, null));
-	}
+    void shareUri(Uri uri) {
+        Intent i = new Intent(ACTION_SEND);
+        i.putExtra(EXTRA_STREAM, uri);
+        i.setType("*/*"); // gives us all sharing options
+        i.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
+        Context ctx = requireContext();
+        if (SDK_INT <= 19) {
+            // Workaround for Android bug:
+            // ctx.grantUriPermission also needed for Android 4
+            List<ResolveInfo> resInfoList = ctx.getPackageManager()
+                    .queryIntentActivities(i, MATCH_DEFAULT_ONLY);
+            for (ResolveInfo resolveInfo : resInfoList) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                ctx.grantUriPermission(packageName, uri,
+                        FLAG_GRANT_READ_URI_PERMISSION);
+            }
+        }
+        startActivity(Intent.createChooser(i, null));
+    }
 
 }

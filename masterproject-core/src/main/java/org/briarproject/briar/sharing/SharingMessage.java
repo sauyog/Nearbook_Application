@@ -11,40 +11,40 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 abstract class SharingMessage {
 
-	private final MessageId id;
-	private final GroupId contactGroupId, shareableId;
-	private final long timestamp;
-	@Nullable
-	private final MessageId previousMessageId;
+    private final MessageId id;
+    private final GroupId contactGroupId, shareableId;
+    private final long timestamp;
+    @Nullable
+    private final MessageId previousMessageId;
 
-	SharingMessage(MessageId id, GroupId contactGroupId, GroupId shareableId,
-			long timestamp, @Nullable MessageId previousMessageId) {
-		this.id = id;
-		this.previousMessageId = previousMessageId;
-		this.contactGroupId = contactGroupId;
-		this.shareableId = shareableId;
-		this.timestamp = timestamp;
-	}
+    SharingMessage(MessageId id, GroupId contactGroupId, GroupId shareableId,
+                   long timestamp, @Nullable MessageId previousMessageId) {
+        this.id = id;
+        this.previousMessageId = previousMessageId;
+        this.contactGroupId = contactGroupId;
+        this.shareableId = shareableId;
+        this.timestamp = timestamp;
+    }
 
-	MessageId getId() {
-		return id;
-	}
+    MessageId getId() {
+        return id;
+    }
 
-	GroupId getContactGroupId() {
-		return contactGroupId;
-	}
+    GroupId getContactGroupId() {
+        return contactGroupId;
+    }
 
-	GroupId getShareableId() {
-		return shareableId;
-	}
+    GroupId getShareableId() {
+        return shareableId;
+    }
 
-	long getTimestamp() {
-		return timestamp;
-	}
+    long getTimestamp() {
+        return timestamp;
+    }
 
-	@Nullable
-	public MessageId getPreviousMessageId() {
-		return previousMessageId;
-	}
+    @Nullable
+    public MessageId getPreviousMessageId() {
+        return previousMessageId;
+    }
 
 }

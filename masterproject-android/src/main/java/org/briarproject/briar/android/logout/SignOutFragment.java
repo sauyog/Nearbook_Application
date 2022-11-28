@@ -16,17 +16,17 @@ import javax.annotation.Nullable;
 @ParametersNotNullByDefault
 public class SignOutFragment extends BaseFragment {
 
-	public static final String TAG = SignOutFragment.class.getName();
+    public static final String TAG = SignOutFragment.class.getName();
 
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			@Nullable ViewGroup container,
-			@Nullable Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_sign_out, container, false);
-	}
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_sign_out, container, false);
+    }
 
-	@Override
-	public String getUniqueTag() {
-		return TAG;
-	}
+    @Override
+    public String getUniqueTag() {
+        return TAG;
+    }
 }

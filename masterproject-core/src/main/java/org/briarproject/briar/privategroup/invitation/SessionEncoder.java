@@ -6,5 +6,5 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface SessionEncoder {
 
-	BdfDictionary encodeSession(Session s);
+    BdfDictionary encodeSession(Session s);
 }

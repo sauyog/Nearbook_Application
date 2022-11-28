@@ -13,13 +13,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class KeyAgreementListeningEvent extends Event {
 
-	private final Payload localPayload;
+    private final Payload localPayload;
 
-	public KeyAgreementListeningEvent(Payload localPayload) {
-		this.localPayload = localPayload;
-	}
+    public KeyAgreementListeningEvent(Payload localPayload) {
+        this.localPayload = localPayload;
+    }
 
-	public Payload getLocalPayload() {
-		return localPayload;
-	}
+    public Payload getLocalPayload() {
+        return localPayload;
+    }
 }

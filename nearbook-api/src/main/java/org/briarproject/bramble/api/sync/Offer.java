@@ -13,16 +13,16 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class Offer {
 
-	private final Collection<MessageId> offered;
+    private final Collection<MessageId> offered;
 
-	public Offer(Collection<MessageId> offered) {
-		this.offered = offered;
-	}
+    public Offer(Collection<MessageId> offered) {
+        this.offered = offered;
+    }
 
-	/**
-	 * Returns the identifiers of the offered messages.
-	 */
-	public Collection<MessageId> getMessageIds() {
-		return offered;
-	}
+    /**
+     * Returns the identifiers of the offered messages.
+     */
+    public Collection<MessageId> getMessageIds() {
+        return offered;
+    }
 }

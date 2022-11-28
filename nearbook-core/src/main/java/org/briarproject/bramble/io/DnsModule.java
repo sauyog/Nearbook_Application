@@ -10,9 +10,9 @@ import okhttp3.Dns;
 @Module
 public class DnsModule {
 
-	@Provides
-	Dns provideDns(NoDns noDns) {
-		return noDns;
-	}
+    @Provides
+    Dns provideDns(NoDns noDns) {
+        return noDns;
+    }
 
 }

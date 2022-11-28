@@ -8,8 +8,8 @@ import dagger.Provides;
 @Module
 public class BriarClientModule {
 
-	@Provides
-	MessageTracker provideMessageTracker(MessageTrackerImpl messageTracker) {
-		return messageTracker;
-	}
+    @Provides
+    MessageTracker provideMessageTracker(MessageTrackerImpl messageTracker) {
+        return messageTracker;
+    }
 }

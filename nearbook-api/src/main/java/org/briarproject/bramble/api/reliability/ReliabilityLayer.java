@@ -15,27 +15,27 @@ import java.io.OutputStream;
 @NotNullByDefault
 public interface ReliabilityLayer extends ReadHandler {
 
-	/**
-	 * Starts the reliability layer.
-	 */
-	void start();
+    /**
+     * Starts the reliability layer.
+     */
+    void start();
 
-	/**
-	 * Stops the reliability layer. After this method returns, no more data
-	 * will be sent to lower layers, and any data received from lower layers
-	 * will be ignored.
-	 */
-	void stop();
+    /**
+     * Stops the reliability layer. After this method returns, no more data
+     * will be sent to lower layers, and any data received from lower layers
+     * will be ignored.
+     */
+    void stop();
 
-	/**
-	 * Returns an input stream for higher layers to read from the reliability
-	 * layer.
-	 */
-	InputStream getInputStream();
+    /**
+     * Returns an input stream for higher layers to read from the reliability
+     * layer.
+     */
+    InputStream getInputStream();
 
-	/**
-	 * Returns an output stream for higher layers to write to the reliability
-	 * layer.
-	 */
-	OutputStream getOutputStream();
+    /**
+     * Returns an output stream for higher layers to write to the reliability
+     * layer.
+     */
+    OutputStream getOutputStream();
 }

@@ -1,5 +1,10 @@
 package org.briarproject.masterproject.android.blog;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static org.briarproject.masterproject.android.activity.BriarActivity.GROUP_ID;
+import static org.briarproject.masterproject.android.blog.RssFeedAdapter.RssFeedListener;
+import static org.briarproject.nullsafety.NullSafety.requireNonNull;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +13,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.briarproject.briar.R;
 import org.briarproject.masterproject.android.activity.ActivityComponent;
@@ -20,103 +28,93 @@ import org.briarproject.nullsafety.ParametersNotNullByDefault;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static org.briarproject.masterproject.android.activity.BriarActivity.GROUP_ID;
-import static org.briarproject.masterproject.android.blog.RssFeedAdapter.RssFeedListener;
-import static org.briarproject.nullsafety.NullSafety.requireNonNull;
-
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 public class RssFeedManageFragment extends BaseFragment
-		implements RssFeedListener {
-	public static final String TAG = RssFeedManageFragment.class.getName();
+        implements RssFeedListener {
+    public static final String TAG = RssFeedManageFragment.class.getName();
+    private final RssFeedAdapter adapter = new RssFeedAdapter(this);
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+    private RssFeedViewModel viewModel;
+    private BriarRecyclerView list;
 
-	@Inject
-	ViewModelProvider.Factory viewModelFactory;
-	private RssFeedViewModel viewModel;
+    public static RssFeedManageFragment newInstance() {
+        return new RssFeedManageFragment();
+    }
 
-	private BriarRecyclerView list;
-	private final RssFeedAdapter adapter = new RssFeedAdapter(this);
+    @Override
+    public void injectFragment(ActivityComponent component) {
+        component.inject(this);
 
-	public static RssFeedManageFragment newInstance() {
-		return new RssFeedManageFragment();
-	}
+        viewModel = new ViewModelProvider(requireActivity(), viewModelFactory)
+                .get(RssFeedViewModel.class);
+    }
 
-	@Override
-	public void injectFragment(ActivityComponent component) {
-		component.inject(this);
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        requireActivity().setTitle(R.string.blogs_rss_feeds);
+        View v = inflater.inflate(R.layout.fragment_rss_feed_manage,
+                container, false);
 
-		viewModel = new ViewModelProvider(requireActivity(), viewModelFactory)
-				.get(RssFeedViewModel.class);
-	}
+        list = v.findViewById(R.id.feedList);
+        list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        list.setAdapter(adapter);
 
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			@Nullable ViewGroup container,
-			@Nullable Bundle savedInstanceState) {
-		requireActivity().setTitle(R.string.blogs_rss_feeds);
-		View v = inflater.inflate(R.layout.fragment_rss_feed_manage,
-				container, false);
+        viewModel.getFeeds().observe(getViewLifecycleOwner(), result -> result
+                .onError(e -> {
+                    list.setEmptyText(R.string.blogs_rss_feeds_manage_error);
+                    list.showData();
+                })
+                .onSuccess(feeds -> {
+                    adapter.submitList(feeds);
+                    if (requireNonNull(feeds).size() == 0) {
+                        list.showData();
+                    }
+                })
+        );
 
-		list = v.findViewById(R.id.feedList);
-		list.setLayoutManager(new LinearLayoutManager(getActivity()));
-		list.setAdapter(adapter);
+        return v;
+    }
 
-		viewModel.getFeeds().observe(getViewLifecycleOwner(), result -> result
-				.onError(e -> {
-					list.setEmptyText(R.string.blogs_rss_feeds_manage_error);
-					list.showData();
-				})
-				.onSuccess(feeds -> {
-					adapter.submitList(feeds);
-					if (requireNonNull(feeds).size() == 0) {
-						list.showData();
-					}
-				})
-		);
+    @Override
+    public String getUniqueTag() {
+        return TAG;
+    }
 
-		return v;
-	}
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.rss_feed_manage_actions, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
-	@Override
-	public String getUniqueTag() {
-		return TAG;
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            requireActivity().onBackPressed();
+            return true;
+        } else if (item.getItemId() == R.id.action_rss_feeds_import) {
+            showNextFragment(new RssFeedImportFragment());
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		inflater.inflate(R.menu.rss_feed_manage_actions, menu);
-		super.onCreateOptionsMenu(menu, inflater);
-	}
+    @Override
+    public void onFeedClick(Feed feed) {
+        Intent i = new Intent(getActivity(), BlogActivity.class);
+        i.putExtra(GROUP_ID, feed.getBlogId().getBytes());
+        i.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == android.R.id.home) {
-			requireActivity().onBackPressed();
-			return true;
-		} else if (item.getItemId() == R.id.action_rss_feeds_import) {
-			showNextFragment(new RssFeedImportFragment());
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public void onFeedClick(Feed feed) {
-		Intent i = new Intent(getActivity(), BlogActivity.class);
-		i.putExtra(GROUP_ID, feed.getBlogId().getBytes());
-		i.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(i);
-	}
-
-	@Override
-	public void onDeleteClick(Feed feed) {
-		RssFeedDeleteFeedDialogFragment dialog =
-				RssFeedDeleteFeedDialogFragment.newInstance(feed.getBlogId());
-		dialog.show(getParentFragmentManager(),
-				RssFeedDeleteFeedDialogFragment.TAG);
-	}
+    @Override
+    public void onDeleteClick(Feed feed) {
+        RssFeedDeleteFeedDialogFragment dialog =
+                RssFeedDeleteFeedDialogFragment.newInstance(feed.getBlogId());
+        dialog.show(getParentFragmentManager(),
+                RssFeedDeleteFeedDialogFragment.TAG);
+    }
 }

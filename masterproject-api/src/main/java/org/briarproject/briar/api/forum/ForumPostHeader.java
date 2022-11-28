@@ -13,10 +13,10 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class ForumPostHeader extends PostHeader {
 
-	public ForumPostHeader(MessageId id, @Nullable MessageId parentId,
-			long timestamp, Author author, AuthorInfo authorInfo,
-			boolean read) {
-		super(id, parentId, timestamp, author, authorInfo, read);
-	}
+    public ForumPostHeader(MessageId id, @Nullable MessageId parentId,
+                           long timestamp, Author author, AuthorInfo authorInfo,
+                           boolean read) {
+        super(id, parentId, timestamp, author, authorInfo, read);
+    }
 
 }

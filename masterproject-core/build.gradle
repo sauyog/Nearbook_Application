@@ -9,37 +9,37 @@ apply from: 'witness.gradle'
 apply from: '../dagger.gradle'
 
 dependencies {
-	implementation project(path: ':masterproject-api', configuration: 'default')
-	implementation 'com.rometools:rome:1.15.0'
-	implementation 'org.jdom:jdom2:2.0.6'
-	//noinspection GradleDependency
-	implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-	implementation 'org.jsoup:jsoup:1.15.3'
+    implementation project(path: ':masterproject-api', configuration: 'default')
+    implementation 'com.rometools:rome:1.15.0'
+    implementation 'org.jdom:jdom2:2.0.6'
+    //noinspection GradleDependency
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation 'org.jsoup:jsoup:1.15.3'
 
-	annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
-	testImplementation project(path: ':nearbook-core', configuration: 'default')
-	testImplementation project(path: ':nearbook-core', configuration: 'testOutput')
-	testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
-	testImplementation 'net.jodah:concurrentunit:0.4.2'
-	testImplementation "junit:junit:$junit_version"
-	testImplementation "org.jmock:jmock:$jmock_version"
-	testImplementation "org.jmock:jmock-junit4:$jmock_version"
-	testImplementation "org.jmock:jmock-imposters:$jmock_version"
+    testImplementation project(path: ':nearbook-core', configuration: 'default')
+    testImplementation project(path: ':nearbook-core', configuration: 'testOutput')
+    testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
+    testImplementation 'net.jodah:concurrentunit:0.4.2'
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.jmock:jmock:$jmock_version"
+    testImplementation "org.jmock:jmock-junit4:$jmock_version"
+    testImplementation "org.jmock:jmock-imposters:$jmock_version"
 
-	testAnnotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
-	signature 'org.codehaus.mojo.signature:java16:1.1@signature'
+    signature 'org.codehaus.mojo.signature:java16:1.1@signature'
 }
 
 // needed to make test output available to nearbook-headless
 configurations {
-	testOutput.extendsFrom(testCompile)
+    testOutput.extendsFrom(testCompile)
 }
 task jarTest(type: Jar, dependsOn: testClasses) {
-	from sourceSets.test.output
-	classifier = 'test'
+    from sourceSets.test.output
+    classifier = 'test'
 }
 artifacts {
-	testOutput jarTest
+    testOutput jarTest
 }

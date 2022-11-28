@@ -10,29 +10,29 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public abstract class BaseGroup {
 
-	private final Group group;
+    private final Group group;
 
-	public BaseGroup(Group group) {
-		this.group = group;
-	}
+    public BaseGroup(Group group) {
+        this.group = group;
+    }
 
-	public GroupId getId() {
-		return group.getId();
-	}
+    public GroupId getId() {
+        return group.getId();
+    }
 
-	public Group getGroup() {
-		return group;
-	}
+    public Group getGroup() {
+        return group;
+    }
 
-	@Override
-	public int hashCode() {
-		return group.hashCode();
-	}
+    @Override
+    public int hashCode() {
+        return group.hashCode();
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		return o instanceof BaseGroup &&
-				getGroup().equals(((BaseGroup) o).getGroup());
-	}
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof BaseGroup &&
+                getGroup().equals(((BaseGroup) o).getGroup());
+    }
 
 }

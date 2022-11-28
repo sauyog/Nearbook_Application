@@ -7,8 +7,8 @@ import java.util.concurrent.Executor;
 @NotNullByDefault
 public class ImmediateExecutor implements Executor {
 
-	@Override
-	public void execute(Runnable r) {
-		r.run();
-	}
+    @Override
+    public void execute(Runnable r) {
+        r.run();
+    }
 }

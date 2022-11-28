@@ -5,5 +5,5 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface PayloadEncoder {
 
-	byte[] encode(Payload p);
+    byte[] encode(Payload p);
 }

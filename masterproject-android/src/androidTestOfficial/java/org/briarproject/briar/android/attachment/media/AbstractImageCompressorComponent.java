@@ -6,10 +6,10 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		MediaModule.class
+        MediaModule.class
 })
 interface AbstractImageCompressorComponent {
 
-	void inject(AbstractImageCompressorTest test);
+    void inject(AbstractImageCompressorTest test);
 
 }

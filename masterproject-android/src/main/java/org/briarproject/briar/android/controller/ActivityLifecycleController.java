@@ -4,11 +4,11 @@ import android.app.Activity;
 
 public interface ActivityLifecycleController {
 
-	void onActivityCreate(Activity activity);
+    void onActivityCreate(Activity activity);
 
-	void onActivityStart();
+    void onActivityStart();
 
-	void onActivityStop();
+    void onActivityStop();
 
-	void onActivityDestroy();
+    void onActivityDestroy();
 }

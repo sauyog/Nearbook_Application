@@ -14,19 +14,19 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class TransportStateEvent extends Event {
 
-	private final TransportId transportId;
-	private final State state;
+    private final TransportId transportId;
+    private final State state;
 
-	public TransportStateEvent(TransportId transportId, State state) {
-		this.transportId = transportId;
-		this.state = state;
-	}
+    public TransportStateEvent(TransportId transportId, State state) {
+        this.transportId = transportId;
+        this.state = state;
+    }
 
-	public TransportId getTransportId() {
-		return transportId;
-	}
+    public TransportId getTransportId() {
+        return transportId;
+    }
 
-	public State getState() {
-		return state;
-	}
+    public State getState() {
+        return state;
+    }
 }

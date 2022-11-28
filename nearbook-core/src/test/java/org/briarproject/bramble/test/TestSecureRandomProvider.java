@@ -8,9 +8,9 @@ import java.security.Provider;
 @NotNullByDefault
 public class TestSecureRandomProvider implements SecureRandomProvider {
 
-	@Override
-	public Provider getProvider() {
-		// Use the default provider
-		return null;
-	}
+    @Override
+    public Provider getProvider() {
+        // Use the default provider
+        return null;
+    }
 }

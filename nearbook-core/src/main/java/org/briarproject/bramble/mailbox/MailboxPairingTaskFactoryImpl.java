@@ -18,36 +18,36 @@ import javax.inject.Inject;
 @NotNullByDefault
 class MailboxPairingTaskFactoryImpl implements MailboxPairingTaskFactory {
 
-	private final Executor eventExecutor;
-	private final DatabaseComponent db;
-	private final CryptoComponent crypto;
-	private final Clock clock;
-	private final MailboxApi api;
-	private final MailboxSettingsManager mailboxSettingsManager;
-	private final MailboxUpdateManager mailboxUpdateManager;
+    private final Executor eventExecutor;
+    private final DatabaseComponent db;
+    private final CryptoComponent crypto;
+    private final Clock clock;
+    private final MailboxApi api;
+    private final MailboxSettingsManager mailboxSettingsManager;
+    private final MailboxUpdateManager mailboxUpdateManager;
 
-	@Inject
-	MailboxPairingTaskFactoryImpl(
-			@EventExecutor Executor eventExecutor,
-			DatabaseComponent db,
-			CryptoComponent crypto,
-			Clock clock,
-			MailboxApi api,
-			MailboxSettingsManager mailboxSettingsManager,
-			MailboxUpdateManager mailboxUpdateManager) {
-		this.eventExecutor = eventExecutor;
-		this.db = db;
-		this.crypto = crypto;
-		this.clock = clock;
-		this.api = api;
-		this.mailboxSettingsManager = mailboxSettingsManager;
-		this.mailboxUpdateManager = mailboxUpdateManager;
-	}
+    @Inject
+    MailboxPairingTaskFactoryImpl(
+            @EventExecutor Executor eventExecutor,
+            DatabaseComponent db,
+            CryptoComponent crypto,
+            Clock clock,
+            MailboxApi api,
+            MailboxSettingsManager mailboxSettingsManager,
+            MailboxUpdateManager mailboxUpdateManager) {
+        this.eventExecutor = eventExecutor;
+        this.db = db;
+        this.crypto = crypto;
+        this.clock = clock;
+        this.api = api;
+        this.mailboxSettingsManager = mailboxSettingsManager;
+        this.mailboxUpdateManager = mailboxUpdateManager;
+    }
 
-	@Override
-	public MailboxPairingTask createPairingTask(String qrCodePayload) {
-		return new MailboxPairingTaskImpl(qrCodePayload, eventExecutor, db,
-				crypto, clock, api, mailboxSettingsManager,
-				mailboxUpdateManager);
-	}
+    @Override
+    public MailboxPairingTask createPairingTask(String qrCodePayload) {
+        return new MailboxPairingTaskImpl(qrCodePayload, eventExecutor, db,
+                crypto, clock, api, mailboxSettingsManager,
+                mailboxUpdateManager);
+    }
 }

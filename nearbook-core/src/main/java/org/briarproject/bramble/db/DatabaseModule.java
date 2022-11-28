@@ -20,24 +20,24 @@ import dagger.Provides;
 @Module
 public class DatabaseModule {
 
-	@Provides
-	@Singleton
-	Database<Connection> provideDatabase(DatabaseConfig config,
-			MessageFactory messageFactory, Clock clock) {
-		return new H2Database(config, messageFactory, clock);
-	}
+    @Provides
+    @Singleton
+    Database<Connection> provideDatabase(DatabaseConfig config,
+                                         MessageFactory messageFactory, Clock clock) {
+        return new H2Database(config, messageFactory, clock);
+    }
 
-	@Provides
-	@Singleton
-	DatabaseComponent provideDatabaseComponent(Database<Connection> db,
-			EventBus eventBus, @EventExecutor Executor eventExecutor,
-			ShutdownManager shutdownManager) {
-		return new DatabaseComponentImpl<>(db, Connection.class, eventBus,
-				eventExecutor, shutdownManager);
-	}
+    @Provides
+    @Singleton
+    DatabaseComponent provideDatabaseComponent(Database<Connection> db,
+                                               EventBus eventBus, @EventExecutor Executor eventExecutor,
+                                               ShutdownManager shutdownManager) {
+        return new DatabaseComponentImpl<>(db, Connection.class, eventBus,
+                eventExecutor, shutdownManager);
+    }
 
-	@Provides
-	TransactionManager provideTransactionManager(DatabaseComponent db) {
-		return db;
-	}
+    @Provides
+    TransactionManager provideTransactionManager(DatabaseComponent db) {
+        return db;
+    }
 }

@@ -10,14 +10,14 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface SessionParser {
 
-	BdfDictionary getSessionQuery(SessionId s);
+    BdfDictionary getSessionQuery(SessionId s);
 
-	Role getRole(BdfDictionary d) throws FormatException;
+    Role getRole(BdfDictionary d) throws FormatException;
 
-	IntroducerSession parseIntroducerSession(BdfDictionary d)
-			throws FormatException;
+    IntroducerSession parseIntroducerSession(BdfDictionary d)
+            throws FormatException;
 
-	IntroduceeSession parseIntroduceeSession(GroupId introducerGroupId,
-			BdfDictionary d) throws FormatException;
+    IntroduceeSession parseIntroduceeSession(GroupId introducerGroupId,
+                                             BdfDictionary d) throws FormatException;
 
 }

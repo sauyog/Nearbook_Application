@@ -14,15 +14,15 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		BrambleCoreIntegrationTestModule.class,
-		BrambleCoreModule.class,
-		ModularMailboxModule.class,
-		TestDnsModule.class,
-		TestSocksModule.class,
-		TestPluginConfigModule.class,
+        BrambleCoreIntegrationTestModule.class,
+        BrambleCoreModule.class,
+        ModularMailboxModule.class,
+        TestDnsModule.class,
+        TestSocksModule.class,
+        TestPluginConfigModule.class,
 })
 interface SyncIntegrationTestComponent extends
-		BrambleCoreIntegrationTestEagerSingletons {
+        BrambleCoreIntegrationTestEagerSingletons {
 
-	void inject(SyncIntegrationTest testCase);
+    void inject(SyncIntegrationTest testCase);
 }

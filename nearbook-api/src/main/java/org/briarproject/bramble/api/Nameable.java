@@ -5,6 +5,6 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface Nameable {
 
-	String getName();
+    String getName();
 
 }

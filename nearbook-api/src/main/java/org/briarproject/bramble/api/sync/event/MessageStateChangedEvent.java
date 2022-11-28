@@ -14,27 +14,27 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class MessageStateChangedEvent extends Event {
 
-	private final MessageId messageId;
-	private final boolean local;
-	private final MessageState state;
+    private final MessageId messageId;
+    private final boolean local;
+    private final MessageState state;
 
-	public MessageStateChangedEvent(MessageId messageId, boolean local,
-			MessageState state) {
-		this.messageId = messageId;
-		this.local = local;
-		this.state = state;
-	}
+    public MessageStateChangedEvent(MessageId messageId, boolean local,
+                                    MessageState state) {
+        this.messageId = messageId;
+        this.local = local;
+        this.state = state;
+    }
 
-	public MessageId getMessageId() {
-		return messageId;
-	}
+    public MessageId getMessageId() {
+        return messageId;
+    }
 
-	public boolean isLocal() {
-		return local;
-	}
+    public boolean isLocal() {
+        return local;
+    }
 
-	public MessageState getState() {
-		return state;
-	}
+    public MessageState getState() {
+        return state;
+    }
 
 }

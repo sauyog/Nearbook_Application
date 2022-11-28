@@ -10,10 +10,10 @@ import dagger.Provides;
 @Module
 public class TestModule {
 
-	@Provides
-	@Singleton
-	TestDataCreator getTestDataCreator(TestDataCreatorImpl testDataCreator) {
-		return testDataCreator;
-	}
+    @Provides
+    @Singleton
+    TestDataCreator getTestDataCreator(TestDataCreatorImpl testDataCreator) {
+        return testDataCreator;
+    }
 
 }

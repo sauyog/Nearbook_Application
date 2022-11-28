@@ -9,22 +9,22 @@ import javax.inject.Inject;
 @NotNullByDefault
 class MailboxConfigImpl implements MailboxConfig {
 
-	@Inject
-	MailboxConfigImpl() {
-	}
+    @Inject
+    MailboxConfigImpl() {
+    }
 
-	@Override
-	public long getApiCallerMinRetryInterval() {
-		return MailboxApiCaller.MIN_RETRY_INTERVAL_MS;
-	}
+    @Override
+    public long getApiCallerMinRetryInterval() {
+        return MailboxApiCaller.MIN_RETRY_INTERVAL_MS;
+    }
 
-	@Override
-	public long getApiCallerMaxRetryInterval() {
-		return MailboxApiCaller.MAX_RETRY_INTERVAL_MS;
-	}
+    @Override
+    public long getApiCallerMaxRetryInterval() {
+        return MailboxApiCaller.MAX_RETRY_INTERVAL_MS;
+    }
 
-	@Override
-	public long getTorReachabilityPeriod() {
-		return TorReachabilityMonitor.REACHABILITY_PERIOD_MS;
-	}
+    @Override
+    public long getTorReachabilityPeriod() {
+        return TorReachabilityMonitor.REACHABILITY_PERIOD_MS;
+    }
 }

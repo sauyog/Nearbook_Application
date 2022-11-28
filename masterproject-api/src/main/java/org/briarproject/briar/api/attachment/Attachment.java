@@ -10,20 +10,20 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class Attachment {
 
-	private final AttachmentHeader header;
-	private final InputStream stream;
+    private final AttachmentHeader header;
+    private final InputStream stream;
 
-	public Attachment(AttachmentHeader header, InputStream stream) {
-		this.header = header;
-		this.stream = stream;
-	}
+    public Attachment(AttachmentHeader header, InputStream stream) {
+        this.header = header;
+        this.stream = stream;
+    }
 
-	public AttachmentHeader getHeader() {
-		return header;
-	}
+    public AttachmentHeader getHeader() {
+        return header;
+    }
 
-	public InputStream getStream() {
-		return stream;
-	}
+    public InputStream getStream() {
+        return stream;
+    }
 
 }

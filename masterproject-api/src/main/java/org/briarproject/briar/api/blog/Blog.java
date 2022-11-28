@@ -12,34 +12,34 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class Blog extends BaseGroup implements Shareable {
 
-	private final Author author;
-	private final boolean rssFeed;
+    private final Author author;
+    private final boolean rssFeed;
 
-	public Blog(Group group, Author author, boolean rssFeed) {
-		super(group);
-		this.author = author;
-		this.rssFeed = rssFeed;
-	}
+    public Blog(Group group, Author author, boolean rssFeed) {
+        super(group);
+        this.author = author;
+        this.rssFeed = rssFeed;
+    }
 
-	public Author getAuthor() {
-		return author;
-	}
+    public Author getAuthor() {
+        return author;
+    }
 
-	public boolean isRssFeed() {
-		return rssFeed;
-	}
+    public boolean isRssFeed() {
+        return rssFeed;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		return o instanceof Blog && super.equals(o);
-	}
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Blog && super.equals(o);
+    }
 
-	/**
-	 * Returns the blog's author's name, not the name as shown in the UI.
-	 */
-	@Override
-	public String getName() {
-		return author.getName();
-	}
+    /**
+     * Returns the blog's author's name, not the name as shown in the UI.
+     */
+    @Override
+    public String getName() {
+        return author.getName();
+    }
 
 }

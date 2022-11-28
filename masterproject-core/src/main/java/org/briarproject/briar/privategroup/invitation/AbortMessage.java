@@ -10,8 +10,8 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class AbortMessage extends GroupInvitationMessage {
 
-	AbortMessage(MessageId id, GroupId contactGroupId, GroupId privateGroupId,
-			long timestamp) {
-		super(id, contactGroupId, privateGroupId, timestamp);
-	}
+    AbortMessage(MessageId id, GroupId contactGroupId, GroupId privateGroupId,
+                 long timestamp) {
+        super(id, contactGroupId, privateGroupId, timestamp);
+    }
 }

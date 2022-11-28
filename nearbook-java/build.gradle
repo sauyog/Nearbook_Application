@@ -8,58 +8,58 @@ apply from: 'witness.gradle'
 apply from: '../dagger.gradle'
 
 configurations {
-	tor
+    tor
 }
 
 dependencies {
-	implementation project(path: ':nearbook-core', configuration: 'default')
-	implementation fileTree(dir: 'libs', include: '*.jar')
-	def jna_version = '4.5.2'
-	implementation "net.java.dev.jna:jna:$jna_version"
-	implementation "net.java.dev.jna:jna-platform:$jna_version"
-	tor "org.briarproject:tor-linux:$tor_version"
-	tor "org.briarproject:tor-windows:$tor_version"
-	tor "org.briarproject:obfs4proxy-linux:$obfs4proxy_version"
-	tor "org.briarproject:obfs4proxy-windows:$obfs4proxy_version"
-	tor "org.briarproject:snowflake-linux:$snowflake_version"
-	tor "org.briarproject:snowflake-windows:$snowflake_version"
+    implementation project(path: ':nearbook-core', configuration: 'default')
+    implementation fileTree(dir: 'libs', include: '*.jar')
+    def jna_version = '4.5.2'
+    implementation "net.java.dev.jna:jna:$jna_version"
+    implementation "net.java.dev.jna:jna-platform:$jna_version"
+    tor "org.briarproject:tor-linux:$tor_version"
+    tor "org.briarproject:tor-windows:$tor_version"
+    tor "org.briarproject:obfs4proxy-linux:$obfs4proxy_version"
+    tor "org.briarproject:obfs4proxy-windows:$obfs4proxy_version"
+    tor "org.briarproject:snowflake-linux:$snowflake_version"
+    tor "org.briarproject:snowflake-windows:$snowflake_version"
 
-	annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
-	testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
-	testImplementation project(path: ':nearbook-core', configuration: 'testOutput')
-	testImplementation "junit:junit:$junit_version"
-	testImplementation "org.jmock:jmock:$jmock_version"
-	testImplementation "org.jmock:jmock-junit4:$jmock_version"
+    testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
+    testImplementation project(path: ':nearbook-core', configuration: 'testOutput')
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.jmock:jmock:$jmock_version"
+    testImplementation "org.jmock:jmock-junit4:$jmock_version"
 
-	testAnnotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 }
 
 def torBinariesDir = 'src/main/resources'
 
 task cleanTorBinaries {
-	doLast {
-		delete fileTree(torBinariesDir) { include '*.zip' }
-	}
+    doLast {
+        delete fileTree(torBinariesDir) { include '*.zip' }
+    }
 }
 
 clean.dependsOn cleanTorBinaries
 
 task unpackTorBinaries {
-	doLast {
-		copy {
-			from configurations.tor.collect { zipTree(it) }
-			into torBinariesDir
-		}
-	}
-	dependsOn cleanTorBinaries
+    doLast {
+        copy {
+            from configurations.tor.collect { zipTree(it) }
+            into torBinariesDir
+        }
+    }
+    dependsOn cleanTorBinaries
 }
 
 processResources {
-	inputs.dir torBinariesDir
-	dependsOn unpackTorBinaries
+    inputs.dir torBinariesDir
+    dependsOn unpackTorBinaries
 }
 
 tasks.withType(Test) {
-	systemProperty 'java.library.path', 'libs'
+    systemProperty 'java.library.path', 'libs'
 }

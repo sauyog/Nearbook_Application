@@ -17,17 +17,17 @@ import javax.inject.Inject;
 @NotNullByDefault
 class ReliabilityLayerFactoryImpl implements ReliabilityLayerFactory {
 
-	private final Executor ioExecutor;
-	private final Clock clock;
+    private final Executor ioExecutor;
+    private final Clock clock;
 
-	@Inject
-	ReliabilityLayerFactoryImpl(@IoExecutor Executor ioExecutor) {
-		this.ioExecutor = ioExecutor;
-		clock = new SystemClock();
-	}
+    @Inject
+    ReliabilityLayerFactoryImpl(@IoExecutor Executor ioExecutor) {
+        this.ioExecutor = ioExecutor;
+        clock = new SystemClock();
+    }
 
-	@Override
-	public ReliabilityLayer createReliabilityLayer(WriteHandler writeHandler) {
-		return new ReliabilityLayerImpl(ioExecutor, clock, writeHandler);
-	}
+    @Override
+    public ReliabilityLayer createReliabilityLayer(WriteHandler writeHandler) {
+        return new ReliabilityLayerImpl(ioExecutor, clock, writeHandler);
+    }
 }

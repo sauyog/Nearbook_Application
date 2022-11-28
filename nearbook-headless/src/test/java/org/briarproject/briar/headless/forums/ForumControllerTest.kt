@@ -5,10 +5,10 @@ import io.mockk.every
 import io.mockk.mockk
 import org.briarproject.bramble.test.TestUtils.getRandomBytes
 import org.briarproject.bramble.util.StringUtils.getRandomString
+import org.briarproject.briar.headless.ControllerTest
 import org.briarproject.masterproject.api.forum.Forum
 import org.briarproject.masterproject.api.forum.ForumConstants.MAX_FORUM_NAME_LENGTH
 import org.briarproject.masterproject.api.forum.ForumManager
-import org.briarproject.briar.headless.ControllerTest
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 

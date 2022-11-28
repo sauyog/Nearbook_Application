@@ -19,23 +19,23 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		AppModule.class,
-		AttachmentModule.class,
-		ClockModule.class,
-		MediaModule.class,
-		RemovableDriveModule.class,
-		BriarCoreModule.class,
-		BrambleAndroidModule.class,
-		BriarAccountModule.class,
-		BrambleCoreModule.class,
-		ModularMailboxModule.class
+        AppModule.class,
+        AttachmentModule.class,
+        ClockModule.class,
+        MediaModule.class,
+        RemovableDriveModule.class,
+        BriarCoreModule.class,
+        BrambleAndroidModule.class,
+        BriarAccountModule.class,
+        BrambleCoreModule.class,
+        ModularMailboxModule.class
 })
 public interface BriarUiTestComponent extends AndroidComponent {
 
-	void inject(NavDrawerActivityTest test);
+    void inject(NavDrawerActivityTest test);
 
-	void inject(SignInTestCreateAccount test);
+    void inject(SignInTestCreateAccount test);
 
-	void inject(SignInTestSignIn test);
+    void inject(SignInTestSignIn test);
 
 }

@@ -8,6 +8,9 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.briarproject.bramble.test.ImmediateExecutor
 import org.briarproject.bramble.test.TestUtils.getRandomId
+import org.briarproject.briar.headless.ControllerTest
+import org.briarproject.briar.headless.messaging.EVENT_CONVERSATION_MESSAGE
+import org.briarproject.briar.headless.messaging.output
 import org.briarproject.masterproject.api.autodelete.AutoDeleteConstants.NO_AUTO_DELETE_TIMER
 import org.briarproject.masterproject.api.client.SessionId
 import org.briarproject.masterproject.api.identity.AuthorInfo
@@ -16,9 +19,6 @@ import org.briarproject.masterproject.api.introduction.IntroductionRequest
 import org.briarproject.masterproject.api.introduction.event.IntroductionRequestReceivedEvent
 import org.briarproject.masterproject.api.messaging.PrivateMessageHeader
 import org.briarproject.masterproject.api.messaging.event.PrivateMessageReceivedEvent
-import org.briarproject.briar.headless.ControllerTest
-import org.briarproject.briar.headless.messaging.EVENT_CONVERSATION_MESSAGE
-import org.briarproject.briar.headless.messaging.output
 import org.eclipse.jetty.websocket.api.WebSocketException
 import org.eclipse.jetty.websocket.common.io.FutureWriteCallback
 import org.junit.jupiter.api.Assertions.assertEquals

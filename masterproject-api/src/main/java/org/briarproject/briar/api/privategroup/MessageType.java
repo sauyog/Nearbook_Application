@@ -8,21 +8,21 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public enum MessageType {
 
-	JOIN(0),
-	POST(1);
+    JOIN(0),
+    POST(1);
 
-	private final int value;
+    private final int value;
 
-	MessageType(int value) {
-		this.value = value;
-	}
+    MessageType(int value) {
+        this.value = value;
+    }
 
-	public static MessageType valueOf(int value) {
-		for (MessageType m : values()) if (m.value == value) return m;
-		throw new IllegalArgumentException();
-	}
+    public static MessageType valueOf(int value) {
+        for (MessageType m : values()) if (m.value == value) return m;
+        throw new IllegalArgumentException();
+    }
 
-	public int getInt() {
-		return value;
-	}
+    public int getInt() {
+        return value;
+    }
 }

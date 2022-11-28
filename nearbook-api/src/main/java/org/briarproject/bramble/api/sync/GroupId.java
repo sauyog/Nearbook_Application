@@ -12,12 +12,12 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 public class GroupId extends UniqueId {
 
-	/**
-	 * Label for hashing groups to calculate their identifiers.
-	 */
-	public static final String LABEL = "org.briarproject.bramble/GROUP_ID";
+    /**
+     * Label for hashing groups to calculate their identifiers.
+     */
+    public static final String LABEL = "org.briarproject.bramble/GROUP_ID";
 
-	public GroupId(byte[] id) {
-		super(id);
-	}
+    public GroupId(byte[] id) {
+        super(id);
+    }
 }

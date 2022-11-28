@@ -16,29 +16,29 @@ import java.util.Collection;
 
 @NotNullByDefault
 class RevealableContactAdapter extends
-		BaseContactSelectorAdapter<RevealableContactItem, RevealableContactViewHolder> {
+        BaseContactSelectorAdapter<RevealableContactItem, RevealableContactViewHolder> {
 
-	RevealableContactAdapter(Context context,
-			OnContactClickListener<RevealableContactItem> listener) {
-		super(context, RevealableContactItem.class, listener);
-	}
+    RevealableContactAdapter(Context context,
+                             OnContactClickListener<RevealableContactItem> listener) {
+        super(context, RevealableContactItem.class, listener);
+    }
 
-	@Override
-	public RevealableContactViewHolder onCreateViewHolder(ViewGroup viewGroup,
-			int i) {
-		View v = LayoutInflater.from(ctx).inflate(
-				R.layout.list_item_revealable_contact, viewGroup, false);
-		return new RevealableContactViewHolder(v);
-	}
+    @Override
+    public RevealableContactViewHolder onCreateViewHolder(ViewGroup viewGroup,
+                                                          int i) {
+        View v = LayoutInflater.from(ctx).inflate(
+                R.layout.list_item_revealable_contact, viewGroup, false);
+        return new RevealableContactViewHolder(v);
+    }
 
-	Collection<ContactId> getDisabledContactIds() {
-		Collection<ContactId> disabled = new ArrayList<>();
+    Collection<ContactId> getDisabledContactIds() {
+        Collection<ContactId> disabled = new ArrayList<>();
 
-		for (int i = 0; i < items.size(); i++) {
-			RevealableContactItem item = items.get(i);
-			if (item.isDisabled()) disabled.add(item.getContact().getId());
-		}
-		return disabled;
-	}
+        for (int i = 0; i < items.size(); i++) {
+            RevealableContactItem item = items.get(i);
+            if (item.isDisabled()) disabled.add(item.getContact().getId());
+        }
+        return disabled;
+    }
 
 }

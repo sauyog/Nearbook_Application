@@ -13,36 +13,44 @@ import java.io.OutputStream;
 @NotNullByDefault
 interface Modem {
 
-	/**
-	 * Call this method after creating the modem and before making any calls.
-	 * If this method returns false the modem cannot be used.
-	 */
-	boolean start() throws IOException;
+    /**
+     * Call this method after creating the modem and before making any calls.
+     * If this method returns false the modem cannot be used.
+     */
+    boolean start() throws IOException;
 
-	/**
-	 * Call this method when the modem is no longer needed. If a call is in
-	 * progress it will be terminated.
-	 */
-	void stop() throws IOException;
+    /**
+     * Call this method when the modem is no longer needed. If a call is in
+     * progress it will be terminated.
+     */
+    void stop() throws IOException;
 
-	/**
-	 * Initiates an outgoing call and returns true if the call connects. If the
-	 * call does not connect the modem is hung up.
-	 */
-	boolean dial(String number) throws IOException;
+    /**
+     * Initiates an outgoing call and returns true if the call connects. If the
+     * call does not connect the modem is hung up.
+     */
+    boolean dial(String number) throws IOException;
 
-	/** Returns a stream for reading from the currently connected call. */
-	InputStream getInputStream() throws IOException;
+    /**
+     * Returns a stream for reading from the currently connected call.
+     */
+    InputStream getInputStream() throws IOException;
 
-	/** Returns a stream for writing to the currently connected call. */
-	OutputStream getOutputStream() throws IOException;
+    /**
+     * Returns a stream for writing to the currently connected call.
+     */
+    OutputStream getOutputStream() throws IOException;
 
-	/** Hangs up the modem, ending the currently connected call. */
-	void hangUp() throws IOException;
+    /**
+     * Hangs up the modem, ending the currently connected call.
+     */
+    void hangUp() throws IOException;
 
-	interface Callback {
+    interface Callback {
 
-		/** Called when an incoming call connects. */
-		void incomingCallConnected();
-	}
+        /**
+         * Called when an incoming call connects.
+         */
+        void incomingCallConnected();
+    }
 }

@@ -11,19 +11,19 @@ import org.briarproject.nullsafety.NotNullByDefault;
 
 @NotNullByDefault
 class ContactSelectorAdapter extends
-		BaseContactSelectorAdapter<SelectableContactItem, SelectableContactHolder> {
+        BaseContactSelectorAdapter<SelectableContactItem, SelectableContactHolder> {
 
-	ContactSelectorAdapter(Context context,
-			OnContactClickListener<SelectableContactItem> listener) {
-		super(context, SelectableContactItem.class, listener);
-	}
+    ContactSelectorAdapter(Context context,
+                           OnContactClickListener<SelectableContactItem> listener) {
+        super(context, SelectableContactItem.class, listener);
+    }
 
-	@Override
-	public SelectableContactHolder onCreateViewHolder(ViewGroup viewGroup,
-			int i) {
-		View v = LayoutInflater.from(ctx).inflate(
-				R.layout.list_item_selectable_contact, viewGroup, false);
-		return new SelectableContactHolder(v);
-	}
+    @Override
+    public SelectableContactHolder onCreateViewHolder(ViewGroup viewGroup,
+                                                      int i) {
+        View v = LayoutInflater.from(ctx).inflate(
+                R.layout.list_item_selectable_contact, viewGroup, false);
+        return new SelectableContactHolder(v);
+    }
 
 }

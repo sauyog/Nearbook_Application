@@ -7,5 +7,5 @@ import java.io.IOException;
 @NotNullByDefault
 public interface WriteHandler {
 
-	void handleWrite(byte[] b) throws IOException;
+    void handleWrite(byte[] b) throws IOException;
 }

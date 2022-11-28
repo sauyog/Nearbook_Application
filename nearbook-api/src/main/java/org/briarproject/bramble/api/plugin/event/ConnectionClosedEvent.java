@@ -11,31 +11,31 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class ConnectionClosedEvent extends Event {
 
-	private final ContactId contactId;
-	private final TransportId transportId;
-	private final boolean incoming, exception;
+    private final ContactId contactId;
+    private final TransportId transportId;
+    private final boolean incoming, exception;
 
-	public ConnectionClosedEvent(ContactId contactId, TransportId transportId,
-			boolean incoming, boolean exception) {
-		this.contactId = contactId;
-		this.transportId = transportId;
-		this.incoming = incoming;
-		this.exception = exception;
-	}
+    public ConnectionClosedEvent(ContactId contactId, TransportId transportId,
+                                 boolean incoming, boolean exception) {
+        this.contactId = contactId;
+        this.transportId = transportId;
+        this.incoming = incoming;
+        this.exception = exception;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 
-	public TransportId getTransportId() {
-		return transportId;
-	}
+    public TransportId getTransportId() {
+        return transportId;
+    }
 
-	public boolean isIncoming() {
-		return incoming;
-	}
+    public boolean isIncoming() {
+        return incoming;
+    }
 
-	public boolean isException() {
-		return exception;
-	}
+    public boolean isException() {
+        return exception;
+    }
 }

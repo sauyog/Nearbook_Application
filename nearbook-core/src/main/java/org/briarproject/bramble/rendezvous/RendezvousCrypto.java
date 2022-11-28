@@ -8,8 +8,8 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface RendezvousCrypto {
 
-	SecretKey deriveRendezvousKey(SecretKey staticMasterKey);
+    SecretKey deriveRendezvousKey(SecretKey staticMasterKey);
 
-	KeyMaterialSource createKeyMaterialSource(SecretKey rendezvousKey,
-			TransportId t);
+    KeyMaterialSource createKeyMaterialSource(SecretKey rendezvousKey,
+                                              TransportId t);
 }

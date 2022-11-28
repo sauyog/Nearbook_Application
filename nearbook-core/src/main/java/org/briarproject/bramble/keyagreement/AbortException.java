@@ -2,23 +2,23 @@ package org.briarproject.bramble.keyagreement;
 
 class AbortException extends Exception {
 
-	boolean receivedAbort;
+    boolean receivedAbort;
 
-	AbortException() {
-		this(false);
-	}
+    AbortException() {
+        this(false);
+    }
 
-	AbortException(boolean receivedAbort) {
-		super();
-		this.receivedAbort = receivedAbort;
-	}
+    AbortException(boolean receivedAbort) {
+        super();
+        this.receivedAbort = receivedAbort;
+    }
 
-	AbortException(Exception e) {
-		this(e, false);
-	}
+    AbortException(Exception e) {
+        this(e, false);
+    }
 
-	private AbortException(Exception e, boolean receivedAbort) {
-		super(e);
-		this.receivedAbort = receivedAbort;
-	}
+    private AbortException(Exception e, boolean receivedAbort) {
+        super(e);
+        this.receivedAbort = receivedAbort;
+    }
 }

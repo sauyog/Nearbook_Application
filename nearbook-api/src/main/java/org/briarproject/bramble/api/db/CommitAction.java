@@ -7,14 +7,14 @@ import org.briarproject.bramble.api.event.EventExecutor;
  */
 public interface CommitAction {
 
-	void accept(Visitor visitor);
+    void accept(Visitor visitor);
 
-	interface Visitor {
+    interface Visitor {
 
-		@EventExecutor
-		void visit(EventAction a);
+        @EventExecutor
+        void visit(EventAction a);
 
-		@EventExecutor
-		void visit(TaskAction a);
-	}
+        @EventExecutor
+        void visit(TaskAction a);
+    }
 }

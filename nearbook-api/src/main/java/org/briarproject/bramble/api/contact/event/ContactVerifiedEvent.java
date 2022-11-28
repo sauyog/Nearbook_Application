@@ -13,14 +13,14 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class ContactVerifiedEvent extends Event {
 
-	private final ContactId contactId;
+    private final ContactId contactId;
 
-	public ContactVerifiedEvent(ContactId contactId) {
-		this.contactId = contactId;
-	}
+    public ContactVerifiedEvent(ContactId contactId) {
+        this.contactId = contactId;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 
 }

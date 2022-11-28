@@ -1,10 +1,21 @@
 package org.briarproject.masterproject.android.privategroup.conversation;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static org.briarproject.masterproject.android.activity.RequestCodes.REQUEST_GROUP_INVITE;
+import static org.briarproject.masterproject.android.util.UiUtils.observeOnce;
+import static org.briarproject.masterproject.api.privategroup.PrivateGroupConstants.MAX_GROUP_POST_TEXT_LENGTH;
+import static org.briarproject.nullsafety.NullSafety.requireNonNull;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.briarproject.briar.R;
 import org.briarproject.masterproject.android.activity.ActivityComponent;
@@ -19,192 +30,181 @@ import org.briarproject.nullsafety.ParametersNotNullByDefault;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
-
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-import static org.briarproject.masterproject.android.activity.RequestCodes.REQUEST_GROUP_INVITE;
-import static org.briarproject.masterproject.android.util.UiUtils.observeOnce;
-import static org.briarproject.masterproject.api.privategroup.PrivateGroupConstants.MAX_GROUP_POST_TEXT_LENGTH;
-import static org.briarproject.nullsafety.NullSafety.requireNonNull;
-
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 public class GroupActivity extends
-		ThreadListActivity<GroupMessageItem, GroupMessageAdapter> {
+        ThreadListActivity<GroupMessageItem, GroupMessageAdapter> {
 
-	@Inject
-	ViewModelProvider.Factory viewModelFactory;
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
-	private GroupViewModel viewModel;
+    private GroupViewModel viewModel;
 
-	@Override
-	public void injectActivity(ActivityComponent component) {
-		component.inject(this);
-		viewModel = new ViewModelProvider(this, viewModelFactory)
-				.get(GroupViewModel.class);
-	}
+    @Override
+    public void injectActivity(ActivityComponent component) {
+        component.inject(this);
+        viewModel = new ViewModelProvider(this, viewModelFactory)
+                .get(GroupViewModel.class);
+    }
 
-	@Override
-	protected ThreadListViewModel<GroupMessageItem> getViewModel() {
-		return viewModel;
-	}
+    @Override
+    protected ThreadListViewModel<GroupMessageItem> getViewModel() {
+        return viewModel;
+    }
 
-	@Override
-	protected GroupMessageAdapter createAdapter() {
-		return new GroupMessageAdapter(this);
-	}
+    @Override
+    protected GroupMessageAdapter createAdapter() {
+        return new GroupMessageAdapter(this);
+    }
 
-	@Override
-	public void onCreate(@Nullable Bundle state) {
-		super.onCreate(state);
+    @Override
+    public void onCreate(@Nullable Bundle state) {
+        super.onCreate(state);
 
-		Toolbar toolbar = setUpCustomToolbar(false);
-		// Open member list on Toolbar click
-		toolbar.setOnClickListener(v -> {
-			Intent i = new Intent(GroupActivity.this,
-					GroupMemberListActivity.class);
-			i.putExtra(GROUP_ID, groupId.getBytes());
-			startActivity(i);
-		});
+        Toolbar toolbar = setUpCustomToolbar(false);
+        // Open member list on Toolbar click
+        toolbar.setOnClickListener(v -> {
+            Intent i = new Intent(GroupActivity.this,
+                    GroupMemberListActivity.class);
+            i.putExtra(GROUP_ID, groupId.getBytes());
+            startActivity(i);
+        });
 
-		String groupName = getIntent().getStringExtra(GROUP_NAME);
-		if (groupName != null) setTitle(groupName);
-		observeOnce(viewModel.getPrivateGroup(), this, privateGroup ->
-				setTitle(privateGroup.getName())
-		);
-		observeOnce(viewModel.isCreator(), this, adapter::setIsCreator);
+        String groupName = getIntent().getStringExtra(GROUP_NAME);
+        if (groupName != null) setTitle(groupName);
+        observeOnce(viewModel.getPrivateGroup(), this, privateGroup ->
+                setTitle(privateGroup.getName())
+        );
+        observeOnce(viewModel.isCreator(), this, adapter::setIsCreator);
 
-		// start with group disabled and enable when not dissolved
-		setGroupEnabled(false);
-		viewModel.isDissolved().observe(this, dissolved -> {
-			setGroupEnabled(!dissolved);
-			// only show dialog when no prior state
-			if (dissolved && state == null) onGroupDissolved();
-		});
-	}
+        // start with group disabled and enable when not dissolved
+        setGroupEnabled(false);
+        viewModel.isDissolved().observe(this, dissolved -> {
+            setGroupEnabled(!dissolved);
+            // only show dialog when no prior state
+            if (dissolved && state == null) onGroupDissolved();
+        });
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu items for use in the action bar
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.group_actions, menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.group_actions, menu);
 
-		// show items based on role (which will not change, so observe once)
-		observeOnce(viewModel.isCreator(), this, isCreator -> {
-			menu.findItem(R.id.action_group_reveal).setVisible(!isCreator);
-			menu.findItem(R.id.action_group_invite).setVisible(isCreator);
-			menu.findItem(R.id.action_group_leave).setVisible(!isCreator);
-			menu.findItem(R.id.action_group_dissolve).setVisible(isCreator);
-		});
-		super.onCreateOptionsMenu(menu);
-		return true;
-	}
+        // show items based on role (which will not change, so observe once)
+        observeOnce(viewModel.isCreator(), this, isCreator -> {
+            menu.findItem(R.id.action_group_reveal).setVisible(!isCreator);
+            menu.findItem(R.id.action_group_invite).setVisible(isCreator);
+            menu.findItem(R.id.action_group_leave).setVisible(!isCreator);
+            menu.findItem(R.id.action_group_dissolve).setVisible(isCreator);
+        });
+        super.onCreateOptionsMenu(menu);
+        return true;
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int itemId = item.getItemId();
-		if (itemId == R.id.action_group_member_list) {
-			Intent i = new Intent(this, GroupMemberListActivity.class);
-			i.putExtra(GROUP_ID, groupId.getBytes());
-			startActivity(i);
-			return true;
-		} else if (itemId == R.id.action_group_reveal) {
-			if (requireNonNull(viewModel.isCreator().getValue()))
-				throw new IllegalStateException();
-			Intent i = new Intent(this, RevealContactsActivity.class);
-			i.putExtra(GROUP_ID, groupId.getBytes());
-			startActivity(i);
-			return true;
-		} else if (itemId == R.id.action_group_invite) {
-			if (!requireNonNull(viewModel.isCreator().getValue()))
-				throw new IllegalStateException();
-			Intent i = new Intent(this, GroupInviteActivity.class);
-			i.putExtra(GROUP_ID, groupId.getBytes());
-			startActivityForResult(i, REQUEST_GROUP_INVITE);
-			return true;
-		} else if (itemId == R.id.action_group_leave) {
-			if (requireNonNull(viewModel.isCreator().getValue()))
-				throw new IllegalStateException();
-			showLeaveGroupDialog();
-			return true;
-		} else if (itemId == R.id.action_group_dissolve) {
-			if (!requireNonNull(viewModel.isCreator().getValue()))
-				throw new IllegalStateException();
-			showDissolveGroupDialog();
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_group_member_list) {
+            Intent i = new Intent(this, GroupMemberListActivity.class);
+            i.putExtra(GROUP_ID, groupId.getBytes());
+            startActivity(i);
+            return true;
+        } else if (itemId == R.id.action_group_reveal) {
+            if (requireNonNull(viewModel.isCreator().getValue()))
+                throw new IllegalStateException();
+            Intent i = new Intent(this, RevealContactsActivity.class);
+            i.putExtra(GROUP_ID, groupId.getBytes());
+            startActivity(i);
+            return true;
+        } else if (itemId == R.id.action_group_invite) {
+            if (!requireNonNull(viewModel.isCreator().getValue()))
+                throw new IllegalStateException();
+            Intent i = new Intent(this, GroupInviteActivity.class);
+            i.putExtra(GROUP_ID, groupId.getBytes());
+            startActivityForResult(i, REQUEST_GROUP_INVITE);
+            return true;
+        } else if (itemId == R.id.action_group_leave) {
+            if (requireNonNull(viewModel.isCreator().getValue()))
+                throw new IllegalStateException();
+            showLeaveGroupDialog();
+            return true;
+        } else if (itemId == R.id.action_group_dissolve) {
+            if (!requireNonNull(viewModel.isCreator().getValue()))
+                throw new IllegalStateException();
+            showDissolveGroupDialog();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-	@Override
-	protected void onActivityResult(int request, int result,
-			@Nullable Intent data) {
-		if (request == REQUEST_GROUP_INVITE && result == RESULT_OK) {
-			displaySnackbar(R.string.groups_invitation_sent);
-		} else super.onActivityResult(request, result, data);
-	}
+    @Override
+    protected void onActivityResult(int request, int result,
+                                    @Nullable Intent data) {
+        if (request == REQUEST_GROUP_INVITE && result == RESULT_OK) {
+            displaySnackbar(R.string.groups_invitation_sent);
+        } else super.onActivityResult(request, result, data);
+    }
 
-	@Override
-	protected int getMaxTextLength() {
-		return MAX_GROUP_POST_TEXT_LENGTH;
-	}
+    @Override
+    protected int getMaxTextLength() {
+        return MAX_GROUP_POST_TEXT_LENGTH;
+    }
 
-	@Override
-	public void onReplyClick(GroupMessageItem item) {
-		Boolean isDissolved = viewModel.isDissolved().getValue();
-		if (isDissolved != null && !isDissolved) super.onReplyClick(item);
-	}
+    @Override
+    public void onReplyClick(GroupMessageItem item) {
+        Boolean isDissolved = viewModel.isDissolved().getValue();
+        if (isDissolved != null && !isDissolved) super.onReplyClick(item);
+    }
 
-	private void setGroupEnabled(boolean enabled) {
-		sendController.setReady(enabled);
-		list.getRecyclerView().setAlpha(enabled ? 1f : 0.5f);
+    private void setGroupEnabled(boolean enabled) {
+        sendController.setReady(enabled);
+        list.getRecyclerView().setAlpha(enabled ? 1f : 0.5f);
 
-		if (!enabled) {
-			textInput.setVisibility(GONE);
-			if (textInput.isKeyboardOpen()) textInput.hideSoftKeyboard();
-		} else {
-			textInput.setVisibility(VISIBLE);
-		}
-	}
+        if (!enabled) {
+            textInput.setVisibility(GONE);
+            if (textInput.isKeyboardOpen()) textInput.hideSoftKeyboard();
+        } else {
+            textInput.setVisibility(VISIBLE);
+        }
+    }
 
-	private void showLeaveGroupDialog() {
-		AlertDialog.Builder builder =
-				new AlertDialog.Builder(this, R.style.BriarDialogTheme);
-		builder.setTitle(getString(R.string.groups_leave_dialog_title));
-		builder.setMessage(getString(R.string.groups_leave_dialog_message));
-		builder.setNegativeButton(R.string.dialog_button_leave,
-				(d, w) -> deleteGroup());
-		builder.setPositiveButton(R.string.cancel, null);
-		builder.show();
-	}
+    private void showLeaveGroupDialog() {
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(this, R.style.BriarDialogTheme);
+        builder.setTitle(getString(R.string.groups_leave_dialog_title));
+        builder.setMessage(getString(R.string.groups_leave_dialog_message));
+        builder.setNegativeButton(R.string.dialog_button_leave,
+                (d, w) -> deleteGroup());
+        builder.setPositiveButton(R.string.cancel, null);
+        builder.show();
+    }
 
-	private void showDissolveGroupDialog() {
-		AlertDialog.Builder builder =
-				new AlertDialog.Builder(this, R.style.BriarDialogTheme);
-		builder.setTitle(getString(R.string.groups_dissolve_dialog_title));
-		builder.setMessage(getString(R.string.groups_dissolve_dialog_message));
-		builder.setNegativeButton(R.string.groups_dissolve_button,
-				(d, w) -> deleteGroup());
-		builder.setPositiveButton(R.string.cancel, null);
-		builder.show();
-	}
+    private void showDissolveGroupDialog() {
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(this, R.style.BriarDialogTheme);
+        builder.setTitle(getString(R.string.groups_dissolve_dialog_title));
+        builder.setMessage(getString(R.string.groups_dissolve_dialog_message));
+        builder.setNegativeButton(R.string.groups_dissolve_button,
+                (d, w) -> deleteGroup());
+        builder.setPositiveButton(R.string.cancel, null);
+        builder.show();
+    }
 
-	private void deleteGroup() {
-		// The activity is going to be destroyed by the
-		// GroupRemovedEvent being fired
-		viewModel.deletePrivateGroup();
-	}
+    private void deleteGroup() {
+        // The activity is going to be destroyed by the
+        // GroupRemovedEvent being fired
+        viewModel.deletePrivateGroup();
+    }
 
-	private void onGroupDissolved() {
-		AlertDialog.Builder builder =
-				new AlertDialog.Builder(this, R.style.BriarDialogTheme);
-		builder.setTitle(getString(R.string.groups_dissolved_dialog_title));
-		builder.setMessage(getString(R.string.groups_dissolved_dialog_message));
-		builder.setNeutralButton(R.string.ok, null);
-		builder.show();
-	}
+    private void onGroupDissolved() {
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(this, R.style.BriarDialogTheme);
+        builder.setTitle(getString(R.string.groups_dissolved_dialog_title));
+        builder.setMessage(getString(R.string.groups_dissolved_dialog_message));
+        builder.setNeutralButton(R.string.ok, null);
+        builder.show();
+    }
 
 }

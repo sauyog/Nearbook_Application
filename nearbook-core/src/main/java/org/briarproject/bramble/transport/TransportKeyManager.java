@@ -14,43 +14,43 @@ import javax.annotation.Nullable;
 @NotNullByDefault
 interface TransportKeyManager {
 
-	void start(Transaction txn) throws DbException;
+    void start(Transaction txn) throws DbException;
 
-	KeySetId addRotationKeys(Transaction txn, ContactId c,
-			SecretKey rootKey, long timestamp, boolean alice, boolean active)
-			throws DbException;
+    KeySetId addRotationKeys(Transaction txn, ContactId c,
+                             SecretKey rootKey, long timestamp, boolean alice, boolean active)
+            throws DbException;
 
-	KeySetId addHandshakeKeys(Transaction txn, ContactId c,
-			SecretKey rootKey, boolean alice) throws DbException;
+    KeySetId addHandshakeKeys(Transaction txn, ContactId c,
+                              SecretKey rootKey, boolean alice) throws DbException;
 
-	KeySetId addHandshakeKeys(Transaction txn, PendingContactId p,
-			SecretKey rootKey, boolean alice) throws DbException;
+    KeySetId addHandshakeKeys(Transaction txn, PendingContactId p,
+                              SecretKey rootKey, boolean alice) throws DbException;
 
-	void activateKeys(Transaction txn, KeySetId k) throws DbException;
+    void activateKeys(Transaction txn, KeySetId k) throws DbException;
 
-	void removeContact(ContactId c);
+    void removeContact(ContactId c);
 
-	void removePendingContact(PendingContactId p);
+    void removePendingContact(PendingContactId p);
 
-	boolean canSendOutgoingStreams(ContactId c);
+    boolean canSendOutgoingStreams(ContactId c);
 
-	boolean canSendOutgoingStreams(PendingContactId p);
+    boolean canSendOutgoingStreams(PendingContactId p);
 
-	@Nullable
-	StreamContext getStreamContext(Transaction txn, ContactId c)
-			throws DbException;
+    @Nullable
+    StreamContext getStreamContext(Transaction txn, ContactId c)
+            throws DbException;
 
-	@Nullable
-	StreamContext getStreamContext(Transaction txn, PendingContactId p)
-			throws DbException;
+    @Nullable
+    StreamContext getStreamContext(Transaction txn, PendingContactId p)
+            throws DbException;
 
-	@Nullable
-	StreamContext getStreamContext(Transaction txn, byte[] tag)
-			throws DbException;
+    @Nullable
+    StreamContext getStreamContext(Transaction txn, byte[] tag)
+            throws DbException;
 
-	@Nullable
-	StreamContext getStreamContextOnly(Transaction txn, byte[] tag);
+    @Nullable
+    StreamContext getStreamContextOnly(Transaction txn, byte[] tag);
 
-	void markTagAsRecognised(Transaction txn, byte[] tag) throws DbException;
+    void markTagAsRecognised(Transaction txn, byte[] tag) throws DbException;
 
 }

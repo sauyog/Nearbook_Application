@@ -20,37 +20,37 @@ import javax.inject.Inject;
 @ParametersNotNullByDefault
 public class ForumSharingStatusActivity extends SharingStatusActivity {
 
-	// Fields that are accessed from background threads must be volatile
-	@Inject
-	protected volatile ForumSharingManager forumSharingManager;
+    // Fields that are accessed from background threads must be volatile
+    @Inject
+    protected volatile ForumSharingManager forumSharingManager;
 
-	@Override
-	public void injectActivity(ActivityComponent component) {
-		component.inject(this);
-	}
+    @Override
+    public void injectActivity(ActivityComponent component) {
+        component.inject(this);
+    }
 
-	@Override
-	public void eventOccurred(Event e) {
-		super.eventOccurred(e);
-		if (e instanceof ForumInvitationResponseReceivedEvent) {
-			ForumInvitationResponseReceivedEvent r =
-					(ForumInvitationResponseReceivedEvent) e;
-			ForumInvitationResponse h = r.getMessageHeader();
-			if (h.getShareableId().equals(getGroupId()) && h.wasAccepted()) {
-				loadSharedWith();
-			}
-		}
-	}
+    @Override
+    public void eventOccurred(Event e) {
+        super.eventOccurred(e);
+        if (e instanceof ForumInvitationResponseReceivedEvent) {
+            ForumInvitationResponseReceivedEvent r =
+                    (ForumInvitationResponseReceivedEvent) e;
+            ForumInvitationResponse h = r.getMessageHeader();
+            if (h.getShareableId().equals(getGroupId()) && h.wasAccepted()) {
+                loadSharedWith();
+            }
+        }
+    }
 
-	@Override
-	int getInfoText() {
-		return R.string.sharing_status_forum;
-	}
+    @Override
+    int getInfoText() {
+        return R.string.sharing_status_forum;
+    }
 
-	@Override
-	@DatabaseExecutor
-	protected Collection<Contact> getSharedWith() throws DbException {
-		return forumSharingManager.getSharedWith(getGroupId());
-	}
+    @Override
+    @DatabaseExecutor
+    protected Collection<Contact> getSharedWith() throws DbException {
+        return forumSharingManager.getSharedWith(getGroupId());
+    }
 
 }

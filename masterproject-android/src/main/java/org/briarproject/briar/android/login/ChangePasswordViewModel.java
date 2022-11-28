@@ -1,5 +1,9 @@
 package org.briarproject.masterproject.android.login;
 
+import static org.briarproject.bramble.api.crypto.DecryptionResult.SUCCESS;
+
+import androidx.lifecycle.ViewModel;
+
 import org.briarproject.bramble.api.account.AccountManager;
 import org.briarproject.bramble.api.crypto.DecryptionException;
 import org.briarproject.bramble.api.crypto.DecryptionResult;
@@ -13,41 +17,37 @@ import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
-import androidx.lifecycle.ViewModel;
-
-import static org.briarproject.bramble.api.crypto.DecryptionResult.SUCCESS;
-
 @NotNullByDefault
 public class ChangePasswordViewModel extends ViewModel {
 
-	private final AccountManager accountManager;
-	private final Executor ioExecutor;
-	private final PasswordStrengthEstimator strengthEstimator;
+    private final AccountManager accountManager;
+    private final Executor ioExecutor;
+    private final PasswordStrengthEstimator strengthEstimator;
 
-	@Inject
-	ChangePasswordViewModel(AccountManager accountManager,
-			@IoExecutor Executor ioExecutor,
-			PasswordStrengthEstimator strengthEstimator) {
-		this.accountManager = accountManager;
-		this.ioExecutor = ioExecutor;
-		this.strengthEstimator = strengthEstimator;
-	}
+    @Inject
+    ChangePasswordViewModel(AccountManager accountManager,
+                            @IoExecutor Executor ioExecutor,
+                            PasswordStrengthEstimator strengthEstimator) {
+        this.accountManager = accountManager;
+        this.ioExecutor = ioExecutor;
+        this.strengthEstimator = strengthEstimator;
+    }
 
-	float estimatePasswordStrength(String password) {
-		return strengthEstimator.estimateStrength(password);
-	}
+    float estimatePasswordStrength(String password) {
+        return strengthEstimator.estimateStrength(password);
+    }
 
-	LiveEvent<DecryptionResult> changePassword(String oldPassword,
-			String newPassword) {
-		MutableLiveEvent<DecryptionResult> result = new MutableLiveEvent<>();
-		ioExecutor.execute(() -> {
-			try {
-				accountManager.changePassword(oldPassword, newPassword);
-				result.postEvent(SUCCESS);
-			} catch (DecryptionException e) {
-				result.postEvent(e.getDecryptionResult());
-			}
-		});
-		return result;
-	}
+    LiveEvent<DecryptionResult> changePassword(String oldPassword,
+                                               String newPassword) {
+        MutableLiveEvent<DecryptionResult> result = new MutableLiveEvent<>();
+        ioExecutor.execute(() -> {
+            try {
+                accountManager.changePassword(oldPassword, newPassword);
+                result.postEvent(SUCCESS);
+            } catch (DecryptionException e) {
+                result.postEvent(e.getDecryptionResult());
+            }
+        });
+        return result;
+    }
 }

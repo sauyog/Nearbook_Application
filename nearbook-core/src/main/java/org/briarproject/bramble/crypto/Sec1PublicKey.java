@@ -15,25 +15,25 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class Sec1PublicKey implements PublicKey {
 
-	private final String keyType;
-	private final ECPublicKeyParameters key;
+    private final String keyType;
+    private final ECPublicKeyParameters key;
 
-	Sec1PublicKey(String keyType, ECPublicKeyParameters key) {
-		this.keyType = keyType;
-		this.key = key;
-	}
+    Sec1PublicKey(String keyType, ECPublicKeyParameters key) {
+        this.keyType = keyType;
+        this.key = key;
+    }
 
-	@Override
-	public String getKeyType() {
-		return keyType;
-	}
+    @Override
+    public String getKeyType() {
+        return keyType;
+    }
 
-	@Override
-	public byte[] getEncoded() {
-		return key.getQ().getEncoded(false);
-	}
+    @Override
+    public byte[] getEncoded() {
+        return key.getQ().getEncoded(false);
+    }
 
-	ECPublicKeyParameters getKey() {
-		return key;
-	}
+    ECPublicKeyParameters getKey() {
+        return key;
+    }
 }

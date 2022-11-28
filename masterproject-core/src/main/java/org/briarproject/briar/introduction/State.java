@@ -2,8 +2,8 @@ package org.briarproject.briar.introduction;
 
 interface State {
 
-	int getValue();
+    int getValue();
 
-	boolean isComplete();
+    boolean isComplete();
 
 }

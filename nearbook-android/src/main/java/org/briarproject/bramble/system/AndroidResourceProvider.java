@@ -14,19 +14,19 @@ import javax.inject.Inject;
 @NotNullByDefault
 class AndroidResourceProvider implements ResourceProvider {
 
-	private final Context appContext;
+    private final Context appContext;
 
-	@Inject
-	AndroidResourceProvider(Application app) {
-		this.appContext = app.getApplicationContext();
-	}
+    @Inject
+    AndroidResourceProvider(Application app) {
+        this.appContext = app.getApplicationContext();
+    }
 
-	@Override
-	public InputStream getResourceInputStream(String name, String extension) {
-		Resources res = appContext.getResources();
-		// extension is ignored on Android, resources are retrieved without it
-		int resId =
-				res.getIdentifier(name, "raw", appContext.getPackageName());
-		return res.openRawResource(resId);
-	}
+    @Override
+    public InputStream getResourceInputStream(String name, String extension) {
+        Resources res = appContext.getResources();
+        // extension is ignored on Android, resources are retrieved without it
+        int resId =
+                res.getIdentifier(name, "raw", appContext.getPackageName());
+        return res.openRawResource(resId);
+    }
 }

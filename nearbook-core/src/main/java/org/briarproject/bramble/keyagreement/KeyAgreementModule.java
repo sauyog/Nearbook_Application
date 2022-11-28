@@ -12,25 +12,25 @@ import dagger.Provides;
 @Module
 public class KeyAgreementModule {
 
-	@Provides
-	KeyAgreementTask provideKeyAgreementTask(
-			KeyAgreementTaskImpl keyAgreementTask) {
-		return keyAgreementTask;
-	}
+    @Provides
+    KeyAgreementTask provideKeyAgreementTask(
+            KeyAgreementTaskImpl keyAgreementTask) {
+        return keyAgreementTask;
+    }
 
-	@Provides
-	PayloadEncoder providePayloadEncoder(BdfWriterFactory bdfWriterFactory) {
-		return new PayloadEncoderImpl(bdfWriterFactory);
-	}
+    @Provides
+    PayloadEncoder providePayloadEncoder(BdfWriterFactory bdfWriterFactory) {
+        return new PayloadEncoderImpl(bdfWriterFactory);
+    }
 
-	@Provides
-	PayloadParser providePayloadParser(BdfReaderFactory bdfReaderFactory) {
-		return new PayloadParserImpl(bdfReaderFactory);
-	}
+    @Provides
+    PayloadParser providePayloadParser(BdfReaderFactory bdfReaderFactory) {
+        return new PayloadParserImpl(bdfReaderFactory);
+    }
 
-	@Provides
-	ConnectionChooser provideConnectionChooser(
-			ConnectionChooserImpl connectionChooser) {
-		return connectionChooser;
-	}
+    @Provides
+    ConnectionChooser provideConnectionChooser(
+            ConnectionChooserImpl connectionChooser) {
+        return connectionChooser;
+    }
 }

@@ -1,18 +1,5 @@
 package org.briarproject.masterproject.android.navdrawer;
 
-import android.view.Gravity;
-
-import org.briarproject.briar.R;
-import org.briarproject.masterproject.android.BriarUiTestComponent;
-import org.briarproject.masterproject.android.UiTest;
-import org.briarproject.masterproject.android.settings.SettingsActivity;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import androidx.test.espresso.contrib.DrawerActions;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -23,27 +10,40 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import android.view.Gravity;
+
+import androidx.test.espresso.contrib.DrawerActions;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.briarproject.briar.R;
+import org.briarproject.masterproject.android.BriarUiTestComponent;
+import org.briarproject.masterproject.android.UiTest;
+import org.briarproject.masterproject.android.settings.SettingsActivity;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 @RunWith(AndroidJUnit4.class)
 public class NavDrawerActivityTest extends UiTest {
 
-	@Rule
-	public CleanAccountTestRule<NavDrawerActivity> testRule =
-			new CleanAccountTestRule<>(NavDrawerActivity.class);
+    @Rule
+    public CleanAccountTestRule<NavDrawerActivity> testRule =
+            new CleanAccountTestRule<>(NavDrawerActivity.class);
 
-	@Override
-	protected void inject(BriarUiTestComponent component) {
-		component.inject(this);
-	}
+    @Override
+    protected void inject(BriarUiTestComponent component) {
+        component.inject(this);
+    }
 
-	@Test
-	public void openSettings() {
-		onView(withId(R.id.drawer_layout))
-				.check(matches(isClosed(Gravity.START)))
-				.perform(DrawerActions.open());
-		onView(withText(R.string.settings_button))
-				.check(matches(isDisplayed()))
-				.perform(click());
-		intended(hasComponent(SettingsActivity.class.getName()));
-	}
+    @Test
+    public void openSettings() {
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
+        onView(withText(R.string.settings_button))
+                .check(matches(isDisplayed()))
+                .perform(click());
+        intended(hasComponent(SettingsActivity.class.getName()));
+    }
 
 }

@@ -10,20 +10,20 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class KeyAgreementConnection {
 
-	private final DuplexTransportConnection conn;
-	private final TransportId id;
+    private final DuplexTransportConnection conn;
+    private final TransportId id;
 
-	public KeyAgreementConnection(DuplexTransportConnection conn,
-			TransportId id) {
-		this.conn = conn;
-		this.id = id;
-	}
+    public KeyAgreementConnection(DuplexTransportConnection conn,
+                                  TransportId id) {
+        this.conn = conn;
+        this.id = id;
+    }
 
-	public DuplexTransportConnection getConnection() {
-		return conn;
-	}
+    public DuplexTransportConnection getConnection() {
+        return conn;
+    }
 
-	public TransportId getTransportId() {
-		return id;
-	}
+    public TransportId getTransportId() {
+        return id;
+    }
 }

@@ -9,13 +9,13 @@ import javax.inject.Inject;
 
 public class TestAvatarCreatorImpl implements TestAvatarCreator {
 
-	@Inject
-	TestAvatarCreatorImpl() {
-	}
+    @Inject
+    TestAvatarCreatorImpl() {
+    }
 
-	@Nullable
-	@Override
-	public InputStream getAvatarInputStream() {
-		return null;
-	}
+    @Nullable
+    @Override
+    public InputStream getAvatarInputStream() {
+        return null;
+    }
 }

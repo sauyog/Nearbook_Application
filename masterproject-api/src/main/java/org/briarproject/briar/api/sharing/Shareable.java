@@ -7,6 +7,6 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface Shareable extends Nameable {
 
-	GroupId getId();
+    GroupId getId();
 
 }

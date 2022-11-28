@@ -10,15 +10,15 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 abstract class DeletableGroupInvitationMessage extends GroupInvitationMessage {
 
-	private final long autoDeleteTimer;
+    private final long autoDeleteTimer;
 
-	DeletableGroupInvitationMessage(MessageId id, GroupId contactGroupId,
-			GroupId privateGroupId, long timestamp, long autoDeleteTimer) {
-		super(id, contactGroupId, privateGroupId, timestamp);
-		this.autoDeleteTimer = autoDeleteTimer;
-	}
+    DeletableGroupInvitationMessage(MessageId id, GroupId contactGroupId,
+                                    GroupId privateGroupId, long timestamp, long autoDeleteTimer) {
+        super(id, contactGroupId, privateGroupId, timestamp);
+        this.autoDeleteTimer = autoDeleteTimer;
+    }
 
-	public long getAutoDeleteTimer() {
-		return autoDeleteTimer;
-	}
+    public long getAutoDeleteTimer() {
+        return autoDeleteTimer;
+    }
 }

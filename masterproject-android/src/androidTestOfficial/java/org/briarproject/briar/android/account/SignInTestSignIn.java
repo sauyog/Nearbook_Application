@@ -1,18 +1,5 @@
 package org.briarproject.masterproject.android.account;
 
-import android.view.Gravity;
-
-import org.briarproject.briar.R;
-import org.briarproject.masterproject.android.BriarUiTestComponent;
-import org.briarproject.masterproject.android.UiTest;
-import org.briarproject.masterproject.android.login.StartupActivity;
-import org.briarproject.masterproject.android.navdrawer.NavDrawerActivity;
-import org.briarproject.masterproject.android.splash.SplashScreenActivity;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
@@ -24,36 +11,49 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.briarproject.masterproject.android.ViewActions.waitFor;
 import static org.hamcrest.CoreMatchers.allOf;
 
+import android.view.Gravity;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.briarproject.briar.R;
+import org.briarproject.masterproject.android.BriarUiTestComponent;
+import org.briarproject.masterproject.android.UiTest;
+import org.briarproject.masterproject.android.login.StartupActivity;
+import org.briarproject.masterproject.android.navdrawer.NavDrawerActivity;
+import org.briarproject.masterproject.android.splash.SplashScreenActivity;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 /**
  * This relies on class sorting to run after {@link SignInTestCreateAccount}.
  */
 @RunWith(AndroidJUnit4.class)
 public class SignInTestSignIn extends UiTest {
 
-	@Override
-	protected void inject(BriarUiTestComponent component) {
-		component.inject(this);
-	}
+    @Override
+    protected void inject(BriarUiTestComponent component) {
+        component.inject(this);
+    }
 
-	@Test
-	public void signIn() throws Exception {
-		startActivity(SplashScreenActivity.class);
+    @Test
+    public void signIn() throws Exception {
+        startActivity(SplashScreenActivity.class);
 
-		waitFor(StartupActivity.class);
+        waitFor(StartupActivity.class);
 
-		// enter password
-		onView(withId(R.id.edit_password))
-				.check(matches(isDisplayed()))
-				.perform(replaceText(PASSWORD));
-		onView(withId(R.id.btn_sign_in))
-				.check(matches(allOf(isDisplayed(), isEnabled())))
-				.perform(click());
+        // enter password
+        onView(withId(R.id.edit_password))
+                .check(matches(isDisplayed()))
+                .perform(replaceText(PASSWORD));
+        onView(withId(R.id.btn_sign_in))
+                .check(matches(allOf(isDisplayed(), isEnabled())))
+                .perform(click());
 
-		lifecycleManager.waitForStartup();
-		waitFor(NavDrawerActivity.class);
+        lifecycleManager.waitForStartup();
+        waitFor(NavDrawerActivity.class);
 
-		// ensure nav drawer is visible
-		onView(withId(R.id.drawer_layout))
-				.check(matches(isClosed(Gravity.START)));
-	}
+        // ensure nav drawer is visible
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.START)));
+    }
 }

@@ -6,5 +6,5 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface DbController {
 
-	void runOnDbThread(Runnable task);
+    void runOnDbThread(Runnable task);
 }

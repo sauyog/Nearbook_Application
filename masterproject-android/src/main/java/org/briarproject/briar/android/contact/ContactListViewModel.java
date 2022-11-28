@@ -2,6 +2,9 @@ package org.briarproject.masterproject.android.contact;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import org.briarproject.bramble.api.connection.ConnectionRegistry;
 import org.briarproject.bramble.api.contact.ContactManager;
 import org.briarproject.bramble.api.contact.event.PendingContactAddedEvent;
@@ -22,63 +25,60 @@ import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
 @NotNullByDefault
 class ContactListViewModel extends ContactsViewModel {
 
-	private final AndroidNotificationManager notificationManager;
+    private final AndroidNotificationManager notificationManager;
 
-	private final MutableLiveData<Boolean> hasPendingContacts =
-			new MutableLiveData<>();
+    private final MutableLiveData<Boolean> hasPendingContacts =
+            new MutableLiveData<>();
 
-	@Inject
-	ContactListViewModel(Application application,
-			@DatabaseExecutor Executor dbExecutor,
-			LifecycleManager lifecycleManager, TransactionManager db,
-			AndroidExecutor androidExecutor, ContactManager contactManager,
-			AuthorManager authorManager,
-			ConversationManager conversationManager,
-			ConnectionRegistry connectionRegistry, EventBus eventBus,
-			AndroidNotificationManager notificationManager) {
-		super(application, dbExecutor, lifecycleManager, db, androidExecutor,
-				contactManager, authorManager, conversationManager,
-				connectionRegistry, eventBus);
-		this.notificationManager = notificationManager;
-	}
+    @Inject
+    ContactListViewModel(Application application,
+                         @DatabaseExecutor Executor dbExecutor,
+                         LifecycleManager lifecycleManager, TransactionManager db,
+                         AndroidExecutor androidExecutor, ContactManager contactManager,
+                         AuthorManager authorManager,
+                         ConversationManager conversationManager,
+                         ConnectionRegistry connectionRegistry, EventBus eventBus,
+                         AndroidNotificationManager notificationManager) {
+        super(application, dbExecutor, lifecycleManager, db, androidExecutor,
+                contactManager, authorManager, conversationManager,
+                connectionRegistry, eventBus);
+        this.notificationManager = notificationManager;
+    }
 
-	@Override
-	public void eventOccurred(Event e) {
-		super.eventOccurred(e);
-		if (e instanceof PendingContactAddedEvent ||
-				e instanceof PendingContactRemovedEvent) {
-			checkForPendingContacts();
-		}
-	}
+    @Override
+    public void eventOccurred(Event e) {
+        super.eventOccurred(e);
+        if (e instanceof PendingContactAddedEvent ||
+                e instanceof PendingContactRemovedEvent) {
+            checkForPendingContacts();
+        }
+    }
 
-	LiveData<Boolean> getHasPendingContacts() {
-		return hasPendingContacts;
-	}
+    LiveData<Boolean> getHasPendingContacts() {
+        return hasPendingContacts;
+    }
 
-	void checkForPendingContacts() {
-		runOnDbThread(() -> {
-			try {
-				boolean hasPending =
-						!contactManager.getPendingContacts().isEmpty();
-				hasPendingContacts.postValue(hasPending);
-			} catch (DbException e) {
-				handleException(e);
-			}
-		});
-	}
+    void checkForPendingContacts() {
+        runOnDbThread(() -> {
+            try {
+                boolean hasPending =
+                        !contactManager.getPendingContacts().isEmpty();
+                hasPendingContacts.postValue(hasPending);
+            } catch (DbException e) {
+                handleException(e);
+            }
+        });
+    }
 
-	void clearAllContactNotifications() {
-		notificationManager.clearAllContactNotifications();
-	}
+    void clearAllContactNotifications() {
+        notificationManager.clearAllContactNotifications();
+    }
 
-	void clearAllContactAddedNotifications() {
-		notificationManager.clearAllContactAddedNotifications();
-	}
+    void clearAllContactAddedNotifications() {
+        notificationManager.clearAllContactAddedNotifications();
+    }
 
 }

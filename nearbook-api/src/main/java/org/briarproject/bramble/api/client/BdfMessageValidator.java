@@ -1,5 +1,7 @@
 package org.briarproject.bramble.api.client;
 
+import static org.briarproject.bramble.api.transport.TransportConstants.MAX_CLOCK_DIFFERENCE;
+
 import org.briarproject.bramble.api.FormatException;
 import org.briarproject.bramble.api.data.BdfList;
 import org.briarproject.bramble.api.data.MetadataEncoder;
@@ -16,45 +18,43 @@ import java.util.logging.Logger;
 
 import javax.annotation.concurrent.Immutable;
 
-import static org.briarproject.bramble.api.transport.TransportConstants.MAX_CLOCK_DIFFERENCE;
-
 @Immutable
 @NotNullByDefault
 public abstract class BdfMessageValidator implements MessageValidator {
 
-	protected static final Logger LOG =
-			Logger.getLogger(BdfMessageValidator.class.getName());
+    protected static final Logger LOG =
+            Logger.getLogger(BdfMessageValidator.class.getName());
 
-	protected final ClientHelper clientHelper;
-	protected final MetadataEncoder metadataEncoder;
-	protected final Clock clock;
+    protected final ClientHelper clientHelper;
+    protected final MetadataEncoder metadataEncoder;
+    protected final Clock clock;
 
-	protected BdfMessageValidator(ClientHelper clientHelper,
-			MetadataEncoder metadataEncoder, Clock clock) {
-		this.clientHelper = clientHelper;
-		this.metadataEncoder = metadataEncoder;
-		this.clock = clock;
-	}
+    protected BdfMessageValidator(ClientHelper clientHelper,
+                                  MetadataEncoder metadataEncoder, Clock clock) {
+        this.clientHelper = clientHelper;
+        this.metadataEncoder = metadataEncoder;
+        this.clock = clock;
+    }
 
-	protected abstract BdfMessageContext validateMessage(Message m, Group g,
-			BdfList body) throws InvalidMessageException, FormatException;
+    protected abstract BdfMessageContext validateMessage(Message m, Group g,
+                                                         BdfList body) throws InvalidMessageException, FormatException;
 
-	@Override
-	public MessageContext validateMessage(Message m, Group g)
-			throws InvalidMessageException {
-		// Reject the message if it's too far in the future
-		long now = clock.currentTimeMillis();
-		if (m.getTimestamp() - now > MAX_CLOCK_DIFFERENCE) {
-			throw new InvalidMessageException(
-					"Timestamp is too far in the future");
-		}
-		try {
-			BdfList bodyList = clientHelper.toList(m.getBody());
-			BdfMessageContext result = validateMessage(m, g, bodyList);
-			Metadata meta = metadataEncoder.encode(result.getDictionary());
-			return new MessageContext(meta, result.getDependencies());
-		} catch (FormatException e) {
-			throw new InvalidMessageException(e);
-		}
-	}
+    @Override
+    public MessageContext validateMessage(Message m, Group g)
+            throws InvalidMessageException {
+        // Reject the message if it's too far in the future
+        long now = clock.currentTimeMillis();
+        if (m.getTimestamp() - now > MAX_CLOCK_DIFFERENCE) {
+            throw new InvalidMessageException(
+                    "Timestamp is too far in the future");
+        }
+        try {
+            BdfList bodyList = clientHelper.toList(m.getBody());
+            BdfMessageContext result = validateMessage(m, g, bodyList);
+            Metadata meta = metadataEncoder.encode(result.getDictionary());
+            return new MessageContext(meta, result.getDependencies());
+        } catch (FormatException e) {
+            throw new InvalidMessageException(e);
+        }
+    }
 }

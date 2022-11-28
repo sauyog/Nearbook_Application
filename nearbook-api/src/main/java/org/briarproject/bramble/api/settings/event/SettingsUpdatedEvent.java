@@ -13,19 +13,19 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class SettingsUpdatedEvent extends Event {
 
-	private final String namespace;
-	private final Settings settings;
+    private final String namespace;
+    private final Settings settings;
 
-	public SettingsUpdatedEvent(String namespace, Settings settings) {
-		this.namespace = namespace;
-		this.settings = settings;
-	}
+    public SettingsUpdatedEvent(String namespace, Settings settings) {
+        this.namespace = namespace;
+        this.settings = settings;
+    }
 
-	public String getNamespace() {
-		return namespace;
-	}
+    public String getNamespace() {
+        return namespace;
+    }
 
-	public Settings getSettings() {
-		return settings;
-	}
+    public Settings getSettings() {
+        return settings;
+    }
 }

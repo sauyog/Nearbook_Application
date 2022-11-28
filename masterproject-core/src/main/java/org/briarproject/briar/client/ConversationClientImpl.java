@@ -19,23 +19,23 @@ import javax.annotation.concurrent.Immutable;
 @Immutable
 @NotNullByDefault
 public abstract class ConversationClientImpl extends BdfIncomingMessageHook
-		implements ConversationClient {
+        implements ConversationClient {
 
-	protected final MessageTracker messageTracker;
+    protected final MessageTracker messageTracker;
 
-	protected ConversationClientImpl(DatabaseComponent db,
-			ClientHelper clientHelper, MetadataParser metadataParser,
-			MessageTracker messageTracker) {
-		super(db, clientHelper, metadataParser);
-		this.messageTracker = messageTracker;
-	}
+    protected ConversationClientImpl(DatabaseComponent db,
+                                     ClientHelper clientHelper, MetadataParser metadataParser,
+                                     MessageTracker messageTracker) {
+        super(db, clientHelper, metadataParser);
+        this.messageTracker = messageTracker;
+    }
 
-	@Override
-	public GroupCount getGroupCount(Transaction txn, ContactId contactId)
-			throws DbException {
-		Contact contact = db.getContact(txn, contactId);
-		GroupId groupId = getContactGroup(contact).getId();
-		return messageTracker.getGroupCount(txn, groupId);
-	}
+    @Override
+    public GroupCount getGroupCount(Transaction txn, ContactId contactId)
+            throws DbException {
+        Contact contact = db.getContact(txn, contactId);
+        GroupId groupId = getContactGroup(contact).getId();
+        return messageTracker.getGroupCount(txn, groupId);
+    }
 
 }

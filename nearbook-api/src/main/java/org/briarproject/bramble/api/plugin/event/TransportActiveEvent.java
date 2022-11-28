@@ -15,13 +15,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class TransportActiveEvent extends Event {
 
-	private final TransportId transportId;
+    private final TransportId transportId;
 
-	public TransportActiveEvent(TransportId transportId) {
-		this.transportId = transportId;
-	}
+    public TransportActiveEvent(TransportId transportId) {
+        this.transportId = transportId;
+    }
 
-	public TransportId getTransportId() {
-		return transportId;
-	}
+    public TransportId getTransportId() {
+        return transportId;
+    }
 }

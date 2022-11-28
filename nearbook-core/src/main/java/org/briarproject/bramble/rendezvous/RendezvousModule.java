@@ -13,23 +13,23 @@ import dagger.Provides;
 @Module
 public class RendezvousModule {
 
-	public static class EagerSingletons {
-		@Inject
-		RendezvousPoller rendezvousPoller;
-	}
+    @Provides
+    RendezvousCrypto provideRendezvousCrypto(
+            RendezvousCryptoImpl rendezvousCrypto) {
+        return rendezvousCrypto;
+    }
 
-	@Provides
-	RendezvousCrypto provideRendezvousCrypto(
-			RendezvousCryptoImpl rendezvousCrypto) {
-		return rendezvousCrypto;
-	}
+    @Provides
+    @Singleton
+    RendezvousPoller provideRendezvousPoller(LifecycleManager lifecycleManager,
+                                             EventBus eventBus, RendezvousPollerImpl rendezvousPoller) {
+        lifecycleManager.registerService(rendezvousPoller);
+        eventBus.addListener(rendezvousPoller);
+        return rendezvousPoller;
+    }
 
-	@Provides
-	@Singleton
-	RendezvousPoller provideRendezvousPoller(LifecycleManager lifecycleManager,
-			EventBus eventBus, RendezvousPollerImpl rendezvousPoller) {
-		lifecycleManager.registerService(rendezvousPoller);
-		eventBus.addListener(rendezvousPoller);
-		return rendezvousPoller;
-	}
+    public static class EagerSingletons {
+        @Inject
+        RendezvousPoller rendezvousPoller;
+    }
 }

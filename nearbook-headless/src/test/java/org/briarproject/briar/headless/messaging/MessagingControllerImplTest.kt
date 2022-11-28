@@ -4,13 +4,8 @@ import io.javalin.http.BadRequestResponse
 import io.javalin.http.Context
 import io.javalin.http.NotFoundResponse
 import io.javalin.plugin.json.JavalinJson.toJson
-import io.mockk.CapturingSlot
-import io.mockk.Runs
-import io.mockk.every
+import io.mockk.*
 import io.mockk.just
-import io.mockk.mockk
-import io.mockk.mockkStatic
-import io.mockk.runs
 import org.bouncycastle.util.encoders.Base64
 import org.briarproject.bramble.api.contact.ContactId
 import org.briarproject.bramble.api.db.NoSuchContactException
@@ -20,6 +15,10 @@ import org.briarproject.bramble.api.sync.event.MessagesSentEvent
 import org.briarproject.bramble.test.ImmediateExecutor
 import org.briarproject.bramble.test.TestUtils.getRandomId
 import org.briarproject.bramble.util.StringUtils.getRandomString
+import org.briarproject.briar.headless.ControllerTest
+import org.briarproject.briar.headless.event.output
+import org.briarproject.briar.headless.getFromJson
+import org.briarproject.briar.headless.json.JsonDict
 import org.briarproject.masterproject.api.autodelete.AutoDeleteConstants.NO_AUTO_DELETE_TIMER
 import org.briarproject.masterproject.api.client.SessionId
 import org.briarproject.masterproject.api.conversation.DeletionResult
@@ -33,10 +32,6 @@ import org.briarproject.masterproject.api.messaging.PrivateMessage
 import org.briarproject.masterproject.api.messaging.PrivateMessageFactory
 import org.briarproject.masterproject.api.messaging.PrivateMessageHeader
 import org.briarproject.masterproject.api.messaging.event.PrivateMessageReceivedEvent
-import org.briarproject.briar.headless.ControllerTest
-import org.briarproject.briar.headless.event.output
-import org.briarproject.briar.headless.getFromJson
-import org.briarproject.briar.headless.json.JsonDict
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test

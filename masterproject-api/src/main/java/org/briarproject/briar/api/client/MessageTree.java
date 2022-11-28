@@ -11,27 +11,27 @@ import javax.annotation.Nullable;
 @NotNullByDefault
 public interface MessageTree<T extends MessageTree.MessageNode> {
 
-	void add(Collection<T> nodes);
+    void add(Collection<T> nodes);
 
-	void add(T node);
+    void add(T node);
 
-	void clear();
+    void clear();
 
-	List<T> depthFirstOrder();
+    List<T> depthFirstOrder();
 
-	boolean contains(MessageId m);
+    boolean contains(MessageId m);
 
-	@NotNullByDefault
-	interface MessageNode {
+    @NotNullByDefault
+    interface MessageNode {
 
-		MessageId getId();
+        MessageId getId();
 
-		@Nullable
-		MessageId getParentId();
+        @Nullable
+        MessageId getParentId();
 
-		void setLevel(int level);
+        void setLevel(int level);
 
-		long getTimestamp();
-	}
+        long getTimestamp();
+    }
 
 }

@@ -8,11 +8,11 @@ import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import org.briarproject.briar.R;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
+
+import org.briarproject.briar.R;
 
 public class QrCodeView extends FrameLayout {
 

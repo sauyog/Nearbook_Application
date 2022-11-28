@@ -11,9 +11,9 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class AbortMessage extends SharingMessage {
 
-	AbortMessage(MessageId id, GroupId contactGroupId, GroupId shareableId,
-			long timestamp, @Nullable MessageId previousMessageId) {
-		super(id, contactGroupId, shareableId, timestamp, previousMessageId);
-	}
+    AbortMessage(MessageId id, GroupId contactGroupId, GroupId shareableId,
+                 long timestamp, @Nullable MessageId previousMessageId) {
+        super(id, contactGroupId, shareableId, timestamp, previousMessageId);
+    }
 
 }

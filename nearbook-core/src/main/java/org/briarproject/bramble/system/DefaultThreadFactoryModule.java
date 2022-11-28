@@ -10,9 +10,9 @@ import dagger.Provides;
 
 @Module
 public class DefaultThreadFactoryModule {
-	@Provides
-	@Singleton
-	ThreadFactory provideThreadFactory() {
-		return Executors.defaultThreadFactory();
-	}
+    @Provides
+    @Singleton
+    ThreadFactory provideThreadFactory() {
+        return Executors.defaultThreadFactory();
+    }
 }

@@ -17,20 +17,20 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class RendezvousPollEvent extends Event {
 
-	private final TransportId transportId;
-	private final Collection<PendingContactId> pendingContacts;
+    private final TransportId transportId;
+    private final Collection<PendingContactId> pendingContacts;
 
-	public RendezvousPollEvent(TransportId transportId,
-			Collection<PendingContactId> pendingContacts) {
-		this.transportId = transportId;
-		this.pendingContacts = pendingContacts;
-	}
+    public RendezvousPollEvent(TransportId transportId,
+                               Collection<PendingContactId> pendingContacts) {
+        this.transportId = transportId;
+        this.pendingContacts = pendingContacts;
+    }
 
-	public TransportId getTransportId() {
-		return transportId;
-	}
+    public TransportId getTransportId() {
+        return transportId;
+    }
 
-	public Collection<PendingContactId> getPendingContacts() {
-		return pendingContacts;
-	}
+    public Collection<PendingContactId> getPendingContacts() {
+        return pendingContacts;
+    }
 }

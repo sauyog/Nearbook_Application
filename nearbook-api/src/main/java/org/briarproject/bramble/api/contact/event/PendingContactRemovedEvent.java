@@ -13,14 +13,14 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class PendingContactRemovedEvent extends Event {
 
-	private final PendingContactId id;
+    private final PendingContactId id;
 
-	public PendingContactRemovedEvent(PendingContactId id) {
-		this.id = id;
-	}
+    public PendingContactRemovedEvent(PendingContactId id) {
+        this.id = id;
+    }
 
-	public PendingContactId getId() {
-		return id;
-	}
+    public PendingContactId getId() {
+        return id;
+    }
 
 }

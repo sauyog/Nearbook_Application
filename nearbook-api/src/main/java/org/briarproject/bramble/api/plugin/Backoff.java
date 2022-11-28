@@ -5,18 +5,18 @@ package org.briarproject.bramble.api.plugin;
  */
 public interface Backoff {
 
-	/**
-	 * Returns the current polling interval.
-	 */
-	int getPollingInterval();
+    /**
+     * Returns the current polling interval.
+     */
+    int getPollingInterval();
 
-	/**
-	 * Increments the backoff counter.
-	 */
-	void increment();
+    /**
+     * Increments the backoff counter.
+     */
+    void increment();
 
-	/**
-	 * Resets the backoff counter.
-	 */
-	void reset();
+    /**
+     * Resets the backoff counter.
+     */
+    void reset();
 }

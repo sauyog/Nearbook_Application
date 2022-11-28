@@ -15,20 +15,20 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class RemoteMailboxUpdateEvent extends Event {
 
-	private final ContactId contactId;
-	private final MailboxUpdate mailboxUpdate;
+    private final ContactId contactId;
+    private final MailboxUpdate mailboxUpdate;
 
-	public RemoteMailboxUpdateEvent(ContactId contactId,
-			MailboxUpdate mailboxUpdate) {
-		this.contactId = contactId;
-		this.mailboxUpdate = mailboxUpdate;
-	}
+    public RemoteMailboxUpdateEvent(ContactId contactId,
+                                    MailboxUpdate mailboxUpdate) {
+        this.contactId = contactId;
+        this.mailboxUpdate = mailboxUpdate;
+    }
 
-	public ContactId getContact() {
-		return contactId;
-	}
+    public ContactId getContact() {
+        return contactId;
+    }
 
-	public MailboxUpdate getMailboxUpdate() {
-		return mailboxUpdate;
-	}
+    public MailboxUpdate getMailboxUpdate() {
+        return mailboxUpdate;
+    }
 }

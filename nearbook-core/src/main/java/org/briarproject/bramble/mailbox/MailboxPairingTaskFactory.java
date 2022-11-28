@@ -7,6 +7,6 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface MailboxPairingTaskFactory {
 
-	MailboxPairingTask createPairingTask(String qrCodePayload);
+    MailboxPairingTask createPairingTask(String qrCodePayload);
 
 }

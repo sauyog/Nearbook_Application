@@ -13,21 +13,21 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface DuplexTransportConnection {
 
-	/**
-	 * Returns a {@link TransportConnectionReader TransportConnectionReader}
-	 * for reading from the connection.
-	 */
-	TransportConnectionReader getReader();
+    /**
+     * Returns a {@link TransportConnectionReader TransportConnectionReader}
+     * for reading from the connection.
+     */
+    TransportConnectionReader getReader();
 
-	/**
-	 * Returns a {@link TransportConnectionWriter TransportConnectionWriter}
-	 * for writing to the connection.
-	 */
-	TransportConnectionWriter getWriter();
+    /**
+     * Returns a {@link TransportConnectionWriter TransportConnectionWriter}
+     * for writing to the connection.
+     */
+    TransportConnectionWriter getWriter();
 
-	/**
-	 * Returns a possibly empty set of {@link TransportProperties} describing
-	 * the remote peer.
-	 */
-	TransportProperties getRemoteProperties();
+    /**
+     * Returns a possibly empty set of {@link TransportProperties} describing
+     * the remote peer.
+     */
+    TransportProperties getRemoteProperties();
 }

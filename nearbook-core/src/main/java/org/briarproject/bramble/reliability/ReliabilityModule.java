@@ -11,16 +11,16 @@ import dagger.Provides;
 @Module
 public class ReliabilityModule {
 
-	@Provides
-	ReliabilityLayerFactory provideReliabilityFactoryByExector(
-			@IoExecutor Executor ioExecutor) {
-		return new ReliabilityLayerFactoryImpl(ioExecutor);
-	}
+    @Provides
+    ReliabilityLayerFactory provideReliabilityFactoryByExector(
+            @IoExecutor Executor ioExecutor) {
+        return new ReliabilityLayerFactoryImpl(ioExecutor);
+    }
 
-	@Provides
-	ReliabilityLayerFactory provideReliabilityFactory(
-			ReliabilityLayerFactoryImpl reliabilityLayerFactory) {
-		return reliabilityLayerFactory;
-	}
+    @Provides
+    ReliabilityLayerFactory provideReliabilityFactory(
+            ReliabilityLayerFactoryImpl reliabilityLayerFactory) {
+        return reliabilityLayerFactory;
+    }
 
 }

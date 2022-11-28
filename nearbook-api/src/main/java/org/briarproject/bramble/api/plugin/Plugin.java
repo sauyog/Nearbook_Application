@@ -11,105 +11,104 @@ import java.util.Collection;
 @NotNullByDefault
 public interface Plugin {
 
-	enum State {
+    /**
+     * The string for the boolean preference
+     * to use with the {@link SettingsManager} to enable or disable the plugin.
+     */
+    String PREF_PLUGIN_ENABLE = "enable";
+    /**
+     * Reason flag returned by {@link #getReasonsDisabled()} to indicate that
+     * the plugin has been disabled by the user.
+     */
+    int REASON_USER = 1;
 
-		/**
-		 * The plugin has not finished starting or has been stopped.
-		 */
-		STARTING_STOPPING,
+    /**
+     * Returns the plugin's transport identifier.
+     */
+    TransportId getId();
 
-		/**
-		 * The plugin is disabled by settings. Use {@link #getReasonsDisabled()}
-		 * to find out which settings are responsible.
-		 */
-		DISABLED,
+    /**
+     * Returns the transport's maximum latency in milliseconds.
+     */
+    long getMaxLatency();
 
-		/**
-		 * The plugin is being enabled and can't yet make or receive
-		 * connections.
-		 */
-		ENABLING,
+    /**
+     * Returns the transport's maximum idle time in milliseconds.
+     */
+    int getMaxIdleTime();
 
-		/**
-		 * The plugin is enabled and can make or receive connections.
-		 */
-		ACTIVE,
+    /**
+     * Starts the plugin.
+     */
+    @Wakeful
+    void start() throws PluginException;
 
-		/**
-		 * The plugin is enabled but can't make or receive connections
-		 */
-		INACTIVE
-	}
+    /**
+     * Stops the plugin.
+     */
+    @Wakeful
+    void stop() throws PluginException;
 
-	/**
-	 * The string for the boolean preference
-	 * to use with the {@link SettingsManager} to enable or disable the plugin.
-	 */
-	String PREF_PLUGIN_ENABLE = "enable";
+    /**
+     * Returns the current state of the plugin.
+     */
+    State getState();
 
-	/**
-	 * Reason flag returned by {@link #getReasonsDisabled()} to indicate that
-	 * the plugin has been disabled by the user.
-	 */
-	int REASON_USER = 1;
+    /**
+     * Returns a set of flags indicating why the plugin is
+     * {@link State#DISABLED disabled}, or 0 if the plugin is not disabled.
+     * <p>
+     * The flags used are plugin-specific, except the generic flag
+     * {@link #REASON_USER}, which may be used by any plugin.
+     */
+    int getReasonsDisabled();
 
-	/**
-	 * Returns the plugin's transport identifier.
-	 */
-	TransportId getId();
+    /**
+     * Returns true if the plugin should be polled periodically to attempt to
+     * establish connections.
+     */
+    boolean shouldPoll();
 
-	/**
-	 * Returns the transport's maximum latency in milliseconds.
-	 */
-	long getMaxLatency();
+    /**
+     * Returns the desired interval in milliseconds between polling attempts.
+     */
+    int getPollingInterval();
 
-	/**
-	 * Returns the transport's maximum idle time in milliseconds.
-	 */
-	int getMaxIdleTime();
+    /**
+     * Attempts to create connections using the given transport properties,
+     * passing any created connections to the corresponding handlers.
+     */
+    @Wakeful
+    void poll(Collection<Pair<TransportProperties, ConnectionHandler>>
+                      properties);
 
-	/**
-	 * Starts the plugin.
-	 */
-	@Wakeful
-	void start() throws PluginException;
+    enum State {
 
-	/**
-	 * Stops the plugin.
-	 */
-	@Wakeful
-	void stop() throws PluginException;
+        /**
+         * The plugin has not finished starting or has been stopped.
+         */
+        STARTING_STOPPING,
 
-	/**
-	 * Returns the current state of the plugin.
-	 */
-	State getState();
+        /**
+         * The plugin is disabled by settings. Use {@link #getReasonsDisabled()}
+         * to find out which settings are responsible.
+         */
+        DISABLED,
 
-	/**
-	 * Returns a set of flags indicating why the plugin is
-	 * {@link State#DISABLED disabled}, or 0 if the plugin is not disabled.
-	 * <p>
-	 * The flags used are plugin-specific, except the generic flag
-	 * {@link #REASON_USER}, which may be used by any plugin.
-	 */
-	int getReasonsDisabled();
+        /**
+         * The plugin is being enabled and can't yet make or receive
+         * connections.
+         */
+        ENABLING,
 
-	/**
-	 * Returns true if the plugin should be polled periodically to attempt to
-	 * establish connections.
-	 */
-	boolean shouldPoll();
+        /**
+         * The plugin is enabled and can make or receive connections.
+         */
+        ACTIVE,
 
-	/**
-	 * Returns the desired interval in milliseconds between polling attempts.
-	 */
-	int getPollingInterval();
-
-	/**
-	 * Attempts to create connections using the given transport properties,
-	 * passing any created connections to the corresponding handlers.
-	 */
-	@Wakeful
-	void poll(Collection<Pair<TransportProperties, ConnectionHandler>>
-			properties);
+        /**
+         * The plugin is enabled but can't make or receive connections
+         */
+        INACTIVE
+    }
 }

@@ -15,17 +15,17 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class GroupInvitationRequest extends InvitationRequest<PrivateGroup> {
 
-	public GroupInvitationRequest(MessageId id, GroupId groupId, long time,
-			boolean local, boolean read, boolean sent, boolean seen,
-			SessionId sessionId, PrivateGroup shareable,
-			@Nullable String text, boolean available, boolean canBeOpened,
-			long autoDeleteTimer) {
-		super(id, groupId, time, local, read, sent, seen, sessionId, shareable,
-				text, available, canBeOpened, autoDeleteTimer);
-	}
+    public GroupInvitationRequest(MessageId id, GroupId groupId, long time,
+                                  boolean local, boolean read, boolean sent, boolean seen,
+                                  SessionId sessionId, PrivateGroup shareable,
+                                  @Nullable String text, boolean available, boolean canBeOpened,
+                                  long autoDeleteTimer) {
+        super(id, groupId, time, local, read, sent, seen, sessionId, shareable,
+                text, available, canBeOpened, autoDeleteTimer);
+    }
 
-	@Override
-	public <T> T accept(ConversationMessageVisitor<T> v) {
-		return v.visitGroupInvitationRequest(this);
-	}
+    @Override
+    public <T> T accept(ConversationMessageVisitor<T> v) {
+        return v.visitGroupInvitationRequest(this);
+    }
 }

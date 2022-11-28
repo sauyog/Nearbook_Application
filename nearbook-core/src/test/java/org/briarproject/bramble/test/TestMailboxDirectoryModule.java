@@ -10,9 +10,9 @@ import dagger.Provides;
 @Module
 public class TestMailboxDirectoryModule {
 
-	@Provides
-	@MailboxDirectory
-	File provideMailboxDirectory() {
-		return new File("mailbox");
-	}
+    @Provides
+    @MailboxDirectory
+    File provideMailboxDirectory() {
+        return new File("mailbox");
+    }
 }

@@ -11,60 +11,59 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class AuthorInfo {
 
-	public enum Status {
-		NONE, UNKNOWN, UNVERIFIED, VERIFIED, OURSELVES;
+    private final Status status;
+    @Nullable
+    private final String alias;
+    @Nullable
+    private final AttachmentHeader avatarHeader;
+    public AuthorInfo(Status status, @Nullable String alias,
+                      @Nullable AttachmentHeader avatarHeader) {
+        this.status = status;
+        this.alias = alias;
+        this.avatarHeader = avatarHeader;
+    }
 
-		public boolean isContact() {
-			return this == UNVERIFIED || this == VERIFIED;
-		}
-	}
+    public AuthorInfo(Status status) {
+        this(status, null, null);
+    }
 
-	private final Status status;
-	@Nullable
-	private final String alias;
-	@Nullable
-	private final AttachmentHeader avatarHeader;
+    public Status getStatus() {
+        return status;
+    }
 
-	public AuthorInfo(Status status, @Nullable String alias,
-			@Nullable AttachmentHeader avatarHeader) {
-		this.status = status;
-		this.alias = alias;
-		this.avatarHeader = avatarHeader;
-	}
+    @Nullable
+    public String getAlias() {
+        return alias;
+    }
 
-	public AuthorInfo(Status status) {
-		this(status, null, null);
-	}
+    @Nullable
+    public AttachmentHeader getAvatarHeader() {
+        return avatarHeader;
+    }
 
-	public Status getStatus() {
-		return status;
-	}
+    @Override
+    public int hashCode() {
+        int hashCode = status.ordinal();
+        if (alias != null) hashCode += alias.hashCode();
+        return hashCode;
+    }
 
-	@Nullable
-	public String getAlias() {
-		return alias;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof AuthorInfo)) return false;
+        AuthorInfo info = (AuthorInfo) o;
+        return status == info.status &&
+                // aliases are equal
+                NullSafety.equals(alias, info.alias) &&
+                // avatars are equal
+                NullSafety.equals(avatarHeader, info.avatarHeader);
+    }
 
-	@Nullable
-	public AttachmentHeader getAvatarHeader() {
-		return avatarHeader;
-	}
+    public enum Status {
+        NONE, UNKNOWN, UNVERIFIED, VERIFIED, OURSELVES;
 
-	@Override
-	public int hashCode() {
-		int hashCode = status.ordinal();
-		if (alias != null) hashCode += alias.hashCode();
-		return hashCode;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (!(o instanceof AuthorInfo)) return false;
-		AuthorInfo info = (AuthorInfo) o;
-		return status == info.status &&
-				// aliases are equal
-				NullSafety.equals(alias, info.alias) &&
-				// avatars are equal
-				NullSafety.equals(avatarHeader, info.avatarHeader);
-	}
+        public boolean isContact() {
+            return this == UNVERIFIED || this == VERIFIED;
+        }
+    }
 }

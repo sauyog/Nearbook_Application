@@ -14,13 +14,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class MessageToRequestEvent extends Event {
 
-	private final ContactId contactId;
+    private final ContactId contactId;
 
-	public MessageToRequestEvent(ContactId contactId) {
-		this.contactId = contactId;
-	}
+    public MessageToRequestEvent(ContactId contactId) {
+        this.contactId = contactId;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 }

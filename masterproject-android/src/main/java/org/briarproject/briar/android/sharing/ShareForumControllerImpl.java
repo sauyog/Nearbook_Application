@@ -1,5 +1,9 @@
 package org.briarproject.masterproject.android.sharing;
 
+import static org.briarproject.bramble.util.LogUtils.logException;
+import static java.util.logging.Level.WARNING;
+import static java.util.logging.Logger.getLogger;
+
 import org.briarproject.bramble.api.contact.Contact;
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.bramble.api.contact.ContactManager;
@@ -23,51 +27,47 @@ import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 import javax.inject.Inject;
 
-import static java.util.logging.Level.WARNING;
-import static java.util.logging.Logger.getLogger;
-import static org.briarproject.bramble.util.LogUtils.logException;
-
 @Immutable
 @NotNullByDefault
 class ShareForumControllerImpl extends ContactSelectorControllerImpl
-		implements ShareForumController {
+        implements ShareForumController {
 
-	private final static Logger LOG =
-			getLogger(ShareForumControllerImpl.class.getName());
+    private final static Logger LOG =
+            getLogger(ShareForumControllerImpl.class.getName());
 
-	private final ForumSharingManager forumSharingManager;
+    private final ForumSharingManager forumSharingManager;
 
-	@Inject
-	ShareForumControllerImpl(@DatabaseExecutor Executor dbExecutor,
-			LifecycleManager lifecycleManager, ContactManager contactManager,
-			AuthorManager authorManager,
-			ForumSharingManager forumSharingManager) {
-		super(dbExecutor, lifecycleManager, contactManager, authorManager);
-		this.forumSharingManager = forumSharingManager;
-	}
+    @Inject
+    ShareForumControllerImpl(@DatabaseExecutor Executor dbExecutor,
+                             LifecycleManager lifecycleManager, ContactManager contactManager,
+                             AuthorManager authorManager,
+                             ForumSharingManager forumSharingManager) {
+        super(dbExecutor, lifecycleManager, contactManager, authorManager);
+        this.forumSharingManager = forumSharingManager;
+    }
 
-	@Override
-	protected boolean isDisabled(GroupId g, Contact c) throws DbException {
-		return !forumSharingManager.canBeShared(g, c);
-	}
+    @Override
+    protected boolean isDisabled(GroupId g, Contact c) throws DbException {
+        return !forumSharingManager.canBeShared(g, c);
+    }
 
-	@Override
-	public void share(GroupId g, Collection<ContactId> contacts,
-			@Nullable String text, ExceptionHandler<DbException> handler) {
-		runOnDbThread(() -> {
-			try {
-				for (ContactId c : contacts) {
-					try {
-						forumSharingManager.sendInvitation(g, c, text);
-					} catch (NoSuchContactException | NoSuchGroupException e) {
-						logException(LOG, WARNING, e);
-					}
-				}
-			} catch (DbException e) {
-				logException(LOG, WARNING, e);
-				handler.onException(e);
-			}
-		});
-	}
+    @Override
+    public void share(GroupId g, Collection<ContactId> contacts,
+                      @Nullable String text, ExceptionHandler<DbException> handler) {
+        runOnDbThread(() -> {
+            try {
+                for (ContactId c : contacts) {
+                    try {
+                        forumSharingManager.sendInvitation(g, c, text);
+                    } catch (NoSuchContactException | NoSuchGroupException e) {
+                        logException(LOG, WARNING, e);
+                    }
+                }
+            } catch (DbException e) {
+                logException(LOG, WARNING, e);
+                handler.onException(e);
+            }
+        });
+    }
 
 }

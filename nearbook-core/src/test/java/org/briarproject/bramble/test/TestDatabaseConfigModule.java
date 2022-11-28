@@ -10,18 +10,18 @@ import dagger.Provides;
 @Module
 public class TestDatabaseConfigModule {
 
-	private final DatabaseConfig config;
+    private final DatabaseConfig config;
 
-	public TestDatabaseConfigModule() {
-		this(new File("."));
-	}
+    public TestDatabaseConfigModule() {
+        this(new File("."));
+    }
 
-	public TestDatabaseConfigModule(File dir) {
-		config = new TestDatabaseConfig(dir);
-	}
+    public TestDatabaseConfigModule(File dir) {
+        config = new TestDatabaseConfig(dir);
+    }
 
-	@Provides
-	DatabaseConfig provideDatabaseConfig() {
-		return config;
-	}
+    @Provides
+    DatabaseConfig provideDatabaseConfig() {
+        return config;
+    }
 }

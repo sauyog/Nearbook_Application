@@ -9,13 +9,13 @@ import dagger.Provides;
 @Module
 public class RecordModule {
 
-	@Provides
-	RecordReaderFactory provideRecordReaderFactory() {
-		return new RecordReaderFactoryImpl();
-	}
+    @Provides
+    RecordReaderFactory provideRecordReaderFactory() {
+        return new RecordReaderFactoryImpl();
+    }
 
-	@Provides
-	RecordWriterFactory provideRecordWriterFactory() {
-		return new RecordWriterFactoryImpl();
-	}
+    @Provides
+    RecordWriterFactory provideRecordWriterFactory() {
+        return new RecordWriterFactoryImpl();
+    }
 }

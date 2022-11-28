@@ -14,20 +14,20 @@ import javax.inject.Inject;
 
 class BriarAccountManager extends AndroidAccountManager {
 
-	@Inject
-	BriarAccountManager(DatabaseConfig databaseConfig, CryptoComponent crypto,
-			IdentityManager identityManager, SharedPreferences prefs,
-			Application app) {
-		super(databaseConfig, crypto, identityManager, prefs, app);
-	}
+    @Inject
+    BriarAccountManager(DatabaseConfig databaseConfig, CryptoComponent crypto,
+                        IdentityManager identityManager, SharedPreferences prefs,
+                        Application app) {
+        super(databaseConfig, crypto, identityManager, prefs, app);
+    }
 
-	@Override
-	public void deleteAccount() {
-		synchronized (stateChangeLock) {
-			super.deleteAccount();
-			Localizer.reinitialize();
-			UiUtils.setTheme(appContext,
-					appContext.getString(R.string.pref_theme_light_value));
-		}
-	}
+    @Override
+    public void deleteAccount() {
+        synchronized (stateChangeLock) {
+            super.deleteAccount();
+            Localizer.reinitialize();
+            UiUtils.setTheme(appContext,
+                    appContext.getString(R.string.pref_theme_light_value));
+        }
+    }
 }

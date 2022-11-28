@@ -14,30 +14,30 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class Payload implements Comparable<Payload> {
 
-	private final Bytes commitment;
-	private final List<TransportDescriptor> descriptors;
+    private final Bytes commitment;
+    private final List<TransportDescriptor> descriptors;
 
-	public Payload(byte[] commitment, List<TransportDescriptor> descriptors) {
-		this.commitment = new Bytes(commitment);
-		this.descriptors = descriptors;
-	}
+    public Payload(byte[] commitment, List<TransportDescriptor> descriptors) {
+        this.commitment = new Bytes(commitment);
+        this.descriptors = descriptors;
+    }
 
-	/**
-	 * Returns the commitment contained in this payload.
-	 */
-	public byte[] getCommitment() {
-		return commitment.getBytes();
-	}
+    /**
+     * Returns the commitment contained in this payload.
+     */
+    public byte[] getCommitment() {
+        return commitment.getBytes();
+    }
 
-	/**
-	 * Returns the transport descriptors contained in this payload.
-	 */
-	public List<TransportDescriptor> getTransportDescriptors() {
-		return descriptors;
-	}
+    /**
+     * Returns the transport descriptors contained in this payload.
+     */
+    public List<TransportDescriptor> getTransportDescriptors() {
+        return descriptors;
+    }
 
-	@Override
-	public int compareTo(Payload p) {
-		return commitment.compareTo(p.commitment);
-	}
+    @Override
+    public int compareTo(Payload p) {
+        return commitment.compareTo(p.commitment);
+    }
 }

@@ -7,5 +7,5 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface MetadataEncoder {
 
-	Metadata encode(BdfDictionary d) throws FormatException;
+    Metadata encode(BdfDictionary d) throws FormatException;
 }

@@ -8,10 +8,10 @@ import dagger.Provides;
 @Module
 public class CircumventionModule {
 
-	@Provides
-	@Singleton
-	CircumventionProvider provideCircumventionProvider(
-			CircumventionProviderImpl provider) {
-		return provider;
-	}
+    @Provides
+    @Singleton
+    CircumventionProvider provideCircumventionProvider(
+            CircumventionProviderImpl provider) {
+        return provider;
+    }
 }

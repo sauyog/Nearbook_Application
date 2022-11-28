@@ -14,16 +14,16 @@ import org.briarproject.bramble.system.DefaultThreadFactoryModule;
 import dagger.Module;
 
 @Module(includes = {
-		AndroidBatteryModule.class,
-		AndroidNetworkModule.class,
-		AndroidSystemModule.class,
-		AndroidTaskSchedulerModule.class,
-		AndroidWakefulIoExecutorModule.class,
-		DefaultThreadFactoryModule.class,
-		CircumventionModule.class,
-		DnsModule.class,
-		ReportingModule.class,
-		SocksModule.class
+        AndroidBatteryModule.class,
+        AndroidNetworkModule.class,
+        AndroidSystemModule.class,
+        AndroidTaskSchedulerModule.class,
+        AndroidWakefulIoExecutorModule.class,
+        DefaultThreadFactoryModule.class,
+        CircumventionModule.class,
+        DnsModule.class,
+        ReportingModule.class,
+        SocksModule.class
 })
 public class BrambleAndroidModule {
 }

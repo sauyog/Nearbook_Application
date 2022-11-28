@@ -11,18 +11,18 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface ConnectionHandler {
 
-	/**
-	 * Handles a connection created by a {@link DuplexPlugin}.
-	 */
-	void handleConnection(DuplexTransportConnection c);
+    /**
+     * Handles a connection created by a {@link DuplexPlugin}.
+     */
+    void handleConnection(DuplexTransportConnection c);
 
-	/**
-	 * Handles a reader created by a {@link SimplexPlugin}.
-	 */
-	void handleReader(TransportConnectionReader r);
+    /**
+     * Handles a reader created by a {@link SimplexPlugin}.
+     */
+    void handleReader(TransportConnectionReader r);
 
-	/**
-	 * Handles a writer created by a {@link SimplexPlugin}.
-	 */
-	void handleWriter(TransportConnectionWriter w);
+    /**
+     * Handles a writer created by a {@link SimplexPlugin}.
+     */
+    void handleWriter(TransportConnectionWriter w);
 }

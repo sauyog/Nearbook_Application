@@ -1,5 +1,8 @@
 package org.briarproject.bramble.plugin.file;
 
+import static org.briarproject.bramble.api.plugin.file.RemovableDriveConstants.PROP_URI;
+import static org.briarproject.bramble.util.StringUtils.isNullOrEmpty;
+
 import android.app.Application;
 import android.net.Uri;
 
@@ -13,41 +16,38 @@ import java.io.OutputStream;
 
 import javax.annotation.concurrent.Immutable;
 
-import static org.briarproject.bramble.api.plugin.file.RemovableDriveConstants.PROP_URI;
-import static org.briarproject.bramble.util.StringUtils.isNullOrEmpty;
-
 @Immutable
 @NotNullByDefault
 class AndroidRemovableDrivePlugin extends RemovableDrivePlugin {
 
-	private final Application app;
+    private final Application app;
 
-	AndroidRemovableDrivePlugin(Application app, PluginCallback callback,
-			long maxLatency) {
-		super(callback, maxLatency);
-		this.app = app;
-	}
+    AndroidRemovableDrivePlugin(Application app, PluginCallback callback,
+                                long maxLatency) {
+        super(callback, maxLatency);
+        this.app = app;
+    }
 
-	@Override
-	InputStream openInputStream(TransportProperties p) throws IOException {
-		String uri = p.get(PROP_URI);
-		if (isNullOrEmpty(uri)) throw new IllegalArgumentException();
-		try {
-			return app.getContentResolver().openInputStream(Uri.parse(uri));
-		} catch (SecurityException e) {
-			throw new IOException(e);
-		}
-	}
+    @Override
+    InputStream openInputStream(TransportProperties p) throws IOException {
+        String uri = p.get(PROP_URI);
+        if (isNullOrEmpty(uri)) throw new IllegalArgumentException();
+        try {
+            return app.getContentResolver().openInputStream(Uri.parse(uri));
+        } catch (SecurityException e) {
+            throw new IOException(e);
+        }
+    }
 
-	@Override
-	OutputStream openOutputStream(TransportProperties p) throws IOException {
-		String uri = p.get(PROP_URI);
-		if (isNullOrEmpty(uri)) throw new IllegalArgumentException();
-		try {
-			return app.getContentResolver()
-					.openOutputStream(Uri.parse(uri), "wt");
-		} catch (SecurityException e) {
-			throw new IOException(e);
-		}
-	}
+    @Override
+    OutputStream openOutputStream(TransportProperties p) throws IOException {
+        String uri = p.get(PROP_URI);
+        if (isNullOrEmpty(uri)) throw new IllegalArgumentException();
+        try {
+            return app.getContentResolver()
+                    .openOutputStream(Uri.parse(uri), "wt");
+        } catch (SecurityException e) {
+            throw new IOException(e);
+        }
+    }
 }

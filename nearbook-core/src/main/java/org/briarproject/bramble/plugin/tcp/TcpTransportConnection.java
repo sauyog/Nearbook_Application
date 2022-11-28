@@ -16,25 +16,25 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 class TcpTransportConnection extends AbstractDuplexTransportConnection {
 
-	private final Socket socket;
+    private final Socket socket;
 
-	TcpTransportConnection(Plugin plugin, Socket socket) {
-		super(plugin);
-		this.socket = socket;
-	}
+    TcpTransportConnection(Plugin plugin, Socket socket) {
+        super(plugin);
+        this.socket = socket;
+    }
 
-	@Override
-	protected InputStream getInputStream() throws IOException {
-		return IoUtils.getInputStream(socket);
-	}
+    @Override
+    protected InputStream getInputStream() throws IOException {
+        return IoUtils.getInputStream(socket);
+    }
 
-	@Override
-	protected OutputStream getOutputStream() throws IOException {
-		return IoUtils.getOutputStream(socket);
-	}
+    @Override
+    protected OutputStream getOutputStream() throws IOException {
+        return IoUtils.getOutputStream(socket);
+    }
 
-	@Override
-	protected void closeConnection(boolean exception) throws IOException {
-		socket.close();
-	}
+    @Override
+    protected void closeConnection(boolean exception) throws IOException {
+        socket.close();
+    }
 }

@@ -16,13 +16,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class MailboxUnpairedEvent extends Event {
 
-	private final Map<ContactId, MailboxUpdate> localUpdates;
+    private final Map<ContactId, MailboxUpdate> localUpdates;
 
-	public MailboxUnpairedEvent(Map<ContactId, MailboxUpdate> localUpdates) {
-		this.localUpdates = localUpdates;
-	}
+    public MailboxUnpairedEvent(Map<ContactId, MailboxUpdate> localUpdates) {
+        this.localUpdates = localUpdates;
+    }
 
-	public Map<ContactId, MailboxUpdate> getLocalUpdates() {
-		return localUpdates;
-	}
+    public Map<ContactId, MailboxUpdate> getLocalUpdates() {
+        return localUpdates;
+    }
 }

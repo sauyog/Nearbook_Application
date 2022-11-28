@@ -11,50 +11,50 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 abstract class Session<S extends State> {
 
-	private final GroupId contactGroupId, privateGroupId;
-	@Nullable
-	private final MessageId lastLocalMessageId, lastRemoteMessageId;
-	private final long localTimestamp, inviteTimestamp;
+    private final GroupId contactGroupId, privateGroupId;
+    @Nullable
+    private final MessageId lastLocalMessageId, lastRemoteMessageId;
+    private final long localTimestamp, inviteTimestamp;
 
-	Session(GroupId contactGroupId, GroupId privateGroupId,
-			@Nullable MessageId lastLocalMessageId,
-			@Nullable MessageId lastRemoteMessageId, long localTimestamp,
-			long inviteTimestamp) {
-		this.contactGroupId = contactGroupId;
-		this.privateGroupId = privateGroupId;
-		this.lastLocalMessageId = lastLocalMessageId;
-		this.lastRemoteMessageId = lastRemoteMessageId;
-		this.localTimestamp = localTimestamp;
-		this.inviteTimestamp = inviteTimestamp;
-	}
+    Session(GroupId contactGroupId, GroupId privateGroupId,
+            @Nullable MessageId lastLocalMessageId,
+            @Nullable MessageId lastRemoteMessageId, long localTimestamp,
+            long inviteTimestamp) {
+        this.contactGroupId = contactGroupId;
+        this.privateGroupId = privateGroupId;
+        this.lastLocalMessageId = lastLocalMessageId;
+        this.lastRemoteMessageId = lastRemoteMessageId;
+        this.localTimestamp = localTimestamp;
+        this.inviteTimestamp = inviteTimestamp;
+    }
 
-	abstract Role getRole();
+    abstract Role getRole();
 
-	abstract S getState();
+    abstract S getState();
 
-	GroupId getContactGroupId() {
-		return contactGroupId;
-	}
+    GroupId getContactGroupId() {
+        return contactGroupId;
+    }
 
-	GroupId getPrivateGroupId() {
-		return privateGroupId;
-	}
+    GroupId getPrivateGroupId() {
+        return privateGroupId;
+    }
 
-	@Nullable
-	MessageId getLastLocalMessageId() {
-		return lastLocalMessageId;
-	}
+    @Nullable
+    MessageId getLastLocalMessageId() {
+        return lastLocalMessageId;
+    }
 
-	@Nullable
-	MessageId getLastRemoteMessageId() {
-		return lastRemoteMessageId;
-	}
+    @Nullable
+    MessageId getLastRemoteMessageId() {
+        return lastRemoteMessageId;
+    }
 
-	long getLocalTimestamp() {
-		return localTimestamp;
-	}
+    long getLocalTimestamp() {
+        return localTimestamp;
+    }
 
-	long getInviteTimestamp() {
-		return inviteTimestamp;
-	}
+    long getInviteTimestamp() {
+        return inviteTimestamp;
+    }
 }

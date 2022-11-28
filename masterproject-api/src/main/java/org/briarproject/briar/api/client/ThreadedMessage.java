@@ -12,29 +12,29 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public abstract class ThreadedMessage {
 
-	private final Message message;
-	@Nullable
-	private final MessageId parent;
-	private final Author author;
+    private final Message message;
+    @Nullable
+    private final MessageId parent;
+    private final Author author;
 
-	public ThreadedMessage(Message message, @Nullable MessageId parent,
-			Author author) {
-		this.message = message;
-		this.parent = parent;
-		this.author = author;
-	}
+    public ThreadedMessage(Message message, @Nullable MessageId parent,
+                           Author author) {
+        this.message = message;
+        this.parent = parent;
+        this.author = author;
+    }
 
-	public Message getMessage() {
-		return message;
-	}
+    public Message getMessage() {
+        return message;
+    }
 
-	@Nullable
-	public MessageId getParent() {
-		return parent;
-	}
+    @Nullable
+    public MessageId getParent() {
+        return parent;
+    }
 
-	public Author getAuthor() {
-		return author;
-	}
+    public Author getAuthor() {
+        return author;
+    }
 
 }

@@ -7,5 +7,5 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface AlarmListener {
 
-	void onAlarm(Intent intent);
+    void onAlarm(Intent intent);
 }

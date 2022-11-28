@@ -1,9 +1,16 @@
 package org.briarproject.masterproject.android.sharing;
 
+import static org.briarproject.bramble.util.LogUtils.logException;
+import static java.util.logging.Level.WARNING;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import androidx.annotation.CallSuper;
+import androidx.annotation.StringRes;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.briarproject.bramble.api.connection.ConnectionRegistry;
 import org.briarproject.bramble.api.contact.Contact;
@@ -32,130 +39,120 @@ import java.util.logging.Logger;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-import androidx.annotation.CallSuper;
-import androidx.annotation.StringRes;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import static java.util.logging.Level.WARNING;
-import static org.briarproject.bramble.util.LogUtils.logException;
-
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 abstract class SharingStatusActivity extends BriarActivity
-		implements EventListener {
+        implements EventListener {
 
-	// objects accessed from background thread need to be volatile
-	@Inject
-	volatile AuthorManager authorManager;
-	@Inject
-	volatile ConnectionRegistry connectionRegistry;
+    private static final Logger LOG =
+            Logger.getLogger(SharingStatusActivity.class.getName());
+    // objects accessed from background thread need to be volatile
+    @Inject
+    volatile AuthorManager authorManager;
+    @Inject
+    volatile ConnectionRegistry connectionRegistry;
+    @Inject
+    EventBus eventBus;
+    private GroupId groupId;
+    private BriarRecyclerView list;
+    private SharingStatusAdapter adapter;
 
-	@Inject
-	EventBus eventBus;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-	private static final Logger LOG =
-			Logger.getLogger(SharingStatusActivity.class.getName());
+        setContentView(R.layout.activity_sharing_status);
 
-	private GroupId groupId;
-	private BriarRecyclerView list;
-	private SharingStatusAdapter adapter;
+        Intent i = getIntent();
+        byte[] b = i.getByteArrayExtra(GROUP_ID);
+        if (b == null) throw new IllegalStateException("No GroupId");
+        groupId = new GroupId(b);
 
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+        list = findViewById(R.id.list);
+        adapter = new SharingStatusAdapter(this);
+        list.setLayoutManager(new LinearLayoutManager(this));
+        list.setAdapter(adapter);
+        list.setEmptyText(getString(R.string.nobody));
 
-		setContentView(R.layout.activity_sharing_status);
+        TextView info = findViewById(R.id.info);
+        info.setText(getInfoText());
+    }
 
-		Intent i = getIntent();
-		byte[] b = i.getByteArrayExtra(GROUP_ID);
-		if (b == null) throw new IllegalStateException("No GroupId");
-		groupId = new GroupId(b);
+    @Override
+    public void onStart() {
+        super.onStart();
+        eventBus.addListener(this);
+        loadSharedWith();
+    }
 
-		list = findViewById(R.id.list);
-		adapter = new SharingStatusAdapter(this);
-		list.setLayoutManager(new LinearLayoutManager(this));
-		list.setAdapter(adapter);
-		list.setEmptyText(getString(R.string.nobody));
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.clear();
+        eventBus.removeListener(this);
+        list.showProgressBar();
+    }
 
-		TextView info = findViewById(R.id.info);
-		info.setText(getInfoText());
-	}
+    @Override
+    @CallSuper
+    public void eventOccurred(Event e) {
+        if (e instanceof ContactLeftShareableEvent) {
+            ContactLeftShareableEvent c = (ContactLeftShareableEvent) e;
+            if (c.getGroupId().equals(getGroupId())) {
+                loadSharedWith();
+            }
+        } else if (e instanceof GroupRemovedEvent) {
+            GroupRemovedEvent g = (GroupRemovedEvent) e;
+            if (g.getGroup().getId().equals(getGroupId())) {
+                supportFinishAfterTransition();
+            }
+        }
+        // TODO ContactConnectedEvent and ContactDisconnectedEvent
+    }
 
-	@Override
-	public void onStart() {
-		super.onStart();
-		eventBus.addListener(this);
-		loadSharedWith();
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-	@Override
-	public void onStop() {
-		super.onStop();
-		adapter.clear();
-		eventBus.removeListener(this);
-		list.showProgressBar();
-	}
+    @StringRes
+    abstract int getInfoText();
 
-	@Override
-	@CallSuper
-	public void eventOccurred(Event e) {
-		if (e instanceof ContactLeftShareableEvent) {
-			ContactLeftShareableEvent c = (ContactLeftShareableEvent) e;
-			if (c.getGroupId().equals(getGroupId())) {
-				loadSharedWith();
-			}
-		} else if (e instanceof GroupRemovedEvent) {
-			GroupRemovedEvent g = (GroupRemovedEvent) e;
-			if (g.getGroup().getId().equals(getGroupId())) {
-				supportFinishAfterTransition();
-			}
-		}
-		// TODO ContactConnectedEvent and ContactDisconnectedEvent
-	}
+    @DatabaseExecutor
+    abstract protected Collection<Contact> getSharedWith() throws DbException;
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle presses on the action bar items
-		if (item.getItemId() == android.R.id.home) {
-			onBackPressed();
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+    protected GroupId getGroupId() {
+        return groupId;
+    }
 
-	@StringRes
-	abstract int getInfoText();
+    protected void loadSharedWith() {
+        runOnDbThread(() -> {
+            try {
+                List<ContactItem> contactItems = new ArrayList<>();
+                for (Contact c : getSharedWith()) {
+                    AuthorInfo authorInfo = authorManager.getAuthorInfo(c);
+                    boolean online = connectionRegistry.isConnected(c.getId());
+                    ContactItem item = new ContactItem(c, authorInfo, online);
+                    contactItems.add(item);
+                }
+                displaySharedWith(contactItems);
+            } catch (DbException e) {
+                logException(LOG, WARNING, e);
+            }
+        });
+    }
 
-	@DatabaseExecutor
-	abstract protected Collection<Contact> getSharedWith() throws DbException;
-
-	protected GroupId getGroupId() {
-		return groupId;
-	}
-
-	protected void loadSharedWith() {
-		runOnDbThread(() -> {
-			try {
-				List<ContactItem> contactItems = new ArrayList<>();
-				for (Contact c : getSharedWith()) {
-					AuthorInfo authorInfo = authorManager.getAuthorInfo(c);
-					boolean online = connectionRegistry.isConnected(c.getId());
-					ContactItem item = new ContactItem(c, authorInfo, online);
-					contactItems.add(item);
-				}
-				displaySharedWith(contactItems);
-			} catch (DbException e) {
-				logException(LOG, WARNING, e);
-			}
-		});
-	}
-
-	private void displaySharedWith(List<ContactItem> contacts) {
-		runOnUiThreadUnlessDestroyed(() -> {
-			adapter.clear();
-			if (contacts.isEmpty()) list.showData();
-			else adapter.addAll(contacts);
-		});
-	}
+    private void displaySharedWith(List<ContactItem> contacts) {
+        runOnUiThreadUnlessDestroyed(() -> {
+            adapter.clear();
+            if (contacts.isEmpty()) list.showData();
+            else adapter.addAll(contacts);
+        });
+    }
 
 }

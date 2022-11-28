@@ -1,5 +1,8 @@
 package org.briarproject.bramble.plugin.tor;
 
+import static java.util.logging.Level.INFO;
+import static java.util.logging.Logger.getLogger;
+
 import org.briarproject.bramble.api.battery.BatteryManager;
 import org.briarproject.bramble.api.crypto.CryptoComponent;
 import org.briarproject.bramble.api.event.EventBus;
@@ -29,106 +32,103 @@ import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 import javax.net.SocketFactory;
 
-import static java.util.logging.Level.INFO;
-import static java.util.logging.Logger.getLogger;
-
 @Immutable
 @NotNullByDefault
 abstract class TorPluginFactory implements DuplexPluginFactory {
 
-	protected static final Logger LOG =
-			getLogger(TorPluginFactory.class.getName());
+    protected static final Logger LOG =
+            getLogger(TorPluginFactory.class.getName());
 
-	protected static final int MAX_LATENCY = 30 * 1000; // 30 seconds
-	protected static final int MAX_IDLE_TIME = 30 * 1000; // 30 seconds
-	private static final int MIN_POLLING_INTERVAL = 60 * 1000; // 1 minute
-	private static final int MAX_POLLING_INTERVAL = 10 * 60 * 1000; // 10 mins
-	private static final double BACKOFF_BASE = 1.2;
+    protected static final int MAX_LATENCY = 30 * 1000; // 30 seconds
+    protected static final int MAX_IDLE_TIME = 30 * 1000; // 30 seconds
+    private static final int MIN_POLLING_INTERVAL = 60 * 1000; // 1 minute
+    private static final int MAX_POLLING_INTERVAL = 10 * 60 * 1000; // 10 mins
+    private static final double BACKOFF_BASE = 1.2;
 
-	protected final Executor ioExecutor, wakefulIoExecutor;
-	protected final NetworkManager networkManager;
-	protected final LocationUtils locationUtils;
-	protected final EventBus eventBus;
-	protected final SocketFactory torSocketFactory;
-	protected final BackoffFactory backoffFactory;
-	protected final ResourceProvider resourceProvider;
-	protected final CircumventionProvider circumventionProvider;
-	protected final BatteryManager batteryManager;
-	protected final Clock clock;
-	protected final CryptoComponent crypto;
-	protected final File torDirectory;
-	protected final int torSocksPort;
-	protected final int torControlPort;
+    protected final Executor ioExecutor, wakefulIoExecutor;
+    protected final NetworkManager networkManager;
+    protected final LocationUtils locationUtils;
+    protected final EventBus eventBus;
+    protected final SocketFactory torSocketFactory;
+    protected final BackoffFactory backoffFactory;
+    protected final ResourceProvider resourceProvider;
+    protected final CircumventionProvider circumventionProvider;
+    protected final BatteryManager batteryManager;
+    protected final Clock clock;
+    protected final CryptoComponent crypto;
+    protected final File torDirectory;
+    protected final int torSocksPort;
+    protected final int torControlPort;
 
-	TorPluginFactory(@IoExecutor Executor ioExecutor,
-			@WakefulIoExecutor Executor wakefulIoExecutor,
-			NetworkManager networkManager,
-			LocationUtils locationUtils,
-			EventBus eventBus,
-			SocketFactory torSocketFactory,
-			BackoffFactory backoffFactory,
-			ResourceProvider resourceProvider,
-			CircumventionProvider circumventionProvider,
-			BatteryManager batteryManager,
-			Clock clock,
-			CryptoComponent crypto,
-			@TorDirectory File torDirectory,
-			@TorSocksPort int torSocksPort,
-			@TorControlPort int torControlPort) {
-		this.ioExecutor = ioExecutor;
-		this.wakefulIoExecutor = wakefulIoExecutor;
-		this.networkManager = networkManager;
-		this.locationUtils = locationUtils;
-		this.eventBus = eventBus;
-		this.torSocketFactory = torSocketFactory;
-		this.backoffFactory = backoffFactory;
-		this.resourceProvider = resourceProvider;
-		this.circumventionProvider = circumventionProvider;
-		this.batteryManager = batteryManager;
-		this.clock = clock;
-		this.crypto = crypto;
-		this.torDirectory = torDirectory;
-		this.torSocksPort = torSocksPort;
-		this.torControlPort = torControlPort;
-	}
+    TorPluginFactory(@IoExecutor Executor ioExecutor,
+                     @WakefulIoExecutor Executor wakefulIoExecutor,
+                     NetworkManager networkManager,
+                     LocationUtils locationUtils,
+                     EventBus eventBus,
+                     SocketFactory torSocketFactory,
+                     BackoffFactory backoffFactory,
+                     ResourceProvider resourceProvider,
+                     CircumventionProvider circumventionProvider,
+                     BatteryManager batteryManager,
+                     Clock clock,
+                     CryptoComponent crypto,
+                     @TorDirectory File torDirectory,
+                     @TorSocksPort int torSocksPort,
+                     @TorControlPort int torControlPort) {
+        this.ioExecutor = ioExecutor;
+        this.wakefulIoExecutor = wakefulIoExecutor;
+        this.networkManager = networkManager;
+        this.locationUtils = locationUtils;
+        this.eventBus = eventBus;
+        this.torSocketFactory = torSocketFactory;
+        this.backoffFactory = backoffFactory;
+        this.resourceProvider = resourceProvider;
+        this.circumventionProvider = circumventionProvider;
+        this.batteryManager = batteryManager;
+        this.clock = clock;
+        this.crypto = crypto;
+        this.torDirectory = torDirectory;
+        this.torSocksPort = torSocksPort;
+        this.torControlPort = torControlPort;
+    }
 
-	@Nullable
-	abstract String getArchitectureForTorBinary();
+    @Nullable
+    abstract String getArchitectureForTorBinary();
 
-	abstract TorPlugin createPluginInstance(Backoff backoff,
-			TorRendezvousCrypto torRendezvousCrypto, PluginCallback callback,
-			String architecture);
+    abstract TorPlugin createPluginInstance(Backoff backoff,
+                                            TorRendezvousCrypto torRendezvousCrypto, PluginCallback callback,
+                                            String architecture);
 
-	@Override
-	public TransportId getId() {
-		return TorConstants.ID;
-	}
+    @Override
+    public TransportId getId() {
+        return TorConstants.ID;
+    }
 
-	@Override
-	public long getMaxLatency() {
-		return MAX_LATENCY;
-	}
+    @Override
+    public long getMaxLatency() {
+        return MAX_LATENCY;
+    }
 
-	@Override
-	public DuplexPlugin createPlugin(PluginCallback callback) {
-		// Check that we have a Tor binary for this architecture
-		String architecture = getArchitectureForTorBinary();
-		if (architecture == null) {
-			LOG.warning("Tor is not supported on this architecture");
-			return null;
-		}
+    @Override
+    public DuplexPlugin createPlugin(PluginCallback callback) {
+        // Check that we have a Tor binary for this architecture
+        String architecture = getArchitectureForTorBinary();
+        if (architecture == null) {
+            LOG.warning("Tor is not supported on this architecture");
+            return null;
+        }
 
-		if (LOG.isLoggable(INFO)) {
-			LOG.info("The selected architecture for Tor is " + architecture);
-		}
+        if (LOG.isLoggable(INFO)) {
+            LOG.info("The selected architecture for Tor is " + architecture);
+        }
 
-		Backoff backoff = backoffFactory.createBackoff(MIN_POLLING_INTERVAL,
-				MAX_POLLING_INTERVAL, BACKOFF_BASE);
-		TorRendezvousCrypto torRendezvousCrypto =
-				new TorRendezvousCryptoImpl(crypto);
-		TorPlugin plugin = createPluginInstance(backoff, torRendezvousCrypto,
-				callback, architecture);
-		eventBus.addListener(plugin);
-		return plugin;
-	}
+        Backoff backoff = backoffFactory.createBackoff(MIN_POLLING_INTERVAL,
+                MAX_POLLING_INTERVAL, BACKOFF_BASE);
+        TorRendezvousCrypto torRendezvousCrypto =
+                new TorRendezvousCryptoImpl(crypto);
+        TorPlugin plugin = createPluginInstance(backoff, torRendezvousCrypto,
+                callback, architecture);
+        eventBus.addListener(plugin);
+        return plugin;
+    }
 }

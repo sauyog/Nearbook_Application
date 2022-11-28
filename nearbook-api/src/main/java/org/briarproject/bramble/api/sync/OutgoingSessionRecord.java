@@ -16,22 +16,22 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 public class OutgoingSessionRecord {
 
-	private final Collection<MessageId> ackedIds = new CopyOnWriteArrayList<>();
-	private final Collection<MessageId> sentIds = new CopyOnWriteArrayList<>();
+    private final Collection<MessageId> ackedIds = new CopyOnWriteArrayList<>();
+    private final Collection<MessageId> sentIds = new CopyOnWriteArrayList<>();
 
-	public void onAckSent(Collection<MessageId> acked) {
-		ackedIds.addAll(acked);
-	}
+    public void onAckSent(Collection<MessageId> acked) {
+        ackedIds.addAll(acked);
+    }
 
-	public void onMessageSent(MessageId sent) {
-		sentIds.add(sent);
-	}
+    public void onMessageSent(MessageId sent) {
+        sentIds.add(sent);
+    }
 
-	public Collection<MessageId> getAckedIds() {
-		return ackedIds;
-	}
+    public Collection<MessageId> getAckedIds() {
+        return ackedIds;
+    }
 
-	public Collection<MessageId> getSentIds() {
-		return sentIds;
-	}
+    public Collection<MessageId> getSentIds() {
+        return sentIds;
+    }
 }

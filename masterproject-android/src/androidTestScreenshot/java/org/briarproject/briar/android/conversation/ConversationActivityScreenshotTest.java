@@ -18,25 +18,25 @@ import static org.briarproject.masterproject.android.conversation.ConversationAc
 @RunWith(AndroidJUnit4.class)
 public class ConversationActivityScreenshotTest extends ScreenshotTest {
 
-	@Rule
-	public ActivityTestRule<ConversationActivity> testRule =
-			new ActivityTestRule<>(ConversationActivity.class, false, false);
+    @Rule
+    public ActivityTestRule<ConversationActivity> testRule =
+            new ActivityTestRule<>(ConversationActivity.class, false, false);
 
-	@Override
-	protected void inject(BriarUiTestComponent component) {
-		component.inject(this);
-	}
+    @Override
+    protected void inject(BriarUiTestComponent component) {
+        component.inject(this);
+    }
 
-	@Test
-	public void messaging() {
-		Context targetContext = getApplicationContext();
-		Intent intent = new Intent(targetContext, ConversationActivity.class);
-		intent.putExtra(CONTACT_ID, 1);
-		testRule.launchActivity(intent);
+    @Test
+    public void messaging() {
+        Context targetContext = getApplicationContext();
+        Intent intent = new Intent(targetContext, ConversationActivity.class);
+        intent.putExtra(CONTACT_ID, 1);
+        testRule.launchActivity(intent);
 
-		// TODO add test data and wait for it do appear
+        // TODO add test data and wait for it do appear
 
-		screenshot("manual_messaging", testRule.getActivity());
-	}
+        screenshot("manual_messaging", testRule.getActivity());
+    }
 
 }

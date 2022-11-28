@@ -8,13 +8,13 @@ import org.briarproject.bramble.api.lifecycle.LifecycleManager.LifecycleState;
  */
 public class LifecycleEvent extends Event {
 
-	private final LifecycleState state;
+    private final LifecycleState state;
 
-	public LifecycleEvent(LifecycleState state) {
-		this.state = state;
-	}
+    public LifecycleEvent(LifecycleState state) {
+        this.state = state;
+    }
 
-	public LifecycleState getLifecycleState() {
-		return state;
-	}
+    public LifecycleState getLifecycleState() {
+        return state;
+    }
 }

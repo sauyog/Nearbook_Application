@@ -12,20 +12,20 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		ClockModule.class,
-		BrambleCoreModule.class,
-		TestSecureRandomModule.class,
-		LoggingModule.class,
-		LoggingTestModule.class,
+        ClockModule.class,
+        BrambleCoreModule.class,
+        TestSecureRandomModule.class,
+        LoggingModule.class,
+        LoggingTestModule.class,
 })
 public interface LoggingComponent {
 
-	SecureRandom random();
+    SecureRandom random();
 
-	CachingLogHandler cachingLogHandler();
+    CachingLogHandler cachingLogHandler();
 
-	LogEncrypter logEncrypter();
+    LogEncrypter logEncrypter();
 
-	LogDecrypter logDecrypter();
+    LogDecrypter logDecrypter();
 
 }

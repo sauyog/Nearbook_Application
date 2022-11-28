@@ -14,45 +14,45 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 class ShutdownManagerImpl implements ShutdownManager {
 
-	protected final Lock lock = new ReentrantLock();
+    protected final Lock lock = new ReentrantLock();
 
-	// The following are locking: lock
-	protected final Map<Integer, Thread> hooks;
-	private int nextHandle = 0;
+    // The following are locking: lock
+    protected final Map<Integer, Thread> hooks;
+    private int nextHandle = 0;
 
-	ShutdownManagerImpl() {
-		hooks = new HashMap<>();
-	}
+    ShutdownManagerImpl() {
+        hooks = new HashMap<>();
+    }
 
-	@Override
-	public int addShutdownHook(Runnable r) {
-		lock.lock();
-		try {
-			int handle = nextHandle++;
-			Thread hook = createThread(r);
-			hooks.put(handle, hook);
-			Runtime.getRuntime().addShutdownHook(hook);
-			return handle;
-		} finally {
-			lock.unlock();
-		}
+    @Override
+    public int addShutdownHook(Runnable r) {
+        lock.lock();
+        try {
+            int handle = nextHandle++;
+            Thread hook = createThread(r);
+            hooks.put(handle, hook);
+            Runtime.getRuntime().addShutdownHook(hook);
+            return handle;
+        } finally {
+            lock.unlock();
+        }
 
-	}
+    }
 
-	protected Thread createThread(Runnable r) {
-		return new Thread(r, "ShutdownManager");
-	}
+    protected Thread createThread(Runnable r) {
+        return new Thread(r, "ShutdownManager");
+    }
 
-	@Override
-	public boolean removeShutdownHook(int handle) {
-		lock.lock();
-		try {
-			Thread hook = hooks.remove(handle);
-			if (hook == null) return false;
-			else return Runtime.getRuntime().removeShutdownHook(hook);
-		} finally {
-			lock.unlock();
-		}
+    @Override
+    public boolean removeShutdownHook(int handle) {
+        lock.lock();
+        try {
+            Thread hook = hooks.remove(handle);
+            if (hook == null) return false;
+            else return Runtime.getRuntime().removeShutdownHook(hook);
+        } finally {
+            lock.unlock();
+        }
 
-	}
+    }
 }

@@ -6,19 +6,19 @@ import org.briarproject.bramble.reporting.ReportingModule;
 
 public interface BrambleAndroidEagerSingletons {
 
-	void inject(AndroidBatteryModule.EagerSingletons init);
+    void inject(AndroidBatteryModule.EagerSingletons init);
 
-	void inject(AndroidNetworkModule.EagerSingletons init);
+    void inject(AndroidNetworkModule.EagerSingletons init);
 
-	void inject(ReportingModule.EagerSingletons init);
+    void inject(ReportingModule.EagerSingletons init);
 
-	class Helper {
+    class Helper {
 
-		public static void injectEagerSingletons(
-				BrambleAndroidEagerSingletons c) {
-			c.inject(new AndroidBatteryModule.EagerSingletons());
-			c.inject(new AndroidNetworkModule.EagerSingletons());
-			c.inject(new ReportingModule.EagerSingletons());
-		}
-	}
+        public static void injectEagerSingletons(
+                BrambleAndroidEagerSingletons c) {
+            c.inject(new AndroidBatteryModule.EagerSingletons());
+            c.inject(new AndroidNetworkModule.EagerSingletons());
+            c.inject(new ReportingModule.EagerSingletons());
+        }
+    }
 }

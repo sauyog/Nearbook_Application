@@ -10,35 +10,35 @@ import javax.annotation.concurrent.NotThreadSafe;
 @NotNullByDefault
 class MutableIncomingKeys {
 
-	private final SecretKey tagKey, headerKey;
-	private final long timePeriod;
-	private final ReorderingWindow window;
+    private final SecretKey tagKey, headerKey;
+    private final long timePeriod;
+    private final ReorderingWindow window;
 
-	MutableIncomingKeys(IncomingKeys in) {
-		tagKey = in.getTagKey();
-		headerKey = in.getHeaderKey();
-		timePeriod = in.getTimePeriod();
-		window = new ReorderingWindow(in.getWindowBase(), in.getWindowBitmap());
-	}
+    MutableIncomingKeys(IncomingKeys in) {
+        tagKey = in.getTagKey();
+        headerKey = in.getHeaderKey();
+        timePeriod = in.getTimePeriod();
+        window = new ReorderingWindow(in.getWindowBase(), in.getWindowBitmap());
+    }
 
-	IncomingKeys snapshot() {
-		return new IncomingKeys(tagKey, headerKey, timePeriod,
-				window.getBase(), window.getBitmap());
-	}
+    IncomingKeys snapshot() {
+        return new IncomingKeys(tagKey, headerKey, timePeriod,
+                window.getBase(), window.getBitmap());
+    }
 
-	SecretKey getTagKey() {
-		return tagKey;
-	}
+    SecretKey getTagKey() {
+        return tagKey;
+    }
 
-	SecretKey getHeaderKey() {
-		return headerKey;
-	}
+    SecretKey getHeaderKey() {
+        return headerKey;
+    }
 
-	long getTimePeriod() {
-		return timePeriod;
-	}
+    long getTimePeriod() {
+        return timePeriod;
+    }
 
-	ReorderingWindow getWindow() {
-		return window;
-	}
+    ReorderingWindow getWindow() {
+        return window;
+    }
 }

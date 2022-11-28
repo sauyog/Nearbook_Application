@@ -10,16 +10,16 @@ import javax.annotation.Nullable;
 @NotNullByDefault
 interface PeerSession {
 
-	SessionId getSessionId();
+    SessionId getSessionId();
 
-	GroupId getContactGroupId();
+    GroupId getContactGroupId();
 
-	long getLocalTimestamp();
+    long getLocalTimestamp();
 
-	@Nullable
-	MessageId getLastLocalMessageId();
+    @Nullable
+    MessageId getLastLocalMessageId();
 
-	@Nullable
-	MessageId getLastRemoteMessageId();
+    @Nullable
+    MessageId getLastRemoteMessageId();
 
 }

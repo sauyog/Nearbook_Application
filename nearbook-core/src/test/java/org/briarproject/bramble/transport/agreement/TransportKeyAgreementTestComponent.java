@@ -20,29 +20,29 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		BrambleCoreIntegrationTestModule.class,
-		BrambleCoreModule.class,
-		ModularMailboxModule.class,
-		TestDnsModule.class,
-		TestSocksModule.class,
-		TestPluginConfigModule.class,
+        BrambleCoreIntegrationTestModule.class,
+        BrambleCoreModule.class,
+        ModularMailboxModule.class,
+        TestDnsModule.class,
+        TestSocksModule.class,
+        TestPluginConfigModule.class,
 })
 interface TransportKeyAgreementTestComponent
-		extends BrambleIntegrationTestComponent {
+        extends BrambleIntegrationTestComponent {
 
-	KeyManager getKeyManager();
+    KeyManager getKeyManager();
 
-	TransportKeyAgreementManagerImpl getTransportKeyAgreementManager();
+    TransportKeyAgreementManagerImpl getTransportKeyAgreementManager();
 
-	ContactManager getContactManager();
+    ContactManager getContactManager();
 
-	LifecycleManager getLifecycleManager();
+    LifecycleManager getLifecycleManager();
 
-	ContactGroupFactory getContactGroupFactory();
+    ContactGroupFactory getContactGroupFactory();
 
-	SessionParser getSessionParser();
+    SessionParser getSessionParser();
 
-	TransportPropertyManager getTransportPropertyManager();
+    TransportPropertyManager getTransportPropertyManager();
 
-	DatabaseComponent getDatabaseComponent();
+    DatabaseComponent getDatabaseComponent();
 }

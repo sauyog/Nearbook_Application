@@ -1,6 +1,22 @@
 package org.briarproject.masterproject.android.login;
 
+import static org.briarproject.bramble.api.crypto.DecryptionResult.SUCCESS;
+import static org.briarproject.bramble.api.lifecycle.LifecycleManager.LifecycleState.COMPACTING_DATABASE;
+import static org.briarproject.bramble.api.lifecycle.LifecycleManager.LifecycleState.MIGRATING_DATABASE;
+import static org.briarproject.bramble.api.lifecycle.LifecycleManager.LifecycleState.STARTING_SERVICES;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.COMPACTING;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.MIGRATING;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.SIGNED_IN;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.SIGNED_OUT;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.STARTED;
+import static org.briarproject.masterproject.android.login.StartupViewModel.State.STARTING;
+
 import android.app.Application;
+
+import androidx.annotation.UiThread;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import org.briarproject.bramble.api.account.AccountManager;
 import org.briarproject.bramble.api.crypto.DecryptionException;
@@ -21,119 +37,101 @@ import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
-import androidx.annotation.UiThread;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
-import static org.briarproject.bramble.api.crypto.DecryptionResult.SUCCESS;
-import static org.briarproject.bramble.api.lifecycle.LifecycleManager.LifecycleState.COMPACTING_DATABASE;
-import static org.briarproject.bramble.api.lifecycle.LifecycleManager.LifecycleState.MIGRATING_DATABASE;
-import static org.briarproject.bramble.api.lifecycle.LifecycleManager.LifecycleState.STARTING_SERVICES;
-import static org.briarproject.masterproject.android.login.StartupViewModel.State.COMPACTING;
-import static org.briarproject.masterproject.android.login.StartupViewModel.State.MIGRATING;
-import static org.briarproject.masterproject.android.login.StartupViewModel.State.SIGNED_IN;
-import static org.briarproject.masterproject.android.login.StartupViewModel.State.SIGNED_OUT;
-import static org.briarproject.masterproject.android.login.StartupViewModel.State.STARTED;
-import static org.briarproject.masterproject.android.login.StartupViewModel.State.STARTING;
-
 @NotNullByDefault
 public class StartupViewModel extends AndroidViewModel
-		implements EventListener {
+        implements EventListener {
 
-	enum State {SIGNED_OUT, SIGNED_IN, STARTING, MIGRATING, COMPACTING, STARTED}
+    private final AccountManager accountManager;
+    private final AndroidNotificationManager notificationManager;
+    private final EventBus eventBus;
+    @IoExecutor
+    private final Executor ioExecutor;
+    private final MutableLiveEvent<DecryptionResult> passwordValidated =
+            new MutableLiveEvent<>();
+    private final MutableLiveEvent<Boolean> accountDeleted =
+            new MutableLiveEvent<>();
+    private final MutableLiveData<State> state = new MutableLiveData<>();
+    @Inject
+    StartupViewModel(Application app,
+                     AccountManager accountManager,
+                     LifecycleManager lifecycleManager,
+                     AndroidNotificationManager notificationManager,
+                     EventBus eventBus,
+                     @IoExecutor Executor ioExecutor) {
+        super(app);
+        this.accountManager = accountManager;
+        this.notificationManager = notificationManager;
+        this.eventBus = eventBus;
+        this.ioExecutor = ioExecutor;
 
-	private final AccountManager accountManager;
-	private final AndroidNotificationManager notificationManager;
-	private final EventBus eventBus;
-	@IoExecutor
-	private final Executor ioExecutor;
+        updateState(lifecycleManager.getLifecycleState());
+        eventBus.addListener(this);
+    }
 
-	private final MutableLiveEvent<DecryptionResult> passwordValidated =
-			new MutableLiveEvent<>();
-	private final MutableLiveEvent<Boolean> accountDeleted =
-			new MutableLiveEvent<>();
-	private final MutableLiveData<State> state = new MutableLiveData<>();
+    @Override
+    protected void onCleared() {
+        eventBus.removeListener(this);
+    }
 
-	@Inject
-	StartupViewModel(Application app,
-			AccountManager accountManager,
-			LifecycleManager lifecycleManager,
-			AndroidNotificationManager notificationManager,
-			EventBus eventBus,
-			@IoExecutor Executor ioExecutor) {
-		super(app);
-		this.accountManager = accountManager;
-		this.notificationManager = notificationManager;
-		this.eventBus = eventBus;
-		this.ioExecutor = ioExecutor;
+    @Override
+    public void eventOccurred(Event e) {
+        if (e instanceof LifecycleEvent) {
+            LifecycleState s = ((LifecycleEvent) e).getLifecycleState();
+            updateState(s);
+        }
+    }
 
-		updateState(lifecycleManager.getLifecycleState());
-		eventBus.addListener(this);
-	}
+    @UiThread
+    private void updateState(LifecycleState s) {
+        if (accountManager.hasDatabaseKey()) {
+            if (s.isAfter(STARTING_SERVICES)) state.setValue(STARTED);
+            else if (s == MIGRATING_DATABASE) state.setValue(MIGRATING);
+            else if (s == COMPACTING_DATABASE) state.setValue(COMPACTING);
+            else state.setValue(STARTING);
+        } else {
+            state.setValue(SIGNED_OUT);
+        }
+    }
 
-	@Override
-	protected void onCleared() {
-		eventBus.removeListener(this);
-	}
+    boolean accountExists() {
+        return accountManager.accountExists();
+    }
 
-	@Override
-	public void eventOccurred(Event e) {
-		if (e instanceof LifecycleEvent) {
-			LifecycleState s = ((LifecycleEvent) e).getLifecycleState();
-			updateState(s);
-		}
-	}
+    void clearSignInNotification() {
+        notificationManager.blockSignInNotification();
+        notificationManager.clearSignInNotification();
+    }
 
-	@UiThread
-	private void updateState(LifecycleState s) {
-		if (accountManager.hasDatabaseKey()) {
-			if (s.isAfter(STARTING_SERVICES)) state.setValue(STARTED);
-			else if (s == MIGRATING_DATABASE) state.setValue(MIGRATING);
-			else if (s == COMPACTING_DATABASE) state.setValue(COMPACTING);
-			else state.setValue(STARTING);
-		} else {
-			state.setValue(SIGNED_OUT);
-		}
-	}
+    void validatePassword(String password) {
+        ioExecutor.execute(() -> {
+            try {
+                accountManager.signIn(password);
+                passwordValidated.postEvent(SUCCESS);
+                state.postValue(SIGNED_IN);
+            } catch (DecryptionException e) {
+                passwordValidated.postEvent(e.getDecryptionResult());
+            }
+        });
+    }
 
-	boolean accountExists() {
-		return accountManager.accountExists();
-	}
+    LiveEvent<DecryptionResult> getPasswordValidated() {
+        return passwordValidated;
+    }
 
-	void clearSignInNotification() {
-		notificationManager.blockSignInNotification();
-		notificationManager.clearSignInNotification();
-	}
+    LiveEvent<Boolean> getAccountDeleted() {
+        return accountDeleted;
+    }
 
-	void validatePassword(String password) {
-		ioExecutor.execute(() -> {
-			try {
-				accountManager.signIn(password);
-				passwordValidated.postEvent(SUCCESS);
-				state.postValue(SIGNED_IN);
-			} catch (DecryptionException e) {
-				passwordValidated.postEvent(e.getDecryptionResult());
-			}
-		});
-	}
+    LiveData<State> getState() {
+        return state;
+    }
 
-	LiveEvent<DecryptionResult> getPasswordValidated() {
-		return passwordValidated;
-	}
+    @UiThread
+    void deleteAccount() {
+        accountManager.deleteAccount();
+        accountDeleted.setEvent(true);
+    }
 
-	LiveEvent<Boolean> getAccountDeleted() {
-		return accountDeleted;
-	}
-
-	LiveData<State> getState() {
-		return state;
-	}
-
-	@UiThread
-	void deleteAccount() {
-		accountManager.deleteAccount();
-		accountDeleted.setEvent(true);
-	}
+    enum State {SIGNED_OUT, SIGNED_IN, STARTING, MIGRATING, COMPACTING, STARTED}
 
 }

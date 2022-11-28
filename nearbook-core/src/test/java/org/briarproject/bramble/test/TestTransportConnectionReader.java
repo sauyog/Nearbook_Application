@@ -11,22 +11,22 @@ import javax.annotation.concurrent.ThreadSafe;
 @ThreadSafe
 @NotNullByDefault
 public class TestTransportConnectionReader
-		implements TransportConnectionReader {
+        implements TransportConnectionReader {
 
-	private final InputStream in;
+    private final InputStream in;
 
-	public TestTransportConnectionReader(InputStream in) {
-		this.in = in;
-	}
+    public TestTransportConnectionReader(InputStream in) {
+        this.in = in;
+    }
 
-	@Override
-	public InputStream getInputStream() {
-		return in;
-	}
+    @Override
+    public InputStream getInputStream() {
+        return in;
+    }
 
-	@Override
-	public void dispose(boolean exception, boolean recognised)
-			throws IOException {
-		in.close();
-	}
+    @Override
+    public void dispose(boolean exception, boolean recognised)
+            throws IOException {
+        in.close();
+    }
 }

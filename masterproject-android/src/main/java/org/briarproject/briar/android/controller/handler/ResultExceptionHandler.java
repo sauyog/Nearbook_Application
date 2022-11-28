@@ -1,8 +1,8 @@
 package org.briarproject.masterproject.android.controller.handler;
 
 public interface ResultExceptionHandler<R, E extends Exception>
-		extends ExceptionHandler<E> {
+        extends ExceptionHandler<E> {
 
-	void onResult(R result);
+    void onResult(R result);
 
 }

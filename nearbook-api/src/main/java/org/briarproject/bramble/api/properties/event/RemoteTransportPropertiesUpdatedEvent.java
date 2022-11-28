@@ -15,13 +15,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class RemoteTransportPropertiesUpdatedEvent extends Event {
 
-	private final TransportId transportId;
+    private final TransportId transportId;
 
-	public RemoteTransportPropertiesUpdatedEvent(TransportId transportId) {
-		this.transportId = transportId;
-	}
+    public RemoteTransportPropertiesUpdatedEvent(TransportId transportId) {
+        this.transportId = transportId;
+    }
 
-	public TransportId getTransportId() {
-		return transportId;
-	}
+    public TransportId getTransportId() {
+        return transportId;
+    }
 }

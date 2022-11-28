@@ -9,13 +9,13 @@ import org.briarproject.masterproject.api.sharing.Shareable;
 
 public interface InvitationFactory<S extends Shareable, R extends InvitationResponse> {
 
-	ConversationRequest<S> createInvitationRequest(boolean local, boolean sent,
-			boolean seen, boolean read, InviteMessage<S> m, ContactId c,
-			boolean available, boolean canBeOpened, long autoDeleteTimer);
+    ConversationRequest<S> createInvitationRequest(boolean local, boolean sent,
+                                                   boolean seen, boolean read, InviteMessage<S> m, ContactId c,
+                                                   boolean available, boolean canBeOpened, long autoDeleteTimer);
 
-	R createInvitationResponse(MessageId id, GroupId contactGroupId, long time,
-			boolean local, boolean sent, boolean seen, boolean read,
-			boolean accept, GroupId shareableId, long autoDeleteTimer,
-			boolean isAutoDecline);
+    R createInvitationResponse(MessageId id, GroupId contactGroupId, long time,
+                               boolean local, boolean sent, boolean seen, boolean read,
+                               boolean accept, GroupId shareableId, long autoDeleteTimer,
+                               boolean isAutoDecline);
 
 }

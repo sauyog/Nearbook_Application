@@ -21,20 +21,20 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class MailboxUpdateSentToNewContactEvent extends Event {
 
-	private final ContactId contactId;
-	private final MailboxUpdate mailboxUpdate;
+    private final ContactId contactId;
+    private final MailboxUpdate mailboxUpdate;
 
-	public MailboxUpdateSentToNewContactEvent(ContactId contactId,
-			MailboxUpdate mailboxUpdate) {
-		this.contactId = contactId;
-		this.mailboxUpdate = mailboxUpdate;
-	}
+    public MailboxUpdateSentToNewContactEvent(ContactId contactId,
+                                              MailboxUpdate mailboxUpdate) {
+        this.contactId = contactId;
+        this.mailboxUpdate = mailboxUpdate;
+    }
 
-	public ContactId getContactId() {
-		return contactId;
-	}
+    public ContactId getContactId() {
+        return contactId;
+    }
 
-	public MailboxUpdate getMailboxUpdate() {
-		return mailboxUpdate;
-	}
+    public MailboxUpdate getMailboxUpdate() {
+        return mailboxUpdate;
+    }
 }

@@ -9,21 +9,21 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public enum Role {
 
-	INTRODUCER(0), INTRODUCEE(1);
+    INTRODUCER(0), INTRODUCEE(1);
 
-	private final int value;
+    private final int value;
 
-	Role(int value) {
-		this.value = value;
-	}
+    Role(int value) {
+        this.value = value;
+    }
 
-	public int getValue() {
-		return value;
-	}
+    public static Role fromValue(int value) throws FormatException {
+        for (Role r : values()) if (r.value == value) return r;
+        throw new FormatException();
+    }
 
-	public static Role fromValue(int value) throws FormatException {
-		for (Role r : values()) if (r.value == value) return r;
-		throw new FormatException();
-	}
+    public int getValue() {
+        return value;
+    }
 
 }

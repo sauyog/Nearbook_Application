@@ -10,19 +10,19 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class TransportDescriptor {
 
-	private final TransportId id;
-	private final BdfList descriptor;
+    private final TransportId id;
+    private final BdfList descriptor;
 
-	public TransportDescriptor(TransportId id, BdfList descriptor) {
-		this.id = id;
-		this.descriptor = descriptor;
-	}
+    public TransportDescriptor(TransportId id, BdfList descriptor) {
+        this.id = id;
+        this.descriptor = descriptor;
+    }
 
-	public TransportId getId() {
-		return id;
-	}
+    public TransportId getId() {
+        return id;
+    }
 
-	public BdfList getDescriptor() {
-		return descriptor;
-	}
+    public BdfList getDescriptor() {
+        return descriptor;
+    }
 }

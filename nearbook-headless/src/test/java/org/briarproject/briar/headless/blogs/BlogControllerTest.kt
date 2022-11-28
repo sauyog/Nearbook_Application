@@ -13,6 +13,7 @@ import org.briarproject.bramble.api.db.Transaction
 import org.briarproject.bramble.api.sync.MessageId
 import org.briarproject.bramble.identity.output
 import org.briarproject.bramble.util.StringUtils.getRandomString
+import org.briarproject.briar.headless.ControllerTest
 import org.briarproject.masterproject.api.blog.Blog
 import org.briarproject.masterproject.api.blog.BlogConstants.MAX_BLOG_POST_TEXT_LENGTH
 import org.briarproject.masterproject.api.blog.BlogManager
@@ -22,7 +23,6 @@ import org.briarproject.masterproject.api.blog.BlogPostHeader
 import org.briarproject.masterproject.api.blog.MessageType.POST
 import org.briarproject.masterproject.api.identity.AuthorInfo
 import org.briarproject.masterproject.api.identity.AuthorInfo.Status.OURSELVES
-import org.briarproject.briar.headless.ControllerTest
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 

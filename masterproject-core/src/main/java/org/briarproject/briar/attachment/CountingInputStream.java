@@ -15,46 +15,46 @@ import javax.annotation.concurrent.NotThreadSafe;
 @NotNullByDefault
 public class CountingInputStream extends InputStream {
 
-	private final InputStream delegate;
-	private final long maxBytesToRead;
+    private final InputStream delegate;
+    private final long maxBytesToRead;
 
-	private long bytesRead = 0;
+    private long bytesRead = 0;
 
-	public CountingInputStream(InputStream delegate, long maxBytesToRead) {
-		this.delegate = delegate;
-		this.maxBytesToRead = maxBytesToRead;
-	}
+    public CountingInputStream(InputStream delegate, long maxBytesToRead) {
+        this.delegate = delegate;
+        this.maxBytesToRead = maxBytesToRead;
+    }
 
-	public long getBytesRead() {
-		return bytesRead;
-	}
+    public long getBytesRead() {
+        return bytesRead;
+    }
 
-	@Override
-	public int available() throws IOException {
-		return delegate.available();
-	}
+    @Override
+    public int available() throws IOException {
+        return delegate.available();
+    }
 
-	@Override
-	public void close() throws IOException {
-		delegate.close();
-	}
+    @Override
+    public void close() throws IOException {
+        delegate.close();
+    }
 
-	@Override
-	public int read() throws IOException {
-		if (bytesRead == maxBytesToRead) return -1;
-		int i = delegate.read();
-		if (i != -1) bytesRead++;
-		return i;
-	}
+    @Override
+    public int read() throws IOException {
+        if (bytesRead == maxBytesToRead) return -1;
+        int i = delegate.read();
+        if (i != -1) bytesRead++;
+        return i;
+    }
 
-	@Override
-	public int read(byte[] b, int off, int len) throws IOException {
-		if (len == 0) return 0;
-		if (bytesRead == maxBytesToRead) return -1;
-		if (bytesRead + len > maxBytesToRead)
-			len = (int) (maxBytesToRead - bytesRead);
-		int read = delegate.read(b, off, len);
-		if (read != -1) bytesRead += read;
-		return read;
-	}
+    @Override
+    public int read(byte[] b, int off, int len) throws IOException {
+        if (len == 0) return 0;
+        if (bytesRead == maxBytesToRead) return -1;
+        if (bytesRead + len > maxBytesToRead)
+            len = (int) (maxBytesToRead - bytesRead);
+        int read = delegate.read(b, off, len);
+        if (read != -1) bytesRead += read;
+        return read;
+    }
 }

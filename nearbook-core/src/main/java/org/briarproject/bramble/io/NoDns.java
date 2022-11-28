@@ -14,18 +14,18 @@ import okhttp3.Dns;
 @NotNullByDefault
 class NoDns implements Dns {
 
-	private static final byte[] UNSPECIFIED_ADDRESS = new byte[4];
+    private static final byte[] UNSPECIFIED_ADDRESS = new byte[4];
 
-	@Inject
-	public NoDns() {
-	}
+    @Inject
+    public NoDns() {
+    }
 
-	@Override
-	public List<InetAddress> lookup(String hostname)
-			throws UnknownHostException {
-		InetAddress unspecified =
-				InetAddress.getByAddress(hostname, UNSPECIFIED_ADDRESS);
-		return Collections.singletonList(unspecified);
-	}
+    @Override
+    public List<InetAddress> lookup(String hostname)
+            throws UnknownHostException {
+        InetAddress unspecified =
+                InetAddress.getByAddress(hostname, UNSPECIFIED_ADDRESS);
+        return Collections.singletonList(unspecified);
+    }
 
 }

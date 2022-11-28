@@ -9,15 +9,15 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 public interface KeyStrengthener {
 
-	/**
-	 * Returns true if the strengthener has been initialised.
-	 */
-	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
-	boolean isInitialised();
+    /**
+     * Returns true if the strengthener has been initialised.
+     */
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    boolean isInitialised();
 
-	/**
-	 * Initialises the strengthener if necessary and returns a strong key
-	 * derived from the given key.
-	 */
-	SecretKey strengthenKey(SecretKey k);
+    /**
+     * Initialises the strengthener if necessary and returns a strong key
+     * derived from the given key.
+     */
+    SecretKey strengthenKey(SecretKey k);
 }

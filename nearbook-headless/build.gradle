@@ -5,11 +5,11 @@ import java.util.jar.JarOutputStream
 import static java.util.Collections.list
 
 plugins {
-	id 'java'
-	id 'idea'
-	id 'org.jetbrains.kotlin.jvm'
-	id 'org.jetbrains.kotlin.kapt'
-	id 'witness'
+    id 'java'
+    id 'idea'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'org.jetbrains.kotlin.kapt'
+    id 'witness'
 }
 apply from: 'witness.gradle'
 
@@ -17,128 +17,128 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-	implementation project(path: ':masterproject-core', configuration: 'default')
-	implementation project(path: ':nearbook-java', configuration: 'default')
+    implementation project(path: ':masterproject-core', configuration: 'default')
+    implementation project(path: ':nearbook-java', configuration: 'default')
 
-	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10'
-	implementation 'io.javalin:javalin:3.5.0'
-	implementation 'org.slf4j:slf4j-simple:1.7.30'
-	implementation "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
-	implementation 'com.github.ajalt:clikt:2.2.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10'
+    implementation 'io.javalin:javalin:3.5.0'
+    implementation 'org.slf4j:slf4j-simple:1.7.30'
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
+    implementation 'com.github.ajalt:clikt:2.2.0'
 
-	def daggerVersion = '2.24'
-	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    def daggerVersion = '2.24'
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
-	testImplementation project(path: ':nearbook-core', configuration: 'testOutput')
-	testImplementation project(path: ':masterproject-core', configuration: 'testOutput')
+    testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
+    testImplementation project(path: ':nearbook-core', configuration: 'testOutput')
+    testImplementation project(path: ':masterproject-core', configuration: 'testOutput')
 
-	def junitVersion = '5.5.2'
-	testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
-	testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
-	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
-	testImplementation 'io.mockk:mockk:1.12.4'
-	testImplementation 'org.skyscreamer:jsonassert:1.5.0'
-	testImplementation "com.squareup.okhttp3:okhttp:4.10.0"
+    def junitVersion = '5.5.2'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testImplementation 'io.mockk:mockk:1.12.4'
+    testImplementation 'org.skyscreamer:jsonassert:1.5.0'
+    testImplementation "com.squareup.okhttp3:okhttp:4.10.0"
 
-	kaptTest "com.google.dagger:dagger-compiler:$daggerVersion"
+    kaptTest "com.google.dagger:dagger-compiler:$daggerVersion"
 }
 
 void jarFactory(Jar jarTask, jarArchitecture) {
-	jarTask.dependsOn(jar)
-	jarTask.doFirst {
-		println 'Building ' + jarArchitecture + ' version has started'
-	}
-	jarTask.manifest {
-		attributes(
-				'Main-Class': 'org.briarproject.nearbook.headless.MainKt'
-		)
-	}
-	jarTask.setArchiveClassifier(jarArchitecture)
-	jarTask.from {
-		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-	}
-			{
-				it.duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
-				String[] architectures = [
-						"linux-aarch64",
-						"linux-armhf",
-						"linux-x86_64",
-						"windows-x86_64"
-				]
-				for (String arch : architectures) {
-					if (arch != jarArchitecture) {
-						exclude "obfs4proxy_" + arch + ".zip"
-						exclude "tor_" + arch + ".zip"
-					}
-				}
-				exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
-			}
-	jarTask.with jar
-	jarTask.doLast {
-		// Rename the original jar
-		File jar = jarTask.archiveFile.get().asFile
-		String srcPath = jar.toString().replaceFirst('\\.jar$', '.unsorted.jar')
-		File srcFile = new File(srcPath)
-		jar.renameTo(srcFile)
-		JarFile srcJarFile = new JarFile(srcFile)
-		OutputStream destStream = new JarOutputStream(new FileOutputStream(jar))
-		// Read and sort the entries
-		Map<String, JarEntry> entries = new TreeMap<>()
-		for (JarEntry e : list(srcJarFile.entries())) entries.put(e.getName(), e)
-		// Write the sorted entries
-		for (JarEntry srcEntry : entries.values()) {
-			JarEntry destEntry = new JarEntry(srcEntry.getName())
-			destEntry.setTime(0)
-			destStream.putNextEntry(destEntry)
-			InputStream srcStream = srcJarFile.getInputStream(srcEntry)
-			int read
-			byte[] buf = new byte[4096]
-			while ((read = srcStream.read(buf, 0, buf.length)) != -1) {
-				destStream.write(buf, 0, read)
-			}
-			destStream.closeEntry()
-			srcStream.close()
-		}
-		destStream.close()
-		srcJarFile.close()
-		println 'Building ' + jarArchitecture + ' version has finished'
-	}
+    jarTask.dependsOn(jar)
+    jarTask.doFirst {
+        println 'Building ' + jarArchitecture + ' version has started'
+    }
+    jarTask.manifest {
+        attributes(
+                'Main-Class': 'org.briarproject.nearbook.headless.MainKt'
+        )
+    }
+    jarTask.setArchiveClassifier(jarArchitecture)
+    jarTask.from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+            {
+                it.duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+                String[] architectures = [
+                        "linux-aarch64",
+                        "linux-armhf",
+                        "linux-x86_64",
+                        "windows-x86_64"
+                ]
+                for (String arch : architectures) {
+                    if (arch != jarArchitecture) {
+                        exclude "obfs4proxy_" + arch + ".zip"
+                        exclude "tor_" + arch + ".zip"
+                    }
+                }
+                exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+            }
+    jarTask.with jar
+    jarTask.doLast {
+        // Rename the original jar
+        File jar = jarTask.archiveFile.get().asFile
+        String srcPath = jar.toString().replaceFirst('\\.jar$', '.unsorted.jar')
+        File srcFile = new File(srcPath)
+        jar.renameTo(srcFile)
+        JarFile srcJarFile = new JarFile(srcFile)
+        OutputStream destStream = new JarOutputStream(new FileOutputStream(jar))
+        // Read and sort the entries
+        Map<String, JarEntry> entries = new TreeMap<>()
+        for (JarEntry e : list(srcJarFile.entries())) entries.put(e.getName(), e)
+        // Write the sorted entries
+        for (JarEntry srcEntry : entries.values()) {
+            JarEntry destEntry = new JarEntry(srcEntry.getName())
+            destEntry.setTime(0)
+            destStream.putNextEntry(destEntry)
+            InputStream srcStream = srcJarFile.getInputStream(srcEntry)
+            int read
+            byte[] buf = new byte[4096]
+            while ((read = srcStream.read(buf, 0, buf.length)) != -1) {
+                destStream.write(buf, 0, read)
+            }
+            destStream.closeEntry()
+            srcStream.close()
+        }
+        destStream.close()
+        srcJarFile.close()
+        println 'Building ' + jarArchitecture + ' version has finished'
+    }
 }
 
 task aarch64LinuxJar(type: Jar) {
-	jarFactory(it, 'linux-aarch64')
+    jarFactory(it, 'linux-aarch64')
 }
 
 task armhfLinuxJar(type: Jar) {
-	jarFactory(it, 'linux-armhf')
+    jarFactory(it, 'linux-armhf')
 }
 
 task x86LinuxJar(type: Jar) {
-	jarFactory(it, 'linux-x86_64')
+    jarFactory(it, 'linux-x86_64')
 }
 
 task windowsJar(type: Jar) {
-	jarFactory(it, 'windows-x86_64')
+    jarFactory(it, 'windows-x86_64')
 }
 
 task linuxJars {
-	dependsOn(aarch64LinuxJar, armhfLinuxJar, x86LinuxJar)
+    dependsOn(aarch64LinuxJar, armhfLinuxJar, x86LinuxJar)
 }
 
 // At the moment for non-Android projects we need to explicitly mark the code generated by kapt
 // as 'generated source code' for correct highlighting and resolve in IDE.
 idea {
-	module {
-		sourceDirs += file('build/generated/source/kapt/main')
-		testSourceDirs += file('build/generated/source/kapt/test')
-		generatedSourceDirs += file('build/generated/source/kapt/main')
-	}
+    module {
+        sourceDirs += file('build/generated/source/kapt/main')
+        testSourceDirs += file('build/generated/source/kapt/test')
+        generatedSourceDirs += file('build/generated/source/kapt/main')
+    }
 }
 
 test {
-	useJUnitPlatform()
-	testLogging {
-		events "passed", "skipped", "failed"
-	}
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }

@@ -8,9 +8,9 @@ import org.briarproject.nullsafety.NotNullByDefault;
 @NotNullByDefault
 interface RemovableDriveTaskFactory {
 
-	RemovableDriveTask createReader(RemovableDriveTaskRegistry registry,
-			TransportProperties p);
+    RemovableDriveTask createReader(RemovableDriveTaskRegistry registry,
+                                    TransportProperties p);
 
-	RemovableDriveTask createWriter(RemovableDriveTaskRegistry registry,
-			ContactId c, TransportProperties p);
+    RemovableDriveTask createWriter(RemovableDriveTaskRegistry registry,
+                                    ContactId c, TransportProperties p);
 }

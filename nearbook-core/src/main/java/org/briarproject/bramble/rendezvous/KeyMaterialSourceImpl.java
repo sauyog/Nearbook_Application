@@ -14,20 +14,20 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 class KeyMaterialSourceImpl implements KeyMaterialSource {
 
-	@GuardedBy("this")
-	private final Salsa20Engine cipher = new Salsa20Engine();
+    @GuardedBy("this")
+    private final Salsa20Engine cipher = new Salsa20Engine();
 
-	KeyMaterialSourceImpl(SecretKey sourceKey) {
-		// Initialise the stream cipher with an all-zero nonce
-		KeyParameter k = new KeyParameter(sourceKey.getBytes());
-		cipher.init(true, new ParametersWithIV(k, new byte[8]));
-	}
+    KeyMaterialSourceImpl(SecretKey sourceKey) {
+        // Initialise the stream cipher with an all-zero nonce
+        KeyParameter k = new KeyParameter(sourceKey.getBytes());
+        cipher.init(true, new ParametersWithIV(k, new byte[8]));
+    }
 
-	@Override
-	public synchronized byte[] getKeyMaterial(int length) {
-		byte[] in = new byte[length];
-		byte[] out = new byte[length];
-		cipher.processBytes(in, 0, length, out, 0);
-		return out;
-	}
+    @Override
+    public synchronized byte[] getKeyMaterial(int length) {
+        byte[] in = new byte[length];
+        byte[] out = new byte[length];
+        cipher.processBytes(in, 0, length, out, 0);
+        return out;
+    }
 }

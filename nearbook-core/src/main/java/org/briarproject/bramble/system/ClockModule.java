@@ -8,8 +8,8 @@ import dagger.Provides;
 @Module
 public class ClockModule {
 
-	@Provides
-	Clock provideClock() {
-		return new SystemClock();
-	}
+    @Provides
+    Clock provideClock() {
+        return new SystemClock();
+    }
 }

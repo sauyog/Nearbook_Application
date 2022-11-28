@@ -13,12 +13,12 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 public class AuthorId extends UniqueId {
 
-	/**
-	 * Label for hashing authors to calculate their identities.
-	 */
-	public static final String LABEL = "org.briarproject.bramble/AUTHOR_ID";
+    /**
+     * Label for hashing authors to calculate their identities.
+     */
+    public static final String LABEL = "org.briarproject.bramble/AUTHOR_ID";
 
-	public AuthorId(byte[] id) {
-		super(id);
-	}
+    public AuthorId(byte[] id) {
+        super(id);
+    }
 }

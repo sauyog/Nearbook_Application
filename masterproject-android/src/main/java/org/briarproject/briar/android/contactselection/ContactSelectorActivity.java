@@ -2,6 +2,10 @@ package org.briarproject.masterproject.android.contactselection;
 
 import android.os.Bundle;
 
+import androidx.annotation.CallSuper;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.UiThread;
+
 import org.briarproject.bramble.api.contact.ContactId;
 import org.briarproject.bramble.api.sync.GroupId;
 import org.briarproject.briar.R;
@@ -16,85 +20,81 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import androidx.annotation.CallSuper;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.UiThread;
-
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 public abstract class ContactSelectorActivity
-		extends BriarActivity
-		implements BaseFragmentListener, ContactSelectorListener {
+        extends BriarActivity
+        implements BaseFragmentListener, ContactSelectorListener {
 
-	protected final static String CONTACTS = "contacts";
+    protected final static String CONTACTS = "contacts";
 
-	// Subclasses may initialise the group ID in different places
-	protected GroupId groupId;
-	protected Collection<ContactId> contacts;
+    // Subclasses may initialise the group ID in different places
+    protected GroupId groupId;
+    protected Collection<ContactId> contacts;
 
-	@Override
-	public void onCreate(@Nullable Bundle bundle) {
-		super.onCreate(bundle);
+    static ArrayList<Integer> getContactsFromIds(
+            Collection<ContactId> contacts) {
+        // transform ContactIds to Integers so they can be added to a bundle
+        ArrayList<Integer> intContacts = new ArrayList<>(contacts.size());
+        for (ContactId contactId : contacts) {
+            intContacts.add(contactId.getInt());
+        }
+        return intContacts;
+    }
 
-		setContentView(getLayout());
+    static Collection<ContactId> getContactsFromIntegers(
+            ArrayList<Integer> intContacts) {
+        // turn contact integers from a bundle back to ContactIds
+        List<ContactId> contacts = new ArrayList<>(intContacts.size());
+        for (Integer c : intContacts) {
+            contacts.add(new ContactId(c));
+        }
+        return contacts;
+    }
 
-		if (bundle != null) {
-			// restore group ID if it was saved
-			byte[] groupBytes = bundle.getByteArray(GROUP_ID);
-			if (groupBytes != null) groupId = new GroupId(groupBytes);
-			// restore selected contacts if a selection was saved
-			ArrayList<Integer> intContacts =
-					bundle.getIntegerArrayList(CONTACTS);
-			if (intContacts != null) {
-				contacts = getContactsFromIntegers(intContacts);
-			}
-		}
-	}
+    @Override
+    public void onCreate(@Nullable Bundle bundle) {
+        super.onCreate(bundle);
 
-	@LayoutRes
-	protected int getLayout() {
-		return R.layout.activity_fragment_container;
-	}
+        setContentView(getLayout());
 
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		if (groupId != null) {
-			// save the group ID here regardless of how subclasses initialize it
-			outState.putByteArray(GROUP_ID, groupId.getBytes());
-		}
-		if (contacts != null) {
-			outState.putIntegerArrayList(CONTACTS,
-					getContactsFromIds(contacts));
-		}
-	}
+        if (bundle != null) {
+            // restore group ID if it was saved
+            byte[] groupBytes = bundle.getByteArray(GROUP_ID);
+            if (groupBytes != null) groupId = new GroupId(groupBytes);
+            // restore selected contacts if a selection was saved
+            ArrayList<Integer> intContacts =
+                    bundle.getIntegerArrayList(CONTACTS);
+            if (intContacts != null) {
+                contacts = getContactsFromIntegers(intContacts);
+            }
+        }
+    }
 
-	@CallSuper
-	@UiThread
-	@Override
-	public void contactsSelected(Collection<ContactId> contacts) {
-		this.contacts = contacts;
-	}
+    @LayoutRes
+    protected int getLayout() {
+        return R.layout.activity_fragment_container;
+    }
 
-	static ArrayList<Integer> getContactsFromIds(
-			Collection<ContactId> contacts) {
-		// transform ContactIds to Integers so they can be added to a bundle
-		ArrayList<Integer> intContacts = new ArrayList<>(contacts.size());
-		for (ContactId contactId : contacts) {
-			intContacts.add(contactId.getInt());
-		}
-		return intContacts;
-	}
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (groupId != null) {
+            // save the group ID here regardless of how subclasses initialize it
+            outState.putByteArray(GROUP_ID, groupId.getBytes());
+        }
+        if (contacts != null) {
+            outState.putIntegerArrayList(CONTACTS,
+                    getContactsFromIds(contacts));
+        }
+    }
 
-	static Collection<ContactId> getContactsFromIntegers(
-			ArrayList<Integer> intContacts) {
-		// turn contact integers from a bundle back to ContactIds
-		List<ContactId> contacts = new ArrayList<>(intContacts.size());
-		for (Integer c : intContacts) {
-			contacts.add(new ContactId(c));
-		}
-		return contacts;
-	}
+    @CallSuper
+    @UiThread
+    @Override
+    public void contactsSelected(Collection<ContactId> contacts) {
+        this.contacts = contacts;
+    }
 
 
 }

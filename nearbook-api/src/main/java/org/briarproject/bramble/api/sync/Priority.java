@@ -11,13 +11,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class Priority {
 
-	private final byte[] nonce;
+    private final byte[] nonce;
 
-	public Priority(byte[] nonce) {
-		this.nonce = nonce;
-	}
+    public Priority(byte[] nonce) {
+        this.nonce = nonce;
+    }
 
-	public byte[] getNonce() {
-		return nonce;
-	}
+    public byte[] getNonce() {
+        return nonce;
+    }
 }

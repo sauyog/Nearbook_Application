@@ -12,18 +12,18 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class DeclineMessage extends AbstractIntroductionMessage {
 
-	private final SessionId sessionId;
+    private final SessionId sessionId;
 
-	protected DeclineMessage(MessageId messageId, GroupId groupId,
-			long timestamp, @Nullable MessageId previousMessageId,
-			SessionId sessionId, long autoDeleteTimer) {
-		super(messageId, groupId, timestamp, previousMessageId,
-				autoDeleteTimer);
-		this.sessionId = sessionId;
-	}
+    protected DeclineMessage(MessageId messageId, GroupId groupId,
+                             long timestamp, @Nullable MessageId previousMessageId,
+                             SessionId sessionId, long autoDeleteTimer) {
+        super(messageId, groupId, timestamp, previousMessageId,
+                autoDeleteTimer);
+        this.sessionId = sessionId;
+    }
 
-	public SessionId getSessionId() {
-		return sessionId;
-	}
+    public SessionId getSessionId() {
+        return sessionId;
+    }
 
 }

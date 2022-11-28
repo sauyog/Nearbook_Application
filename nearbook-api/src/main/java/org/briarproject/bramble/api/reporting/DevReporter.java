@@ -11,20 +11,20 @@ import java.io.FileNotFoundException;
 @NotNullByDefault
 public interface DevReporter {
 
-	/**
-	 * Stores an encrypted report on disk to be sent later.
-	 *
-	 * @param reportDir the directory where reports are stored.
-	 * @param report the report in the form expected by the server.
-	 * @throws FileNotFoundException if the report could not be written.
-	 */
-	void encryptReportToFile(File reportDir, String filename, String report)
-			throws FileNotFoundException;
+    /**
+     * Stores an encrypted report on disk to be sent later.
+     *
+     * @param reportDir the directory where reports are stored.
+     * @param report    the report in the form expected by the server.
+     * @throws FileNotFoundException if the report could not be written.
+     */
+    void encryptReportToFile(File reportDir, String filename, String report)
+            throws FileNotFoundException;
 
-	/**
-	 * Sends any reports previously stored on disk.
-	 *
-	 * @return The number of reports that were sent.
-	 */
-	int sendReports();
+    /**
+     * Sends any reports previously stored on disk.
+     *
+     * @return The number of reports that were sent.
+     */
+    int sendReports();
 }

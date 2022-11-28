@@ -12,23 +12,23 @@ import java.io.InputStream;
 
 @NotNullByDefault
 class BriarModelLoaderFactory
-		implements ModelLoaderFactory<AttachmentHeader, InputStream> {
+        implements ModelLoaderFactory<AttachmentHeader, InputStream> {
 
-	private final BriarApplication app;
+    private final BriarApplication app;
 
-	BriarModelLoaderFactory(BriarApplication app) {
-		this.app = app;
-	}
+    BriarModelLoaderFactory(BriarApplication app) {
+        this.app = app;
+    }
 
-	@Override
-	public ModelLoader<AttachmentHeader, InputStream> build(
-			MultiModelLoaderFactory multiFactory) {
-		return new BriarModelLoader(app);
-	}
+    @Override
+    public ModelLoader<AttachmentHeader, InputStream> build(
+            MultiModelLoaderFactory multiFactory) {
+        return new BriarModelLoader(app);
+    }
 
-	@Override
-	public void teardown() {
-		// noop
-	}
+    @Override
+    public void teardown() {
+        // noop
+    }
 
 }

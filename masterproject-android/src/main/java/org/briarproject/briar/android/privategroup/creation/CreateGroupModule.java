@@ -8,11 +8,11 @@ import dagger.Provides;
 @Module
 public class CreateGroupModule {
 
-	@ActivityScope
-	@Provides
-	CreateGroupController provideCreateGroupController(
-			CreateGroupControllerImpl createGroupController) {
-		return createGroupController;
-	}
+    @ActivityScope
+    @Provides
+    CreateGroupController provideCreateGroupController(
+            CreateGroupControllerImpl createGroupController) {
+        return createGroupController;
+    }
 
 }

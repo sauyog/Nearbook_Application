@@ -1,5 +1,10 @@
 package org.briarproject.masterproject.android.attachment.media;
 
+import static androidx.test.InstrumentationRegistry.getContext;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import android.content.res.AssetManager;
 
 import java.io.IOException;
@@ -7,45 +12,40 @@ import java.io.InputStream;
 
 import javax.inject.Inject;
 
-import static androidx.test.InstrumentationRegistry.getContext;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 public abstract class AbstractImageSizeCalculatorTest {
 
-	@Inject
-	ImageSizeCalculator imageSizeCalculator;
+    @Inject
+    ImageSizeCalculator imageSizeCalculator;
 
-	public AbstractImageSizeCalculatorTest() {
-		AbstractImageSizeCalculatorComponent component =
-				DaggerAbstractImageSizeCalculatorComponent.builder().build();
-		component.inject(this);
-	}
+    public AbstractImageSizeCalculatorTest() {
+        AbstractImageSizeCalculatorComponent component =
+                DaggerAbstractImageSizeCalculatorComponent.builder().build();
+        component.inject(this);
+    }
 
-	protected abstract void inject(
-			AbstractImageSizeCalculatorComponent component);
+    static AssetManager getAssetManager() {
+        // pm.getResourcesForApplication(packageName).getAssets() did not work
+        //noinspection deprecation
+        return getContext().getAssets();
+    }
 
-	void testCanCalculateSize(String filename, String contentType, int width,
-			int height) throws IOException {
-		InputStream is = getAssetManager().open(filename);
-		Size size = imageSizeCalculator.getSize(is, contentType);
-		assertFalse(size.hasError());
-		assertEquals(width, size.getWidth());
-		assertEquals(height, size.getHeight());
-	}
+    protected abstract void inject(
+            AbstractImageSizeCalculatorComponent component);
 
-	void testCannotCalculateSize(String filename, String contentType)
-			throws IOException {
-		InputStream is = getAssetManager().open(filename);
-		Size size = imageSizeCalculator.getSize(is, contentType);
-		assertTrue(size.hasError());
-	}
+    void testCanCalculateSize(String filename, String contentType, int width,
+                              int height) throws IOException {
+        InputStream is = getAssetManager().open(filename);
+        Size size = imageSizeCalculator.getSize(is, contentType);
+        assertFalse(size.hasError());
+        assertEquals(width, size.getWidth());
+        assertEquals(height, size.getHeight());
+    }
 
-	static AssetManager getAssetManager() {
-		// pm.getResourcesForApplication(packageName).getAssets() did not work
-		//noinspection deprecation
-		return getContext().getAssets();
-	}
+    void testCannotCalculateSize(String filename, String contentType)
+            throws IOException {
+        InputStream is = getAssetManager().open(filename);
+        Size size = imageSizeCalculator.getSize(is, contentType);
+        assertTrue(size.hasError());
+    }
 
 }

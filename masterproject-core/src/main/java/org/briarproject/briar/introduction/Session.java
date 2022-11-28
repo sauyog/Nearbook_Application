@@ -10,28 +10,28 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 abstract class Session<S extends State> {
 
-	private final SessionId sessionId;
-	private final S state;
-	private final long requestTimestamp;
+    private final SessionId sessionId;
+    private final S state;
+    private final long requestTimestamp;
 
-	Session(SessionId sessionId, S state, long requestTimestamp) {
-		this.sessionId = sessionId;
-		this.state = state;
-		this.requestTimestamp = requestTimestamp;
-	}
+    Session(SessionId sessionId, S state, long requestTimestamp) {
+        this.sessionId = sessionId;
+        this.state = state;
+        this.requestTimestamp = requestTimestamp;
+    }
 
-	abstract Role getRole();
+    abstract Role getRole();
 
-	public SessionId getSessionId() {
-		return sessionId;
-	}
+    public SessionId getSessionId() {
+        return sessionId;
+    }
 
-	S getState() {
-		return state;
-	}
+    S getState() {
+        return state;
+    }
 
-	long getRequestTimestamp() {
-		return requestTimestamp;
-	}
+    long getRequestTimestamp() {
+        return requestTimestamp;
+    }
 
 }

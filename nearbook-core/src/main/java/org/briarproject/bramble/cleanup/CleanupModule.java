@@ -13,17 +13,17 @@ import dagger.Provides;
 @Module
 public class CleanupModule {
 
-	public static class EagerSingletons {
-		@Inject
-		CleanupManager cleanupManager;
-	}
+    @Provides
+    @Singleton
+    CleanupManager provideCleanupManager(LifecycleManager lifecycleManager,
+                                         EventBus eventBus, CleanupManagerImpl cleanupManager) {
+        lifecycleManager.registerService(cleanupManager);
+        eventBus.addListener(cleanupManager);
+        return cleanupManager;
+    }
 
-	@Provides
-	@Singleton
-	CleanupManager provideCleanupManager(LifecycleManager lifecycleManager,
-			EventBus eventBus, CleanupManagerImpl cleanupManager) {
-		lifecycleManager.registerService(cleanupManager);
-		eventBus.addListener(cleanupManager);
-		return cleanupManager;
-	}
+    public static class EagerSingletons {
+        @Inject
+        CleanupManager cleanupManager;
+    }
 }

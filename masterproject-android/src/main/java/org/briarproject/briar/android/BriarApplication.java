@@ -12,13 +12,13 @@ import org.briarproject.masterproject.android.navdrawer.NavDrawerActivity;
  */
 public interface BriarApplication extends BrambleApplication {
 
-	Class<? extends Activity> ENTRY_ACTIVITY = NavDrawerActivity.class;
+    Class<? extends Activity> ENTRY_ACTIVITY = NavDrawerActivity.class;
 
-	AndroidComponent getApplicationComponent();
+    AndroidComponent getApplicationComponent();
 
-	SharedPreferences getDefaultSharedPreferences();
+    SharedPreferences getDefaultSharedPreferences();
 
-	boolean isRunningInBackground();
+    boolean isRunningInBackground();
 
-	boolean isInstrumentationTest();
+    boolean isInstrumentationTest();
 }

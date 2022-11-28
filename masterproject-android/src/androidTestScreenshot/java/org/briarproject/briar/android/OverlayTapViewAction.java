@@ -12,30 +12,30 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast;
 
 public class OverlayTapViewAction implements ViewAction {
 
-	public static ViewAction visualClick(OverlayView overlayView) {
-		return new OverlayTapViewAction(overlayView);
-	}
+    private final OverlayView overlayView;
 
-	private final OverlayView overlayView;
+    public OverlayTapViewAction(OverlayView overlayView) {
+        this.overlayView = overlayView;
+    }
 
-	public OverlayTapViewAction(OverlayView overlayView) {
-		this.overlayView = overlayView;
-	}
+    public static ViewAction visualClick(OverlayView overlayView) {
+        return new OverlayTapViewAction(overlayView);
+    }
 
-	@Override
-	public Matcher<View> getConstraints() {
-		return isDisplayingAtLeast(90);
-	}
+    @Override
+    public Matcher<View> getConstraints() {
+        return isDisplayingAtLeast(90);
+    }
 
-	@Override
-	public String getDescription() {
-		return null;
-	}
+    @Override
+    public String getDescription() {
+        return null;
+    }
 
-	@Override
-	public void perform(UiController uiController, View view) {
-		float[] coordinates = VISIBLE_CENTER.calculateCoordinates(view);
-		overlayView.tap(coordinates);
-	}
+    @Override
+    public void perform(UiController uiController, View view) {
+        float[] coordinates = VISIBLE_CENTER.calculateCoordinates(view);
+        overlayView.tap(coordinates);
+    }
 }
 

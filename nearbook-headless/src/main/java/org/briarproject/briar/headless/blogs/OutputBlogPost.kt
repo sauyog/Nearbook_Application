@@ -1,9 +1,9 @@
 package org.briarproject.briar.headless.blogs
 
 import org.briarproject.bramble.identity.output
+import org.briarproject.briar.headless.json.JsonDict
 import org.briarproject.masterproject.api.blog.BlogPostHeader
 import org.briarproject.masterproject.api.blog.MessageType
-import org.briarproject.briar.headless.json.JsonDict
 
 internal fun BlogPostHeader.output(text: String) = JsonDict(
     "text" to text,

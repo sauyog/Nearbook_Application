@@ -13,11 +13,11 @@ import javax.annotation.concurrent.Immutable;
 @Immutable
 @NotNullByDefault
 public class PrivateMessageReceivedEvent
-		extends ConversationMessageReceivedEvent<PrivateMessageHeader> {
+        extends ConversationMessageReceivedEvent<PrivateMessageHeader> {
 
-	public PrivateMessageReceivedEvent(PrivateMessageHeader messageHeader,
-			ContactId contactId) {
-		super(messageHeader, contactId);
-	}
+    public PrivateMessageReceivedEvent(PrivateMessageHeader messageHeader,
+                                       ContactId contactId) {
+        super(messageHeader, contactId);
+    }
 
 }

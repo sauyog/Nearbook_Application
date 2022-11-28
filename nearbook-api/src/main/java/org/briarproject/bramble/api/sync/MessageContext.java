@@ -12,24 +12,24 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class MessageContext {
 
-	private final Metadata metadata;
-	private final Collection<MessageId> dependencies;
+    private final Metadata metadata;
+    private final Collection<MessageId> dependencies;
 
-	public MessageContext(Metadata metadata,
-			Collection<MessageId> dependencies) {
-		this.metadata = metadata;
-		this.dependencies = dependencies;
-	}
+    public MessageContext(Metadata metadata,
+                          Collection<MessageId> dependencies) {
+        this.metadata = metadata;
+        this.dependencies = dependencies;
+    }
 
-	public MessageContext(Metadata metadata) {
-		this(metadata, Collections.emptyList());
-	}
+    public MessageContext(Metadata metadata) {
+        this(metadata, Collections.emptyList());
+    }
 
-	public Metadata getMetadata() {
-		return metadata;
-	}
+    public Metadata getMetadata() {
+        return metadata;
+    }
 
-	public Collection<MessageId> getDependencies() {
-		return dependencies;
-	}
+    public Collection<MessageId> getDependencies() {
+        return dependencies;
+    }
 }

@@ -23,28 +23,28 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
-		BrambleCoreIntegrationTestModule.class,
-		BrambleCoreModule.class,
-		ModularMailboxModule.class,
-		TestDnsModule.class,
-		TestSocksModule.class,
-		TestPluginConfigModule.class,
+        BrambleCoreIntegrationTestModule.class,
+        BrambleCoreModule.class,
+        ModularMailboxModule.class,
+        TestDnsModule.class,
+        TestSocksModule.class,
+        TestPluginConfigModule.class,
 })
 interface ContactExchangeIntegrationTestComponent
-		extends BrambleCoreIntegrationTestEagerSingletons {
+        extends BrambleCoreIntegrationTestEagerSingletons {
 
-	ConnectionManager getConnectionManager();
+    ConnectionManager getConnectionManager();
 
-	ContactExchangeManager getContactExchangeManager();
+    ContactExchangeManager getContactExchangeManager();
 
-	ContactManager getContactManager();
+    ContactManager getContactManager();
 
-	EventBus getEventBus();
+    EventBus getEventBus();
 
-	IdentityManager getIdentityManager();
+    IdentityManager getIdentityManager();
 
-	@IoExecutor
-	Executor getIoExecutor();
+    @IoExecutor
+    Executor getIoExecutor();
 
-	LifecycleManager getLifecycleManager();
+    LifecycleManager getLifecycleManager();
 }

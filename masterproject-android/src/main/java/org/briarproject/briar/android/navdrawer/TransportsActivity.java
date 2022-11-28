@@ -1,5 +1,23 @@
 package org.briarproject.masterproject.android.navdrawer;
 
+import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static android.os.Build.VERSION.SDK_INT;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static org.briarproject.bramble.api.plugin.Plugin.State.ACTIVE;
+import static org.briarproject.bramble.api.plugin.Plugin.State.DISABLED;
+import static org.briarproject.bramble.api.plugin.Plugin.State.ENABLING;
+import static org.briarproject.bramble.api.plugin.Plugin.State.STARTING_STOPPING;
+import static org.briarproject.bramble.api.plugin.TorConstants.REASON_BATTERY;
+import static org.briarproject.bramble.api.plugin.TorConstants.REASON_COUNTRY_BLOCKED;
+import static org.briarproject.bramble.api.plugin.TorConstants.REASON_MOBILE_DATA;
+import static org.briarproject.masterproject.android.util.PermissionUtils.areBluetoothPermissionsGranted;
+import static org.briarproject.masterproject.android.util.PermissionUtils.requestBluetoothPermissions;
+import static org.briarproject.masterproject.android.util.PermissionUtils.showDenialDialog;
+import static org.briarproject.masterproject.android.util.PermissionUtils.showRationale;
+import static org.briarproject.masterproject.android.util.PermissionUtils.wasGrantedBluetoothPermissions;
+import static org.briarproject.masterproject.android.util.UiUtils.showOnboardingDialog;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +29,18 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.briarproject.bramble.api.network.NetworkStatus;
 import org.briarproject.bramble.api.plugin.BluetoothConstants;
@@ -30,374 +60,342 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions;
-import androidx.annotation.ColorRes;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProvider;
-
-import static android.Manifest.permission.BLUETOOTH_CONNECT;
-import static android.os.Build.VERSION.SDK_INT;
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-import static org.briarproject.bramble.api.plugin.Plugin.State.ACTIVE;
-import static org.briarproject.bramble.api.plugin.Plugin.State.DISABLED;
-import static org.briarproject.bramble.api.plugin.Plugin.State.ENABLING;
-import static org.briarproject.bramble.api.plugin.Plugin.State.STARTING_STOPPING;
-import static org.briarproject.bramble.api.plugin.TorConstants.REASON_BATTERY;
-import static org.briarproject.bramble.api.plugin.TorConstants.REASON_COUNTRY_BLOCKED;
-import static org.briarproject.bramble.api.plugin.TorConstants.REASON_MOBILE_DATA;
-import static org.briarproject.masterproject.android.util.PermissionUtils.areBluetoothPermissionsGranted;
-import static org.briarproject.masterproject.android.util.PermissionUtils.requestBluetoothPermissions;
-import static org.briarproject.masterproject.android.util.PermissionUtils.showDenialDialog;
-import static org.briarproject.masterproject.android.util.PermissionUtils.showRationale;
-import static org.briarproject.masterproject.android.util.PermissionUtils.wasGrantedBluetoothPermissions;
-import static org.briarproject.masterproject.android.util.UiUtils.showOnboardingDialog;
-
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 public class TransportsActivity extends BriarActivity {
 
-	@Inject
-	ViewModelProvider.Factory viewModelFactory;
+    private final List<Transport> transports = new ArrayList<>(3);
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+    private PluginViewModel viewModel;
+    private BaseAdapter transportsAdapter;
 
-	private final List<Transport> transports = new ArrayList<>(3);
+    @RequiresApi(31)
+    private final ActivityResultLauncher<String[]> requestPermissionLauncher =
+            registerForActivityResult(new RequestMultiplePermissions(),
+                    this::handleBtPermissionResult);
 
-	private PluginViewModel viewModel;
-	private BaseAdapter transportsAdapter;
+    @Override
+    public void injectActivity(ActivityComponent component) {
+        component.inject(this);
+        viewModel = new ViewModelProvider(this, viewModelFactory)
+                .get(PluginViewModel.class);
+    }
 
-	@RequiresApi(31)
-	private final ActivityResultLauncher<String[]> requestPermissionLauncher =
-			registerForActivityResult(new RequestMultiplePermissions(),
-					this::handleBtPermissionResult);
+    @Override
+    public void onCreate(@Nullable Bundle state) {
+        super.onCreate(state);
 
-	@Override
-	public void injectActivity(ActivityComponent component) {
-		component.inject(this);
-		viewModel = new ViewModelProvider(this, viewModelFactory)
-				.get(PluginViewModel.class);
-	}
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
-	@Override
-	public void onCreate(@Nullable Bundle state) {
-		super.onCreate(state);
+        setContentView(R.layout.activity_transports);
 
-		ActionBar actionBar = getSupportActionBar();
-		if (actionBar != null) {
-			actionBar.setHomeButtonEnabled(true);
-			actionBar.setDisplayHomeAsUpEnabled(true);
-		}
+        GridView grid = findViewById(R.id.grid);
+        initializeCards();
+        grid.setAdapter(transportsAdapter);
+    }
 
-		setContentView(R.layout.activity_transports);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        } else if (item.getItemId() == R.id.action_help) {
+            String text = getString(R.string.transports_help_text);
+            showOnboardingDialog(this, text);
+            return true;
+        }
+        return false;
+    }
 
-		GridView grid = findViewById(R.id.grid);
-		initializeCards();
-		grid.setAdapter(transportsAdapter);
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.help_action, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == android.R.id.home) {
-			onBackPressed();
-			return true;
-		} else if (item.getItemId() == R.id.action_help) {
-			String text = getString(R.string.transports_help_text);
-			showOnboardingDialog(this, text);
-			return true;
-		}
-		return false;
-	}
+    private void initializeCards() {
+        transportsAdapter = new BaseAdapter() {
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.help_action, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+            @Override
+            public int getCount() {
+                return transports.size();
+            }
 
-	private void initializeCards() {
-		transportsAdapter = new BaseAdapter() {
+            @Override
+            public Transport getItem(int position) {
+                return transports.get(position);
+            }
 
-			@Override
-			public int getCount() {
-				return transports.size();
-			}
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
 
-			@Override
-			public Transport getItem(int position) {
-				return transports.get(position);
-			}
+            @Override
+            public View getView(int position, View convertView,
+                                ViewGroup parent) {
+                View view;
+                if (convertView != null) {
+                    view = convertView;
+                } else {
+                    LayoutInflater inflater = getLayoutInflater();
+                    view = inflater.inflate(R.layout.list_item_transport_card,
+                            parent, false);
+                }
 
-			@Override
-			public long getItemId(int position) {
-				return 0;
-			}
+                Transport t = getItem(position);
 
-			@Override
-			public View getView(int position, View convertView,
-					ViewGroup parent) {
-				View view;
-				if (convertView != null) {
-					view = convertView;
-				} else {
-					LayoutInflater inflater = getLayoutInflater();
-					view = inflater.inflate(R.layout.list_item_transport_card,
-							parent, false);
-				}
+                ImageView icon = view.findViewById(R.id.icon);
+                icon.setImageResource(t.iconDrawable);
+                icon.setColorFilter(ContextCompat.getColor(
+                        TransportsActivity.this, t.iconColor));
 
-				Transport t = getItem(position);
+                TextView title = view.findViewById(R.id.title);
+                title.setText(getString(t.title));
 
-				ImageView icon = view.findViewById(R.id.icon);
-				icon.setImageResource(t.iconDrawable);
-				icon.setColorFilter(ContextCompat.getColor(
-						TransportsActivity.this, t.iconColor));
+                SwitchCompat switchCompat =
+                        view.findViewById(R.id.switchCompat);
+                switchCompat.setText(getString(t.switchLabel));
+                switchCompat.setOnClickListener(v ->
+                        onClicked(t.id, switchCompat.isChecked()));
+                switchCompat.setChecked(t.isSwitchChecked);
 
-				TextView title = view.findViewById(R.id.title);
-				title.setText(getString(t.title));
+                TextView summary = view.findViewById(R.id.summary);
+                if (t.summary == 0) {
+                    summary.setVisibility(GONE);
+                } else {
+                    summary.setText(t.summary);
+                    summary.setVisibility(VISIBLE);
+                }
 
-				SwitchCompat switchCompat =
-						view.findViewById(R.id.switchCompat);
-				switchCompat.setText(getString(t.switchLabel));
-				switchCompat.setOnClickListener(v ->
-						onClicked(t.id, switchCompat.isChecked()));
-				switchCompat.setChecked(t.isSwitchChecked);
+                TextView deviceStatus = view.findViewById(R.id.deviceStatus);
+                deviceStatus.setText(getBulletString(t.deviceStatus));
 
-				TextView summary = view.findViewById(R.id.summary);
-				if (t.summary == 0) {
-					summary.setVisibility(GONE);
-				} else {
-					summary.setText(t.summary);
-					summary.setVisibility(VISIBLE);
-				}
+                TextView pluginStatus = view.findViewById(R.id.appStatus);
+                pluginStatus.setText(getBulletString(t.pluginStatus));
+                pluginStatus.setVisibility(t.showPluginStatus ? VISIBLE : GONE);
 
-				TextView deviceStatus = view.findViewById(R.id.deviceStatus);
-				deviceStatus.setText(getBulletString(t.deviceStatus));
+                return view;
+            }
+        };
 
-				TextView pluginStatus = view.findViewById(R.id.appStatus);
-				pluginStatus.setText(getBulletString(t.pluginStatus));
-				pluginStatus.setVisibility(t.showPluginStatus ? VISIBLE : GONE);
+        Transport tor = createTransport(TorConstants.ID,
+                R.drawable.transport_tor, R.string.transport_tor,
+                R.string.tor_enable_title, R.string.tor_enable_summary,
+                R.string.tor_device_status_offline,
+                R.string.tor_plugin_status_inactive);
+        transports.add(tor);
 
-				return view;
-			}
-		};
+        Transport wifi = createTransport(LanTcpConstants.ID,
+                R.drawable.transport_lan, R.string.transport_lan_long,
+                R.string.wifi_setting, 0, R.string.lan_device_status_off,
+                R.string.lan_plugin_status_inactive);
+        transports.add(wifi);
 
-		Transport tor = createTransport(TorConstants.ID,
-				R.drawable.transport_tor, R.string.transport_tor,
-				R.string.tor_enable_title, R.string.tor_enable_summary,
-				R.string.tor_device_status_offline,
-				R.string.tor_plugin_status_inactive);
-		transports.add(tor);
+        Transport bt = createTransport(BluetoothConstants.ID,
+                R.drawable.transport_bt, R.string.transport_bt,
+                R.string.bluetooth_setting, 0, R.string.bt_device_status_off,
+                R.string.bt_plugin_status_inactive);
+        transports.add(bt);
 
-		Transport wifi = createTransport(LanTcpConstants.ID,
-				R.drawable.transport_lan, R.string.transport_lan_long,
-				R.string.wifi_setting, 0, R.string.lan_device_status_off,
-				R.string.lan_plugin_status_inactive);
-		transports.add(wifi);
+        viewModel.getNetworkStatus().observe(this, status -> {
+            updateTorResources(tor, status);
+            updateWifiResources(wifi, status);
+            transportsAdapter.notifyDataSetChanged();
+        });
 
-		Transport bt = createTransport(BluetoothConstants.ID,
-				R.drawable.transport_bt, R.string.transport_bt,
-				R.string.bluetooth_setting, 0, R.string.bt_device_status_off,
-				R.string.bt_plugin_status_inactive);
-		transports.add(bt);
+        viewModel.getBluetoothTurnedOn().observe(this, on -> {
+            updateBtResources(bt, on);
+            transportsAdapter.notifyDataSetChanged();
+        });
+    }
 
-		viewModel.getNetworkStatus().observe(this, status -> {
-			updateTorResources(tor, status);
-			updateWifiResources(wifi, status);
-			transportsAdapter.notifyDataSetChanged();
-		});
+    private void onClicked(TransportId transportId, boolean enable) {
+        if (enable && SDK_INT >= 31 && !areBluetoothPermissionsGranted(this)) {
+            if (shouldShowRequestPermissionRationale(BLUETOOTH_CONNECT)) {
+                showRationale(this, R.string.permission_bluetooth_title,
+                        R.string.permission_bluetooth_body,
+                        this::requestBtPermissions);
+            } else {
+                requestBtPermissions();
+            }
+        } else {
+            viewModel.enableTransport(transportId, enable);
+        }
+    }
 
-		viewModel.getBluetoothTurnedOn().observe(this, on -> {
-			updateBtResources(bt, on);
-			transportsAdapter.notifyDataSetChanged();
-		});
-	}
+    private String getBulletString(@StringRes int resId) {
+        return "\u2022 " + getString(resId);
+    }
 
-	private void onClicked(TransportId transportId, boolean enable) {
-		if (enable && SDK_INT >= 31 && !areBluetoothPermissionsGranted(this)) {
-			if (shouldShowRequestPermissionRationale(BLUETOOTH_CONNECT)) {
-				showRationale(this, R.string.permission_bluetooth_title,
-						R.string.permission_bluetooth_body,
-						this::requestBtPermissions);
-			} else {
-				requestBtPermissions();
-			}
-		} else {
-			viewModel.enableTransport(transportId, enable);
-		}
-	}
+    @ColorRes
+    private int getIconColor(State state) {
+        if (state == ACTIVE) return R.color.briar_lime_400;
+        else if (state == ENABLING) return R.color.briar_orange_500;
+        else return android.R.color.tertiary_text_light;
+    }
 
-	private String getBulletString(@StringRes int resId) {
-		return "\u2022 " + getString(resId);
-	}
+    private void updateTorResources(Transport tor, NetworkStatus status) {
+        if (status.isConnected()) {
+            if (status.isWifi()) {
+                tor.deviceStatus = R.string.tor_device_status_online_wifi;
+            } else {
+                tor.deviceStatus = R.string.tor_device_status_online_mobile;
+            }
+            tor.showPluginStatus = true;
+        } else {
+            tor.deviceStatus = R.string.tor_device_status_offline;
+            tor.showPluginStatus = false;
+        }
+    }
 
-	@ColorRes
-	private int getIconColor(State state) {
-		if (state == ACTIVE) return R.color.briar_lime_400;
-		else if (state == ENABLING) return R.color.briar_orange_500;
-		else return android.R.color.tertiary_text_light;
-	}
+    private void updateWifiResources(Transport wifi, NetworkStatus status) {
+        if (status.isWifi()) {
+            wifi.deviceStatus = R.string.lan_device_status_on;
+            wifi.showPluginStatus = true;
+        } else {
+            wifi.deviceStatus = R.string.lan_device_status_off;
+            wifi.showPluginStatus = false;
+        }
+    }
 
-	private void updateTorResources(Transport tor, NetworkStatus status) {
-		if (status.isConnected()) {
-			if (status.isWifi()) {
-				tor.deviceStatus = R.string.tor_device_status_online_wifi;
-			} else {
-				tor.deviceStatus = R.string.tor_device_status_online_mobile;
-			}
-			tor.showPluginStatus = true;
-		} else {
-			tor.deviceStatus = R.string.tor_device_status_offline;
-			tor.showPluginStatus = false;
-		}
-	}
+    private void updateBtResources(Transport bt, boolean on) {
+        if (on) {
+            bt.deviceStatus = R.string.bt_device_status_on;
+            bt.showPluginStatus = true;
+        } else {
+            bt.deviceStatus = R.string.bt_device_status_off;
+            bt.showPluginStatus = false;
+        }
+    }
 
-	private void updateWifiResources(Transport wifi, NetworkStatus status) {
-		if (status.isWifi()) {
-			wifi.deviceStatus = R.string.lan_device_status_on;
-			wifi.showPluginStatus = true;
-		} else {
-			wifi.deviceStatus = R.string.lan_device_status_off;
-			wifi.showPluginStatus = false;
-		}
-	}
+    @StringRes
+    private int getPluginStatus(TransportId id, State state) {
+        if (id.equals(TorConstants.ID)) {
+            return getTorPluginStatus(state);
+        } else if (id.equals(LanTcpConstants.ID)) {
+            return getWifiPluginStatus(state);
+        } else if (id.equals(BluetoothConstants.ID)) {
+            return getBtPluginStatus(state);
+        } else throw new AssertionError();
+    }
 
-	private void updateBtResources(Transport bt, boolean on) {
-		if (on) {
-			bt.deviceStatus = R.string.bt_device_status_on;
-			bt.showPluginStatus = true;
-		} else {
-			bt.deviceStatus = R.string.bt_device_status_off;
-			bt.showPluginStatus = false;
-		}
-	}
+    @StringRes
+    private int getTorPluginStatus(State state) {
+        if (state == ENABLING) {
+            return R.string.tor_plugin_status_enabling;
+        } else if (state == ACTIVE) {
+            return R.string.tor_plugin_status_active;
+        } else if (state == DISABLED) {
+            int reasons = viewModel.getReasonsTorDisabled();
+            if ((reasons & REASON_MOBILE_DATA) != 0) {
+                return R.string.tor_plugin_status_disabled_mobile_data;
+            } else if ((reasons & REASON_BATTERY) != 0) {
+                return R.string.tor_plugin_status_disabled_battery;
+            } else if ((reasons & REASON_COUNTRY_BLOCKED) != 0) {
+                return R.string.tor_plugin_status_disabled_country_blocked;
+            } else {
+                return R.string.tor_plugin_status_disabled;
+            }
+        } else {
+            return R.string.tor_plugin_status_inactive;
+        }
+    }
 
-	@StringRes
-	private int getPluginStatus(TransportId id, State state) {
-		if (id.equals(TorConstants.ID)) {
-			return getTorPluginStatus(state);
-		} else if (id.equals(LanTcpConstants.ID)) {
-			return getWifiPluginStatus(state);
-		} else if (id.equals(BluetoothConstants.ID)) {
-			return getBtPluginStatus(state);
-		} else throw new AssertionError();
-	}
+    @StringRes
+    private int getWifiPluginStatus(State state) {
+        if (state == ENABLING) return R.string.lan_plugin_status_enabling;
+        else if (state == ACTIVE) return R.string.lan_plugin_status_active;
+        else if (state == DISABLED) return R.string.lan_plugin_status_disabled;
+        else return R.string.lan_plugin_status_inactive;
+    }
 
-	@StringRes
-	private int getTorPluginStatus(State state) {
-		if (state == ENABLING) {
-			return R.string.tor_plugin_status_enabling;
-		} else if (state == ACTIVE) {
-			return R.string.tor_plugin_status_active;
-		} else if (state == DISABLED) {
-			int reasons = viewModel.getReasonsTorDisabled();
-			if ((reasons & REASON_MOBILE_DATA) != 0) {
-				return R.string.tor_plugin_status_disabled_mobile_data;
-			} else if ((reasons & REASON_BATTERY) != 0) {
-				return R.string.tor_plugin_status_disabled_battery;
-			} else if ((reasons & REASON_COUNTRY_BLOCKED) != 0) {
-				return R.string.tor_plugin_status_disabled_country_blocked;
-			} else {
-				return R.string.tor_plugin_status_disabled;
-			}
-		} else {
-			return R.string.tor_plugin_status_inactive;
-		}
-	}
+    @StringRes
+    private int getBtPluginStatus(State state) {
+        if (state == ENABLING) return R.string.bt_plugin_status_enabling;
+        else if (state == ACTIVE) return R.string.bt_plugin_status_active;
+        else if (state == DISABLED) return R.string.bt_plugin_status_disabled;
+        else return R.string.bt_plugin_status_inactive;
+    }
 
-	@StringRes
-	private int getWifiPluginStatus(State state) {
-		if (state == ENABLING) return R.string.lan_plugin_status_enabling;
-		else if (state == ACTIVE) return R.string.lan_plugin_status_active;
-		else if (state == DISABLED) return R.string.lan_plugin_status_disabled;
-		else return R.string.lan_plugin_status_inactive;
-	}
+    private Transport createTransport(TransportId id,
+                                      @DrawableRes int iconDrawable, @StringRes int title,
+                                      @StringRes int switchLabel, @StringRes int summary,
+                                      @StringRes int deviceStatus, @StringRes int pluginStatus) {
+        int iconColor = getIconColor(STARTING_STOPPING);
+        Transport transport = new Transport(id, iconDrawable, iconColor, title,
+                switchLabel, false, summary, deviceStatus, pluginStatus, false);
+        viewModel.getPluginState(id).observe(this, state -> {
+            transport.iconColor = getIconColor(state);
+            transport.pluginStatus = getPluginStatus(transport.id, state);
+            transportsAdapter.notifyDataSetChanged();
+        });
+        viewModel.getPluginEnabledSetting(id).observe(this, enabled -> {
+            transport.isSwitchChecked = enabled;
+            transportsAdapter.notifyDataSetChanged();
+        });
+        return transport;
+    }
 
-	@StringRes
-	private int getBtPluginStatus(State state) {
-		if (state == ENABLING) return R.string.bt_plugin_status_enabling;
-		else if (state == ACTIVE) return R.string.bt_plugin_status_active;
-		else if (state == DISABLED) return R.string.bt_plugin_status_disabled;
-		else return R.string.bt_plugin_status_inactive;
-	}
+    @RequiresApi(31)
+    private void requestBtPermissions() {
+        requestBluetoothPermissions(requestPermissionLauncher);
+    }
 
-	private Transport createTransport(TransportId id,
-			@DrawableRes int iconDrawable, @StringRes int title,
-			@StringRes int switchLabel, @StringRes int summary,
-			@StringRes int deviceStatus, @StringRes int pluginStatus) {
-		int iconColor = getIconColor(STARTING_STOPPING);
-		Transport transport = new Transport(id, iconDrawable, iconColor, title,
-				switchLabel, false, summary, deviceStatus, pluginStatus, false);
-		viewModel.getPluginState(id).observe(this, state -> {
-			transport.iconColor = getIconColor(state);
-			transport.pluginStatus = getPluginStatus(transport.id, state);
-			transportsAdapter.notifyDataSetChanged();
-		});
-		viewModel.getPluginEnabledSetting(id).observe(this, enabled -> {
-			transport.isSwitchChecked = enabled;
-			transportsAdapter.notifyDataSetChanged();
-		});
-		return transport;
-	}
+    @RequiresApi(31)
+    private void handleBtPermissionResult(Map<String, Boolean> grantedMap) {
+        if (wasGrantedBluetoothPermissions(this, grantedMap)) {
+            viewModel.enableTransport(BluetoothConstants.ID, true);
+        } else {
+            // update adapter to reflect the "off" toggle state after denying
+            transportsAdapter.notifyDataSetChanged();
+            showDenialDialog(this,
+                    R.string.permission_bluetooth_title,
+                    R.string.permission_bluetooth_denied_body);
+        }
+    }
 
-	@RequiresApi(31)
-	private void requestBtPermissions() {
-		requestBluetoothPermissions(requestPermissionLauncher);
-	}
+    private static class Transport {
 
-	@RequiresApi(31)
-	private void handleBtPermissionResult(Map<String, Boolean> grantedMap) {
-		if (wasGrantedBluetoothPermissions(this, grantedMap)) {
-			viewModel.enableTransport(BluetoothConstants.ID, true);
-		} else {
-			// update adapter to reflect the "off" toggle state after denying
-			transportsAdapter.notifyDataSetChanged();
-			showDenialDialog(this,
-					R.string.permission_bluetooth_title,
-					R.string.permission_bluetooth_denied_body);
-		}
-	}
+        private final TransportId id;
 
-	private static class Transport {
+        @DrawableRes
+        private final int iconDrawable;
+        @StringRes
+        private final int title, switchLabel, summary;
 
-		private final TransportId id;
+        @ColorRes
+        private int iconColor;
+        @StringRes
+        private int deviceStatus, pluginStatus;
+        private boolean isSwitchChecked, showPluginStatus;
 
-		@DrawableRes
-		private final int iconDrawable;
-		@StringRes
-		private final int title, switchLabel, summary;
-
-		@ColorRes
-		private int iconColor;
-		@StringRes
-		private int deviceStatus, pluginStatus;
-		private boolean isSwitchChecked, showPluginStatus;
-
-		private Transport(TransportId id,
-				@DrawableRes int iconDrawable,
-				@ColorRes int iconColor,
-				@StringRes int title,
-				@StringRes int switchLabel,
-				boolean isSwitchChecked,
-				@StringRes int summary,
-				@StringRes int deviceStatus,
-				@StringRes int pluginStatus,
-				boolean showPluginStatus) {
-			this.id = id;
-			this.iconDrawable = iconDrawable;
-			this.iconColor = iconColor;
-			this.title = title;
-			this.switchLabel = switchLabel;
-			this.isSwitchChecked = isSwitchChecked;
-			this.summary = summary;
-			this.deviceStatus = deviceStatus;
-			this.pluginStatus = pluginStatus;
-			this.showPluginStatus = showPluginStatus;
-		}
-	}
+        private Transport(TransportId id,
+                          @DrawableRes int iconDrawable,
+                          @ColorRes int iconColor,
+                          @StringRes int title,
+                          @StringRes int switchLabel,
+                          boolean isSwitchChecked,
+                          @StringRes int summary,
+                          @StringRes int deviceStatus,
+                          @StringRes int pluginStatus,
+                          boolean showPluginStatus) {
+            this.id = id;
+            this.iconDrawable = iconDrawable;
+            this.iconColor = iconColor;
+            this.title = title;
+            this.switchLabel = switchLabel;
+            this.isSwitchChecked = isSwitchChecked;
+            this.summary = summary;
+            this.deviceStatus = deviceStatus;
+            this.pluginStatus = pluginStatus;
+            this.showPluginStatus = showPluginStatus;
+        }
+    }
 }

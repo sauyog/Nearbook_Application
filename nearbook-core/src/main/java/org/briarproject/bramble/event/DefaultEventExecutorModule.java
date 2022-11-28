@@ -1,5 +1,7 @@
 package org.briarproject.bramble.event;
 
+import static java.util.concurrent.Executors.newSingleThreadExecutor;
+
 import org.briarproject.bramble.api.event.EventExecutor;
 
 import java.util.concurrent.Executor;
@@ -10,8 +12,6 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-import static java.util.concurrent.Executors.newSingleThreadExecutor;
-
 /**
  * Default implementation of {@link EventExecutor} that uses a dedicated thread
  * to notify listeners of events. Applications may prefer to supply an
@@ -20,15 +20,15 @@ import static java.util.concurrent.Executors.newSingleThreadExecutor;
 @Module
 public class DefaultEventExecutorModule {
 
-	@Provides
-	@Singleton
-	@EventExecutor
-	Executor provideEventExecutor(ThreadFactory threadFactory) {
-		return newSingleThreadExecutor(r -> {
-			Thread t = threadFactory.newThread(r);
-			t.setDaemon(true);
-			t.setName(t.getName() + "-Event");
-			return t;
-		});
-	}
+    @Provides
+    @Singleton
+    @EventExecutor
+    Executor provideEventExecutor(ThreadFactory threadFactory) {
+        return newSingleThreadExecutor(r -> {
+            Thread t = threadFactory.newThread(r);
+            t.setDaemon(true);
+            t.setName(t.getName() + "-Event");
+            return t;
+        });
+    }
 }

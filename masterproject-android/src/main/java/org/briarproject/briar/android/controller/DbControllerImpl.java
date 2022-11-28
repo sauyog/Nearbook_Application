@@ -15,29 +15,29 @@ import javax.inject.Inject;
 @NotNullByDefault
 public class DbControllerImpl implements DbController {
 
-	private static final Logger LOG =
-			Logger.getLogger(DbControllerImpl.class.getName());
+    private static final Logger LOG =
+            Logger.getLogger(DbControllerImpl.class.getName());
 
-	protected final Executor dbExecutor;
-	private final LifecycleManager lifecycleManager;
+    protected final Executor dbExecutor;
+    private final LifecycleManager lifecycleManager;
 
-	@Inject
-	public DbControllerImpl(@DatabaseExecutor Executor dbExecutor,
-			LifecycleManager lifecycleManager) {
-		this.dbExecutor = dbExecutor;
-		this.lifecycleManager = lifecycleManager;
-	}
+    @Inject
+    public DbControllerImpl(@DatabaseExecutor Executor dbExecutor,
+                            LifecycleManager lifecycleManager) {
+        this.dbExecutor = dbExecutor;
+        this.lifecycleManager = lifecycleManager;
+    }
 
-	@Override
-	public void runOnDbThread(Runnable task) {
-		dbExecutor.execute(() -> {
-			try {
-				lifecycleManager.waitForDatabase();
-				task.run();
-			} catch (InterruptedException e) {
-				LOG.warning("Interrupted while waiting for database");
-				Thread.currentThread().interrupt();
-			}
-		});
-	}
+    @Override
+    public void runOnDbThread(Runnable task) {
+        dbExecutor.execute(() -> {
+            try {
+                lifecycleManager.waitForDatabase();
+                task.run();
+            } catch (InterruptedException e) {
+                LOG.warning("Interrupted while waiting for database");
+                Thread.currentThread().interrupt();
+            }
+        });
+    }
 }

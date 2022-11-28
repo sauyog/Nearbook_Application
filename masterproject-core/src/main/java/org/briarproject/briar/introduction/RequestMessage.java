@@ -12,26 +12,26 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 class RequestMessage extends AbstractIntroductionMessage {
 
-	private final Author author;
-	@Nullable
-	private final String text;
+    private final Author author;
+    @Nullable
+    private final String text;
 
-	RequestMessage(MessageId messageId, GroupId groupId, long timestamp,
-			@Nullable MessageId previousMessageId, Author author,
-			@Nullable String text, long autoDeleteTimer) {
-		super(messageId, groupId, timestamp, previousMessageId,
-				autoDeleteTimer);
-		this.author = author;
-		this.text = text;
-	}
+    RequestMessage(MessageId messageId, GroupId groupId, long timestamp,
+                   @Nullable MessageId previousMessageId, Author author,
+                   @Nullable String text, long autoDeleteTimer) {
+        super(messageId, groupId, timestamp, previousMessageId,
+                autoDeleteTimer);
+        this.author = author;
+        this.text = text;
+    }
 
-	public Author getAuthor() {
-		return author;
-	}
+    public Author getAuthor() {
+        return author;
+    }
 
-	@Nullable
-	public String getText() {
-		return text;
-	}
+    @Nullable
+    public String getText() {
+        return text;
+    }
 
 }

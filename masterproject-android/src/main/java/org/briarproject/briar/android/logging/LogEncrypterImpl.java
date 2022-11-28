@@ -1,5 +1,11 @@
 package org.briarproject.masterproject.android.logging;
 
+import static org.briarproject.bramble.util.LogUtils.logException;
+import static java.util.logging.Level.WARNING;
+import static java.util.logging.Logger.getLogger;
+
+import androidx.annotation.Nullable;
+
 import org.briarproject.bramble.api.crypto.CryptoComponent;
 import org.briarproject.bramble.api.crypto.SecretKey;
 import org.briarproject.bramble.api.reporting.DevConfig;
@@ -19,59 +25,53 @@ import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
-import androidx.annotation.Nullable;
-
-import static java.util.logging.Level.WARNING;
-import static java.util.logging.Logger.getLogger;
-import static org.briarproject.bramble.util.LogUtils.logException;
-
 @NotNullByDefault
 class LogEncrypterImpl implements LogEncrypter {
 
-	private static final Logger LOG =
-			getLogger(LogEncrypterImpl.class.getName());
+    private static final Logger LOG =
+            getLogger(LogEncrypterImpl.class.getName());
 
-	private final DevConfig devConfig;
-	private final CachingLogHandler logHandler;
-	private final CryptoComponent crypto;
-	private final StreamWriterFactory streamWriterFactory;
+    private final DevConfig devConfig;
+    private final CachingLogHandler logHandler;
+    private final CryptoComponent crypto;
+    private final StreamWriterFactory streamWriterFactory;
 
-	@Inject
-	LogEncrypterImpl(DevConfig devConfig,
-			CachingLogHandler logHandler,
-			CryptoComponent crypto,
-			StreamWriterFactory streamWriterFactory) {
-		this.devConfig = devConfig;
-		this.logHandler = logHandler;
-		this.crypto = crypto;
-		this.streamWriterFactory = streamWriterFactory;
-	}
+    @Inject
+    LogEncrypterImpl(DevConfig devConfig,
+                     CachingLogHandler logHandler,
+                     CryptoComponent crypto,
+                     StreamWriterFactory streamWriterFactory) {
+        this.devConfig = devConfig;
+        this.logHandler = logHandler;
+        this.crypto = crypto;
+        this.streamWriterFactory = streamWriterFactory;
+    }
 
-	@Nullable
-	@Override
-	public byte[] encryptLogs() {
-		SecretKey logKey = crypto.generateSecretKey();
-		File logFile = devConfig.getLogcatFile();
-		try (OutputStream out = new FileOutputStream(logFile)) {
-			StreamWriter streamWriter =
-					streamWriterFactory.createLogStreamWriter(out, logKey);
-			Writer writer =
-					new OutputStreamWriter(streamWriter.getOutputStream());
-			writeLogString(writer);
-			writer.close();
-			return logKey.getBytes();
-		} catch (IOException e) {
-			logException(LOG, WARNING, e);
-			return null;
-		}
-	}
+    @Nullable
+    @Override
+    public byte[] encryptLogs() {
+        SecretKey logKey = crypto.generateSecretKey();
+        File logFile = devConfig.getLogcatFile();
+        try (OutputStream out = new FileOutputStream(logFile)) {
+            StreamWriter streamWriter =
+                    streamWriterFactory.createLogStreamWriter(out, logKey);
+            Writer writer =
+                    new OutputStreamWriter(streamWriter.getOutputStream());
+            writeLogString(writer);
+            writer.close();
+            return logKey.getBytes();
+        } catch (IOException e) {
+            logException(LOG, WARNING, e);
+            return null;
+        }
+    }
 
-	private void writeLogString(Writer writer) throws IOException {
-		Formatter formatter = new BriefLogFormatter();
-		for (LogRecord record : logHandler.getRecentLogRecords()) {
-			String formatted = formatter.format(record);
-			writer.append(formatted).append('\n');
-		}
-	}
+    private void writeLogString(Writer writer) throws IOException {
+        Formatter formatter = new BriefLogFormatter();
+        for (LogRecord record : logHandler.getRecentLogRecords()) {
+            String formatted = formatter.format(record);
+            writer.append(formatted).append('\n');
+        }
+    }
 
 }

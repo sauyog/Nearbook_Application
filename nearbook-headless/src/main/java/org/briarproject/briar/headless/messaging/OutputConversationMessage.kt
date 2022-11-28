@@ -4,11 +4,11 @@ import org.briarproject.bramble.api.contact.ContactId
 import org.briarproject.bramble.api.sync.MessageId
 import org.briarproject.bramble.api.sync.event.MessagesAckedEvent
 import org.briarproject.bramble.api.sync.event.MessagesSentEvent
+import org.briarproject.briar.headless.json.JsonDict
 import org.briarproject.masterproject.api.conversation.ConversationMessageHeader
 import org.briarproject.masterproject.api.conversation.DeletionResult
 import org.briarproject.masterproject.api.messaging.PrivateMessage
 import org.briarproject.masterproject.api.messaging.PrivateMessageHeader
-import org.briarproject.briar.headless.json.JsonDict
 
 internal fun ConversationMessageHeader.output(contactId: ContactId) = JsonDict(
     "contactId" to contactId.int,

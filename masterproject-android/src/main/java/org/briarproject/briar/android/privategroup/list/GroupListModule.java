@@ -1,8 +1,9 @@
 package org.briarproject.masterproject.android.privategroup.list;
 
+import androidx.lifecycle.ViewModel;
+
 import org.briarproject.masterproject.android.viewmodel.ViewModelKey;
 
-import androidx.lifecycle.ViewModel;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
@@ -10,9 +11,9 @@ import dagger.multibindings.IntoMap;
 @Module
 public abstract class GroupListModule {
 
-	@Binds
-	@IntoMap
-	@ViewModelKey(GroupListViewModel.class)
-	abstract ViewModel bindGroupListViewModel(
-			GroupListViewModel groupListViewModel);
+    @Binds
+    @IntoMap
+    @ViewModelKey(GroupListViewModel.class)
+    abstract ViewModel bindGroupListViewModel(
+            GroupListViewModel groupListViewModel);
 }

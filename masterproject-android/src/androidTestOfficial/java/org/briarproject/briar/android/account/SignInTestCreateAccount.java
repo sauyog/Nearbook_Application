@@ -1,18 +1,5 @@
 package org.briarproject.masterproject.android.account;
 
-import android.view.Gravity;
-
-import org.briarproject.briar.R;
-import org.briarproject.masterproject.android.BriarUiTestComponent;
-import org.briarproject.masterproject.android.UiTest;
-import org.briarproject.masterproject.android.navdrawer.NavDrawerActivity;
-import org.briarproject.masterproject.android.splash.SplashScreenActivity;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import androidx.test.espresso.contrib.DrawerActions;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -27,39 +14,52 @@ import static org.briarproject.masterproject.android.ViewActions.waitFor;
 import static org.briarproject.masterproject.android.ViewActions.waitUntilMatches;
 import static org.hamcrest.Matchers.endsWith;
 
+import android.view.Gravity;
+
+import androidx.test.espresso.contrib.DrawerActions;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.briarproject.briar.R;
+import org.briarproject.masterproject.android.BriarUiTestComponent;
+import org.briarproject.masterproject.android.UiTest;
+import org.briarproject.masterproject.android.navdrawer.NavDrawerActivity;
+import org.briarproject.masterproject.android.splash.SplashScreenActivity;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 @RunWith(AndroidJUnit4.class)
 public class SignInTestCreateAccount extends UiTest {
 
-	@Override
-	protected void inject(BriarUiTestComponent component) {
-		component.inject(this);
-	}
+    @Override
+    protected void inject(BriarUiTestComponent component) {
+        component.inject(this);
+    }
 
-	@Test
-	public void createAccount() throws Exception {
-		accountManager.deleteAccount();
-		accountManager.createAccount(USERNAME, PASSWORD);
+    @Test
+    public void createAccount() throws Exception {
+        accountManager.deleteAccount();
+        accountManager.createAccount(USERNAME, PASSWORD);
 
-		startActivity(SplashScreenActivity.class);
-		lifecycleManager.waitForStartup();
-		waitFor(NavDrawerActivity.class);
+        startActivity(SplashScreenActivity.class);
+        lifecycleManager.waitForStartup();
+        waitFor(NavDrawerActivity.class);
 
-		// open nav drawer
-		onView(withId(R.id.drawer_layout))
-				.check(matches(isClosed(Gravity.START)))
-				.perform(DrawerActions.open());
+        // open nav drawer
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
 
-		// click onboarding away (once shown)
-		onView(isRoot()).perform(waitUntilMatches(hasDescendant(
-				withClassName(endsWith("PromptView")))));
-		onView(withClassName(endsWith("PromptView")))
-				.perform(click());
+        // click onboarding away (once shown)
+        onView(isRoot()).perform(waitUntilMatches(hasDescendant(
+                withClassName(endsWith("PromptView")))));
+        onView(withClassName(endsWith("PromptView")))
+                .perform(click());
 
-		// sign-out manually
-		onView(withText(R.string.sign_out_button))
-				.check(matches(isDisplayed()))
-				.perform(click());
-		lifecycleManager.waitForShutdown();
-	}
+        // sign-out manually
+        onView(withText(R.string.sign_out_button))
+                .check(matches(isDisplayed()))
+                .perform(click());
+        lifecycleManager.waitForShutdown();
+    }
 
 }

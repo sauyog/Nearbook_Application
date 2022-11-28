@@ -9,6 +9,6 @@ import java.io.IOException;
 @NotNullByDefault
 interface BluetoothConnectionFactory<S> {
 
-	DuplexTransportConnection wrapSocket(DuplexPlugin plugin, S socket)
-			throws IOException;
+    DuplexTransportConnection wrapSocket(DuplexPlugin plugin, S socket)
+            throws IOException;
 }

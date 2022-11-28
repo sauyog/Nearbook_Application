@@ -7,10 +7,10 @@ apply plugin: 'witness'
 apply from: 'witness.gradle'
 
 dependencies {
-	implementation project(path: ':nearbook-api', configuration: 'default')
+    implementation project(path: ':nearbook-api', configuration: 'default')
 
-	signature 'org.codehaus.mojo.signature:java16:1.1@signature'
+    signature 'org.codehaus.mojo.signature:java16:1.1@signature'
 
-	testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
-	testImplementation "junit:junit:$junit_version"
+    testImplementation project(path: ':nearbook-api', configuration: 'testOutput')
+    testImplementation "junit:junit:$junit_version"
 }

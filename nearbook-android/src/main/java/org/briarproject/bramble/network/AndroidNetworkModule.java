@@ -12,16 +12,16 @@ import dagger.Provides;
 @Module
 public class AndroidNetworkModule {
 
-	public static class EagerSingletons {
-		@Inject
-		NetworkManager networkManager;
-	}
+    @Provides
+    @Singleton
+    NetworkManager provideNetworkManager(LifecycleManager lifecycleManager,
+                                         AndroidNetworkManager networkManager) {
+        lifecycleManager.registerService(networkManager);
+        return networkManager;
+    }
 
-	@Provides
-	@Singleton
-	NetworkManager provideNetworkManager(LifecycleManager lifecycleManager,
-			AndroidNetworkManager networkManager) {
-		lifecycleManager.registerService(networkManager);
-		return networkManager;
-	}
+    public static class EagerSingletons {
+        @Inject
+        NetworkManager networkManager;
+    }
 }

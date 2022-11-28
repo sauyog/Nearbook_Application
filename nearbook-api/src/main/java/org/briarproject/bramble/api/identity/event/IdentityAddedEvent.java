@@ -13,13 +13,13 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class IdentityAddedEvent extends Event {
 
-	private final AuthorId authorId;
+    private final AuthorId authorId;
 
-	public IdentityAddedEvent(AuthorId authorId) {
-		this.authorId = authorId;
-	}
+    public IdentityAddedEvent(AuthorId authorId) {
+        this.authorId = authorId;
+    }
 
-	public AuthorId getAuthorId() {
-		return authorId;
-	}
+    public AuthorId getAuthorId() {
+        return authorId;
+    }
 }

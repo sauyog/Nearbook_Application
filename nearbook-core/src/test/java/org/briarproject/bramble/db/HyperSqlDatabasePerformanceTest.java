@@ -7,16 +7,16 @@ import org.junit.Ignore;
 
 @Ignore
 public class HyperSqlDatabasePerformanceTest
-		extends SingleDatabasePerformanceTest {
+        extends SingleDatabasePerformanceTest {
 
-	@Override
-	protected String getTestName() {
-		return getClass().getSimpleName();
-	}
+    @Override
+    protected String getTestName() {
+        return getClass().getSimpleName();
+    }
 
-	@Override
-	protected JdbcDatabase createDatabase(DatabaseConfig config,
-			MessageFactory messageFactory, Clock clock) {
-		return new HyperSqlDatabase(config, messageFactory, clock);
-	}
+    @Override
+    protected JdbcDatabase createDatabase(DatabaseConfig config,
+                                          MessageFactory messageFactory, Clock clock) {
+        return new HyperSqlDatabase(config, messageFactory, clock);
+    }
 }

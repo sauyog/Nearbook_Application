@@ -9,13 +9,13 @@ import org.briarproject.bramble.api.contact.PendingContact;
  */
 public class PendingContactExistsException extends DbException {
 
-	private final PendingContact pendingContact;
+    private final PendingContact pendingContact;
 
-	public PendingContactExistsException(PendingContact pendingContact) {
-		this.pendingContact = pendingContact;
-	}
+    public PendingContactExistsException(PendingContact pendingContact) {
+        this.pendingContact = pendingContact;
+    }
 
-	public PendingContact getPendingContact() {
-		return pendingContact;
-	}
+    public PendingContact getPendingContact() {
+        return pendingContact;
+    }
 }

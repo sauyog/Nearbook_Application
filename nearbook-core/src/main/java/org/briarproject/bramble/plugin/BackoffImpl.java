@@ -11,32 +11,32 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 class BackoffImpl implements Backoff {
 
-	private final int minInterval, maxInterval;
-	private final double base;
-	private final AtomicInteger backoff;
+    private final int minInterval, maxInterval;
+    private final double base;
+    private final AtomicInteger backoff;
 
-	BackoffImpl(int minInterval, int maxInterval, double base) {
-		this.minInterval = minInterval;
-		this.maxInterval = maxInterval;
-		this.base = base;
-		backoff = new AtomicInteger(0);
-	}
+    BackoffImpl(int minInterval, int maxInterval, double base) {
+        this.minInterval = minInterval;
+        this.maxInterval = maxInterval;
+        this.base = base;
+        backoff = new AtomicInteger(0);
+    }
 
-	@Override
-	public int getPollingInterval() {
-		double multiplier = Math.pow(base, backoff.get());
-		// Large or infinite values will be rounded to Integer.MAX_VALUE
-		int interval = (int) (minInterval * multiplier);
-		return Math.min(interval, maxInterval);
-	}
+    @Override
+    public int getPollingInterval() {
+        double multiplier = Math.pow(base, backoff.get());
+        // Large or infinite values will be rounded to Integer.MAX_VALUE
+        int interval = (int) (minInterval * multiplier);
+        return Math.min(interval, maxInterval);
+    }
 
-	@Override
-	public void increment() {
-		backoff.incrementAndGet();
-	}
+    @Override
+    public void increment() {
+        backoff.incrementAndGet();
+    }
 
-	@Override
-	public void reset() {
-		backoff.set(0);
-	}
+    @Override
+    public void reset() {
+        backoff.set(0);
+    }
 }

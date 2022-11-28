@@ -4,12 +4,12 @@ import org.briarproject.bramble.system.DefaultTaskSchedulerModule;
 
 public interface HeadlessEagerSingletons {
 
-	void inject(DefaultTaskSchedulerModule.EagerSingletons init);
+    void inject(DefaultTaskSchedulerModule.EagerSingletons init);
 
-	class Helper {
+    class Helper {
 
-		public static void injectEagerSingletons(HeadlessEagerSingletons c) {
-			c.inject(new DefaultTaskSchedulerModule.EagerSingletons());
-		}
-	}
+        public static void injectEagerSingletons(HeadlessEagerSingletons c) {
+            c.inject(new DefaultTaskSchedulerModule.EagerSingletons());
+        }
+    }
 }

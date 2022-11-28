@@ -17,26 +17,26 @@ import javax.inject.Inject;
 @MethodsNotNullByDefault
 @ParametersNotNullByDefault
 public final class BriarModelLoader
-		implements ModelLoader<AttachmentHeader, InputStream> {
+        implements ModelLoader<AttachmentHeader, InputStream> {
 
-	@Inject
-	BriarDataFetcherFactory dataFetcherFactory;
+    @Inject
+    BriarDataFetcherFactory dataFetcherFactory;
 
-	BriarModelLoader(BriarApplication app) {
-		app.getApplicationComponent().inject(this);
-	}
+    BriarModelLoader(BriarApplication app) {
+        app.getApplicationComponent().inject(this);
+    }
 
-	@Override
-	public LoadData<InputStream> buildLoadData(AttachmentHeader model,
-			int width, int height, Options options) {
-		ObjectKey key = new ObjectKey(model.getMessageId());
-		BriarDataFetcher dataFetcher =
-				dataFetcherFactory.createBriarDataFetcher(model);
-		return new LoadData<>(key, dataFetcher);
-	}
+    @Override
+    public LoadData<InputStream> buildLoadData(AttachmentHeader model,
+                                               int width, int height, Options options) {
+        ObjectKey key = new ObjectKey(model.getMessageId());
+        BriarDataFetcher dataFetcher =
+                dataFetcherFactory.createBriarDataFetcher(model);
+        return new LoadData<>(key, dataFetcher);
+    }
 
-	@Override
-	public boolean handles(AttachmentHeader model) {
-		return true;
-	}
+    @Override
+    public boolean handles(AttachmentHeader model) {
+        return true;
+    }
 }

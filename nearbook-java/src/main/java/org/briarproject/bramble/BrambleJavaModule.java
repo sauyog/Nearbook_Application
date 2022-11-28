@@ -10,12 +10,12 @@ import org.briarproject.bramble.system.JavaSystemModule;
 import dagger.Module;
 
 @Module(includes = {
-		CircumventionModule.class,
-		DnsModule.class,
-		JavaNetworkModule.class,
-		JavaSystemModule.class,
-		ModularMailboxModule.class,
-		SocksModule.class
+        CircumventionModule.class,
+        DnsModule.class,
+        JavaNetworkModule.class,
+        JavaSystemModule.class,
+        ModularMailboxModule.class,
+        SocksModule.class
 })
 public class BrambleJavaModule {
 

@@ -13,7 +13,7 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotNullByDefault
 public class PendingContactId extends UniqueId {
 
-	public PendingContactId(byte[] id) {
-		super(id);
-	}
+    public PendingContactId(byte[] id) {
+        super(id);
+    }
 }

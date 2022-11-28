@@ -11,17 +11,17 @@ import javax.annotation.concurrent.Immutable;
 @NotNullByDefault
 public class SharingInvitationItem extends InvitationItem<Shareable> {
 
-	private final Collection<Contact> newSharers;
+    private final Collection<Contact> newSharers;
 
-	public SharingInvitationItem(Shareable shareable, boolean subscribed,
-			Collection<Contact> newSharers) {
-		super(shareable, subscribed);
+    public SharingInvitationItem(Shareable shareable, boolean subscribed,
+                                 Collection<Contact> newSharers) {
+        super(shareable, subscribed);
 
-		this.newSharers = newSharers;
-	}
+        this.newSharers = newSharers;
+    }
 
-	public Collection<Contact> getNewSharers() {
-		return newSharers;
-	}
+    public Collection<Contact> getNewSharers() {
+        return newSharers;
+    }
 
 }

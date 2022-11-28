@@ -13,21 +13,21 @@ import dagger.Provides;
 @Module
 public class IdentityModule {
 
-	public static class EagerSingletons {
-		@Inject
-		IdentityManager identityManager;
-	}
+    @Provides
+    AuthorFactory provideAuthorFactory(AuthorFactoryImpl authorFactory) {
+        return authorFactory;
+    }
 
-	@Provides
-	AuthorFactory provideAuthorFactory(AuthorFactoryImpl authorFactory) {
-		return authorFactory;
-	}
+    @Provides
+    @Singleton
+    IdentityManager provideIdentityManager(LifecycleManager lifecycleManager,
+                                           IdentityManagerImpl identityManager) {
+        lifecycleManager.registerOpenDatabaseHook(identityManager);
+        return identityManager;
+    }
 
-	@Provides
-	@Singleton
-	IdentityManager provideIdentityManager(LifecycleManager lifecycleManager,
-			IdentityManagerImpl identityManager) {
-		lifecycleManager.registerOpenDatabaseHook(identityManager);
-		return identityManager;
-	}
+    public static class EagerSingletons {
+        @Inject
+        IdentityManager identityManager;
+    }
 }

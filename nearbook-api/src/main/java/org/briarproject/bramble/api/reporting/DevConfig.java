@@ -8,11 +8,11 @@ import java.io.File;
 @NotNullByDefault
 public interface DevConfig {
 
-	PublicKey getDevPublicKey();
+    PublicKey getDevPublicKey();
 
-	String getDevOnionAddress();
+    String getDevOnionAddress();
 
-	File getReportDir();
+    File getReportDir();
 
-	File getLogcatFile();
+    File getLogcatFile();
 }

@@ -1,5 +1,8 @@
 package org.briarproject.bramble.connection;
 
+import static org.briarproject.bramble.util.LogUtils.logException;
+import static java.util.logging.Level.WARNING;
+
 import org.briarproject.bramble.api.connection.ConnectionManager;
 import org.briarproject.bramble.api.connection.ConnectionRegistry;
 import org.briarproject.bramble.api.contact.ContactExchangeManager;
@@ -18,55 +21,52 @@ import org.briarproject.nullsafety.NotNullByDefault;
 
 import javax.annotation.Nullable;
 
-import static java.util.logging.Level.WARNING;
-import static org.briarproject.bramble.util.LogUtils.logException;
-
 @NotNullByDefault
 abstract class HandshakeConnection extends Connection {
 
-	final HandshakeManager handshakeManager;
-	final ContactExchangeManager contactExchangeManager;
-	final ConnectionManager connectionManager;
-	final PendingContactId pendingContactId;
-	final TransportId transportId;
-	final DuplexTransportConnection connection;
-	final TransportConnectionReader reader;
-	final TransportConnectionWriter writer;
+    final HandshakeManager handshakeManager;
+    final ContactExchangeManager contactExchangeManager;
+    final ConnectionManager connectionManager;
+    final PendingContactId pendingContactId;
+    final TransportId transportId;
+    final DuplexTransportConnection connection;
+    final TransportConnectionReader reader;
+    final TransportConnectionWriter writer;
 
-	HandshakeConnection(KeyManager keyManager,
-			ConnectionRegistry connectionRegistry,
-			StreamReaderFactory streamReaderFactory,
-			StreamWriterFactory streamWriterFactory,
-			HandshakeManager handshakeManager,
-			ContactExchangeManager contactExchangeManager,
-			ConnectionManager connectionManager,
-			PendingContactId pendingContactId,
-			TransportId transportId, DuplexTransportConnection connection) {
-		super(keyManager, connectionRegistry, streamReaderFactory,
-				streamWriterFactory);
-		this.handshakeManager = handshakeManager;
-		this.contactExchangeManager = contactExchangeManager;
-		this.connectionManager = connectionManager;
-		this.pendingContactId = pendingContactId;
-		this.transportId = transportId;
-		this.connection = connection;
-		reader = connection.getReader();
-		writer = connection.getWriter();
-	}
+    HandshakeConnection(KeyManager keyManager,
+                        ConnectionRegistry connectionRegistry,
+                        StreamReaderFactory streamReaderFactory,
+                        StreamWriterFactory streamWriterFactory,
+                        HandshakeManager handshakeManager,
+                        ContactExchangeManager contactExchangeManager,
+                        ConnectionManager connectionManager,
+                        PendingContactId pendingContactId,
+                        TransportId transportId, DuplexTransportConnection connection) {
+        super(keyManager, connectionRegistry, streamReaderFactory,
+                streamWriterFactory);
+        this.handshakeManager = handshakeManager;
+        this.contactExchangeManager = contactExchangeManager;
+        this.connectionManager = connectionManager;
+        this.pendingContactId = pendingContactId;
+        this.transportId = transportId;
+        this.connection = connection;
+        reader = connection.getReader();
+        writer = connection.getWriter();
+    }
 
-	@Nullable
-	StreamContext allocateStreamContext(PendingContactId pendingContactId,
-			TransportId transportId) {
-		try {
-			return keyManager.getStreamContext(pendingContactId, transportId);
-		} catch (DbException e) {
-			logException(LOG, WARNING, e);
-			return null;
-		}
-	}
+    @Nullable
+    StreamContext allocateStreamContext(PendingContactId pendingContactId,
+                                        TransportId transportId) {
+        try {
+            return keyManager.getStreamContext(pendingContactId, transportId);
+        } catch (DbException e) {
+            logException(LOG, WARNING, e);
+            return null;
+        }
+    }
 
-	void onError(boolean recognised) {
-		disposeOnError(reader, recognised);
-		disposeOnError(writer);
-	}
+    void onError(boolean recognised) {
+        disposeOnError(reader, recognised);
+        disposeOnError(writer);
+    }
 }

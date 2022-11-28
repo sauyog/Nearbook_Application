@@ -7,11 +7,11 @@ import java.io.IOException;
 @NotNullByDefault
 public interface RecordWriter {
 
-	void writeRecord(Record r) throws IOException;
+    void writeRecord(Record r) throws IOException;
 
-	void flush() throws IOException;
+    void flush() throws IOException;
 
-	void close() throws IOException;
+    void close() throws IOException;
 
-	long getBytesWritten();
+    long getBytesWritten();
 }
