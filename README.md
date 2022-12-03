@@ -3,7 +3,7 @@
 Install an IDE such as Android Studio and build gradle. Once the build is successful, run the application on the emulator on any mobile such as Google Pixel 6 and you'd be able to access the application from there.
 
 # Navigation Panel
-https://user-images.githubusercontent.com/17944037/205420653-7e585671-73d5-4fb7-bb25-5d24033bd7b7.jpg
+![image](https://user-images.githubusercontent.com/17944037/205420653-7e585671-73d5-4fb7-bb25-5d24033bd7b7.jpg)
 
 # List of Groups Page
 https://user-images.githubusercontent.com/17944037/205420652-9fa07c3d-3819-42c6-8020-3c8deaa1cd05.jpg
